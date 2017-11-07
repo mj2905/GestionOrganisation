@@ -35,4 +35,4 @@ Idée histoire:\
 *Une section vous a enfermé dans son repaire, il faut trouver de quoi en sortir (il faudrait trouver une section qui a UN endroit symbolique que tout le monde connaît) (Ou SAT? c'est symbolique! Et pas besoin de mettre des indices forcément dans le bar)\
 \
 \
-}
+
