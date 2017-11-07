@@ -8,31 +8,31 @@ L\'idée serait de devoir rechercher une certaine quantité d'objets dans une zo
 \
 Pour introduire ça dans l'histoire, plusieurs idées:\
 \
-*Un \'e9l\'e8ve d\'92une section t\'eate en l\'92air a perdu/cass\'e9 un/plusieurs objets et il faut les r\'e9cup\'e9rer pour qu\'92il te donne une info sur l\'92histoire principale\
+*Un élève d'une section tête en l'air a perdu/cassé un/plusieurs objets et il faut les récupérer pour qu'il te donne une info sur l'histoire principale\
 \
-*Pi\'e8ce d\'92un puzzle \'e0 r\'e9cup\'e9rer pour pouvoir passer \'e0 l\'92\'e9tape suivante\
+*Pièce d'un puzzle à récupérer pour pouvoir passer à l'étape suivante\
 \
-*Coins \'e0 r\'e9cup\'e9rer pour payer un \'e9l\'e8ve d\'92une section radine\
+*Coins à récupérer pour payer un élève d'une section radine\
 \
-##Zone 2#\
+Zone 2
+-
 \
-Il traverser une zone via une sorte de labyrinthe. L\'92id\'e9e serait de trouver un coin d\'e9j\'e0 assez labyrinthe et de pouvoir ajouter des \'ab\'a0fronti\'e8res\'a0\'bb virtuelles pour cr\'e9er un v\'e9ritable labyrinthe.\
+Il traverser une zone via une sorte de labyrinthe. L'idée serait de trouver un coin déjà assez labyrinthe et de pouvoir ajouter des "frontières" virtuelles pour créer un véritable labyrinthe.\
 \
-Pour introduire \'e7a dans l\'92histoire:\
+Pour introduire ça dans l'histoire:\
 \
-*Les archis veulent vous mettre des b\'e2tons dans les roues -> indices \'e0 la fin du labyrinthe pour l\'92histoire principale\
+*Les archis veulent vous mettre des bâtons dans les roues -> indices à la fin du labyrinthe pour l'histoire principale\
 \
-*Il faut \'e9chapper aux soldats au service des m\'e9chants!!!\
+*Il faut échapper aux soldats au service des méchants!!!\
 \
-##Zone 3#\
+Zone 3
+-
 \
-On cache en r\'e9alit\'e9 quatre chiffre dans la zone et il faut trouver le bon num\'e9ro pour ouvrir un cadenas qui nous donne un indice. (Faisable au niveau code?)\
+On cache en réalité quatre chiffres dans la zone et il faut trouver le bon numéro pour ouvrir un cadenas qui nous donne un indice. (Faisable au niveau code?)\
 \
-Id\'e9e histoire\
+Idée histoire:\
 \
-*Une section vous a enferm\'e9 dans son repaire, il faut trouver de quoi en sortir (il faudrait trouver une section qui a UN endroit symbolique que tout le monde conna\'eet) (Ou SAT? c\'92est symbolique! Et pas besoin de mettre des indices forc\'e9ment dans le bar)\
-\
-\
+*Une section vous a enfermé dans son repaire, il faut trouver de quoi en sortir (il faudrait trouver une section qui a UN endroit symbolique que tout le monde connaît) (Ou SAT? c'est symbolique! Et pas besoin de mettre des indices forcément dans le bar)\
 \
 \
 }
