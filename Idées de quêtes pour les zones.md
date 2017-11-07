@@ -1,11 +1,12 @@
-Idées de quêtes pour les zones du jeu\
+Idées de quêtes pour les zones du jeu
 ==
+
+Zone 1
+-
 \
-##Zone 1#\
+L\'idée serait de devoir rechercher une certaine quantité d'objets dans une zone, et les objets "poperait" uniquement si l'on s'en rapproche géographiquement (un peu à la manière des pokémons dans pokémon Go). Il n'y aurait qu'à les toucher pour les récupérer. On pourrait afficher un compteur pour indiquer l'avancée de la quête au joueur. \
 \
-L\'92id\'e9e serait de devoir rechercher une certaine quantit\'e9 d\'92objets dans une zone, et les objets \'ab\'a0poserait\'a0\'bb uniquement si l\'92on s\'92en rapproche g\'e9ographiquement (un peu \'e0 la mani\'e8re des pok\'e9mon dans pok\'e9mon Go). Il n\'92y aurait qu\'92\'e0 les toucher pour les r\'e9cup\'e9rer. On pourrait afficher un compteur pour indiquer l\'92avanc\'e9e de la qu\'eate au joueur. \
-\
-Pour introduire \'e7a dans l\'92histoire, plusieurs id\'e9es:\
+Pour introduire ça dans l'histoire, plusieurs idées:\
 \
 *Un \'e9l\'e8ve d\'92une section t\'eate en l\'92air a perdu/cass\'e9 un/plusieurs objets et il faut les r\'e9cup\'e9rer pour qu\'92il te donne une info sur l\'92histoire principale\
 \
