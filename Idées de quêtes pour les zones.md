@@ -2,7 +2,7 @@ Idées de quêtes pour les zones du jeu
 ==
 
 Zone 1
--
+-\
 \
 L\'idée serait de devoir rechercher une certaine quantité d'objets dans une zone, et les objets "poperait" uniquement si l'on s'en rapproche géographiquement (un peu à la manière des pokémons dans pokémon Go). Il n'y aurait qu'à les toucher pour les récupérer. On pourrait afficher un compteur pour indiquer l'avancée de la quête au joueur. \
 \
@@ -14,7 +14,6 @@ Pour introduire ça dans l'histoire, plusieurs idées:\
 \
 *Coins à récupérer pour payer un élève d'une section radine\
 \
--
 Zone 2
 -
 \
@@ -26,7 +25,6 @@ Pour introduire ça dans l'histoire:\
 \
 *Il faut échapper aux soldats au service des méchants!!!\
 \
--
 Zone 3
 -
 \
