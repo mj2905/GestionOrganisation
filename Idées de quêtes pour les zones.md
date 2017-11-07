@@ -14,6 +14,7 @@ Pour introduire ça dans l'histoire, plusieurs idées:\
 \
 *Coins à récupérer pour payer un élève d'une section radine\
 \
+-
 Zone 2
 -
 \
@@ -25,6 +26,7 @@ Pour introduire ça dans l'histoire:\
 \
 *Il faut échapper aux soldats au service des méchants!!!\
 \
+-
 Zone 3
 -
 \
