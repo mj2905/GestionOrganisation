@@ -25,7 +25,7 @@ public class MarkerGenerator : MonoBehaviour {
 	[SerializeField]
 	private float br_y;
 
-	private CoordinateMap coordinate;
+	private RealToMapCoordinate coordinate;
 	private Transform marker;
 
 	// Use this for initialization
