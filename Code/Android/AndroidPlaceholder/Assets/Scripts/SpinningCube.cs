@@ -4,6 +4,7 @@ using System.Collections;
 public class SpinningCube : MonoBehaviour 
 {
 	public float m_Speed = 40f;
+    private GPSSimulator gpsSimulator = new GPSSimulator(@"gps_track.csv");
 
 	private Vector3 m_RotationDirection = Vector3.up;
 
@@ -24,5 +25,6 @@ public class SpinningCube : MonoBehaviour
 	void Update() 
 	{
 		transform.Rotate(m_RotationDirection * Time.deltaTime * m_Speed);
+        
 	}
 }
