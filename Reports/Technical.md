@@ -42,6 +42,8 @@ Attack mode require the players to be in a zone which is controlled by their tea
 ### 3.1 Scoring
 Player, and more generally teams, must capture territories in order to acquire points. The territories are superposed to a map of EPFL and generally correspond to building or landmarks. The more captured zones, the more points are generated for the owning team. The points are generated on a timely basis such as to have very dynamic leaderboards.
 
+
+
 ### 3.2 Capturing
 Territories can be grouped in one of the three following categories:
 1. Neutral
@@ -50,6 +52,9 @@ Territories can be grouped in one of the three following categories:
 
 Neutral territories can be captured by teams. In such case they become "Captured" and earn points on behalf of the teams.
 Safe zones can never be captured, they represent zones from which players can launch attacks on other territories.
+
+Each section starts with its ''home zones'', capturing of home zones gives more points than zones that were neutral in the beginning.
+A section with one of its ''home zones'' captured losses points .
 
 To capture a territory, the player must enable "Attack" mode. Upon activation, the game records their current localisation. The tracking persists until the player goes back into defense mode. To capture a zone, the player must be physically present in an ennemy territory and place an attack terminal. The attack terminal is a geolocalised marker that attacks the zone on a timely basis until it runs out of energy or is destroyed.
 
@@ -71,6 +76,13 @@ Depending on their actions, players will receive resources. Resources keep accum
 ### 3.6 Bonuses
 
 * Resource bag: The player can gather additional resource when walking over resources bags in attack mode.
+Idea of bonus cards or achievments with several capabilities:
+1) leech (spy) - receive points from zones of other teams within a time period, or until discovered
+2) zone cannot be attacked within a time period
+3) gain a geolocalized marker
+4) receive more points from captured zones for a certain time period
+5) steal researces from other teams
+
 
 # Advantages of the proposed solution.
 * Due to resources management, players are encouraged to reconnect multiple times a day.
