@@ -33,7 +33,11 @@ The user joins one of the four teams, one for each EPFL faculty. By playing the 
 The scores are used to display a ranking between the faculties.
 
 ## 3 Gameplay
-In the game, the players can switch between two modes; **defense** and **attack**. Defense mode does not have any particular requirement. In this mode, player can allocate their resources and help their team defend captured zones.
+In the game, the players can switch between two modes; **defense** and **attack**.
+
+Defense mode does not have any particular requirement. In this mode, player can allocate their resources and help their team defend captured zones.
+
+Attack mode require the players to be in a captured zone and have their localisation active. In this mode, the player can infiltrate ennemy territories and place markers to capture them. The player has a health bar which can be decreased by staying too long in ennemy territory or by walking on traps.
 
 ### 3.1 Scoring
 Player, and more generally teams, must capture territories in order to acquire points. The territories are superposed to a map of EPFL and generally correspond to building or landmarks. The more captured zones, the more points are generated for the owning team. The points are generated on a timely basis such as to have very dynamic leaderboards.
@@ -42,14 +46,15 @@ Player, and more generally teams, must capture territories in order to acquire p
 Territories can be grouped in one of the three following categories:
 1. Neutral
 2. Captured
-3. Safe zone
+3. Safe 
 
 Neutral territories can be captured by teams. In such case they become "Captured" and earn points on behalf of the teams.
 Safe zones can never be captured, they represent zones from which players can launch attacks on other territories.
 
-To capture a territory, the
+To capture a territory, the player must enable "Attack" mode. Upon activation, the game records their current localisation. The tracking persists until the player goes back into defense mode. To capture a zone, the player must be physically present in an ennemy territory and place an attack terminal. The attack terminal is a geolocalised marker that attacks the zone on a timely basis until it runs out of energy or is destroyed.
 
 ### 3.3 Defending
+When one of the territories under the team's control is attacked, the attack terminal will be displayed on the map for all team members. To defend, the player must click on it and spend resources to destroy it.
 
 ### 3.4 Resources management
 
