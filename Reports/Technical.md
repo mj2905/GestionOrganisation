@@ -2,13 +2,13 @@
 
 ## Previous problems:
 1. No clear game concept nor mechanics
-* No clear duration.
-* No decision regarding association with other events
-* No sense of scale regarding the number of players which can participate at any given time.
+2. No clear duration.
+3. No decision regarding association with other events
+4. No sense of scale regarding the number of players which can participate at any given time.
 
 ## Proposed solution:
 1. Abandon idea of organising event or take part in an event. It saves time and resources.
-* The project is a game which is usable 24/7 either using geolocalisatoin services or not. The main concepts are explained in the following section.
+2. The project is a game which is usable 24/7 either using geolocalisatoin services or not. The main concepts are explained in the following section.
 
 # Game mechanics
 The game mechanics should fulfill the below requirements. They should be finely tuned so that the overall experience is fun and addictive.
@@ -22,12 +22,12 @@ The game mechanics should fulfill the below requirements. They should be finely 
 We introduce the following additional requirements to further constrain the mentioned aspects:
 
 * The game should be playable casually (ie: with one finger)
-* The game should not be too restrictive to the user. Particularly regarding the geolocalised aspect.
+* The game should not be too restrictive to the user. Particularly regarding the geolocalisation aspect.
 
 # Game description
 
 ## 1 Objective
-The user joins one of the four teams, one for each EPFL faculty. By playing the user increases its personal score and the team's score. The team with the highest score wins.
+The user joins one of the four teams, one for each EPFL faculty. By playing, the user increases its personal score and the team's score. The team with the highest score wins.
 
 ## 2 Player and team performance assessment
 The scores are used to display a ranking between the faculties.
@@ -37,7 +37,7 @@ In the game, the players can switch between two modes; **defense** and **attack*
 
 Defense mode does not have any particular requirement. In this mode, player can allocate their resources and help their team defend captured zones.
 
-Attack mode require the players to be in a captured zone and have their localisation active. In this mode, the player can infiltrate ennemy territories and place markers to capture them. The player has a health bar which can be decreased by staying too long in ennemy territory or by walking on traps.
+Attack mode require the players to be in a zone which is controlled by their team and have their localisation active. In this mode, the player can infiltrate ennemy territories and place markers to capture them. The player has a health bar which decreases if he stays too long in ennemy territory or if he gets caught on traps.
 
 ### 3.1 Scoring
 Player, and more generally teams, must capture territories in order to acquire points. The territories are superposed to a map of EPFL and generally correspond to building or landmarks. The more captured zones, the more points are generated for the owning team. The points are generated on a timely basis such as to have very dynamic leaderboards.
@@ -59,21 +59,21 @@ When one of the territories under the team's control is attacked, the attack ter
 ### 3.4 Resources management
 Depending on their actions, players will receive resources. Resources keep accumulating even when the player is disconnected. However, they are capped to a fixed threshold. This is an incentive for the player to connect multiple times a day. Resources can be spent in one of the following ways:
 
-* Buffing attack terminal to increase their efficiency
-* Strike ennemy attack terminal to destroy them
+* Buffing attack terminals to increase their efficiency
+* Strike ennemy attack terminals to destroy them
 * Reinforcing captured territories to increase their resistance to attacks
 
 ### 3.5 Traps
 
-* Circular trap area: Any attacker that enter such a zone lose health.
+* Circular trap area: Any attacker that enter such a zone loses health.
 * Rectangular trap area: Any attacker that enter such a zone loses health.
 
 ### 3.6 Bonuses
 
-* Resource bag: The player can gather additional resource when walking over resources bag in attack mode.
+* Resource bag: The player can gather additional resource when walking over resources bags in attack mode.
 
 # Advantages of the proposed solution.
 * Due to resources management, players are encouraged to reconnect multiple times a day.
-* The game does not require the player to activate geolocalisation nor going outside if he does not want to.
-* The game provides instant feedback and gratification. Upon connection, the player receives the resources points accumulated during offline time. For each action undertaken, the player sees how the action increases the rate at which its resources are gathered.
+* The game does not require the player to activate geolocalisation nor go outside if he does not want to.
+* The game provides instant feedback and gratification. Upon connection, the player receives the resources points accumulated during offline time. For each action undertaken, the player sees how the action increases the rate at which its resources are gathered and how he contributes to the team score.
 * The game is very simple to play, yet offers the possibility to develop complex strategies.
