@@ -65,4 +65,9 @@ Depending on their actions, players will receive resources. Resources keep accum
 
 ### 3.5 Traps
 
+* Circular trap area: Any attacker that enter such a zone lose health.
+* Rectangular trap area: Any attacker that enter such a zone loses health.
+
 ### 3.6 Bonuses
+
+* Resource bag: The player can gather additional resource when walking over resources bag in attack mode.
