@@ -41,8 +41,8 @@ public class GPSSimulator {
 
     public Vector3 acquireData()
     {
+		trackIndex = (trackIndex + 1) % simulatedGPSTrack.Count;
         return simulatedGPSTrack[trackIndex];
-        trackIndex = (trackIndex + 1) % simulatedGPSTrack.Count;
     }
 
 }

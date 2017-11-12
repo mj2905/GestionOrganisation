@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GPS : MonoBehaviour {
 
+	[SerializeField]
+	private MarkerGenerator script;
+
     IEnumerator Start(){
         Debug.Log("Starting GPS");
 
@@ -44,7 +47,13 @@ public class GPS : MonoBehaviour {
         {
             // Access granted and location value could be retrieved
             print("Location: " + Input.location.lastData.latitude + " " + Input.location.lastData.longitude + " " + Input.location.lastData.altitude + " " + Input.location.lastData.horizontalAccuracy + " " + Input.location.lastData.timestamp);
-        }
+
+			while (true) {
+				script.x = Input.location.lastData.longitude;
+				script.y = Input.location.lastData.latitude;
+				yield return new WaitForSeconds(0.1f);
+			}
+		}
             
     }
 	
