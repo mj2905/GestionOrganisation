@@ -46,7 +46,7 @@ Player, and more generally teams, must capture territories in order to acquire p
 Territories can be grouped in one of the three following categories:
 1. Neutral
 2. Captured
-3. Safe 
+3. Safe
 
 Neutral territories can be captured by teams. In such case they become "Captured" and earn points on behalf of the teams.
 Safe zones can never be captured, they represent zones from which players can launch attacks on other territories.
@@ -57,6 +57,11 @@ To capture a territory, the player must enable "Attack" mode. Upon activation, t
 When one of the territories under the team's control is attacked, the attack terminal will be displayed on the map for all team members. To defend, the player must click on it and spend resources to destroy it.
 
 ### 3.4 Resources management
+Depending on their actions, players will receive resources. Resources keep accumulating even when the player is disconnected. However, they are capped to a fixed threshold. This is an incentive for the player to connect multiple times a day. Resources can be spent in one of the following ways:
+
+* Buffing attack terminal to increase their efficiency
+* Strike ennemy attack terminal to destroy them
+* Reinforcing captured territories to increase their resistance to attacks
 
 ### 3.5 Traps
 
