@@ -71,3 +71,9 @@ Depending on their actions, players will receive resources. Resources keep accum
 ### 3.6 Bonuses
 
 * Resource bag: The player can gather additional resource when walking over resources bag in attack mode.
+
+# Advantages of the proposed solution.
+* Due to resources management, players are encouraged to reconnect multiple times a day.
+* The game does not require the player to activate geolocalisation nor going outside if he does not want to.
+* The game provides instant feedback and gratification. Upon connection, the player receives the resources points accumulated during offline time. For each action undertaken, the player sees how the action increases the rate at which its resources are gathered.
+* The game is very simple to play, yet offers the possibility to develop complex strategies.
