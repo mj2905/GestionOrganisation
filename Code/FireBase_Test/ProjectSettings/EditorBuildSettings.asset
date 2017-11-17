@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/screen.unity
+    guid: 87ad23c29054c6c499790166f7fdf35c
+  - enabled: 1
+    path: Assets/Scenes/signInScreen.unity
+    guid: c027e8c764351804a804794e23e8f359
+  - enabled: 1
+    path: Assets/Scenes/farmerScreen.unity
+    guid: 39cb1f8bed5a26648ad58c668bee646c
