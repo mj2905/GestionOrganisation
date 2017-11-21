@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "857440448220",
+    "firebase_url": "https://shs-game.firebaseio.com",
+    "project_id": "shs-game",
+    "storage_bucket": "shs-game.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857440448220:android:6d1a31ff193f6610",
+        "android_client_info": {
+          "package_name": "com.SHS.SHSGame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "857440448220-3bt8m6sgodmbq4k08slarh4745evmuru.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.SHS.SHSGame",
+            "certificate_hash": "9a043638b637ae40c4642f152617154a32341d00"
+          }
+        },
+        {
+          "client_id": "857440448220-l7rl176kmgk38k8ijm10l95fegt604p6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyq6l2zbTk3eERqC6na-e6hMJMC42s0NQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "857440448220-l7rl176kmgk38k8ijm10l95fegt604p6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
