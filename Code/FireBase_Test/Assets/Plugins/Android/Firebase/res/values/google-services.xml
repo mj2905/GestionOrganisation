@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="firebase_database_url" translatable="false">https://shs-game.firebaseio.com</string>
+  <string name="gcm_defaultSenderId" translatable="false">857440448220</string>
+  <string name="google_storage_bucket" translatable="false">shs-game.appspot.com</string>
+  <string name="project_id" translatable="false">shs-game</string>
+  <string name="google_api_key" translatable="false">AIzaSyCyq6l2zbTk3eERqC6na-e6hMJMC42s0NQ</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCyq6l2zbTk3eERqC6na-e6hMJMC42s0NQ</string>
+  <string name="google_app_id" translatable="false">1:857440448220:android:6d1a31ff193f6610</string>
+  <string name="default_web_client_id" translatable="false">857440448220-l7rl176kmgk38k8ijm10l95fegt604p6.apps.googleusercontent.com</string>
+</resources>
