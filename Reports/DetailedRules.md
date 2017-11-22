@@ -88,6 +88,7 @@ BUFF SCORE | LEVEL | PERK
 ## Multipliers, medals and achievements
 
 ### Multipliers
+The following table describes the basic multiplier in the game. They are designed such as to provide instant feedback to the player and guide him into doing the right actions.
 
  DESCRIPTION | MULTIPLIER
 ------------|-------------
@@ -95,10 +96,6 @@ Planting an attack terminal | MUTLIPLIER_ATTACK_BASE (200%, 60s)
 Someone buffed your terminal | MULTIPLIER_ATTACK_STACK (10%, 30s)
 Buff an attack terminal | MULTIPLIER_BUFF_TERMINAL (10%, 30s)
 Buff a base | MULTIPLER_BUFF_BASE (10%, 30s)
-
-#### Defense mode
-* Each terminal buffed by the player confers a multiplier. (Analogy with clickers and entities that generate more resources the more you click on it) MULTIPLIER_BUFF_TERMINAL
-* Each base buffed by the player confers a multiplier. MULTIPLIER_BUFF_BASE
 
 ### Medals
 Medals rewards out-of-the-ordinary behaviour, they can be received an unlimited number of times.
