@@ -9,7 +9,7 @@ Multipliers are pairs of integers. They are always associated with time in the s
 the player after each tick is multiplied by the sum of all his acquired multipliers.
 
 
-Example |
+Example | |||
 ----------------|-------|-------|-------|-----
 Multipliers     |	+20%	| +30%	|+60%	  | +10%
 Validity times  | t1+30 |	t2+30 |	t3+50	|t3+60
@@ -65,6 +65,7 @@ Automatic damages dealt by zones should not be too high as to encourage players 
 Levels are the principal indicator of progression in the game. They are reached by accumulating score points and they confer a slight advantage. Note that the advantage should not be so high that it decourage newcomers.
 
 ### Players
+
 SCORE |LEVEL | PERK
 ------------|-------------
 10k | I | Initial attack terminal strength is increased, heal quantity is increased, credits per unit of time is increased
@@ -72,6 +73,7 @@ SCORE |LEVEL | PERK
 ...|...|...
 
 ### Zones
+
 BUFF SCORE | LEVEL | PERK
 ------------|-------------
 0 | NULL | -
