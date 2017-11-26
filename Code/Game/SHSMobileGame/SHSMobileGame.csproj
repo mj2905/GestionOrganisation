@@ -222,6 +222,7 @@
     <Compile Include="Assets\Scripts\CameraController2.cs" />
     <Compile Include="Assets\Scripts\ClickHandler.cs" />
     <Compile Include="Assets\Scripts\ToggleMenu.cs" />
+    <Compile Include="Assets\Scripts\TowerSpawner.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
