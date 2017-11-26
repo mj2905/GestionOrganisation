@@ -9,10 +9,11 @@ Multipliers are pairs of integers. They are always associated with time in the s
 the player after each tick is multiplied by the sum of all his acquired multipliers.
 
 
-Example | |||
+Example|1|2|3|4
 ----------------|-------|-------|-------|-----
-Multipliers     |	+20%	| +30%	|+60%	  | +10%
+Multipliers     |	+20%	| +30%	| +60%	  | +10%
 Validity times  | t1+30 |	t2+30 |	t3+50	|t3+60
+
 
 For the next tick, the player receives N * (100(base multiplier) + 20 + 30 + 60 + 10)
 
@@ -67,7 +68,7 @@ Levels are the principal indicator of progression in the game. They are reached 
 ### Players
 
 SCORE |LEVEL | PERK
-------------|-------------
+------------|----|---------
 10k | I | Initial attack terminal strength is increased, heal quantity is increased, credits per unit of time is increased
 25k | II | Initial attack terminal strength is increased, heal quantity is increased, credits per unit of time is
 ...|...|...
@@ -75,7 +76,7 @@ SCORE |LEVEL | PERK
 ### Zones
 
 BUFF SCORE | LEVEL | PERK
-------------|-------------
+------------|------|-------
 0 | NULL | -
 50k | I | Auto defense against ennemy terminals, deals BASE_AUTODEF_DMG
 100k | II | BASE_AUTODEF_DMG is increased, BASE_MAX_HEALTH is increased
@@ -87,6 +88,7 @@ BUFF SCORE | LEVEL | PERK
 ## Multipliers, medals and achievements
 
 ### Multipliers
+The following table describes the basic multiplier in the game. They are designed such as to provide instant feedback to the player and guide him into doing the right actions.
 
  DESCRIPTION | MULTIPLIER
 ------------|-------------
@@ -94,10 +96,6 @@ Planting an attack terminal | MUTLIPLIER_ATTACK_BASE (200%, 60s)
 Someone buffed your terminal | MULTIPLIER_ATTACK_STACK (10%, 30s)
 Buff an attack terminal | MULTIPLIER_BUFF_TERMINAL (10%, 30s)
 Buff a base | MULTIPLER_BUFF_BASE (10%, 30s)
-
-#### Defense mode
-* Each terminal buffed by the player confers a multiplier. (Analogy with clickers and entities that generate more resources the more you click on it) MULTIPLIER_BUFF_TERMINAL
-* Each base buffed by the player confers a multiplier. MULTIPLIER_BUFF_BASE
 
 ### Medals
 Medals rewards out-of-the-ordinary behaviour, they can be received an unlimited number of times.
