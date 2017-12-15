@@ -1,0 +1,15 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\FirebaseManager.cs">
+    <Files>
+      <File FileName="Assets\Scripts\InitialScene.cs" Line="39" Column="3" />
+      <File FileName="Assets\Scripts\FirebaseManager.cs" Line="114" Column="42" />
+      <File FileName="Assets\Scripts\UiManager.cs" Line="19" Column="2" />
+      <File FileName="Assets\Scripts\User.cs" Line="6" Column="21" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

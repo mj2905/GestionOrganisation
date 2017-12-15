@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "73352730726",
+    "firebase_url": "https://shsorga.firebaseio.com",
+    "project_id": "shsorga",
+    "storage_bucket": "shsorga.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:73352730726:android:21dd0d46e559462b",
+        "android_client_info": {
+          "package_name": "com.SHS.SHSGameTest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "73352730726-11rqlol9mvm16glmib3ds6ckpdbmc00h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.SHS.SHSGameTest",
+            "certificate_hash": "efb5483d480bad5d263bb59c18c004190789f3e3"
+          }
+        },
+        {
+          "client_id": "73352730726-o4luossdle39lb134jj6e0htfh6tl31l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkrkFjhZrKY136cLg6whJbjtOmNpT_40o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "73352730726-o4luossdle39lb134jj6e0htfh6tl31l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
