@@ -246,10 +246,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CameraController2.cs" />
+    <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\ClickHandler.cs" />
     <Compile Include="Assets\Scripts\FirebaseManager.cs" />
     <Compile Include="Assets\Scripts\InitialScene.cs" />
+    <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Terminal.cs" />
     <Compile Include="Assets\Scripts\ToggleMenu.cs" />
     <Compile Include="Assets\Scripts\TowerSpawner.cs" />
