@@ -1,1 +1,33 @@
+# =============== #
+# Unity generated #
+# =============== #
+Code/Game/SHSMobileGame/Temp/
+Code/Game/SHSMobileGame/Library/
 Code/Game/SHSMobileGame/build/
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+Code/Game/SHSMobileGame/.vs/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
+
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
