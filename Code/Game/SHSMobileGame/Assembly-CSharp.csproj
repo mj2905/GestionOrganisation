@@ -51,15 +51,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\CameraController2.cs" />
+     <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\ClickHandler.cs" />
      <Compile Include="Assets\Scripts\FirebaseManager.cs" />
+     <Compile Include="Assets\Scripts\Game.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\InitialScene.cs" />
+     <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Prefab Scipts\PopupScript.cs" />
+     <Compile Include="Assets\Scripts\SignUpScene.cs" />
+     <Compile Include="Assets\Scripts\Team.cs" />
      <Compile Include="Assets\Scripts\Terminal.cs" />
      <Compile Include="Assets\Scripts\ToggleMenu.cs" />
      <Compile Include="Assets\Scripts\TowerSpawner.cs" />
      <Compile Include="Assets\Scripts\UiManager.cs" />
      <Compile Include="Assets\Scripts\User.cs" />
+     <Compile Include="Assets\Scripts\Zone.cs" />
      <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
      <None Include="Assets\Plugins\Android\firebase-common-license-11.4.2\third_party_licenses.txt" />
      <None Include="Assets\Plugins\Android\firebase-common-11.4.2\AndroidManifest.xml" />

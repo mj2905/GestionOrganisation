@@ -31,11 +31,11 @@ public class InitialScene : MonoBehaviour
 
 	public void SignIn()
 	{
-		FirebaseManager.SignIn (eMailText, passwordText,1);
+		FirebaseManager.SignIn (eMailText, passwordText,2);
 	}
 
 	public void SignUp()
 	{
-		FirebaseManager.SignUp (eMailText, passwordText);
+		SceneManager.LoadScene (1);
 	}
 }

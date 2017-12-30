@@ -1,11 +1,23 @@
-﻿<Properties StartupItem="SHSMobileGame.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\User.cs">
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Zone.cs">
     <Files>
       <File FileName="Assets\Scripts\InitialScene.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\FirebaseManager.cs" Line="114" Column="42" />
-      <File FileName="Assets\Scripts\UiManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\User.cs" Line="6" Column="21" />
+      <File FileName="Assets\Scripts\UiManager.cs" Line="25" Column="15" />
+      <File FileName="Assets\Scripts\User.cs" Line="16" Column="15" />
+      <File FileName="Assets\Scripts\SignUpScene.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Game.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Team.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CameraController.cs" Line="55" Column="24" />
+      <File FileName="Assets\Scripts\Terminal.cs" Line="34" Column="3" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="31" Column="13" />
+      <File FileName="Assets\Scripts\FirebaseManager.cs" Line="75" Column="18" />
+      <File FileName="Assets\Scripts\Prefab Scipts\PopupScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ClickHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="9" Column="2" />
+      <File FileName="Assets\Scripts\ToggleMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\TowerSpawner.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Zone.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

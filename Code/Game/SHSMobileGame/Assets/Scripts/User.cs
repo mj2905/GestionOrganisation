@@ -6,7 +6,7 @@ public class User
 	public int credits;
 	public int level;
 	public int xp;
-	public int id;
+	public int team;
 		
 
 	public User ()
@@ -14,7 +14,15 @@ public class User
 		this.credits = 0;
 		this.level = 0;
 		this.xp = 0;
-		this.id = 0;
+		this.team = 0;
+	}
+
+	public User (int team)
+	{
+		this.credits = 0;
+		this.level = 0;
+		this.xp = 0;
+		this.team = team;
 	}
 }
 
