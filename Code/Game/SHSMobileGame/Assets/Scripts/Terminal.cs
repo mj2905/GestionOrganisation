@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-public class Terminal
+public class Terminal 
 	{
 
 	private string terminalId;

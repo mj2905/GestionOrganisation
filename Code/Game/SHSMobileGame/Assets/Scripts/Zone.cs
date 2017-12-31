@@ -7,8 +7,6 @@ public class Zone : MonoBehaviour {
 	private int zoneId;
 	public int health;
 	public int team;
-	public Vector2 bottomLeftLatLon;
-	public Vector2 topRightLatLon;
 
 	void Start() {
 		
