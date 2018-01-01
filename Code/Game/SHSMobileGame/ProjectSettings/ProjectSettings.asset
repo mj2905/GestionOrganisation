@@ -224,7 +224,7 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/QuentinPC/UnityProjects/GestionOrganisation/Code/Game/SHSMobileGame/user.keystore
+  AndroidKeystoreName: user.keystore
   AndroidKeyaliasName: key1
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
