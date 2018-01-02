@@ -24,8 +24,27 @@ public class Terminal : MonoBehaviour
 			Vector3 targetLookAtPos = new Vector3 (targetPos.x, gameObject.transform.position.y, targetPos.z); 
 			gameObject.transform.LookAt(targetLookAtPos);
 
+			string color = "";
+			switch(team){
+			case 1:
+				color = "Green";
+				break;
+			case 2:
+				color = "Red";
+				break;
+			case 3:
+				color = "Yellow";
+				break;
+			case 4:
+				color = "Blue";
+				break;
+			default:
+				color = "Blue";
+				break;
+			}
+
 			Instantiate (
-				Resources.Load("Effects/Prefabs/BlueLaserEffect"),
+				Resources.Load("Effects/Prefabs/"+color+"LaserEffect"),
 				gameObject.transform.position + new Vector3(0,2,0),
 				Quaternion.LookRotation(targetPos - gameObject.transform.position),
 				gameObject.transform);

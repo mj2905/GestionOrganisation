@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour {
 				sceneRoot.gameObject.transform);
 			
 			t.name = newTerminals [i].GetTerminalId ();
+			t.team = newTerminals [i].team;
 			t.gameObject.transform.localPosition = new Vector3(newTerminals [i].x,2,newTerminals [i].z);
 
 			t.SetTarget(GameObject.Find("SceneRoot/Zones/"+newTerminals[i].zoneId+"_building/"+newTerminals[i].zoneId));
