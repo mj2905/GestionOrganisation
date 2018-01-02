@@ -6,8 +6,6 @@ public class PlayerController : MonoBehaviour
 
     public float speed;
 	public GameManager gameManager;
-	public Terminal terminalPrefab;
-	public GameObject sceneRoot;
 	private GameObject currentZone;    
 
     void Start()
@@ -25,17 +23,7 @@ public class PlayerController : MonoBehaviour
         gameObject.transform.position += movement * speed;
 
 		if (Input.GetKeyDown (KeyCode.T)) {
-			if (currentZone != null) {
-
-				Terminal t = (Terminal)Instantiate (
-					            terminalPrefab,
-								gameObject.transform.position + new Vector3(0,2,0),
-					            new Quaternion (),
-					            sceneRoot.gameObject.transform);
-
-				t.target = currentZone;
-				t.Init ();
-			}
+			gameManager.AddTerminal(currentZone.name,gameObject.transform.localPosition.x,gameObject.transform.localPosition.z);
 		}
     }
 

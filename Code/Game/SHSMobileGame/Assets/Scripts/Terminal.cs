@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class Terminal : MonoBehaviour
 	{
-	public GameObject target;
+	private GameObject target;
 	private string terminalId;
-	public GameObject effectPrefab;
 	public string zoneId;
 	public int strength;
 	public int hp;
 	public int team;
+	public float x;
+	public float z;
 
 	void Start(){
 	}
@@ -24,7 +25,7 @@ public class Terminal : MonoBehaviour
 			gameObject.transform.LookAt(targetLookAtPos);
 
 			Instantiate (
-				effectPrefab,
+				Resources.Load("Effects/Prefabs/BlueLaserEffect"),
 				gameObject.transform.position + new Vector3(0,2,0),
 				Quaternion.LookRotation(targetPos - gameObject.transform.position),
 				gameObject.transform);
@@ -39,13 +40,15 @@ public class Terminal : MonoBehaviour
 	public Terminal(){
 	}
 
-	public Terminal (string terminalId, string zoneId, int strength,int hp, int team)
+	public Terminal (string terminalId, string zoneId, int strength,int hp, int team,float x,float z)
 	{
 		this.terminalId = terminalId;
 		this.zoneId = zoneId;
 		this.strength = strength;
 		this.hp = hp;
 		this.team = team;
+		this.x = x;
+		this.z = z;
 	}
 
 	public Terminal (string terminalId, IDictionary<string,System.Object> entry)
@@ -55,10 +58,16 @@ public class Terminal : MonoBehaviour
 		this.strength = Int32.Parse(entry["strength"].ToString());
 		this.hp = Int32.Parse(entry["hp"].ToString());
 		this.team = Int32.Parse(entry["team"].ToString());
+		this.x = float.Parse(entry["x"].ToString());
+		this.z = float.Parse(entry["z"].ToString());
 	}
 
 	public string GetTerminalId(){
 		return terminalId;
+	}
+
+	public void SetTarget(GameObject gameObject){
+		this.target = gameObject;
 	}
 }
 

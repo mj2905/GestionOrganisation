@@ -213,10 +213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6030331592663aa4c93ac56c38eae09b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  effectPrefab: {fileID: 1529120792459144, guid: e1d2e446de428534ab6f2529524862fd,
-    type: 2}
   zoneId: 
   strength: 0
   hp: 0
   team: 0
+  x: 0
+  z: 0

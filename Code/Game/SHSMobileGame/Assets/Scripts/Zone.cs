@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Zone : MonoBehaviour {
 
-	private int zoneId;
+	private string zoneId;
 	public int health;
 	public int team;
 
@@ -12,14 +12,14 @@ public class Zone : MonoBehaviour {
 		
 	}
 
-	public Zone (int zoneId,int health, int team)
+	public Zone (string zoneId,int health, int team)
 	{
 		this.zoneId = zoneId;
 		this.health = health;
 		this.team = team;
 	}
 
-	public Zone (int zoneId, IDictionary<string,System.Object> entry)
+	public Zone (string zoneId, IDictionary<string,System.Object> entry)
 	{
 		this.zoneId = zoneId;
 		this.health = Int32.Parse(entry["health"].ToString());

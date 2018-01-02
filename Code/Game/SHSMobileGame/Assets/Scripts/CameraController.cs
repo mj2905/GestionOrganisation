@@ -43,19 +43,6 @@ public class CameraController : MonoBehaviour {
         {
             print("Stopped dragging");
             dragging = false;
-
-			Ray rayZone = camera.ScreenPointToRay(Input.mousePosition);
-			RaycastHit hit;
-			if (Physics.Raycast(rayZone, out hit)){
-				// the object identified by hit.transform was clicked
-				// do whatever you want
-				string zoneId = hit.transform.name;
-				if(zoneId != "Ground"){
-					Debug.Log(zoneId);
-					gameManager.AddTerminal (zoneId);
-				}
-			}
-
             return;
         }
 
