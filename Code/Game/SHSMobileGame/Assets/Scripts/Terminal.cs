@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class Terminal : MonoBehaviour
 	{
@@ -13,6 +13,10 @@ public class Terminal : MonoBehaviour
 	public int team;
 	public float x;
 	public float z;
+
+	public Image healthBar;
+	public Image levelBar;
+	public Image powerBar;
 
 	void Start(){
 	}

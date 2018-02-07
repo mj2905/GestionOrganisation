@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Zone : MonoBehaviour {
 
 	private string zoneId;
 	public int health;
 	public int team;
+	public Image healthBar;
+	public Image levelBar;
 
 	void Start() {
 		
