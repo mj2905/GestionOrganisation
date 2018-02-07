@@ -268,7 +268,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1748633793605904}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.752306, y: 0.11415242, z: -31.626871}
+  m_LocalPosition: {x: -13.059509, y: 54.976707, z: -70.50654}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4292122848247878}
@@ -435,7 +435,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16cc81c5d7ebae84b92d25d5cbc8d92e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Camera: {fileID: 0}
 --- !u!114 &114140774469156708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -453,6 +452,9 @@ MonoBehaviour:
   team: 0
   x: 0
   z: 0
+  healthBar: {fileID: 114675483565963978}
+  levelBar: {fileID: 114432129044124808}
+  powerBar: {fileID: 114929322223562290}
 --- !u!114 &114432129044124808
 MonoBehaviour:
   m_ObjectHideFlags: 1
