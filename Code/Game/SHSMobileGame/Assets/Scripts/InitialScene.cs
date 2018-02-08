@@ -8,6 +8,7 @@ public class InitialScene : MonoBehaviour
 {
 	public InputField eMail;
 	public InputField password;
+	public PopupScript popup;
 
 	public Button signIn;
 
@@ -31,7 +32,14 @@ public class InitialScene : MonoBehaviour
 
 	public void SignIn()
 	{
-		FirebaseManager.SignIn (eMailText, passwordText,2);
+		if (eMailText == string.Empty) {
+			popup.SetText ("No e-mail entered.");
+		} else if (passwordText == string.Empty) {
+			popup.SetText ("No password entered.");
+		} else {
+			popup.SetText ("Signing in...");
+			FirebaseManager.SignIn (eMailText, passwordText, popup);
+		}
 	}
 
 	public void SignUp()

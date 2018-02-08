@@ -8,6 +8,7 @@ public class SignUpScene : MonoBehaviour {
 
 	public InputField eMail;
 	public InputField password;
+	public PopupScript popup;
 
 	public Button[] teams;
 
@@ -15,8 +16,6 @@ public class SignUpScene : MonoBehaviour {
 	private string eMailText = "";
 	private string passwordText = "";
 	private int teamNumber = -1;
-	private PopupScript popup;
-
 	void Awake ()
 	{
 		GameObject clone = (GameObject)Instantiate(Resources.Load("Popup"));
@@ -66,14 +65,16 @@ public class SignUpScene : MonoBehaviour {
 	public void SignUp()
 	{
 		if (eMailText == string.Empty) {
-			popup.SetText ("No e-mail entered");
+			popup.SetText ("No e-mail entered.");
 		} else if (passwordText == string.Empty) {
-			popup.SetText ("No password entered");
+			popup.SetText ("No password entered.");
 		} else if (teamNumber == -1) {
-			popup.SetText ("No team selected");
+			popup.SetText ("No team selected.");
+		} else if (passwordText.Length < 6) {
+			popup.SetText ("The password must be at least of length 6.");
 		} else {
-			popup.SetText ("Signing up");
-			FirebaseManager.SignUp (eMailText, passwordText,teamNumber,0);
+			popup.SetText ("Signing up...");
+			FirebaseManager.SignUp (eMailText, passwordText,teamNumber,popup);
 		}
 	}
 }

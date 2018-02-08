@@ -32,10 +32,11 @@ public class PopupScript : MonoBehaviour {
 	void Update () {
 		switch (state) {
 		case States.Poping:
-			opacity += 0.9f * Time.deltaTime;
-			if (opacity > 0.8) {
+			if (opacity > 0.9) {
 				state = States.Displaying;
 				counter = 0;
+			} else {
+				opacity += 0.9f * Time.deltaTime;
 			}
 			break;
 		case States.Depoping:

@@ -93,7 +93,7 @@ public class FirebaseManager
 		}
 	}
 
-	public static void SignIn (string eMailText, string passwordText, int nextSceneNumber)
+	public static void SignIn (string eMailText, string passwordText, PopupScript popup)
 	{
 		FirebaseManager.auth.SignInWithEmailAndPasswordAsync (eMailText, passwordText).ContinueWith (task => {
 			if (task.IsCanceled) {
@@ -102,6 +102,7 @@ public class FirebaseManager
 			}
 			if (task.IsFaulted) {
 				Debug.LogError ("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
+				popup.SetText(((FirebaseException)task.Exception.InnerExceptions[0]).Message.ToString());
 				return;
 			}
 
@@ -112,20 +113,20 @@ public class FirebaseManager
 			reference.Child("Users").Child(newUser.UserId).GetValueAsync().ContinueWith(
 				task2 => {
 					if (task2.IsFaulted) {
-						// Handle the error...
+						popup.SetText(((FirebaseException)task.Exception.InnerExceptions[0]).Message.ToString());
 					}
 					else if (task2.IsCompleted) {
 						DataSnapshot snapshot = task2.Result;
 						if(snapshot != null){
 							FirebaseManager.userTeam = Int32.Parse(snapshot.Child("team").Value.ToString());
-							SceneManager.LoadScene(nextSceneNumber);
+							SceneManager.LoadScene(2);
 						}
 					}
 				});
 		});
 	}
 
-	public static void SignUp (string eMailText, string passwordText,int teamNumber, int nextSceneNumber)
+	public static void SignUp (string eMailText, string passwordText,int teamNumber, PopupScript popup)
 	{
 		FirebaseManager.auth.CreateUserWithEmailAndPasswordAsync (eMailText, passwordText).ContinueWith (task => {
 			if (task.IsCanceled) {
@@ -134,6 +135,7 @@ public class FirebaseManager
 			}
 			if (task.IsFaulted) {
 				Debug.LogError ("CreateUserWithEmailAndPasswordAsync encountered an error: " + task.Exception);
+				popup.SetText(((FirebaseException)task.Exception.InnerExceptions[0]).Message.ToString());
 				return;
 			}
 			// Firebase user has been created.
@@ -141,7 +143,7 @@ public class FirebaseManager
 			Debug.LogFormat ("Firebase user created successfully: {0} ({1})",
 				newUser.DisplayName, newUser.UserId);
 			CreateNewUser(newUser.UserId,teamNumber);
-			SceneManager.LoadScene(nextSceneNumber);
+			SceneManager.LoadScene(0);
 			//sendVerificationMail (newUser);
 		});
 	}

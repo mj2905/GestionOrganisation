@@ -1,10 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Terminal.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\InitialScene.cs">
     <Files>
-      <File FileName="Assets\Scripts\UIScripts\CameraFacingBillboard.cs" Line="9" Column="3" />
-      <File FileName="Assets\Scripts\Zone.cs" Line="11" Column="2" />
-      <File FileName="Assets\Scripts\Terminal.cs" Line="4" Column="22" />
+      <File FileName="Assets\Scripts\UIScripts\CameraFacingBillboard.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Zone.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Terminal.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\FirebaseManager.cs" Line="148" Column="6" />
+      <File FileName="Assets\Scripts\InitialScene.cs" Line="36" Column="38" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Prefab Scipts\PopupScript.cs" Line="35" Column="21" />
+      <File FileName="Assets\Scripts\SignUpScene.cs" Line="74" Column="62" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
