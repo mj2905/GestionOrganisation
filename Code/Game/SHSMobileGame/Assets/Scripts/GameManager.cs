@@ -26,7 +26,20 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (Input.GetMouseButtonDown(0))
+		{
+			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+			RaycastHit hit;
+
+			if (Physics.Raycast (ray, out hit, 1000)) {
+				if (hit.transform.gameObject.tag == "Terminal") {
+					Terminal clickedTerminal = hit.transform.gameObject.GetComponentInParent<Terminal>();
+					uiManager.SetPopUpText (clickedTerminal.zoneId.ToString());	
+					clickedTerminal.takeDamage ();
+					FirebaseManager.AddTerminal (clickedTerminal); 	
+			} 
+		}
+	}
 	}
 
 	public void ChangeGame(Game game){
@@ -54,6 +67,10 @@ public class GameManager : MonoBehaviour {
 			
 			t.name = newTerminals [i].GetTerminalId ();
 			t.team = newTerminals [i].team;
+			t.zoneId = newTerminals [i].zoneId;
+			t.hp = newTerminals [i].hp;
+			t.SetTerminalId (newTerminals [i].GetTerminalId ());
+
 			t.gameObject.transform.localPosition = new Vector3(newTerminals [i].x,2,newTerminals [i].z);
 
 			t.SetTarget(GameObject.Find("SceneRoot/Zones/"+newTerminals[i].zoneId+"_building/"+newTerminals[i].zoneId));

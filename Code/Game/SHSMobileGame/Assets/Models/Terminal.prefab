@@ -22,9 +22,10 @@ GameObject:
   - component: {fileID: 33178884112094538}
   - component: {fileID: 23638211183658324}
   - component: {fileID: 95021928959725478}
+  - component: {fileID: 65873181602955636}
   m_Layer: 0
   m_Name: TerminalBody
-  m_TagString: Untagged
+  m_TagString: Terminal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,7 +163,7 @@ GameObject:
   - component: {fileID: 114121425744664148}
   m_Layer: 5
   m_Name: TowerStatsCanvas
-  m_TagString: Untagged
+  m_TagString: Terminal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,7 +179,7 @@ GameObject:
   - component: {fileID: 114140774469156708}
   m_Layer: 0
   m_Name: Terminal
-  m_TagString: Untagged
+  m_TagString: Terminal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -358,6 +359,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1812941369228140}
   m_Mesh: {fileID: 4300002, guid: 01ab59fa4ffa9534fb5f4179fa50371d, type: 3}
+--- !u!65 &65873181602955636
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1123166409320936}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.326772, y: 1.1100875, z: 3.0574267}
+  m_Center: {x: 0.00000017881398, y: 0.37199032, z: -0.00000059604656}
 --- !u!95 &95021928959725478
 Animator:
   serializedVersion: 3
@@ -452,9 +465,6 @@ MonoBehaviour:
   team: 0
   x: 0
   z: 0
-  healthBar: {fileID: 114675483565963978}
-  levelBar: {fileID: 114432129044124808}
-  powerBar: {fileID: 114929322223562290}
 --- !u!114 &114432129044124808
 MonoBehaviour:
   m_ObjectHideFlags: 1

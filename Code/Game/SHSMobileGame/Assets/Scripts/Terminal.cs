@@ -14,9 +14,9 @@ public class Terminal : MonoBehaviour
 	public float x;
 	public float z;
 
-	public Image healthBar;
-	public Image levelBar;
-	public Image powerBar;
+	//public Image healthBar;
+	//public Image levelBar;
+	//public Image powerBar;
 
 	void Start(){
 	}
@@ -60,6 +60,10 @@ public class Terminal : MonoBehaviour
 	void Update(){
 	}
 
+	public void takeDamage(){
+		hp -= 20;
+	}
+
 	public Terminal(){
 	}
 
@@ -87,6 +91,10 @@ public class Terminal : MonoBehaviour
 
 	public string GetTerminalId(){
 		return terminalId;
+	}
+
+	public void SetTerminalId(String terminalId){
+		this.terminalId = terminalId;
 	}
 
 	public void SetTarget(GameObject gameObject){

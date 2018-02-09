@@ -12,11 +12,22 @@ public class CameraController : MonoBehaviour {
 
 	private GameObject sceneRoot;
 
+	private Vector3 touchPosWorld;
+	private Vector3 initialCameraPosition;
+	private Quaternion initialCameraRotation;
+	private GameObject focusedBuilding;
+	private bool isFocused;
+
+	private const float SPEED = 4f;
+
 	// Use this for initialization
 	void Start () {
         dragOrigin = new Vector3(0.0f, 0.0f, 0.0f);
         dragging = false;
+		isFocused = false;
 		this.sceneRoot = gameManager.sceneRoot;
+		this.initialCameraPosition = transform.position;
+		this.initialCameraRotation = transform.rotation;
 	}
 	
 	// LateUpdate is called once per frame, after all objects updates
@@ -29,11 +40,18 @@ public class CameraController : MonoBehaviour {
             {
                 dragOrigin = camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, camera.transform.position.y));
                 previousSceneRootPos = sceneRoot.gameObject.transform.position;
-                dragging = true;
-                print("Started dragging");
-                return;
-            } else
-            {
+
+				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+				RaycastHit hit;
+
+				if (Physics.Raycast (ray, out hit, 1000)) {
+					if (hit.transform.gameObject.tag == "Zone" ||  hit.transform.gameObject.tag == "Ground") {
+						focusedBuilding = hit.transform.gameObject;
+						dragging = focusedBuilding.name == "Ground" && !isFocused;
+						isFocused = !dragging;
+					}
+				}
+			} else {
                 print("Clicked on UI");
                 return;
             }
@@ -43,8 +61,22 @@ public class CameraController : MonoBehaviour {
         {
             print("Stopped dragging");
             dragging = false;
-            return;
         }
+
+		if (focusedBuilding != null) {
+			if (focusedBuilding.name == "Ground") {
+				transform.position = Vector3.MoveTowards (transform.position, this.initialCameraPosition, SPEED);
+				transform.rotation = this.initialCameraRotation;
+			} else {
+				transform.position = Vector3.MoveTowards (transform.position, focusedBuilding.transform.position + new Vector3 (0, 30, -30), SPEED);
+				transform.LookAt (focusedBuilding.transform.position);
+			}
+		}
+
+		if (transform.position == initialCameraPosition) {
+			isFocused = false;
+		}
+
 
 
         if (dragging)
@@ -59,8 +91,8 @@ public class CameraController : MonoBehaviour {
             return;
         }
 
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        Ray ray2 = camera.ScreenPointToRay(Input.mousePosition);
         float zoomDistance = zoomSpeed * Input.GetAxis("Vertical") * Time.deltaTime;
-        camera.transform.Translate(ray.direction * zoomDistance, Space.World);
+        camera.transform.Translate(ray2.direction * zoomDistance, Space.World);
     }
 }

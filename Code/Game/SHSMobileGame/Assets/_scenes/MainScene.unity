@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 21345926}
   m_Layer: 0
   m_Name: MED_volume
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -555,6 +555,10 @@ Prefab:
     - target: {fileID: 100000, guid: ba0f778a166e7544887ff7c165f96ae9, type: 3}
       propertyPath: m_Name
       value: BM_building
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ba0f778a166e7544887ff7c165f96ae9, type: 3}
+      propertyPath: m_TagString
+      value: Zone
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ba0f778a166e7544887ff7c165f96ae9, type: 3}
@@ -1109,7 +1113,7 @@ GameObject:
   - component: {fileID: 234786933}
   m_Layer: 0
   m_Name: ELA_volume
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1611,7 +1615,7 @@ GameObject:
   - component: {fileID: 323870152}
   m_Layer: 0
   m_Name: PH_volume
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1870,7 +1874,7 @@ GameObject:
   - component: {fileID: 374527039}
   m_Layer: 0
   m_Name: CH_volume
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2207,7 +2211,7 @@ GameObject:
   - component: {fileID: 410675412}
   m_Layer: 0
   m_Name: SG_volume
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2562,7 +2566,7 @@ GameObject:
   - component: {fileID: 494428774}
   m_Layer: 0
   m_Name: PAV_volume
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3039,8 +3043,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 593686908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 283.5, y: 334, z: 0}
-  m_LocalScale: {x: 1.18125, y: 1.18125, z: 1.18125}
+  m_LocalPosition: {x: 300, y: 512, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children:
   - {fileID: 1342705399}
   m_Father: {fileID: 0}
@@ -4064,9 +4068,10 @@ GameObject:
   - component: {fileID: 891678701}
   - component: {fileID: 891678703}
   - component: {fileID: 891678702}
+  - component: {fileID: 891678704}
   m_Layer: 0
   m_Name: RLC_volume
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4179,6 +4184,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &891678704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 891678696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661a2d54b8c2d9e4c9a819eb82daf7d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &915603212
 Prefab:
   m_ObjectHideFlags: 0
@@ -4401,7 +4417,7 @@ GameObject:
   - component: {fileID: 954846473}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4890,7 +4906,7 @@ GameObject:
   - component: {fileID: 1094296028}
   m_Layer: 0
   m_Name: MX_volume
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5068,7 +5084,7 @@ GameObject:
   - component: {fileID: 1133036035}
   m_Layer: 0
   m_Name: CO_volume
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5183,7 +5199,7 @@ GameObject:
   - component: {fileID: 1133183768}
   m_Layer: 0
   m_Name: GC_volume
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6156,7 +6172,7 @@ GameObject:
   - component: {fileID: 1298407053}
   m_Layer: 0
   m_Name: GR_volume
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6333,7 +6349,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1342705398}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 207.20135, z: 0}
+  m_LocalPosition: {x: 0, y: 334.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1661139712}
@@ -6421,7 +6437,7 @@ GameObject:
   - component: {fileID: 1467252267}
   m_Layer: 0
   m_Name: OR_volume
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6617,7 +6633,7 @@ GameObject:
   - component: {fileID: 1550908229}
   m_Layer: 0
   m_Name: INM_volume
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7852,7 +7868,7 @@ GameObject:
   - component: {fileID: 1772851781}
   m_Layer: 0
   m_Name: MA_volume
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7979,7 +7995,7 @@ GameObject:
   - component: {fileID: 1798979554}
   m_Layer: 0
   m_Name: METRO_volume
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8148,7 +8164,7 @@ GameObject:
   - component: {fileID: 1867926618}
   m_Layer: 0
   m_Name: SV_volume
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8265,7 +8281,7 @@ GameObject:
   - component: {fileID: 1890372594}
   m_Layer: 0
   m_Name: BI_volume
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8533,7 +8549,7 @@ GameObject:
   - component: {fileID: 1919766428}
   m_Layer: 0
   m_Name: CMCME_volume
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8818,7 +8834,7 @@ GameObject:
   - component: {fileID: 1992686570}
   m_Layer: 0
   m_Name: BC_volume
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
