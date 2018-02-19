@@ -47,8 +47,13 @@ public class CameraController : MonoBehaviour {
 				if (Physics.Raycast (ray, out hit, 1000)) {
 					if (hit.transform.gameObject.tag == "Zone" ||  hit.transform.gameObject.tag == "Ground") {
 						focusedBuilding = hit.transform.gameObject;
+						Debug.Log ("pepe");
 						dragging = focusedBuilding.name == "Ground" && !isFocused;
 						isFocused = !dragging;
+						if(focusedBuilding.name != "Ground"){
+						this.initialCameraPosition = transform.position;
+						this.initialCameraRotation = transform.rotation;
+						}
 					}
 				}
 			} else {
@@ -66,10 +71,10 @@ public class CameraController : MonoBehaviour {
 		if (focusedBuilding != null) {
 			if (focusedBuilding.name == "Ground") {
 				transform.position = Vector3.MoveTowards (transform.position, this.initialCameraPosition, SPEED);
-				transform.rotation = this.initialCameraRotation;
+				transform.rotation = Quaternion.RotateTowards (transform.rotation, this.initialCameraRotation, SPEED);
 			} else {
 				transform.position = Vector3.MoveTowards (transform.position, focusedBuilding.transform.position + new Vector3 (0, 30, -30), SPEED);
-				transform.LookAt (focusedBuilding.transform.position);
+				transform.rotation = Quaternion.RotateTowards (transform.rotation,  Quaternion.Euler(45,0,0), SPEED);
 			}
 		}
 
