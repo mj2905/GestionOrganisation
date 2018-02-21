@@ -6,8 +6,7 @@ using Firebase.Database;
 using Firebase.Unity.Editor;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
-
-
+using UnityEngine.Assertions;
 
 public class FirebaseManager
 {
