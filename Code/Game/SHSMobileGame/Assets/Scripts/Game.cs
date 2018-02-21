@@ -43,6 +43,14 @@ public class Game
 		}		
 	}
 
+	private List<Terminal> GetTerminals(){
+		List<Terminal> res = new List<Terminal> ();
+		for (int i = 0; i < this.terminals.Count; i++) {
+			res.Add (this.terminals[i]);
+		}
+		return res;
+	}
+
 	public List<string> GetTerminalsName(){
 		List<string> res = new List<string> ();
 		for (int i = 0; i < this.terminals.Count; i++) {
@@ -52,17 +60,31 @@ public class Game
 	}
 
 	private List<Terminal> GetDifferenceTerminals(Game oldGame){
-		List<Terminal> terminals = new List<Terminal> ();
-			
-		HashSet<string> oldTerminals = new HashSet<string> (oldGame.GetTerminalsName());
-		HashSet<string> newTerminals = new HashSet<string> (this.GetTerminalsName());
+		
+		HashSet<Terminal> oldTerminals = new HashSet<Terminal> (oldGame.GetTerminals());
+		HashSet<Terminal> newTerminals = new HashSet<Terminal> (this.GetTerminals());
 
 		newTerminals.ExceptWith (oldTerminals);
-
+		return  new List<Terminal>(newTerminals);
+	}
+		
+	public List<Terminal> GetModifiedTerminals(Game oldGame){
+		List<Terminal> terminals = new List<Terminal> ();
+		
+		HashSet<string> oldTerminals = new HashSet<string> (oldGame.GetTerminalsName());
+		HashSet<string> newTerminals = new HashSet<string> (this.GetTerminalsName());
+		
+		newTerminals.ExceptWith (oldTerminals);
+		
 		for (int i = 0; i < this.terminals.Count; i++) {
-			Terminal currentTerminal = this.terminals [i];
-			if (newTerminals.Contains (currentTerminal.GetTerminalId ())) {
-				terminals.Add (this.terminals [i]);
+			for (int j = 0; j < oldGame.terminals.Count; j++) {
+				Terminal currentTerminal = this.terminals [i];
+				Terminal currentOldTerminal = oldGame.terminals [j];
+				if (newTerminals.Contains (currentTerminal.GetTerminalId ()) 
+					&& currentTerminal.GetTerminalId() == currentOldTerminal.GetTerminalId()
+					&& !currentTerminal.Equals(currentOldTerminal)) {
+					terminals.Add (this.terminals [i]);
+				}
 			}
 		}
 		return terminals;

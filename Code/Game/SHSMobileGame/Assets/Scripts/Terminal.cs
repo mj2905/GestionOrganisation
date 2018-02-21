@@ -5,20 +5,30 @@ using UnityEngine.UI;
 
 public class Terminal : MonoBehaviour
 	{
+
+	private const float HP_MAX = 100f;
+	private const float LEVEL_MAX = 5f;
+	private const float POWER_MAX = 100f;
+
 	private GameObject target;
 	private string terminalId;
 	public string zoneId;
+	public int level;
 	public int strength;
 	public int hp;
 	public int team;
 	public float x;
 	public float z;
 
-	//public Image healthBar;
-	//public Image levelBar;
-	//public Image powerBar;
+	private Image healthBar;
+	private Image levelBar;
+	private Image powerBar;
 
 	void Start(){
+		//terminalId = "Terminal";
+		healthBar = GameObject.Find (terminalId+"/TowerStatsCanvas/HealthBG/HealthBar").GetComponent<Image>();
+		levelBar = GameObject.Find (terminalId+"/TowerStatsCanvas/LevelBG/LevelBar").GetComponent<Image>();
+		powerBar = GameObject.Find (terminalId+"/TowerStatsCanvas/PowerBG/PowerBar").GetComponent<Image>();
 	}
 
 	public void Init(){
@@ -56,8 +66,11 @@ public class Terminal : MonoBehaviour
 			print ("Instantiated prefab");
 		}
 	}
-
+		
 	void Update(){
+		healthBar.fillAmount = (float)(hp) / HP_MAX;
+		levelBar.fillAmount =  (float)(level) / LEVEL_MAX;
+		powerBar.fillAmount = (float)(strength) / POWER_MAX;
 	}
 
 	public void takeDamage(){
@@ -67,10 +80,11 @@ public class Terminal : MonoBehaviour
 	public Terminal(){
 	}
 
-	public Terminal (string terminalId, string zoneId, int strength,int hp, int team,float x,float z)
+	public Terminal (string terminalId, string zoneId, int level, int strength, int hp, int team, float x, float z)
 	{
 		this.terminalId = terminalId;
 		this.zoneId = zoneId;
+		this.level = level;
 		this.strength = strength;
 		this.hp = hp;
 		this.team = team;
@@ -83,10 +97,21 @@ public class Terminal : MonoBehaviour
 		this.terminalId = terminalId;
 		this.zoneId = entry["zoneId"].ToString();
 		this.strength = Int32.Parse(entry["strength"].ToString());
+		this.level = Int32.Parse(entry["level"].ToString());
 		this.hp = Int32.Parse(entry["hp"].ToString());
 		this.team = Int32.Parse(entry["team"].ToString());
 		this.x = float.Parse(entry["x"].ToString());
 		this.z = float.Parse(entry["z"].ToString());
+	}
+
+	public void Copy(Terminal other){
+		this.name = other.GetTerminalId ();
+		this.zoneId = other.zoneId;
+		this.level =other.level;
+		this.strength = other.strength;
+		this.hp = other.hp;
+		this.team = other.team;
+		this.SetTerminalId (other.GetTerminalId ());
 	}
 
 	public string GetTerminalId(){
@@ -100,6 +125,26 @@ public class Terminal : MonoBehaviour
 	public void SetTarget(GameObject gameObject){
 		this.target = gameObject;
 	}
+
+	public override bool Equals (object obj)
+	{
+		if (obj == null)
+			return false;
+		if (ReferenceEquals (this, obj))
+			return true;
+		if (obj.GetType () != typeof(Terminal))
+			return false;
+		Terminal other = (Terminal)obj;
+		return terminalId == other.terminalId && zoneId == other.zoneId && level == other.level && strength == other.strength && hp == other.hp && team == other.team && x == other.x && z == other.z;
+	}	
+
+	public override int GetHashCode ()
+	{
+		unchecked {
+			return (terminalId != null ? terminalId.GetHashCode () : 0) ^ (zoneId != null ? zoneId.GetHashCode () : 0) ^ level.GetHashCode () ^ strength.GetHashCode () ^ hp.GetHashCode () ^ team.GetHashCode () ^ x.GetHashCode () ^ z.GetHashCode ();
+		}
+	}
+	
 }
 
 

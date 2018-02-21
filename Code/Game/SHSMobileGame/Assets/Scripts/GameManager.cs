@@ -51,12 +51,7 @@ public class GameManager : MonoBehaviour {
 	public void DrawTerminals(){
 		List<Terminal> newTerminals =  currentGame.GetNewTerminals (previousGame);
 		List<Terminal> deletedTerminals =  currentGame.GetDeletedTerminals (previousGame);
-		/*List<Terminal> newTerminals =  new List<Terminal>();
-		newTerminals.Add (new Terminal("1-0","RLC",1,1,1,0,0));
-		newTerminals.Add (new Terminal("1-1","RLC",1,1,1,10,0));
-		newTerminals.Add (new Terminal("1-2","RLC",1,1,1,0,10));
-		newTerminals.Add (new Terminal("1-3","RLC",1,1,1,10,10));
-		List<Terminal> deletedTerminals =  new List<Terminal>();*/
+		List<Terminal> modifiedTerminals =  currentGame.GetModifiedTerminals (previousGame);
 
 		for (int i = 0; i < newTerminals.Count; i++) {
 			Terminal t = (Terminal)Instantiate (
@@ -65,22 +60,19 @@ public class GameManager : MonoBehaviour {
 				new Quaternion (),
 				sceneRoot.gameObject.transform);
 			
-			t.name = newTerminals [i].GetTerminalId ();
-			t.team = newTerminals [i].team;
-			t.zoneId = newTerminals [i].zoneId;
-			t.hp = newTerminals [i].hp;
-			t.SetTerminalId (newTerminals [i].GetTerminalId ());
-
+			t.Copy (newTerminals [i]);
 			t.gameObject.transform.localPosition = new Vector3(newTerminals [i].x,2,newTerminals [i].z);
-
-			t.SetTarget(GameObject.Find("SceneRoot/Zones/"+newTerminals[i].zoneId+"_building/"+newTerminals[i].zoneId));
+			t.SetTarget(GameObject.Find("SceneRoot/Zones/"+newTerminals[i].zoneId +"/"+newTerminals[i].zoneId+"_building/" + newTerminals[i].zoneId+"_volume"));
 			t.Init ();
 		}
 
 		for (int i = 0; i < deletedTerminals.Count; i++) {
 			Destroy(GameObject.Find("SceneRoot/"+deletedTerminals[i].GetTerminalId()));
 		}
-				
+
+		for (int i = 0; i < modifiedTerminals.Count; i++) {
+			GameObject.Find ("SceneRoot/" + modifiedTerminals [i].GetTerminalId ()).GetComponent<Terminal> ().Copy (modifiedTerminals [i]);
+		}
 	}
 
 	public void UpdateScoreAndCredit(string xp, string credit){
@@ -100,7 +92,7 @@ public class GameManager : MonoBehaviour {
 			}
 		}
 
-		Terminal terminal = new Terminal (FirebaseManager.userTeam.ToString() + "-"+(maxIndex+1).ToString(),zoneId,100,100,FirebaseManager.userTeam,x,z);
+		Terminal terminal = new Terminal (FirebaseManager.userTeam.ToString() + "-"+(maxIndex+1).ToString(),zoneId,3,100,100,FirebaseManager.userTeam,x,z);
 		//uiManager.SetPopUpText (zoneId);
 		FirebaseManager.AddTerminal (terminal);
 	}
