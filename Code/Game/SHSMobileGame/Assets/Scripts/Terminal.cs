@@ -107,11 +107,13 @@ public class Terminal : MonoBehaviour
 	public void Copy(Terminal other){
 		this.name = other.GetTerminalId ();
 		this.zoneId = other.zoneId;
-		this.level =other.level;
+		this.level = other.level;
 		this.strength = other.strength;
 		this.hp = other.hp;
 		this.team = other.team;
 		this.SetTerminalId (other.GetTerminalId ());
+		this.x = other.x;
+		this.z = other.z;
 	}
 
 	public string GetTerminalId(){

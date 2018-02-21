@@ -153,7 +153,7 @@ public class FirebaseManager
 		reference.Child("Users").Child(userId).SetRawJsonValueAsync(json);
 	}
 
-	public static Func<MutableData, TransactionResult> AddTerminalTransaction(Terminal t) 
+	public static Func<MutableData, TransactionResult> AddTerminalTransaction(Terminal t,bool costToken) 
 	{
 		return mutableData => {
 			Assert.AreNotEqual (0, FirebaseManager.userTeam, "Team not set, or error with team numbers (0 was thought as no team)");
@@ -162,18 +162,20 @@ public class FirebaseManager
 			Assert.AreNotEqual(token_obtained, null);
 			long token_value = (long)token_obtained;
 
-			if (token_value <= 0) {
+			if (costToken && token_value <= 0) {
 				return TransactionResult.Abort ();
 			} else {
-				mutableData.Child ("Teams/" + FirebaseManager.userTeam + "/token").Value = token_value-1;
+				if(costToken){
+					mutableData.Child ("Teams/" + FirebaseManager.userTeam + "/token").Value = token_value-1;
+				}
 				mutableData.Child("Terminals/").Child(t.GetTerminalId()).Value = t.ToMap();
 				return TransactionResult.Success(mutableData);
 			}
 		};
 	}
 
-	public static void AddTerminal(Terminal terminal){
-		reference.Child ("Game").RunTransaction (AddTerminalTransaction (terminal)).ContinueWith(task => {
+	public static void AddTerminal(Terminal terminal,bool costToken){
+		reference.Child ("Game").RunTransaction (AddTerminalTransaction (terminal,costToken)).ContinueWith(task => {
 			if (task.Exception != null) {
 				Debug.Log("Not enough tokens for the team");
 			} else if (task.IsCompleted) {

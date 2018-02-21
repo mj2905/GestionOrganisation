@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
 
         gameObject.transform.position += movement * speed;
 
-		if (Input.GetKeyDown (KeyCode.T)) {
+		if (currentZone != null && Input.GetKeyDown (KeyCode.T)) {
 			gameManager.AddTerminal(currentZone.name.Split('_')[0],gameObject.transform.localPosition.x,gameObject.transform.localPosition.z);
 		}
     }

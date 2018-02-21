@@ -36,8 +36,8 @@ public class GameManager : MonoBehaviour {
 					Terminal clickedTerminal = hit.transform.gameObject.GetComponentInParent<Terminal>();
 					uiManager.SetPopUpText (clickedTerminal.zoneId.ToString());	
 					clickedTerminal.takeDamage ();
-					FirebaseManager.AddTerminal (clickedTerminal); 	
-			} 
+					FirebaseManager.AddTerminal (clickedTerminal,false); 	
+			}
 		}
 	}
 	}
@@ -52,7 +52,6 @@ public class GameManager : MonoBehaviour {
 		List<Terminal> newTerminals =  currentGame.GetNewTerminals (previousGame);
 		List<Terminal> deletedTerminals =  currentGame.GetDeletedTerminals (previousGame);
 		List<Terminal> modifiedTerminals =  currentGame.GetModifiedTerminals (previousGame);
-
 		for (int i = 0; i < newTerminals.Count; i++) {
 			Terminal t = (Terminal)Instantiate (
 				terminalPrefab,
@@ -94,6 +93,6 @@ public class GameManager : MonoBehaviour {
 
 		Terminal terminal = new Terminal (FirebaseManager.userTeam.ToString() + "-"+(maxIndex+1).ToString(),zoneId,3,100,100,FirebaseManager.userTeam,x,z);
 		//uiManager.SetPopUpText (zoneId);
-		FirebaseManager.AddTerminal (terminal);
+		FirebaseManager.AddTerminal (terminal,true);
 	}
 }
