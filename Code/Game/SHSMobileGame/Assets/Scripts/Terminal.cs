@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -143,6 +143,18 @@ public class Terminal : MonoBehaviour
 		unchecked {
 			return (terminalId != null ? terminalId.GetHashCode () : 0) ^ (zoneId != null ? zoneId.GetHashCode () : 0) ^ level.GetHashCode () ^ strength.GetHashCode () ^ hp.GetHashCode () ^ team.GetHashCode () ^ x.GetHashCode () ^ z.GetHashCode ();
 		}
+	}
+
+	public Dictionary<string, object> ToMap() {
+		Dictionary<string, object> fields = new Dictionary<string, object>();
+		fields.Add ("hp", hp);
+		fields.Add ("level", level);
+		fields.Add ("strength", strength);
+		fields.Add ("team", team);
+		fields.Add ("x", x);
+		fields.Add ("z", z);
+		fields.Add ("zoneId", zoneId);
+		return fields;
 	}
 	
 }
