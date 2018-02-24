@@ -20,6 +20,10 @@ public class CameraController : MonoBehaviour {
 
 	private const float SPEED = 4f;
 
+	public GameObject player;
+	public bool CAMERA_FIXED = false;
+	private Vector3 offset;
+
 	// Use this for initialization
 	void Start () {
         dragOrigin = new Vector3(0.0f, 0.0f, 0.0f);
@@ -30,10 +34,17 @@ public class CameraController : MonoBehaviour {
 		this.sceneRoot = gameManager.sceneRoot;
 		this.initialCameraPosition = transform.position;
 		this.initialCameraRotation = transform.rotation;
+
+		offset = transform.position - player.transform.position;
 	}
 	
 	// LateUpdate is called once per frame, after all objects updates
 	void LateUpdate () {
+
+		if (CAMERA_FIXED) {
+			transform.position = player.transform.position + offset;
+			return;
+		}
 
         // Starts dragging procedure if a click was started outside of the UI
         if (Input.GetMouseButtonDown(0))
