@@ -35,25 +35,38 @@ public class PlayerController : MonoBehaviour
 
 	private const float hFactor = 77.15f;
 	private const float vFactor = 50.0f;
+	bool locationWasStarted = false;
+
+	public void BeginLocation() {
+		Input.location.Start (5.0f, 5.0f);
+		locationWasStarted = true;
+	}
+
+	public void StopLocation() {
+		Input.location.Stop ();
+		locationWasStarted = false;
+	}
 
     void Start()
     {
-		Input.location.Start (5.0f, 5.0f);
 		currentZone = null;
     }
 
 	void OnApplicationFocus(bool focusStatus) {
-		if (!focusStatus) {
-			print ("Stopped");
-			Input.location.Stop ();
-		} else {
-			print ("Restart");
-			Input.location.Start (5.0f, 5.0f);
+		if (locationWasStarted) {
+			if (!focusStatus) {
+				print ("Stopped");
+				StopLocation ();
+				locationWasStarted = true; //So that the next app focus will begin again the location
+			} else {
+				print ("Restart");
+				BeginLocation ();
+			}
 		}
 	}
 
 	void OnDisable() {
-		Input.location.Stop ();
+		StopLocation ();
 	}
 
 	Vector3 GetMovement() {
@@ -72,7 +85,6 @@ public class PlayerController : MonoBehaviour
 			lastPosLongH = posLongH;
 			return new Vector3 (moveHorizontal, 0.0f, moveVertical);
 		} else {
-			print (Input.location.status);
 			return new Vector3 (0.0f, 0.0f, 0.0f);
 		}
 	}

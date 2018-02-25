@@ -35,8 +35,7 @@ public class GameManager : MonoBehaviour {
 				if (hit.transform.gameObject.tag == "Terminal") {
 					Terminal clickedTerminal = hit.transform.gameObject.GetComponentInParent<Terminal>();
 					uiManager.SetPopUpText (clickedTerminal.zoneId.ToString());	
-					clickedTerminal.takeDamage ();
-					FirebaseManager.AddTerminal (clickedTerminal,false); 	
+					FirebaseManager.HurtTerminal (clickedTerminal.GetTerminalId(), 20);
 			}
 		}
 	}
@@ -93,6 +92,6 @@ public class GameManager : MonoBehaviour {
 
 		Terminal terminal = new Terminal (FirebaseManager.userTeam.ToString() + "-"+(maxIndex+1).ToString(),zoneId,3,100,100,FirebaseManager.userTeam,x,z);
 		//uiManager.SetPopUpText (zoneId);
-		FirebaseManager.AddTerminal (terminal,true);
+		FirebaseManager.AddTerminal (terminal);
 	}
 }

@@ -153,7 +153,7 @@ public class FirebaseManager
 		reference.Child("Users").Child(userId).SetRawJsonValueAsync(json);
 	}
 
-	public static Func<MutableData, TransactionResult> AddTerminalTransaction(Terminal t,bool costToken) 
+	public static Func<MutableData, TransactionResult> AddTerminalTransaction(Terminal t) 
 	{
 		return mutableData => {
 			Assert.AreNotEqual (0, FirebaseManager.userTeam, "Team not set, or error with team numbers (0 was thought as no team)");
@@ -162,24 +162,50 @@ public class FirebaseManager
 			Assert.AreNotEqual(token_obtained, null);
 			long token_value = (long)token_obtained;
 
-			if (costToken && token_value <= 0) {
+			if (token_value <= 0) {
 				return TransactionResult.Abort ();
 			} else {
-				if(costToken){
-					mutableData.Child ("Teams/" + FirebaseManager.userTeam + "/token").Value = token_value-1;
-				}
+				mutableData.Child ("Teams/" + FirebaseManager.userTeam + "/token").Value = token_value-1;
 				mutableData.Child("Terminals/").Child(t.GetTerminalId()).Value = t.ToMap();
 				return TransactionResult.Success(mutableData);
 			}
 		};
 	}
 
-	public static void AddTerminal(Terminal terminal,bool costToken){
-		reference.Child ("Game").RunTransaction (AddTerminalTransaction (terminal,costToken)).ContinueWith(task => {
+	public static Func<MutableData, TransactionResult> HurtTerminalTransaction(long amount) 
+	{
+		return mutableData => {
+			
+			object health_obtained = mutableData.Value;
+
+			if(health_obtained != null) {
+				
+				long health_value = (long)health_obtained;
+
+				if(health_value > 0) {
+					
+					mutableData.Value = health_value - amount;
+					return TransactionResult.Success(mutableData);
+
+				}
+			}
+
+			return TransactionResult.Abort();
+		};
+	}
+
+	public static void AddTerminal(Terminal terminal){
+		reference.Child ("Game").RunTransaction (AddTerminalTransaction (terminal)).ContinueWith(task => {
 			if (task.Exception != null) {
 				Debug.Log("Not enough tokens for the team");
-			} else if (task.IsCompleted) {
-				Debug.Log("Transaction complete.");
+			}
+		});
+	}
+
+	public static void HurtTerminal(string terminalID, long amount){
+		reference.Child ("Game/Terminals/").Child(terminalID).Child("hp").RunTransaction (HurtTerminalTransaction (amount)).ContinueWith(task => {
+			if (task.Exception != null) {
+				Debug.Log("This terminal is already dead");
 			}
 		});
 	}

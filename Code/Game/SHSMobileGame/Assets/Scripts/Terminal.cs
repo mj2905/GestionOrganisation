@@ -73,10 +73,6 @@ public class Terminal : MonoBehaviour
 		powerBar.fillAmount = (float)(strength) / POWER_MAX;
 	}
 
-	public void takeDamage(){
-		hp -= 20;
-	}
-
 	public Terminal(){
 	}
 

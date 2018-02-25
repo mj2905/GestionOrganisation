@@ -1716,7 +1716,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 352992035}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b078bfdfdfdc74a098d0994010e77c61, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b75c75a1735a460fb12f010be4a4ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 2113431301}
@@ -4221,7 +4221,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4322,7 +4322,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1001960607}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5e243b435e5f491eafccae344b00d77, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f77f809a721e47c78f5abbbce4b3b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1001960612 stripped
@@ -8930,7 +8930,6 @@ GameObject:
   - component: {fileID: 2113431298}
   - component: {fileID: 2113431297}
   - component: {fileID: 2113431301}
-  - component: {fileID: 2113431302}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8995,7 +8994,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2113431296}
   m_LocalRotation: {x: 0.6427876, y: 0, z: 0, w: 0.7660445}
-  m_LocalPosition: {x: 0, y: 73.9, z: -15.1}
+  m_LocalPosition: {x: -10, y: 73.9, z: -15.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -9017,17 +9016,6 @@ MonoBehaviour:
   zoomSpeed: 0
   player: {fileID: 1001960607}
   CAMERA_FIXED: 0
---- !u!114 &2113431302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2113431296}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8042b1f9433334177a823a07a6de2986, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2119692151 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114167157941284556, guid: e4d676b8642cc234b945d72797baf237,
