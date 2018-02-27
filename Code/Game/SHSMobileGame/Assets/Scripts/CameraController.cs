@@ -3,25 +3,26 @@ using UnityEngine.EventSystems;
 
 public class CameraController : MonoBehaviour {
     
+	public GameObject player;
+	public GameObject defendZonePopup;
+	public GameObject defendTerminalPopup;
+	public GameObject attackTerminalPopup;
+	public ActionButtonState actionState;
+	public bool CAMERA_FIXED = false;
+	public Camera camera;
+	public GameManager gameManager;
+	public float zoomSpeed;
+
+	private const float SPEED = 4f;
     private Vector3 dragOrigin;
     private Vector3 previousSceneRootPos;
     private bool dragging;
-    public Camera camera;
-	public GameManager gameManager;
-    public float zoomSpeed;
-
 	private GameObject sceneRoot;
-
 	private Vector3 touchPosWorld;
 	private Vector3 initialCameraPosition;
 	private Quaternion initialCameraRotation;
 	private GameObject focusedBuilding;
 	private bool isFocused,isFocusing;
-
-	private const float SPEED = 4f;
-
-	public GameObject player;
-	public bool CAMERA_FIXED = false;
 	private Vector3 offset;
 
 	// Use this for initialization
@@ -65,9 +66,13 @@ public class CameraController : MonoBehaviour {
 
 				if (Physics.Raycast (ray, out hit, 1000)) {
 					if (hit.transform.gameObject.tag == "Zone" ||  hit.transform.gameObject.tag == "Ground") {
+
+
 						if (focusedBuilding != null) {
 							if (hit.transform.gameObject.name != focusedBuilding.name) {
 								isFocusing = false;
+
+								defendZonePopup.SetActive (false);
 							}
 							if (!isFocused) {
 								this.initialCameraPosition = transform.position;
@@ -78,6 +83,13 @@ public class CameraController : MonoBehaviour {
 						if (!isFocused && hit.transform.gameObject.tag == "Zone") {
 							focusedBuilding = hit.transform.gameObject;
 							isFocusing = true;
+
+							//Check game mode to display the proper pop-up
+							if (actionState.attackMode) {
+
+							} else {
+								defendZonePopup.SetActive (true);
+							}
 						}
 
 						dragging = !(isFocused || isFocusing) && !dragging;

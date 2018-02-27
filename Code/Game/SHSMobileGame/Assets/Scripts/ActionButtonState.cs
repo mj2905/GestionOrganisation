@@ -8,7 +8,7 @@ public class ActionButtonState : MonoBehaviour {
 	public CameraController camera;
 	public GameObject player;
 	public Text text;
-	private bool attackMode = false;
+	public bool attackMode = false;
 
 	private void ActionGivenMode() {
 		if (attackMode) {

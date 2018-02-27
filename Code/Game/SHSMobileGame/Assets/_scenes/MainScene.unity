@@ -1125,7 +1125,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 355.73, y: 39.69998}
+  m_AnchoredPosition: {x: 355.73, y: 30.916168}
   m_SizeDelta: {x: 173.46, y: 94.61}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &215381140
@@ -2052,6 +2052,7 @@ MonoBehaviour:
   camera: {fileID: 2113431301}
   player: {fileID: 1001960607}
   text: {fileID: 245737524}
+  attackMode: 0
 --- !u!114 &357058010 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114461103542386720, guid: e4d676b8642cc234b945d72797baf237,
@@ -6309,8 +6310,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.709961, y: 9.61}
-  m_SizeDelta: {x: 150.56, y: 19.22}
+  m_AnchoredPosition: {x: -4.709961, y: 10.541}
+  m_SizeDelta: {x: 150.6, y: 21.082}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1234013893
 MonoBehaviour:
@@ -8630,7 +8631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1840133862
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8650,7 +8651,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 355.72995, y: 158.21754}
+  m_AnchoredPosition: {x: -153.27, y: -183.17}
   m_SizeDelta: {x: 173.46, y: 94.61}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1840133863
@@ -10301,11 +10302,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48cd92a391b7ca146b0f5701e2e60be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1001960607}
+  defendZonePopup: {fileID: 1840133861}
+  defendTerminalPopup: {fileID: 215381138}
+  attackTerminalPopup: {fileID: 1387365644}
+  actionState: {fileID: 352992040}
+  CAMERA_FIXED: 0
   camera: {fileID: 2113431299}
   gameManager: {fileID: 818770027}
   zoomSpeed: 0
-  player: {fileID: 1001960607}
-  CAMERA_FIXED: 0
 --- !u!114 &2119692151 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114167157941284556, guid: e4d676b8642cc234b945d72797baf237,
