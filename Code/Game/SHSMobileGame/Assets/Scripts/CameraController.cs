@@ -5,9 +5,7 @@ using UnityEngine.UI;
 public class CameraController : MonoBehaviour {
     
 	public GameObject player;
-	public GameObject defendZonePopup;
-	public GameObject defendTerminalPopup;
-	public GameObject attackTerminalPopup;
+	public InteractionManager interactionManager;
 	public ActionButtonState actionState;
 	public bool CAMERA_FIXED = false;
 	public Camera camera;
@@ -73,7 +71,8 @@ public class CameraController : MonoBehaviour {
 							if (hit.transform.gameObject.name != focusedBuilding.name) {
 								isFocusing = false;
 
-								defendZonePopup.SetActive (false);
+								//Notify the interaction manager that the user is no longer focused on a zone
+								interactionManager.updateTargetedZone (null);
 							}
 							if (!isFocused) {
 								this.initialCameraPosition = transform.position;
@@ -89,13 +88,10 @@ public class CameraController : MonoBehaviour {
 							if (actionState.attackMode) {
 
 							} else {
-								//TODO: refactor this for example in a popup handler object
-								defendZonePopup.SetActive (true);
+								//Notify the interaction manager that the user focused on a zone
 								Zone targetZone = hit.transform.gameObject.GetComponent<Zone> ();
-								defendZonePopup.transform.Find ("ZoneLabel").GetComponent<Text> ().text = "Zone: " + targetZone.name;
-								defendZonePopup.transform.Find ("HPLabel").GetComponent<Text> ().text = "HP: " + targetZone.health;
-								defendZonePopup.transform.Find ("LevelLabel").GetComponent<Text> ().text = "Level: " + targetZone.level;
-								defendZonePopup.transform.Find ("TeamLabel").GetComponent<Text> ().text = "Team: " + targetZone.team;
+								interactionManager.updateTargetedZone (targetZone);
+
 							}
 						}
 

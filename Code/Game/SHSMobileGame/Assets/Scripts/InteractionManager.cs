@@ -1,0 +1,86 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class InteractionManager : MonoBehaviour {
+
+	private Zone targetedZone;
+	private Terminal targetedTerminal;
+
+	private Text popupZoneName;
+	private Text popupZoneHP;
+	private Text popupZoneLevel;
+	private Text popupZoneTeam;
+	private Text popupTerminalHP;
+	private Text popupTerminalLevel;
+	private Text popupTerminalTeam;
+
+	public GameObject zonePopup;
+	public GameObject terminalPopup;
+
+	// Use this for initialization
+	void Start () {
+		targetedZone = null;
+		targetedTerminal = null;
+
+		popupZoneName = zonePopup.transform.Find ("ZoneLabel").GetComponent<Text> ();
+		popupZoneHP = zonePopup.transform.Find ("HPLabel").GetComponent<Text> ();
+		popupZoneLevel = zonePopup.transform.Find ("LevelLabel").GetComponent<Text> ();
+		popupZoneTeam = zonePopup.transform.Find ("TeamLabel").GetComponent<Text> ();
+		popupTerminalHP = terminalPopup.transform.Find ("HPLabel").GetComponent<Text> ();
+		popupTerminalLevel = terminalPopup.transform.Find ("LevelLabel").GetComponent<Text> ();
+		popupTerminalTeam = terminalPopup.transform.Find ("TeamLabel").GetComponent<Text> ();
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+
+	public void updateTargetedZone(Zone zone){
+		this.targetedZone = zone;
+
+		if (targetedZone == null) {
+			zonePopup.SetActive (false);
+		} else {
+			zonePopup.SetActive (true);
+			popupZoneName.text = "Zone: " + targetedZone.name;
+			popupZoneHP.text = "HP: " + targetedZone.health;
+			popupZoneLevel.text = "Level: " + targetedZone.level;
+			popupZoneTeam.text = "Team: " + targetedZone.team;
+		}
+	}
+
+	public void updateTargetedTerminal(Terminal terminal){
+		this.targetedTerminal = terminal;
+
+		if (targetedTerminal == null) {
+			terminalPopup.SetActive (false);
+		} else {
+			terminalPopup.SetActive (true);
+			//TODO: implement
+		}
+	}
+
+	public void healZone(){
+		if (targetedZone != null) {
+			print ("Healing zone " + targetedZone.name);
+			//TODO: implement interaction with firebase
+		}
+	}
+
+	public void buffTerminal(){
+		if(targetedTerminal != null){
+			print ("Buffing terminal ");
+			//TODO: implement interaction with firebase
+		}
+	}
+
+	public void attackTerminal(){
+		if(targetedTerminal != null){
+			print ("Buffing terminal ");
+			//TODO: implement interaction with firebase
+		}
+	}
+}
