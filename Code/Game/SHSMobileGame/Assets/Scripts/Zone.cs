@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class Zone : MonoBehaviour {
 
 	private string zoneId;
+	public string name;
 	public int health;
+	public int level;
 	public int team;
 	public Image healthBar;
 	public Image levelBar;
 
 	void Start() {
-		
 	}
 
 	public Zone (string zoneId,int health, int team)

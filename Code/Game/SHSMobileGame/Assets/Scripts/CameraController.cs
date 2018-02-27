@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour {
     
@@ -88,7 +89,13 @@ public class CameraController : MonoBehaviour {
 							if (actionState.attackMode) {
 
 							} else {
+								//TODO: refactor this for example in a popup handler object
 								defendZonePopup.SetActive (true);
+								Zone targetZone = hit.transform.gameObject.GetComponent<Zone> ();
+								defendZonePopup.transform.Find ("ZoneLabel").GetComponent<Text> ().text = "Zone: " + targetZone.name;
+								defendZonePopup.transform.Find ("HPLabel").GetComponent<Text> ().text = "HP: " + targetZone.health;
+								defendZonePopup.transform.Find ("LevelLabel").GetComponent<Text> ().text = "Level: " + targetZone.level;
+								defendZonePopup.transform.Find ("TeamLabel").GetComponent<Text> ().text = "Team: " + targetZone.team;
 							}
 						}
 

@@ -211,7 +211,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: MED
   health: 0
+  level: 0
   team: 0
   healthBar: {fileID: 1324895731}
   levelBar: {fileID: 246538850}
@@ -924,6 +926,80 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224561127250040710, guid: e4d676b8642cc234b945d72797baf237,
     type: 2}
   m_PrefabInternal: {fileID: 135981438}
+--- !u!1 &137091682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 137091683}
+  - component: {fileID: 137091685}
+  - component: {fileID: 137091684}
+  m_Layer: 5
+  m_Name: TeamLabel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &137091683
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 137091682}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1840133862}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.010037, y: 51.9}
+  m_SizeDelta: {x: 160, y: 16.2}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &137091684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 137091682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Team: '
+--- !u!222 &137091685
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 137091682}
 --- !u!1 &140872005
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,7 +1364,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: ELA
   health: 0
+  level: 0
   team: 0
   healthBar: {fileID: 2119692151}
   levelBar: {fileID: 1521365733}
@@ -1830,7 +1908,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: PH
   health: 0
+  level: 0
   team: 0
   healthBar: {fileID: 586704552}
   levelBar: {fileID: 2140901001}
@@ -2157,7 +2237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: CH
   health: 0
+  level: 0
   team: 0
   healthBar: {fileID: 1420347595}
   levelBar: {fileID: 343288293}
@@ -2494,7 +2576,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: SG
   health: 0
+  level: 0
   team: 0
   healthBar: {fileID: 1294793476}
   levelBar: {fileID: 587555874}
@@ -2849,7 +2933,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Pavillion
   health: 0
+  level: 0
   team: 0
   healthBar: {fileID: 1589780508}
   levelBar: {fileID: 275217860}
@@ -4336,7 +4422,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Rolex
   health: 0
+  level: 0
   team: 0
   healthBar: {fileID: 878039519}
   levelBar: {fileID: 357058010}
@@ -5176,7 +5264,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: MX
   health: 0
+  level: 0
   team: 0
   healthBar: {fileID: 1666639478}
   levelBar: {fileID: 802105190}
@@ -5369,7 +5459,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: CO
   health: 0
+  level: 0
   team: 0
   healthBar: {fileID: 656720255}
   levelBar: {fileID: 1278165354}
@@ -5469,7 +5561,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: GC
   health: 0
+  level: 0
   team: 0
   healthBar: {fileID: 377377057}
   levelBar: {fileID: 336179693}
@@ -6525,10 +6619,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: 
   health: 0
+  level: 0
   team: 0
   healthBar: {fileID: 624985195}
   levelBar: {fileID: 43098763}
+--- !u!114 &1317920772 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114167157941284556, guid: e4d676b8642cc234b945d72797baf237,
+    type: 2}
+  m_PrefabInternal: {fileID: 1560846155}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &1324895731 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114167157941284556, guid: e4d676b8642cc234b945d72797baf237,
@@ -6868,7 +6970,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: OneRoof
   health: 0
+  level: 0
   team: 0
   healthBar: {fileID: 41263507}
   levelBar: {fileID: 113786123}
@@ -7175,7 +7279,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: INM
   health: 0
+  level: 0
   team: 0
   healthBar: {fileID: 1904161319}
   levelBar: {fileID: 2017596654}
@@ -8410,7 +8516,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: 
   health: 0
+  level: 0
   team: 0
   healthBar: {fileID: 2144237988}
   levelBar: {fileID: 631718934}
@@ -8611,7 +8719,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Metro
   health: 0
+  level: 0
   team: 0
   healthBar: {fileID: 2057865450}
   levelBar: {fileID: 380232197}
@@ -8646,13 +8756,14 @@ RectTransform:
   - {fileID: 1992294789}
   - {fileID: 1234013892}
   - {fileID: 30475523}
+  - {fileID: 137091683}
   m_Father: {fileID: 1342705399}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -153.27, y: -183.17}
-  m_SizeDelta: {x: 173.46, y: 94.61}
+  m_AnchoredPosition: {x: -153.27, y: -164.24}
+  m_SizeDelta: {x: 173.46, y: 132.47}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1840133863
 MonoBehaviour:
@@ -8858,7 +8969,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: SV
   health: 0
+  level: 0
   team: 0
   healthBar: {fileID: 53493404}
   levelBar: {fileID: 1016655852}
@@ -8975,7 +9088,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: BI
   health: 0
+  level: 0
   team: 0
   healthBar: {fileID: 1418808538}
   levelBar: {fileID: 477779831}
@@ -9317,7 +9432,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: CM & CE
   health: 0
+  level: 0
   team: 0
   healthBar: {fileID: 1150916257}
   levelBar: {fileID: 352990193}
@@ -9750,10 +9867,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: BC
   health: 0
+  level: 0
   team: 0
-  healthBar: {fileID: 0}
-  levelBar: {fileID: 0}
+  healthBar: {fileID: 1317920772}
+  levelBar: {fileID: 2016256978}
 --- !u!54 &1992686570
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9769,6 +9888,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2016256978 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114461103542386720, guid: e4d676b8642cc234b945d72797baf237,
+    type: 2}
+  m_PrefabInternal: {fileID: 1560846155}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &2017596654 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114461103542386720, guid: e4d676b8642cc234b945d72797baf237,
