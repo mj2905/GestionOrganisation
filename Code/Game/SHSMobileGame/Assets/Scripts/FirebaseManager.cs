@@ -92,14 +92,17 @@ public class FirebaseManager
 		}
 	}
 
-	public static void SignIn (string eMailText, string passwordText, PopupScript popup)
+	public static void SignIn (string eMailText, string passwordText, PopupScript popup, Action executeWhenFails)
 	{
 		FirebaseManager.auth.SignInWithEmailAndPasswordAsync (eMailText, passwordText).ContinueWith (task => {
+
 			if (task.IsCanceled) {
+				executeWhenFails();
 				Debug.LogError ("SignInWithEmailAndPasswordAsync was canceled.");
 				return;
 			}
 			if (task.IsFaulted) {
+				executeWhenFails();
 				Debug.LogError ("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
 				popup.SetText(((FirebaseException)task.Exception.InnerExceptions[0]).Message.ToString());
 				return;
@@ -108,10 +111,12 @@ public class FirebaseManager
 			Firebase.Auth.FirebaseUser newUser = task.Result;
 			Debug.LogFormat ("User signed in successfully: {0} ({1})",
 				newUser.DisplayName, newUser.UserId);
+			Persistency.Write(eMailText, passwordText);
 
 			reference.Child("Users").Child(newUser.UserId).GetValueAsync().ContinueWith(
 				task2 => {
 					if (task2.IsFaulted) {
+						executeWhenFails();
 						popup.SetText(((FirebaseException)task.Exception.InnerExceptions[0]).Message.ToString());
 					}
 					else if (task2.IsCompleted) {
@@ -119,6 +124,10 @@ public class FirebaseManager
 						if(snapshot != null){
 							FirebaseManager.userTeam = Int32.Parse(snapshot.Child("team").Value.ToString());
 							SceneManager.LoadScene(2);
+						}
+						else {
+							executeWhenFails();
+							popup.SetText("No existing user for this signed in user");
 						}
 					}
 				});

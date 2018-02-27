@@ -58,11 +58,14 @@
      <Compile Include="Assets\Scripts\Game.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\InitialScene.cs" />
+     <Compile Include="Assets\Scripts\Persistency.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Prefab Scipts\PopupScript.cs" />
      <Compile Include="Assets\Scripts\SignUpScene.cs" />
+     <Compile Include="Assets\Scripts\SpinningWheel.cs" />
      <Compile Include="Assets\Scripts\Team.cs" />
      <Compile Include="Assets\Scripts\Terminal.cs" />
+     <Compile Include="Assets\Scripts\TextDissolve.cs" />
      <Compile Include="Assets\Scripts\ToggleMenu.cs" />
      <Compile Include="Assets\Scripts\TowerSpawner.cs" />
      <Compile Include="Assets\Scripts\UIScripts\CameraFacingBillboard.cs" />

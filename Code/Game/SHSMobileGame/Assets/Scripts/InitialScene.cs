@@ -9,15 +9,37 @@ public class InitialScene : MonoBehaviour
 	public InputField eMail;
 	public InputField password;
 	public PopupScript popup;
+	public CanvasRenderer spinning;
+	public Text connecting;
+
+	public Button signUp;
 
 	public Button signIn;
 
 	string eMailText = "";
 	string passwordText = "";
 
+	public void showElements(bool show) {
+
+		eMail.gameObject.SetActive (show);
+		password.gameObject.SetActive (show);
+		signIn.gameObject.SetActive (show);
+		signUp.gameObject.SetActive (show);
+
+		connecting.gameObject.SetActive (!show);
+		spinning.gameObject.SetActive (!show);
+	}
+
 	void Awake ()
 	{
+		showElements (true);
 		FirebaseManager.InitializeFirebase (this);
+		if (Persistency.Exists ()) {
+			showElements (false);
+
+			Persistency.Session session = Persistency.Read ();
+			FirebaseManager.SignIn (session.username, session.password, popup, () => showElements(true));
+		}
 	}
 
 	public void UpdateMail ()
@@ -38,7 +60,7 @@ public class InitialScene : MonoBehaviour
 			popup.SetText ("No password entered.");
 		} else {
 			popup.SetText ("Signing in...");
-			FirebaseManager.SignIn (eMailText, passwordText, popup);
+			FirebaseManager.SignIn (eMailText, passwordText, popup, () => showElements(true));
 		}
 	}
 

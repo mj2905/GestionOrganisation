@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
     public float speed;
 	public GameManager gameManager;
 	private GameObject currentZone; 
-	private static float defaultLongH = 6.699792f;
-	private static float defaultLatV = 46.55598f;
+	private static float defaultLongH = 6.56586f;//6.699792f;
+	private static float defaultLatV = 46.52018f;//46.55598f;
 
 	private static float topLeftLat = 46.52261f, topLeftLong = 6.56058f;
 	private static float topRightLat = 46.52261f, topRightLong = 6.5731f;
