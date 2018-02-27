@@ -91,7 +91,6 @@ public class CameraController : MonoBehaviour {
 								//Notify the interaction manager that the user focused on a zone
 								Zone targetZone = hit.transform.gameObject.GetComponent<Zone> ();
 								interactionManager.updateTargetedZone (targetZone);
-
 							}
 						}
 

@@ -1,15 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Zone.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\InteractionManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\CameraController.cs" Line="93" Column="42" />
+      <File FileName="Assets\Scripts\CameraController.cs" Line="93" Column="60" />
       <File FileName="Assets\Scripts\ActionButtonState.cs" Line="9" Column="27" />
       <File FileName="Assets\Scripts\Zone.cs" Line="16" Column="16" />
+      <File FileName="Assets\Scripts\InteractionManager.cs" Line="84" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="D:\Code\GestionOrganisation\Code\Game\SHSMobileGame\Assets\Scripts\CameraController.cs" line="74" column="1" />
+      <Breakpoint file="D:\Code\GestionOrganisation\Code\Game\SHSMobileGame\Assets\Scripts\CameraController.cs" line="72" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
