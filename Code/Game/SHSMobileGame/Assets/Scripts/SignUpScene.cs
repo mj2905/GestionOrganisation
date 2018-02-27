@@ -12,12 +12,27 @@ public class SignUpScene : MonoBehaviour {
 
 	public Button[] teams;
 
-	private Color currentNormalColor;
+	private Color[] normalColors;
 	private string eMailText = "";
 	private string passwordText = "";
 	private int teamNumber = -1;
+
+	public Button signup;
+
+	private void SwitchSignInButtonActivation() {
+		signup.interactable = eMailText.Length > 0 && passwordText.Length > 0 && teamNumber != -1;
+	}
+
 	void Awake ()
 	{
+		SwitchSignInButtonActivation ();
+
+		normalColors = new Color[teams.Length];
+		for (int i = 0; i < teams.Length; ++i) {
+			ColorBlock cb = teams [i].colors;
+			normalColors[i] = cb.normalColor;
+		}
+
 		GameObject clone = (GameObject)Instantiate(Resources.Load("Popup"));
 		popup = clone.GetComponent<PopupScript>();		
 		popup.transform.SetParent (this.transform.parent,false);
@@ -27,31 +42,34 @@ public class SignUpScene : MonoBehaviour {
 	public void UpdateMail ()
 	{
 		this.eMailText = eMail.text;
+		SwitchSignInButtonActivation ();
 	}
 
 	public void UpdatePassword ()
 	{
 		this.passwordText = password.text;
+		SwitchSignInButtonActivation ();
 	}
 
 	public void UpdateTeam(int teamNumber)
 	{
+		print (teamNumber);
 		ResetCurrentTeam ();
 		HighlightTeam (teamNumber);
 		this.teamNumber = teamNumber;
+		SwitchSignInButtonActivation ();
 	}
 
 	private void ResetCurrentTeam(){
-		if (this.teamNumber > 0) {
-			ColorBlock cb = teams [this.teamNumber - 1].colors;
-			cb.normalColor = currentNormalColor;
-			teams [this.teamNumber - 1].colors = cb;
+		for (int i = 0; i < teams.Length; ++i) {
+			ColorBlock cb = teams [i].colors;
+			cb.normalColor = normalColors[i];
+			teams [i].colors = cb;
 		}
 	}
 
 	private void HighlightTeam (int teamNumber){
 		ColorBlock cb = teams [teamNumber - 1].colors;
-		currentNormalColor = cb.normalColor;
 		cb.normalColor = cb.highlightedColor;
 		teams [teamNumber - 1].colors = cb;
 	}
@@ -74,7 +92,7 @@ public class SignUpScene : MonoBehaviour {
 			popup.SetText ("The password must be at least of length 6.");
 		} else {
 			popup.SetText ("Signing up...");
-			FirebaseManager.SignUp (eMailText, passwordText,teamNumber,popup);
+			FirebaseManager.SignUp (eMailText, Crypto.hash(eMailText, passwordText),teamNumber,popup);
 		}
 	}
 }

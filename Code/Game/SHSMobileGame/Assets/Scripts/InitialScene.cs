@@ -13,17 +13,22 @@ public class InitialScene : MonoBehaviour
 	public Text connecting;
 
 	public Button signUp;
-
+	public Text noAccountText;
 	public Button signIn;
 
 	string eMailText = "";
 	string passwordText = "";
+
+	private void SwitchSignInButtonActivation() {
+		signIn.interactable = eMailText.Length > 0 && passwordText.Length > 0;
+	}
 
 	public void showElements(bool show) {
 
 		eMail.gameObject.SetActive (show);
 		password.gameObject.SetActive (show);
 		signIn.gameObject.SetActive (show);
+		noAccountText.gameObject.SetActive (show);
 		signUp.gameObject.SetActive (show);
 
 		connecting.gameObject.SetActive (!show);
@@ -33,6 +38,8 @@ public class InitialScene : MonoBehaviour
 	void Awake ()
 	{
 		showElements (true);
+		SwitchSignInButtonActivation ();
+
 		FirebaseManager.InitializeFirebase (this);
 		if (Persistency.Exists ()) {
 			showElements (false);
@@ -44,12 +51,15 @@ public class InitialScene : MonoBehaviour
 
 	public void UpdateMail ()
 	{
+		print ("hello");
 		this.eMailText = eMail.text;
+		SwitchSignInButtonActivation ();
 	}
 
 	public void UpdatePassword ()
 	{
 		this.passwordText = password.text;
+		SwitchSignInButtonActivation ();
 	}
 
 	public void SignIn()
@@ -60,7 +70,7 @@ public class InitialScene : MonoBehaviour
 			popup.SetText ("No password entered.");
 		} else {
 			popup.SetText ("Signing in...");
-			FirebaseManager.SignIn (eMailText, passwordText, popup, () => showElements(true));
+			FirebaseManager.SignIn (eMailText, Crypto.hash(eMailText, passwordText), popup, () => showElements(true));
 		}
 	}
 

@@ -146,14 +146,21 @@ public class FirebaseManager
 				popup.SetText(((FirebaseException)task.Exception.InnerExceptions[0]).Message.ToString());
 				return;
 			}
+
 			// Firebase user has been created.
 			Firebase.Auth.FirebaseUser newUser = task.Result;
 			Debug.LogFormat ("Firebase user created successfully: {0} ({1})",
 				newUser.DisplayName, newUser.UserId);
+			Persistency.Write(eMailText, passwordText);
+
 			CreateNewUser(newUser.UserId,teamNumber);
 			SceneManager.LoadScene(0);
 			//sendVerificationMail (newUser);
 		});
+	}
+
+	public static void Logout() {
+		FirebaseManager.auth.SignOut (); //always succeeds
 	}
 
 	private static void CreateNewUser(string userId,int teamNumber){

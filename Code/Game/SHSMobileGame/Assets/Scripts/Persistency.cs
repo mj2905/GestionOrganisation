@@ -23,6 +23,12 @@ public static class Persistency {
 		return Session.Read (fileNameUser, fileNamePass);
 	}
 
+	public static void Erase() {
+		File.Delete (fileNameUser);
+		File.Delete (fileNamePass);
+		File.Delete (fileNameAttack);
+	}
+
 
 
 	public class Session {
