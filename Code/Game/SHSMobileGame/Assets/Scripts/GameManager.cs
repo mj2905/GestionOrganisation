@@ -2,17 +2,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
 	public UiManager uiManager;
 	public GameObject sceneRoot;
 	public Terminal terminalPrefab;
+	public PlayerController player;
+	public Text textMode;
+
 	private Game previousGame;
 	private Game currentGame;
+	private bool attackMode = false;
+	private CameraController camera;
 
 	void Awake(){
 		FirebaseManager.SetMainGameRef (this);
+		camera = Camera.main.GetComponent<CameraController> ();
 	}
 
 	// Use this for initialization
@@ -22,6 +29,8 @@ public class GameManager : MonoBehaviour {
 
 		previousGame = new Game ();
 		currentGame = new Game ();
+
+		ActionGivenMode ();
 	}
 	
 	// Update is called once per frame
@@ -34,7 +43,6 @@ public class GameManager : MonoBehaviour {
 			if (Physics.Raycast (ray, out hit, 1000)) {
 				if (hit.transform.gameObject.tag == "Terminal") {
 					Terminal clickedTerminal = hit.transform.gameObject.GetComponentInParent<Terminal>();
-					uiManager.SetPopUpText (clickedTerminal.zoneId.ToString());	
 					FirebaseManager.HurtTerminal (clickedTerminal.GetTerminalId(), 20);
 			}
 		}
@@ -93,5 +101,36 @@ public class GameManager : MonoBehaviour {
 		Terminal terminal = new Terminal (FirebaseManager.userTeam.ToString() + "-"+(maxIndex+1).ToString(),zoneId,3,100,100,FirebaseManager.userTeam,x,z);
 		//uiManager.SetPopUpText (zoneId);
 		FirebaseManager.AddTerminal (terminal);
+	}
+
+	public void AddTerminalAtPlayerPosition(){
+		this.AddTerminal (player.GetCurrentZoneName (), player.GetMarkerPosition ().x, player.GetMarkerPosition ().y);
+	}
+
+	public bool IsPlayerInsideZone(){
+		return player.isInsideZone ();
+	}
+
+	public bool IsAttackMode(){
+		return attackMode;
+	}
+
+	public void SwitchMode(){
+		camera.CAMERA_FIXED = !camera.CAMERA_FIXED;
+		attackMode = !attackMode;
+
+		ActionGivenMode ();
+	}
+		
+	private void ActionGivenMode() {
+		if (attackMode) {
+			player.GetComponent<Renderer>().enabled = true;
+			player.GetComponent<PlayerController> ().BeginLocation ();
+			textMode.GetComponent<Text>().text = "Attack mode";
+		} else {
+			player.GetComponent<Renderer>().enabled = false;
+			player.GetComponent<PlayerController> ().StopLocation ();
+			textMode.GetComponent<Text>().text = "Defense mode";
+		}
 	}
 }

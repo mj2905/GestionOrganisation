@@ -6,7 +6,6 @@ public class CameraController : MonoBehaviour {
     
 	public GameObject player;
 	public InteractionManager interactionManager;
-	public ActionButtonState actionState;
 	public bool CAMERA_FIXED = false;
 	public Camera camera;
 	public GameManager gameManager;
@@ -85,7 +84,7 @@ public class CameraController : MonoBehaviour {
 							isFocusing = true;
 
 							//Check game mode to display the proper pop-up
-							if (actionState.attackMode) {
+							if (gameManager.IsAttackMode()) {
 
 							} else {
 								//Notify the interaction manager that the user focused on a zone

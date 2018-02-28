@@ -1,11 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
 
     public float speed;
-	public GameManager gameManager;
 	private GameObject currentZone; 
 	private static double defaultLongH = 6.56586;//6.699792f;
 	private static double defaultLatV = 46.52018;//46.55598f;
@@ -98,10 +97,6 @@ public class PlayerController : MonoBehaviour
 	void FixedUpdate()
     {
 		gameObject.transform.position = initialPosition + GetPosition();
-
-		if (currentZone != null && Input.GetKeyDown (KeyCode.T)) {
-			gameManager.AddTerminal(currentZone.name.Split('_')[0],gameObject.transform.localPosition.x,gameObject.transform.localPosition.z);
-		}
     }
 
 	void OnTriggerEnter(Collider other) 
@@ -114,5 +109,20 @@ public class PlayerController : MonoBehaviour
 	{
 		currentZone = null;
 		print ("Exited: " + other.gameObject.name);
+	}
+
+	public bool isInsideZone(){
+		return currentZone != null;
+	}
+
+	public string GetCurrentZoneName(){
+		if (currentZone != null) {
+			return currentZone.name.Split ('_') [0];
+		} else
+			return "";
+	}
+
+	public Vector2 GetMarkerPosition(){
+		return new Vector2 (gameObject.transform.localPosition.x, gameObject.transform.localPosition.z);
 	}
 }
