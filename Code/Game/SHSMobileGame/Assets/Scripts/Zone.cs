@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class Zone : MonoBehaviour {
 
-	private string zoneId;
+	public const float HP_MAX = 1000f;
+	public const float LEVEL_MAX = 5f;
+
+	public string zoneId;
 	public string name;
 	public int health;
 	public int level;
@@ -14,6 +17,11 @@ public class Zone : MonoBehaviour {
 	public Image levelBar;
 
 	void Start() {
+	}
+
+	void Update(){
+		healthBar.fillAmount = (float)(health) / HP_MAX;
+		levelBar.fillAmount =  (float)(level) / LEVEL_MAX;
 	}
 
 	public Zone (string zoneId,int health, int team)
@@ -28,6 +36,12 @@ public class Zone : MonoBehaviour {
 		this.zoneId = zoneId;
 		this.health = Int32.Parse(entry["health"].ToString());
 		this.team = Int32.Parse(entry["team"].ToString());
+	}
+
+	public void updateStatus(int newHealth, int newLevel, int newTeam){
+		this.health = newHealth;
+		this.level = newLevel;
+		this.team = newTeam;
 	}
 }
 

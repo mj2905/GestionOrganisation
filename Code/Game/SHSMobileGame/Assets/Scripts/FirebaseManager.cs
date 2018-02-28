@@ -191,19 +191,38 @@ public class FirebaseManager
 	public static Func<MutableData, TransactionResult> HurtTerminalTransaction(long amount) 
 	{
 		return mutableData => {
-			
+
 			object health_obtained = mutableData.Value;
 
 			if(health_obtained != null) {
-				
+
 				long health_value = (long)health_obtained;
 
 				if(health_value > 0) {
-					
+
 					mutableData.Value = health_value - amount;
 					return TransactionResult.Success(mutableData);
 
 				}
+			}
+
+			return TransactionResult.Abort();
+		};
+	}
+
+	public static Func<MutableData, TransactionResult> HealZoneTransaction(long amount) 
+	{
+		return mutableData => {
+
+			object health_obtained = mutableData.Value;
+
+			if(health_obtained != null) {
+
+				long health_value = (long)health_obtained;
+
+				mutableData.Value = Math.Min(Zone.HP_MAX, health_value + amount);
+
+				return TransactionResult.Success(mutableData);
 			}
 
 			return TransactionResult.Abort();
@@ -224,5 +243,14 @@ public class FirebaseManager
 				Debug.Log("This terminal is already dead");
 			}
 		});
+	}
+
+	public static void HealZone(string zoneID, long amount){
+		reference.Child ("Game/Zones/").Child(zoneID).Child("health").RunTransaction (HealZoneTransaction (amount)).ContinueWith(task => {
+			if (task.Exception != null) {
+				Debug.Log("Zone is already at maximum health");
+			}
+		});
+		//TODO: decrement credits
 	}
 }

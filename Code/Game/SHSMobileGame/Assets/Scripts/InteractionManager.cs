@@ -66,7 +66,8 @@ public class InteractionManager : MonoBehaviour {
 	public void healZone(){
 		if (targetedZone != null) {
 			print ("Healing zone " + targetedZone.name);
-			//TODO: implement interaction with firebase
+
+			FirebaseManager.HealZone (targetedZone.zoneId, 20);
 		}
 	}
 
