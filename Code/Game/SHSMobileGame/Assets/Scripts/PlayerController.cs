@@ -5,9 +5,11 @@ public class PlayerController : MonoBehaviour
 {
 
     public float speed;
-	private GameObject currentZone; 
-	private static double defaultLongH = 6.56586;//6.699792f;
-	private static double defaultLatV = 46.52018;//46.55598f;
+	private GameObject currentZone;
+
+	//TODO: remettre les bonnes coordonnées de l'epfl, et pas celles de test
+	private static double defaultLongH = 6.699792;//6.56586;//;
+	private static double defaultLatV = 46.55598;//46.52018;//;
 
 	private static double topLeftLat = 46.52261, topLeftLong = 6.56058;
 	private static double topRightLat = 46.52261, topRightLong = 6.5731;
