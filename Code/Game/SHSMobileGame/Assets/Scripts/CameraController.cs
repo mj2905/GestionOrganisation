@@ -63,15 +63,13 @@ public class CameraController : MonoBehaviour {
 				RaycastHit hit;
 
 				if (Physics.Raycast (ray, out hit, 1000)) {
-					if (hit.transform.gameObject.tag == "Zone" ||  hit.transform.gameObject.tag == "Ground") {
+					if (hit.transform.gameObject.tag == "Zone" || hit.transform.gameObject.tag == "Ground") {
 
 
 						if (focusedBuilding != null) {
 							if (hit.transform.gameObject.name != focusedBuilding.name) {
 								isFocusing = false;
-
-								//Notify the interaction manager that the user is no longer focused on a zone
-								interactionManager.updateTargetedZone (null);
+					
 							}
 							if (!isFocused) {
 								this.initialCameraPosition = transform.position;
@@ -84,7 +82,7 @@ public class CameraController : MonoBehaviour {
 							isFocusing = true;
 
 							//Check game mode to display the proper pop-up
-							if (gameManager.IsAttackMode()) {
+							if (gameManager.IsAttackMode ()) {
 
 							} else {
 								//Notify the interaction manager that the user focused on a zone
@@ -94,6 +92,17 @@ public class CameraController : MonoBehaviour {
 						}
 
 						dragging = !(isFocused || isFocusing) && !dragging;
+					} else if (hit.transform.gameObject.tag == "Terminal") {
+						print ("CameraController: Hit on a terminal");
+
+						Terminal targetTerminal = hit.transform.gameObject.GetComponentInParent<Terminal> ();
+						interactionManager.updateTargetedTerminal (targetTerminal);
+
+					} else {
+						//Notify the interaction manager that the user is no longer focused on a zone
+						print ("CameraController: remove popups");
+						interactionManager.updateTargetedZone (null);
+						interactionManager.updateTargetedTerminal(null);
 					}
 				}
 			} else {

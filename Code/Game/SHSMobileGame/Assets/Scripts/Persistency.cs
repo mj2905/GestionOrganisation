@@ -32,8 +32,8 @@ public static class Persistency {
 
 
 	public class Session {
-		public string username { get; }
-		public string password { get; }
+		public string username { get; set; }
+		public string password { get; set; }
 
 		private static byte[] xor(byte[] input) {
 			for (int i=0; i < input.Length; ++i) {
