@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneId: 
+  zoneId: MED
   name: MED
   health: 0
   level: 0
@@ -1304,7 +1304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneId: 
+  zoneId: ELA
   name: ELA
   health: 0
   level: 0
@@ -1849,7 +1849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneId: 
+  zoneId: PH
   name: PH
   health: 0
   level: 0
@@ -2100,7 +2100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneId: 
+  zoneId: CH
   name: CH
   health: 0
   level: 0
@@ -2440,7 +2440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneId: 
+  zoneId: SG
   name: SG
   health: 0
   level: 0
@@ -2798,7 +2798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneId: 
+  zoneId: PAV
   name: Pavillion
   health: 0
   level: 0
@@ -4301,7 +4301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneId: 
+  zoneId: RLC
   name: Rolex
   health: 0
   level: 0
@@ -5206,7 +5206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneId: 
+  zoneId: MX
   name: MX
   health: 0
   level: 0
@@ -5525,7 +5525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneId: 
+  zoneId: CO
   name: CO
   health: 0
   level: 0
@@ -5628,7 +5628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneId: 
+  zoneId: GC
   name: GC
   health: 0
   level: 0
@@ -6772,8 +6772,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneId: 
-  name: 
+  zoneId: GR
+  name: GR
   health: 0
   level: 0
   team: 0
@@ -7056,7 +7056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneId: 
+  zoneId: OR
   name: OneRoof
   health: 0
   level: 0
@@ -7366,7 +7366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneId: 
+  zoneId: INM
   name: INM
   health: 0
   level: 0
@@ -8678,7 +8678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneId: 
+  zoneId: MA
   name: MA
   health: 0
   level: 0
@@ -8882,7 +8882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneId: 
+  zoneId: METRO
   name: Metro
   health: 0
   level: 0
@@ -9133,7 +9133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneId: 
+  zoneId: SV
   name: SV
   health: 0
   level: 0
@@ -9253,7 +9253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneId: 
+  zoneId: BI
   name: BI
   health: 0
   level: 0
@@ -9598,7 +9598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneId: 
+  zoneId: CMCME
   name: CM & CE
   health: 0
   level: 0
@@ -10007,7 +10007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneId: 
+  zoneId: BC
   name: BC
   health: 0
   level: 0
