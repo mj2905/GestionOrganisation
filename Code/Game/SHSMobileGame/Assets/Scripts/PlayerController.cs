@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-		initialPosition = new Vector2(12, 8, -6.2);
+		initialPosition = new Vector3(12, 8, -6.2f);
 		currentZone = null;
     }
 
