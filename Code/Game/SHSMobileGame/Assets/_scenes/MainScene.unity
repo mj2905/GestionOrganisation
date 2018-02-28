@@ -3973,7 +3973,7 @@ MonoBehaviour:
   terminalPrefab: {fileID: 114140774469156708, guid: 791e108d0e7b6a64483ef0c278bffbd0,
     type: 2}
   player: {fileID: 1001960608}
-  textMode: {fileID: 0}
+  textMode: {fileID: 245737524}
 --- !u!4 &818770028
 Transform:
   m_ObjectHideFlags: 0
