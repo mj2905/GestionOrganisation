@@ -4776,11 +4776,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.2
+      value: -6.2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_LocalRotation.x
@@ -10690,7 +10690,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1001960607}
   interactionManager: {fileID: 1951455292}
-  actionState: {fileID: 0}
   CAMERA_FIXED: 0
   camera: {fileID: 2113431299}
   gameManager: {fileID: 818770027}
