@@ -211,6 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneId: 
   name: MED
   health: 0
   level: 0
@@ -274,7 +275,7 @@ RectTransform:
   m_Children:
   - {fileID: 740808049}
   m_Father: {fileID: 1840133862}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1303,6 +1304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneId: 
   name: ELA
   health: 0
   level: 0
@@ -1847,6 +1849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneId: 
   name: PH
   health: 0
   level: 0
@@ -2097,6 +2100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneId: 
   name: CH
   health: 0
   level: 0
@@ -2436,6 +2440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneId: 
   name: SG
   health: 0
   level: 0
@@ -2793,6 +2798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneId: 
   name: Pavillion
   health: 0
   level: 0
@@ -4295,6 +4301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneId: 
   name: Rolex
   health: 0
   level: 0
@@ -5199,6 +5206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneId: 
   name: MX
   health: 0
   level: 0
@@ -5517,6 +5525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneId: 
   name: CO
   health: 0
   level: 0
@@ -5619,6 +5628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneId: 
   name: GC
   health: 0
   level: 0
@@ -6762,6 +6772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneId: 
   name: 
   health: 0
   level: 0
@@ -7045,6 +7056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneId: 
   name: OneRoof
   health: 0
   level: 0
@@ -7354,6 +7366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneId: 
   name: INM
   health: 0
   level: 0
@@ -8665,6 +8678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneId: 
   name: MA
   health: 0
   level: 0
@@ -8868,6 +8882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneId: 
   name: Metro
   health: 0
   level: 0
@@ -8904,6 +8919,7 @@ RectTransform:
   - {fileID: 1683932794}
   - {fileID: 1992294789}
   - {fileID: 1234013892}
+  - {fileID: 2054295172}
   - {fileID: 30475523}
   m_Father: {fileID: 1342705399}
   m_RootOrder: 11
@@ -9117,6 +9133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneId: 
   name: SV
   health: 0
   level: 0
@@ -9236,6 +9253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneId: 
   name: BI
   health: 0
   level: 0
@@ -9580,6 +9598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneId: 
   name: CM & CE
   health: 0
   level: 0
@@ -9988,6 +10007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ad80b6b463204b8428d8415f04dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneId: 
   name: BC
   health: 0
   level: 0
@@ -10065,6 +10085,80 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2054295171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2054295172}
+  - component: {fileID: 2054295174}
+  - component: {fileID: 2054295173}
+  m_Layer: 5
+  m_Name: TeamLabel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2054295172
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2054295171}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1840133862}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 508.99997, y: 198.41187}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2054295173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2054295171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Team:'
+--- !u!222 &2054295174
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2054295171}
 --- !u!114 &2057865450 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114167157941284556, guid: e4d676b8642cc234b945d72797baf237,
