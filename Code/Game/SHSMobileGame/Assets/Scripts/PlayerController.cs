@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
 	private static double lastPosLongH = epflCenterLong;
 	private static double lastPosLatV = epflCenterLat;
 
+	private const bool DEBUG = false;
+
 	//Obtained by computing the unity size of the map
 	/*
 	 * (77.15) x (50)
@@ -52,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-		initialPosition = transform.position;
+		initialPosition = new Vector2(12, 8, -6.2);
 		currentZone = null;
     }
 
@@ -81,9 +83,11 @@ public class PlayerController : MonoBehaviour
 			double moveHorizontal = (posLongH - epflCenterLong)*hFactor/(topRightLong - topLeftLong);
 			double moveVertical = (posLatV - epflCenterLat)*vFactor/(topLeftLat - botLeftLat);
 
-			if (posLongH != lastPosLongH || posLatV != lastPosLatV) {
-				print ("-----" + posLatV + " " + epflCenterLat + " " + topLeftLat + " " + botLeftLat);
-				print ("location retrieved : lat:" + posLatV + " | long:" + posLongH + " | mh:" + moveHorizontal + " | mv:" + moveVertical + "(~" + (957.9 * (posLongH - epflCenterLong) / (topRightLong - topLeftLong)) + "m)" + "(~" + (618.2 * (posLatV - epflCenterLat)/(topLeftLat - botLeftLat)) + "m)");
+			if (DEBUG) {
+				if (posLongH != lastPosLongH || posLatV != lastPosLatV) {
+					print ("-----" + posLatV + " " + epflCenterLat + " " + topLeftLat + " " + botLeftLat);
+					print ("location retrieved : lat:" + posLatV + " | long:" + posLongH + " | mh:" + moveHorizontal + " | mv:" + moveVertical + "(~" + (957.9 * (posLongH - epflCenterLong) / (topRightLong - topLeftLong)) + "m)" + "(~" + (618.2 * (posLatV - epflCenterLat) / (topLeftLat - botLeftLat)) + "m)");
+				}
 			}
 
 			lastPosLatV = posLatV;
