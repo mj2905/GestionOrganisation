@@ -9,6 +9,8 @@ public class UiManager : MonoBehaviour
 
 	public Text creditText;
 	public Text scoreText;
+	public GameManager game;
+	public Animator turretButtonAnimator;
 
 	private PopupScript popup;
 
@@ -29,5 +31,17 @@ public class UiManager : MonoBehaviour
 
 	public void SetPopUpText(string text){
 		popup.SetText (text);
+	}
+
+	public void PlaceTurret(){
+		if (game.IsPlayerInsideZone ()) {
+			turretButtonAnimator.SetBool ("isClicked", true);
+			game.AddTerminalAtPlayerPosition ();
+		}
+	}
+
+	void Update(){
+		turretButtonAnimator.SetBool ("isClicked", false);
+		turretButtonAnimator.SetBool ("isInside", game.IsAttackMode() && game.IsPlayerInsideZone());
 	}
 }

@@ -5,7 +5,6 @@ public class PlayerController : MonoBehaviour
 {
 
     public float speed;
-	public GameManager gameManager;
 	private GameObject currentZone; 
 	private static float defaultLongH = 6.56586f;//6.699792f;
 	private static float defaultLatV = 46.52018f;//46.55598f;
@@ -91,12 +90,15 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate()
     {
-		Vector3 movement = GetMovement ();
-		gameObject.transform.position += movement;// * speed;
+		float moveHorizontal = Input.GetAxis("Horizontal");
+		float moveVertical = Input.GetAxis("Vertical");
 
-		if (currentZone != null && Input.GetKeyDown (KeyCode.T)) {
-			gameManager.AddTerminal(currentZone.name.Split('_')[0],gameObject.transform.localPosition.x,gameObject.transform.localPosition.z);
-		}
+		Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+
+		gameObject.transform.position += movement * speed;
+
+		//Vector3 movement = GetMovement ();
+		gameObject.transform.position += movement;// * speed;
     }
 
 	void OnTriggerEnter(Collider other) 
@@ -109,5 +111,20 @@ public class PlayerController : MonoBehaviour
 	{
 		currentZone = null;
 		print ("Exited: " + other.gameObject.name);
+	}
+
+	public bool isInsideZone(){
+		return currentZone != null;
+	}
+
+	public string GetCurrentZoneName(){
+		if (currentZone != null) {
+			return currentZone.name.Split ('_') [0];
+		} else
+			return "";
+	}
+
+	public Vector2 GetPosition(){
+		return new Vector2 (gameObject.transform.localPosition.x, gameObject.transform.localPosition.z);
 	}
 }
