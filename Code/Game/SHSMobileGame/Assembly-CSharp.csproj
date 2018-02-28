@@ -151,40 +151,40 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="Google.JarResolver_v1.2.59.0">
- <HintPath>/Users/MJ/Desktop/tmp4/GestionOrganisation/Code/Game/SHSMobileGame/Assets/PlayServicesResolver/Editor/Google.JarResolver_v1.2.59.0.dll</HintPath>
+ <HintPath>/Users/MJ/Desktop/tmp5/GestionOrganisation/Code/Game/SHSMobileGame/Assets/PlayServicesResolver/Editor/Google.JarResolver_v1.2.59.0.dll</HintPath>
  </Reference>
  <Reference Include="Google.VersionHandler">
- <HintPath>/Users/MJ/Desktop/tmp4/GestionOrganisation/Code/Game/SHSMobileGame/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
+ <HintPath>/Users/MJ/Desktop/tmp5/GestionOrganisation/Code/Game/SHSMobileGame/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
  </Reference>
  <Reference Include="Google.VersionHandlerImpl_v1.2.59.0">
- <HintPath>/Users/MJ/Desktop/tmp4/GestionOrganisation/Code/Game/SHSMobileGame/Assets/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.59.0.dll</HintPath>
+ <HintPath>/Users/MJ/Desktop/tmp5/GestionOrganisation/Code/Game/SHSMobileGame/Assets/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.59.0.dll</HintPath>
  </Reference>
  <Reference Include="Google.IOSResolver_v1.2.59.0">
- <HintPath>/Users/MJ/Desktop/tmp4/GestionOrganisation/Code/Game/SHSMobileGame/Assets/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.59.0.dll</HintPath>
+ <HintPath>/Users/MJ/Desktop/tmp5/GestionOrganisation/Code/Game/SHSMobileGame/Assets/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.59.0.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Compat">
- <HintPath>/Users/MJ/Desktop/tmp4/GestionOrganisation/Code/Game/SHSMobileGame/Assets/Parse/Plugins/Unity.Compat.dll</HintPath>
+ <HintPath>/Users/MJ/Desktop/tmp5/GestionOrganisation/Code/Game/SHSMobileGame/Assets/Parse/Plugins/Unity.Compat.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Tasks">
- <HintPath>/Users/MJ/Desktop/tmp4/GestionOrganisation/Code/Game/SHSMobileGame/Assets/Parse/Plugins/Unity.Tasks.dll</HintPath>
+ <HintPath>/Users/MJ/Desktop/tmp5/GestionOrganisation/Code/Game/SHSMobileGame/Assets/Parse/Plugins/Unity.Tasks.dll</HintPath>
  </Reference>
  <Reference Include="Firebase.Auth">
- <HintPath>/Users/MJ/Desktop/tmp4/GestionOrganisation/Code/Game/SHSMobileGame/Assets/Firebase/Plugins/Firebase.Auth.dll</HintPath>
+ <HintPath>/Users/MJ/Desktop/tmp5/GestionOrganisation/Code/Game/SHSMobileGame/Assets/Firebase/Plugins/Firebase.Auth.dll</HintPath>
  </Reference>
  <Reference Include="Google.MiniJson">
- <HintPath>/Users/MJ/Desktop/tmp4/GestionOrganisation/Code/Game/SHSMobileGame/Assets/Firebase/Plugins/Google.MiniJson.dll</HintPath>
+ <HintPath>/Users/MJ/Desktop/tmp5/GestionOrganisation/Code/Game/SHSMobileGame/Assets/Firebase/Plugins/Google.MiniJson.dll</HintPath>
  </Reference>
  <Reference Include="Google.Sharpen">
- <HintPath>/Users/MJ/Desktop/tmp4/GestionOrganisation/Code/Game/SHSMobileGame/Assets/Firebase/Plugins/Google.Sharpen.dll</HintPath>
+ <HintPath>/Users/MJ/Desktop/tmp5/GestionOrganisation/Code/Game/SHSMobileGame/Assets/Firebase/Plugins/Google.Sharpen.dll</HintPath>
  </Reference>
  <Reference Include="Firebase.Database">
- <HintPath>/Users/MJ/Desktop/tmp4/GestionOrganisation/Code/Game/SHSMobileGame/Assets/Firebase/Plugins/Firebase.Database.dll</HintPath>
+ <HintPath>/Users/MJ/Desktop/tmp5/GestionOrganisation/Code/Game/SHSMobileGame/Assets/Firebase/Plugins/Firebase.Database.dll</HintPath>
  </Reference>
  <Reference Include="Firebase.App">
- <HintPath>/Users/MJ/Desktop/tmp4/GestionOrganisation/Code/Game/SHSMobileGame/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
+ <HintPath>/Users/MJ/Desktop/tmp5/GestionOrganisation/Code/Game/SHSMobileGame/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
  </Reference>
  <Reference Include="Firebase.Editor">
- <HintPath>/Users/MJ/Desktop/tmp4/GestionOrganisation/Code/Game/SHSMobileGame/Assets/Firebase/Editor/Firebase.Editor.dll</HintPath>
+ <HintPath>/Users/MJ/Desktop/tmp5/GestionOrganisation/Code/Game/SHSMobileGame/Assets/Firebase/Editor/Firebase.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Advertisements">
  <HintPath>/Users/MJ/Library/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
