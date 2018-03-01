@@ -7,9 +7,12 @@ public class PlayerController : MonoBehaviour
     public float speed;
 	private GameObject currentZone;
 
+	private static double epflCenterY = MercatorProjection.latToY(46.52018), epflCenterX = MercatorProjection.lonToX(6.56586);
+
 	//TODO: remettre les bonnes coordonnées de l'epfl, et pas celles de test
-	private static double defaultY = MercatorProjection.latToY(46.55598), defaultX = MercatorProjection.lonToX(6.699792);
+	//private static double defaultY = MercatorProjection.latToY(46.55598), defaultX = MercatorProjection.lonToX(6.699792);
 	//rolex : private static double defaultY = MercatorProjection.latToY(46.5189), defaultX = MercatorProjection.lonToX(6.5683);
+	private static double defaultY = epflCenterY, defaultX = epflCenterX;
 
 
 	private static double topLeftY = MercatorProjection.latToY(46.52261), topLeftX = MercatorProjection.lonToX(6.56058);
@@ -20,9 +23,8 @@ public class PlayerController : MonoBehaviour
 	private static double horizontalDistance = topRightX - topLeftX;
 	private static double verticalDistance = topLeftY - botLeftY;
 
-	private static double epflCenterY = MercatorProjection.latToY(46.52018), epflCenterX = MercatorProjection.lonToX(6.56586);
-	private static double epflCenterDifY = epflCenterY - defaultY; 
-	private static double epflCenterDifX = epflCenterX - defaultX;
+	private static double epflCenterDifY = 0;//epflCenterY - defaultY; 
+	private static double epflCenterDifX = 0;//epflCenterX - defaultX;
 
 	private static double lastPosY = defaultY, lastPosX = defaultX;
 
