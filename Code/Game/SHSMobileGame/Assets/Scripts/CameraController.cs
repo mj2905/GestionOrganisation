@@ -34,7 +34,7 @@ public class CameraController : MonoBehaviour {
 		this.initialCameraPosition = transform.position;
 		this.initialCameraRotation = transform.rotation;
 
-		offset = transform.position - player.transform.position;
+		offset = new Vector3 (0, 65.9f, -8.1f);
 	}
 	
 	// LateUpdate is called once per frame, after all objects updates

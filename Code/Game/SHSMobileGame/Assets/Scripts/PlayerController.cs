@@ -8,24 +8,29 @@ public class PlayerController : MonoBehaviour
 	private GameObject currentZone;
 
 	//TODO: remettre les bonnes coordonnées de l'epfl, et pas celles de test
-	private static double defaultLongH = 6.699792;//6.56586;//;
-	private static double defaultLatV = 46.55598;//46.52018;//;
+	private static double defaultY = MercatorProjection.latToY(46.55598), defaultX = MercatorProjection.lonToX(6.699792);
+	//rolex : private static double defaultY = MercatorProjection.latToY(46.5189), defaultX = MercatorProjection.lonToX(6.5683);
 
-	private static double topLeftLat = 46.52261, topLeftLong = 6.56058;
-	private static double topRightLat = 46.52261, topRightLong = 6.5731;
-	private static double botLeftLat = 46.51705, botLeftLong = 6.56058;
-	private static double botRightLat = 46.51705, botRightLong = 6.5731;
 
-	private static double horizontalDistance = topRightLong - topLeftLong;
-	private static double verticalDistance = topLeftLat - botLeftLat;
+	private static double topLeftY = MercatorProjection.latToY(46.52261), topLeftX = MercatorProjection.lonToX(6.56058);
+	private static double topRightY = MercatorProjection.latToY(46.52261), topRightX = MercatorProjection.lonToX(6.5731);
+	private static double botLeftY = MercatorProjection.latToY(46.51705), botLeftX = MercatorProjection.lonToX(6.56058);
+	private static double botRightY = MercatorProjection.latToY(46.51705), botRightX = MercatorProjection.lonToX(6.5731);
 
-	private static double epflCenterLat = 46.52018, epflCenterLong = 6.56586;
-	private static double epflCenterDifLat = epflCenterLat - defaultLatV, epflCenterDifLong = epflCenterLong - defaultLongH;
+	private static double horizontalDistance = topRightX - topLeftX;
+	private static double verticalDistance = topLeftY - botLeftY;
 
-	private static double lastPosLongH = epflCenterLong;
-	private static double lastPosLatV = epflCenterLat;
+	private static double epflCenterY = MercatorProjection.latToY(46.52018), epflCenterX = MercatorProjection.lonToX(6.56586);
+	private static double epflCenterDifY = epflCenterY - defaultY; 
+	private static double epflCenterDifX = epflCenterX - defaultX;
 
-	private const bool DEBUG = false;
+	private static double lastPosY = defaultY, lastPosX = defaultX;
+
+	//private static double[,] tmp = new double[4,2]{
+	//	{topLeftY, topLeftX}, {topRightY, topRightX}, {botLeftY, botLeftX}, {botRightY, botRightX}
+	//};
+
+	private const bool DEBUG = true;
 
 	//Obtained by computing the unity size of the map
 	/*
@@ -56,7 +61,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-		initialPosition = new Vector3(12, 8, -6.2f);
+		initialPosition = new Vector3(12, 8, -7);
+		transform.localPosition = initialPosition;
 		currentZone = null;
     }
 
@@ -79,22 +85,29 @@ public class PlayerController : MonoBehaviour
 
 	Vector3 GetPosition() {
 		if (Input.location.isEnabledByUser && Input.location.status == LocationServiceStatus.Running) {
-			double posLongH = Input.location.lastData.longitude + epflCenterDifLong;
-			double posLatV = Input.location.lastData.latitude + epflCenterDifLat;
 
-			double moveHorizontal = (posLongH - epflCenterLong)*hFactor/(topRightLong - topLeftLong);
-			double moveVertical = (posLatV - epflCenterLat)*vFactor/(topLeftLat - botLeftLat);
+			//int time = ((int)(Time.time/2))%4;
+			//Debug.Log (time);
+			//tmp [time, 1];
+			//tmp [time, 0];
+
+			double posX = epflCenterDifX + MercatorProjection.lonToX(Input.location.lastData.longitude);
+			double posY = epflCenterDifY + MercatorProjection.latToY(Input.location.lastData.latitude);
+
+			double moveHorizontal = (posX - topLeftX)*hFactor/horizontalDistance;
+			double moveVertical = (posY - topLeftY)*vFactor/verticalDistance;
 
 			if (DEBUG) {
-				if (posLongH != lastPosLongH || posLatV != lastPosLatV) {
-					print ("-----" + posLatV + " " + epflCenterLat + " " + topLeftLat + " " + botLeftLat);
-					print ("location retrieved : lat:" + posLatV + " | long:" + posLongH + " | mh:" + moveHorizontal + " | mv:" + moveVertical + "(~" + (957.9 * (posLongH - epflCenterLong) / (topRightLong - topLeftLong)) + "m)" + "(~" + (618.2 * (posLatV - epflCenterLat) / (topLeftLat - botLeftLat)) + "m)");
+				if (posX != lastPosX || posY != lastPosY) {
+					print ("-----" + posX + " " + epflCenterX + " " + topLeftX + " " + topRightX);
+					print ("-----" + posY + " " + epflCenterY + " " + topLeftY + " " + botLeftY);
+					print ("mh:" + moveHorizontal + " | mv:" + moveVertical);
 				}
 			}
 
-			lastPosLatV = posLatV;
-			lastPosLongH = posLongH;
-			return new Vector3 ((float)moveHorizontal, 0.0f, (float)moveVertical);
+			lastPosY = posY;
+			lastPosX = posX;
+			return -new Vector3 ((float)moveHorizontal, 0.0f, (float)moveVertical);
 		} else {
 			return new Vector3 (0.0f, 0.0f, 0.0f);
 		}
@@ -102,7 +115,7 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate()
     {
-		gameObject.transform.position = initialPosition + GetPosition();
+		transform.localPosition = initialPosition + GetPosition();
     }
 
 	void OnTriggerEnter(Collider other) 
