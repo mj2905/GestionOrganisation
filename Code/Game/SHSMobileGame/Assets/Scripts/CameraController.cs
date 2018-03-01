@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class CameraController : MonoBehaviour {
     
@@ -70,19 +71,21 @@ public class CameraController : MonoBehaviour {
 			transform.position = player.transform.position + offset;
 			return;
 		case state.MovingToInitialPos:
+			transform.rotation = Quaternion.RotateTowards (transform.rotation, this.rotationBeforeFocus, SPEED_ZOOM);
 			transform.position = Vector3.MoveTowards (transform.position, initialPosition, SPEED_SWITCH_MODE);
 			if (transform.position == initialPosition) {
 				currentState = state.Idle;
 			}
 			break;
 		case state.MovingToPlayer:
+			transform.rotation = Quaternion.RotateTowards (transform.rotation, this.rotationBeforeFocus, SPEED_ZOOM);
 			transform.position = Vector3.MoveTowards (transform.position, player.transform.position + offset, SPEED_SWITCH_MODE);
 			if (transform.position == player.transform.position + offset) {
 				currentState = state.FixedOnPlayer;
 			}
 			break;
 		case state.Idle:
-			if (Input.GetMouseButton (0)) {
+			if (!IsPointerOverUIObject() && Input.GetMouseButton (0)) {
 				this.currentState = state.Clicking;
 			}
 			break;
@@ -134,7 +137,7 @@ public class CameraController : MonoBehaviour {
 		case state.Focused:
 			Ray ray2 = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit2;
-			if (Input.GetMouseButton (0)) {
+			if (!IsPointerOverUIObject() && Input.GetMouseButton (0)) {
 				if (Physics.Raycast (ray2, out hit2, 1000)) {
 					if (hit2.transform.gameObject.tag == "Zone" || hit2.transform.gameObject.tag == "Ground") {
 						if (focusedBuilding != null) {
@@ -201,4 +204,12 @@ public class CameraController : MonoBehaviour {
 			Mathf.Clamp (sceneRoot.transform.position.z,- Limit.bounds.size.z+ groundSize.z,Limit.bounds.size.z- groundSize.z)
 		);
     }
+
+	private bool IsPointerOverUIObject() {
+		PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+		eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+		List<RaycastResult> results = new List<RaycastResult>();
+		EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+		return results.Count > 0;
+	}
 }
