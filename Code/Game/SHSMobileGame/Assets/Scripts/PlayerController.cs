@@ -61,8 +61,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-		initialPosition = new Vector3(12, 8, -7);
-		transform.localPosition = initialPosition;
+		initialPosition = new Vector3(77.15f, 8, -50.0f);
+		transform.localPosition = new Vector3(12, 8, -7);
 		currentZone = null;
     }
 
