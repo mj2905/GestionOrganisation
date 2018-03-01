@@ -9585,7 +9585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deeef489f60a54e47b09124fd6867470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 818770027}
   zonePopup: {fileID: 1840133861}
   terminalPopup: {fileID: 215381138}
 --- !u!224 &1951455293

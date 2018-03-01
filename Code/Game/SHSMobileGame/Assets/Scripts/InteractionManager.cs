@@ -35,7 +35,7 @@ public class InteractionManager : MonoBehaviour {
 		popupTerminalLevel = terminalPopup.transform.Find ("LevelLabel").GetComponent<Text> ();
 		popupTerminalTeam = terminalPopup.transform.Find ("TeamLabel").GetComponent<Text> ();
 
-		popupTerminalActionButtonText = terminalPopup.transform.Find ("ActionButtonText").GetComponent<Text> ();
+		popupTerminalActionButtonText = terminalPopup.transform.Find ("ActionButton").transform.Find ("ActionButtonText").GetComponent<Text> ();
 	}
 	
 	// Update is called once per frame
@@ -92,14 +92,14 @@ public class InteractionManager : MonoBehaviour {
 	public void buffTerminal(){
 		if(targetedTerminal != null){
 			print ("Buffing terminal ");
-			//TODO: implement interaction with firebase
+			FirebaseManager.BuffTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_BUFF_AMOUNT);
 		}
 	}
 
 	public void attackTerminal(){
 		if(targetedTerminal != null){
 			print ("Buffing terminal ");
-			//TODO: implement interaction with firebase
+			FirebaseManager.HurtTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_SMASH_AMOUNT);
 		}
 	}
 }
