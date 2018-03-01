@@ -188,7 +188,29 @@ public class FirebaseManager
 		};
 	}
 
-	public static Func<MutableData, TransactionResult> HurtTerminalTransaction(long amount) 
+	private static Func<MutableData, TransactionResult> UpdateCreditTransaction(long amount){
+
+		return mutableData => {
+
+			object credits_obtained = mutableData.Value;
+
+			if(credits_obtained != null) {
+
+				//Cap credits at max value
+				long credit_value = Math.Min((long)credits_obtained + amount, User.MAX_CREDITS);
+
+				//The transaction should not go through if the numeber of credits goes below the minimum threshold
+				if(User.MIN_CREDITS < credit_value){
+					mutableData.Value = credit_value;
+					return TransactionResult.Success(mutableData);
+				}
+			}
+
+			return TransactionResult.Abort();
+		};
+	}
+
+	private static Func<MutableData, TransactionResult> HurtTerminalTransaction(long amount) 
 	{
 		return mutableData => {
 
@@ -210,7 +232,24 @@ public class FirebaseManager
 		};
 	}
 
-	public static Func<MutableData, TransactionResult> HealZoneTransaction(long amount) 
+	private static Func<MutableData, TransactionResult> BuffTerminalTransaction(long amount) 
+	{
+		return mutableData => {
+
+			object strength_obtained = mutableData.Value;
+
+			if(strength_obtained != null) {
+
+				long strength_value = (long)strength_obtained;
+				mutableData.Value = strength_value + amount;
+				return TransactionResult.Success(mutableData);
+			}
+
+			return TransactionResult.Abort();
+		};
+	}
+
+	private static Func<MutableData, TransactionResult> HealZoneTransaction(long amount) 
 	{
 		return mutableData => {
 
@@ -238,6 +277,7 @@ public class FirebaseManager
 	}
 
 	public static void HurtTerminal(string terminalID, long amount){
+		//TODO: decrement credit first 
 		reference.Child ("Game/Terminals/").Child(terminalID).Child("hp").RunTransaction (HurtTerminalTransaction (amount)).ContinueWith(task => {
 			if (task.Exception != null) {
 				Debug.Log("This terminal is already dead");
@@ -245,12 +285,27 @@ public class FirebaseManager
 		});
 	}
 
-	public static void HealZone(string zoneID, long amount){
-		reference.Child ("Game/Zones/").Child(zoneID).Child("health").RunTransaction (HealZoneTransaction (amount)).ContinueWith(task => {
+	public static void BuffTerminal(string terminalID, long amount){
+		//TODO: decrement credit first 
+		reference.Child("Game/Terminals/").Child(terminalID).Child("strength").RunTransaction(BuffTerminalTransaction(amount)).ContinueWith(task =>{
 			if (task.Exception != null) {
-				Debug.Log("Zone is already at maximum health");
+				Debug.Log("This terminal is already maximally buffed");
 			}
 		});
-		//TODO: decrement credits
+	}
+
+	public static void HealZone(string zoneID, long amount){
+		reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.ZONE_HEAL_COST)).ContinueWith (task => {
+
+			if (task.Exception != null) {
+				reference.Child ("Game/Zones/").Child (zoneID).Child ("health").RunTransaction (HealZoneTransaction (amount)).ContinueWith (innerTask => {
+					
+					if (innerTask.Exception != null) {
+						Debug.Log ("Zone is already at maximum health");
+					}
+
+				});
+			}
+		});
 	}
 }

@@ -85,7 +85,7 @@ public class InteractionManager : MonoBehaviour {
 	public void healZone(){
 		if (targetedZone != null) {
 			print ("Healing zone " + targetedZone.name);
-			FirebaseManager.HealZone (targetedZone.zoneId, 20);
+			FirebaseManager.HealZone (targetedZone.zoneId, QuantitiesConstants.ZONE_HEAL_AMOUNT);
 		}
 	}
 

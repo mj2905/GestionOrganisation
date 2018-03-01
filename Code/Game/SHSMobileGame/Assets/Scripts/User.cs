@@ -2,6 +2,8 @@
 
 public class User
 	{
+	public const int MAX_CREDITS = 10000;
+	public const int MIN_CREDITS = 0;
 
 	public int credits;
 	public int level;
