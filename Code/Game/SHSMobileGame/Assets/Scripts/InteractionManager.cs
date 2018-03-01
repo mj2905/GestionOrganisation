@@ -98,7 +98,7 @@ public class InteractionManager : MonoBehaviour {
 
 	public void attackTerminal(){
 		if(targetedTerminal != null){
-			print ("Buffing terminal ");
+			print ("Attacking terminal ");
 			FirebaseManager.HurtTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_SMASH_AMOUNT);
 		}
 	}
