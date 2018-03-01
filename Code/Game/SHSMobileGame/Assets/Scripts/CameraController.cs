@@ -6,7 +6,6 @@ public class CameraController : MonoBehaviour {
     
 	public GameObject player;
 	public InteractionManager interactionManager;
-	public bool CAMERA_FIXED = false;
 	public Camera camera;
 	public GameManager gameManager;
 
@@ -17,15 +16,16 @@ public class CameraController : MonoBehaviour {
 	public BoxCollider Limit;
 
 	private const float SPEED_ZOOM = 4f;
-	private const float SPEED_OUTSIDE = 5f;
+	private const float SPEED_OUTSIDE = 3f;
+	private const float SPEED_SWITCH_MODE = 5f;
 	private const float TIME_OF_CLICK = 0.12f;
 
     private Vector3 dragOrigin;
     private Vector3 previousSceneRootPos;
 	private GameObject sceneRoot;
 	private Vector3 touchPosWorld;
-	private Vector3 initialCameraPosition;
-	private Quaternion initialCameraRotation;
+	private Vector3 positionBeforeFocus;
+	private Quaternion rotationBeforeFocus;
 	private GameObject focusedBuilding;
 	private Vector3 offset;
 	private bool onScreenBot = false;
@@ -33,9 +33,11 @@ public class CameraController : MonoBehaviour {
 	private bool onScreenLeft = false;
 	private bool onScreenRight = false;
 	private Vector3 groundSize;
+	private Vector3 initialPosition;
+	private bool isAttackMode = false;
 
 
-	enum state {Idle,Clicking,Dragging,Focusing,Focused,Unfocusing};
+	enum state {Idle,Clicking,Dragging,Focusing,Focused,Unfocusing,FixedOnPlayer,MovingToPlayer,MovingToInitialPos};
 	private state currentState = state.Idle;
 
 	private float timer = 0f;
@@ -44,15 +46,41 @@ public class CameraController : MonoBehaviour {
 	void Start () {
         dragOrigin = new Vector3(0.0f, 0.0f, 0.0f);
 		this.sceneRoot = gameManager.sceneRoot;
-		this.initialCameraPosition = transform.position;
-		this.initialCameraRotation = transform.rotation;
+		this.positionBeforeFocus = transform.position;
+		this.rotationBeforeFocus = transform.rotation;
 
-		offset = new Vector3 (0, 65.9f, -8.1f);;
+		offset = new Vector3 (0, 65.9f, -8.1f);
 		groundSize = GameObject.Find ("SceneRoot/Ground").GetComponent<Renderer> ().bounds.size;
+		initialPosition = transform.position;
+	}
+
+	public void SwitchMode(){
+		isAttackMode = !isAttackMode;
+		if (isAttackMode) {
+			currentState = state.MovingToPlayer;
+		} else{
+			currentState = state.MovingToInitialPos;
+		}
 	}
 
 	void Update(){
+		//Debug.Log (currentState);
 		switch (currentState) {
+		case state.FixedOnPlayer:
+			transform.position = player.transform.position + offset;
+			return;
+		case state.MovingToInitialPos:
+			transform.position = Vector3.MoveTowards (transform.position, initialPosition, SPEED_SWITCH_MODE);
+			if (transform.position == initialPosition) {
+				currentState = state.Idle;
+			}
+			break;
+		case state.MovingToPlayer:
+			transform.position = Vector3.MoveTowards (transform.position, player.transform.position + offset, SPEED_SWITCH_MODE);
+			if (transform.position == player.transform.position + offset) {
+				currentState = state.FixedOnPlayer;
+			}
+			break;
 		case state.Idle:
 			if (Input.GetMouseButton (0)) {
 				this.currentState = state.Clicking;
@@ -74,8 +102,8 @@ public class CameraController : MonoBehaviour {
 				RaycastHit hit;
 					if (Physics.Raycast (ray, out hit, 1000)) {
 						if (hit.transform.gameObject.tag == "Zone") {
-							initialCameraPosition = transform.position;
-							initialCameraRotation = transform.rotation;
+							positionBeforeFocus = transform.position;
+							rotationBeforeFocus = transform.rotation;
 							focusedBuilding = hit.transform.gameObject;
 							currentState = state.Focusing;
 
@@ -129,10 +157,10 @@ public class CameraController : MonoBehaviour {
 			break;
 		case state.Unfocusing:
 			if (focusedBuilding != null) {
-				transform.position = Vector3.MoveTowards (transform.position, this.initialCameraPosition, SPEED_ZOOM);
-				transform.rotation = Quaternion.RotateTowards (transform.rotation, this.initialCameraRotation, SPEED_ZOOM);
+				transform.position = Vector3.MoveTowards (transform.position, this.positionBeforeFocus, SPEED_ZOOM);
+				transform.rotation = Quaternion.RotateTowards (transform.rotation, this.rotationBeforeFocus, SPEED_ZOOM);
 			}
-			if (transform.position == initialCameraPosition) {
+			if (transform.position == positionBeforeFocus) {
 				currentState = state.Idle;
 			}
 			break;
@@ -148,13 +176,6 @@ public class CameraController : MonoBehaviour {
 		default:
 			break;
 		}
-
-		if (CAMERA_FIXED) {
-			transform.position = player.transform.position + offset;
-			return;
-		}
-
-
 
 		onScreenBot = GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes (camera),bottom.bounds);
 		onScreenTop = GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes (camera),top.bounds);

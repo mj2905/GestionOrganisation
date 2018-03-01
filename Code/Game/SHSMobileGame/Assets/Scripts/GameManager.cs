@@ -121,9 +121,8 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void SwitchMode(){
-		camera.CAMERA_FIXED = !camera.CAMERA_FIXED;
+		camera.SwitchMode ();
 		attackMode = !attackMode;
-
 		ActionGivenMode ();
 	}
 		
