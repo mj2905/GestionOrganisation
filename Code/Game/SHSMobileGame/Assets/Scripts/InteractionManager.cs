@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class InteractionManager : MonoBehaviour {
 
+	public GameManager gameManager;
+
 	private Zone targetedZone;
 	private Terminal targetedTerminal;
 
@@ -15,6 +17,7 @@ public class InteractionManager : MonoBehaviour {
 	private Text popupTerminalHP;
 	private Text popupTerminalLevel;
 	private Text popupTerminalTeam;
+	private Text popupTerminalActionButtonText;
 
 	public GameObject zonePopup;
 	public GameObject terminalPopup;
@@ -31,11 +34,24 @@ public class InteractionManager : MonoBehaviour {
 		popupTerminalHP = terminalPopup.transform.Find ("HPLabel").GetComponent<Text> ();
 		popupTerminalLevel = terminalPopup.transform.Find ("LevelLabel").GetComponent<Text> ();
 		popupTerminalTeam = terminalPopup.transform.Find ("TeamLabel").GetComponent<Text> ();
+
+		popupTerminalActionButtonText = terminalPopup.transform.Find ("ActionButtonText").GetComponent<Text> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (targetedZone != null) {
+			popupZoneName.text = "Zone: " + targetedZone.name;
+			popupZoneHP.text = "HP: " + targetedZone.health;
+			popupZoneLevel.text = "Level: " + targetedZone.level;
+			popupZoneTeam.text = "Team: " + targetedZone.team;
+		}
+
+		if (targetedTerminal != null) {
+			popupTerminalHP.text = "HP: " + targetedTerminal.hp;
+			popupTerminalLevel.text = "Level: " + targetedTerminal.level;
+			popupTerminalTeam.text = "Team: " + targetedTerminal.team;
+		}
 	}
 
 	public void updateTargetedZone(Zone zone){
@@ -44,11 +60,8 @@ public class InteractionManager : MonoBehaviour {
 		if (targetedZone == null) {
 			zonePopup.SetActive (false);
 		} else {
+			terminalPopup.SetActive (false);
 			zonePopup.SetActive (true);
-			popupZoneName.text = "Zone: " + targetedZone.name;
-			popupZoneHP.text = "HP: " + targetedZone.health;
-			popupZoneLevel.text = "Level: " + targetedZone.level;
-			popupZoneTeam.text = "Team: " + targetedZone.team;
 		}
 	}
 
@@ -58,15 +71,20 @@ public class InteractionManager : MonoBehaviour {
 		if (targetedTerminal == null) {
 			terminalPopup.SetActive (false);
 		} else {
+			zonePopup.SetActive (false);
 			terminalPopup.SetActive (true);
-			//TODO: implement
+
+			if (gameManager.IsAttackMode ()) {
+				popupTerminalActionButtonText.text = "Buff";
+			} else {
+				popupTerminalActionButtonText.text = "Smash";
+			}
 		}
 	}
 
 	public void healZone(){
 		if (targetedZone != null) {
 			print ("Healing zone " + targetedZone.name);
-
 			FirebaseManager.HealZone (targetedZone.zoneId, 20);
 		}
 	}
