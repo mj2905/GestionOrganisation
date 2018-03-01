@@ -4044,6 +4044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiManager: {fileID: 1342705400}
   sceneRoot: {fileID: 1228100744}
+  zonesRoot: {fileID: 1675804248}
   terminalPrefab: {fileID: 114140774469156708, guid: 791e108d0e7b6a64483ef0c278bffbd0,
     type: 2}
   player: {fileID: 1001960608}

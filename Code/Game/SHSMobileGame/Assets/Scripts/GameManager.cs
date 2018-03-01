@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
 
 	public UiManager uiManager;
 	public GameObject sceneRoot;
+	public GameObject zonesRoot;
 	public Terminal terminalPrefab;
 	public PlayerController player;
 	public Text textMode;
@@ -35,8 +36,7 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButtonDown(0))
-		{
+		if (Input.GetMouseButtonDown(0)){
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;
 
@@ -44,15 +44,16 @@ public class GameManager : MonoBehaviour {
 				if (hit.transform.gameObject.tag == "Terminal") {
 					Terminal clickedTerminal = hit.transform.gameObject.GetComponentInParent<Terminal>();
 					FirebaseManager.HurtTerminal (clickedTerminal.GetTerminalId(), 20);
+				}
 			}
 		}
-	}
 	}
 
 	public void ChangeGame(Game game){
 		previousGame = currentGame;
 		currentGame = game;
 		DrawTerminals ();
+		DrawZones ();
 	}
 
 	public void DrawTerminals(){
@@ -79,6 +80,10 @@ public class GameManager : MonoBehaviour {
 		for (int i = 0; i < modifiedTerminals.Count; i++) {
 			GameObject.Find ("SceneRoot/" + modifiedTerminals [i].GetTerminalId ()).GetComponent<Terminal> ().Copy (modifiedTerminals [i]);
 		}
+	}
+
+	public void DrawZones(){
+
 	}
 
 	public void UpdateScoreAndCredit(string xp, string credit){
