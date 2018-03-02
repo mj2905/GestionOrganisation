@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
 	public Terminal terminalPrefab;
 	public PlayerController player;
 	public Text textMode;
+	public Zone[] zones;
 
 	private Game previousGame;
 	private Game currentGame;
@@ -83,6 +84,13 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void DrawZones(){
+
+		IList<Zone> zones = currentGame.GetZones ();
+
+		foreach(Zone z in zones){
+			//Zone unityZone = zonesRoot.transform.Find (z.zoneId);
+			//z.copyInto (unityZone);
+		}
 
 	}
 

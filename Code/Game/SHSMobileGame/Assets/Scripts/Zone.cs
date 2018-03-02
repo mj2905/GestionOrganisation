@@ -38,10 +38,10 @@ public class Zone : MonoBehaviour {
 		this.team = Int32.Parse(entry["team"].ToString());
 	}
 
-	public void updateStatus(int newHealth, int newLevel, int newTeam){
-		this.health = newHealth;
-		this.level = newLevel;
-		this.team = newTeam;
+	public void copyInto(Zone other){
+		other.health = this.health;
+		other.level = this.level;
+		other.team = this.team;
 	}
 }
 

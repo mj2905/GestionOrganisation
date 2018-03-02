@@ -97,5 +97,9 @@ public class Game
 		return oldGame.GetDifferenceTerminals (this);
 	}
 
+	public IList<Zone> GetZones(){
+		return this.zones.AsReadOnly();
+	}
+
 }
 
