@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerController : LocationListener
 {
@@ -7,11 +8,13 @@ public class PlayerController : LocationListener
     public float speed;
 	private GameObject currentZone;
 
-	private static readonly XYCoordinate EPFL_CENTER_DIF = CoordinateConstants.DEBUG == CoordinateConstants.DEBUG_STATE.TEST_LOCATION ? 
-															CoordinateConstants.EPFL_CENTER_XY - CoordinateConstants.TEST_LOC_XY : XYCoordinate.ZERO ();
-
 	private double moveVertical;
 	private double moveHorizontal;
+
+	private static bool inSafeZone;
+	public static bool IsInSafeZone() {
+		return inSafeZone;
+	}
 
 	//Obtained by computing the unity size of the map
 	/*
@@ -25,8 +28,6 @@ public class PlayerController : LocationListener
 	y = 77.15x/0.01252
 	 */
 
-	private const double H_FACTOR = 2*77.15; //(1/l, 1/2h)/(l, h) = (1/2, 1/2). Need to multiply by 2 to get (1,1) and by the factors to reach the position in editor
-	private const double V_FACTOR = 2*50.0;
 	private Vector3 initialPosition;
 
     void Start()
@@ -39,6 +40,7 @@ public class PlayerController : LocationListener
 		moveHorizontal = 0;
 		 
 		currentZone = null;
+		inSafeZone = false;
     }
 
 	Vector3 GetPosition() {
@@ -52,14 +54,25 @@ public class PlayerController : LocationListener
 
 	void OnTriggerEnter(Collider other) 
 	{
-		currentZone = other.gameObject;
-		print ("Entered: " + currentZone.name);
+		if (other is CapsuleCollider) {
+			inSafeZone = true;
+			print ("Safe zone entered: " + other.gameObject.name);
+		}
+		else {
+			currentZone = other.gameObject;
+			print ("Entered: " + currentZone.name);
+		}
 	}
 
 	void OnTriggerExit(Collider other)
 	{
-		currentZone = null;
-		print ("Exited: " + other.gameObject.name);
+		if (other is CapsuleCollider) {
+			inSafeZone = false;
+			print ("Safe zone exited: " + other.gameObject.name);
+		} else {
+			currentZone = null;
+			print ("Exited: " + other.gameObject.name);
+		}
 	}
 
 	public bool isInsideZone(){
@@ -82,10 +95,10 @@ public class PlayerController : LocationListener
 
 		double lastMovH = moveHorizontal, lastMovV = moveVertical;
 
-		XYCoordinate posXY = EPFL_CENTER_DIF + coords.toXYMercator ();
+		XYCoordinate posXY = CoordinateConstants.EPFL_CENTER_DIF + coords.toXYMercator ();
 
-		moveHorizontal = (posXY.x() - CoordinateConstants.EPFL_TOP_LEFT_XY.x())*H_FACTOR/CoordinateConstants.EPFL_HORIZONTAL_DISTANCE;
-		moveVertical = (posXY.y() - CoordinateConstants.EPFL_TOP_LEFT_XY.y())*V_FACTOR/CoordinateConstants.EPFL_VERTICAL_DISTANCE;
+		moveHorizontal = (posXY.x() - CoordinateConstants.EPFL_TOP_LEFT_XY.x())*CoordinateConstants.H_FACTOR/CoordinateConstants.EPFL_HORIZONTAL_DISTANCE;
+		moveVertical = (posXY.y() - CoordinateConstants.EPFL_TOP_LEFT_XY.y())*CoordinateConstants.V_FACTOR/CoordinateConstants.EPFL_VERTICAL_DISTANCE;
 
 		if (CoordinateConstants.DEBUG != CoordinateConstants.DEBUG_STATE.NO_DEBUG) {
 			if (moveHorizontal != lastMovH || moveVertical != lastMovV) {

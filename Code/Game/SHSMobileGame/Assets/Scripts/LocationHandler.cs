@@ -9,6 +9,7 @@ public class LocationHandler : MonoBehaviour {
 	private const string USERPREF_ATTACK_KEY = "attackMode";
 
 	public PopupScript popup;
+	public FadingPlayer fadingPlayer;
 
 	private MapCoordinate coords = MapCoordinate.ZERO();
 
@@ -16,6 +17,7 @@ public class LocationHandler : MonoBehaviour {
 	private bool started = false;
 
 	public LocationListener[] listeners;
+
 	private bool locationWasEnabled = false; //by app, when someone clicks on attack button for example
 	//invariant : if locationWasEnabled = false, location is stopped
 
@@ -91,6 +93,12 @@ public class LocationHandler : MonoBehaviour {
 
 			DeactivateLocation ();
 			popup.SetText ("To be in attack mode, you have to be on the EPFL campus");
+
+		} else if(!PlayerController.IsInSafeZone()) {
+
+			fadingPlayer.SetCoords (coords);
+			DeactivateLocation ();
+			popup.SetText ("The player has to be in a safe zone to switch to attack mode");
 
 		} else if (coords != oldCoords) {
 			foreach (LocationListener listener in listeners) {
