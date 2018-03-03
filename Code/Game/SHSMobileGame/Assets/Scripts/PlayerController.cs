@@ -7,29 +7,13 @@ public class PlayerController : LocationListener
     public float speed;
 	private GameObject currentZone;
 
-	private static double epflCenterY = MercatorProjection.latToY(46.52018), epflCenterX = MercatorProjection.lonToX(6.56586);
+	private const bool DEBUG = false;
 
-	//TODO: remettre les bonnes coordonnées de l'epfl, et pas celles de test
-	private static double defaultY = MercatorProjection.latToY(46.55598), defaultX = MercatorProjection.lonToX(6.699792);
-	//rolex : private static double defaultY = MercatorProjection.latToY(46.5189), defaultX = MercatorProjection.lonToX(6.5683);
-	//private static double defaultY = epflCenterY, defaultX = epflCenterX;
-
-
-	private static double topLeftY = MercatorProjection.latToY(46.52261), topLeftX = MercatorProjection.lonToX(6.56058);
-	private static double topRightY = MercatorProjection.latToY(46.52261), topRightX = MercatorProjection.lonToX(6.5731);
-	private static double botLeftY = MercatorProjection.latToY(46.51705), botLeftX = MercatorProjection.lonToX(6.56058);
-	private static double botRightY = MercatorProjection.latToY(46.51705), botRightX = MercatorProjection.lonToX(6.5731);
-
-	private static double horizontalDistance = topRightX - topLeftX;
-	private static double verticalDistance = topLeftY - botLeftY;
-
-	private static double epflCenterDifY = epflCenterY - defaultY;//0;
-	private static double epflCenterDifX = epflCenterX - defaultX;//0;
+	private static readonly double epflCenterDifY = DEBUG ? CoordinateConstants.EPFL_CENTER_POS_Y - CoordinateConstants.TEST_LOC_POS_Y : 0;
+	private static readonly double epflCenterDifX = DEBUG ? CoordinateConstants.EPFL_CENTER_POS_X - CoordinateConstants.TEST_LOC_POS_X : 0;
 
 	private double moveVertical;
 	private double moveHorizontal;
-
-	private const bool DEBUG = false;
 
 	//Obtained by computing the unity size of the map
 	/*
@@ -43,8 +27,8 @@ public class PlayerController : LocationListener
 	y = 77.15x/0.01252
 	 */
 
-	private const double hFactor = 2*77.15; //(1/l, 1/2h)/(l, h) = (1/2, 1/2). Need to multiply by 2 to get (1,1) and by the factors to reach the position in editor
-	private const double vFactor = 2*50.0;
+	private const double H_FACTOR = 2*77.15; //(1/l, 1/2h)/(l, h) = (1/2, 1/2). Need to multiply by 2 to get (1,1) and by the factors to reach the position in editor
+	private const double V_FACTOR = 2*50.0;
 	private Vector3 initialPosition;
 
     void Start()
@@ -103,13 +87,11 @@ public class PlayerController : LocationListener
 		double posX = epflCenterDifX + MercatorProjection.lonToX(longitude);
 		double posY = epflCenterDifY + MercatorProjection.latToY(latitude);
 
-		moveHorizontal = (posX - topLeftX)*hFactor/horizontalDistance;
-		moveVertical = (posY - topLeftY)*vFactor/verticalDistance;
+		moveHorizontal = (posX - CoordinateConstants.EPFL_TOP_LEFT_POS_X)*H_FACTOR/CoordinateConstants.EPFL_HORIZONTAL_DISTANCE;
+		moveVertical = (posY - CoordinateConstants.EPFL_TOP_LEFT_POS_Y)*V_FACTOR/CoordinateConstants.EPFL_VERTICAL_DISTANCE;
 
 		if (DEBUG) {
 			if (moveHorizontal != lastMovH || moveVertical != lastMovV) {
-				print ("-----" + posX + " " + epflCenterX + " " + topLeftX + " " + topRightX);
-				print ("-----" + posY + " " + epflCenterY + " " + topLeftY + " " + botLeftY);
 				print ("mh:" + moveHorizontal + " | mv:" + moveVertical);
 			}
 		}

@@ -89,6 +89,7 @@ public class LocationHandler : MonoBehaviour {
 		longitude = Input.location.lastData.longitude;
 		latitude = Input.location.lastData.latitude;
 
+
 		if (longitude != lastLong || latitude != lastLat) {
 			foreach (LocationListener listener in listeners) {
 				listener.CoordinateUpdate (latitude, longitude);
