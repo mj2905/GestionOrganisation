@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InteractionManager : MonoBehaviour {
+public class InteractionManager : LocationListener {
 
 	public GameManager gameManager;
 
@@ -21,6 +21,8 @@ public class InteractionManager : MonoBehaviour {
 
 	public GameObject zonePopup;
 	public GameObject terminalPopup;
+
+	private bool isAttackMode = false;
 
 	// Use this for initialization
 	void Start () {
@@ -74,7 +76,7 @@ public class InteractionManager : MonoBehaviour {
 			zonePopup.SetActive (false);
 			terminalPopup.SetActive (true);
 
-			if (gameManager.IsAttackMode ()) {
+			if (isAttackMode) {
 				popupTerminalActionButtonText.text = "Buff";
 			} else {
 				popupTerminalActionButtonText.text = "Smash";
@@ -101,5 +103,15 @@ public class InteractionManager : MonoBehaviour {
 			print ("Attacking terminal ");
 			FirebaseManager.HurtTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_SMASH_AMOUNT);
 		}
+	}
+
+	override public void CoordinateUpdate(double latitude, double longitude) {}
+
+	override public void StopLocationHandling() {
+		isAttackMode = false;
+	}
+
+	override public void FirstLocationSent() {
+		isAttackMode = true;
 	}
 }

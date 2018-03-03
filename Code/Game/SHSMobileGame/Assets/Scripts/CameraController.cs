@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class CameraController : MonoBehaviour {
+public class CameraController : LocationListener {
     
 	public GameObject player;
 	public InteractionManager interactionManager;
@@ -55,15 +55,6 @@ public class CameraController : MonoBehaviour {
 		initialPosition = transform.position;
 	}
 
-	public void SwitchMode(){
-		isAttackMode = !isAttackMode;
-		if (isAttackMode) {
-			currentState = state.MovingToPlayer;
-		} else{
-			currentState = state.MovingToInitialPos;
-		}
-	}
-
 	void Update(){
 		//Debug.Log (currentState);
 		switch (currentState) {
@@ -110,7 +101,7 @@ public class CameraController : MonoBehaviour {
 							focusedBuilding = hit.transform.gameObject;
 							currentState = state.Focusing;
 
-							if (gameManager.IsAttackMode ()) {
+							if (isAttackMode) {
 
 							} else {
 								//Notify the interaction manager that the user focused on a zone
@@ -211,5 +202,17 @@ public class CameraController : MonoBehaviour {
 		List<RaycastResult> results = new List<RaycastResult>();
 		EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
 		return results.Count > 0;
+	}
+
+	override public void CoordinateUpdate(double latitude, double longitude) {}
+
+	override public void StopLocationHandling() {
+		currentState = state.MovingToInitialPos;
+		isAttackMode = false;
+	}
+
+	override public void FirstLocationSent() {
+		currentState = state.MovingToPlayer;
+		isAttackMode = true;
 	}
 }

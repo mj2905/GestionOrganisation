@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class UiManager : MonoBehaviour
+public class UiManager : LocationListener
 {
 
 	public Text creditText;
@@ -13,6 +13,8 @@ public class UiManager : MonoBehaviour
 	public Animator turretButtonAnimator;
 
 	private PopupScript popup;
+
+	private bool isAttackMode = false;
 
 
 	// Use this for initialization
@@ -42,6 +44,16 @@ public class UiManager : MonoBehaviour
 
 	void Update(){
 		turretButtonAnimator.SetBool ("isClicked", false);
-		turretButtonAnimator.SetBool ("isInside", game.IsAttackMode() && game.IsPlayerInsideZone());
+		turretButtonAnimator.SetBool ("isInside", isAttackMode && game.IsPlayerInsideZone());
+	}
+
+	override public void CoordinateUpdate(double latitude, double longitude) {}
+
+	override public void StopLocationHandling() {
+		isAttackMode = false;
+	}
+
+	override public void FirstLocationSent() {
+		isAttackMode = true;
 	}
 }

@@ -4,24 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : LocationListener {
 
 	public UiManager uiManager;
 	public GameObject sceneRoot;
 	public GameObject zonesRoot;
 	public Terminal terminalPrefab;
 	public PlayerController player;
-	public Text textMode;
+	public Button modeButton;
 	public Zone[] zones;
 
 	private Game previousGame;
 	private Game currentGame;
-	private bool attackMode = false;
-	private CameraController camera;
 
 	void Awake(){
 		FirebaseManager.SetMainGameRef (this);
-		camera = Camera.main.GetComponent<CameraController> ();
 	}
 
 	// Use this for initialization
@@ -31,8 +28,6 @@ public class GameManager : MonoBehaviour {
 
 		previousGame = new Game ();
 		currentGame = new Game ();
-
-		ActionGivenMode ();
 	}
 	
 	// Update is called once per frame
@@ -123,26 +118,15 @@ public class GameManager : MonoBehaviour {
 	public bool IsPlayerInsideZone(){
 		return player.isInsideZone ();
 	}
-
-	public bool IsAttackMode(){
-		return attackMode;
-	}
-
-	public void SwitchMode(){
-		camera.SwitchMode ();
-		attackMode = !attackMode;
-		ActionGivenMode ();
-	}
 		
-	private void ActionGivenMode() {
-		if (attackMode) {
-			player.GetComponent<Renderer>().enabled = true;
-			player.GetComponent<PlayerController> ().BeginLocation ();
-			textMode.GetComponent<Text>().text = "Attack mode";
-		} else {
-			player.GetComponent<Renderer>().enabled = false;
-			player.GetComponent<PlayerController> ().StopLocation ();
-			textMode.GetComponent<Text>().text = "Defense mode";
-		}
+
+	override public void CoordinateUpdate(double latitude, double longitude) {}
+
+	override public void StopLocationHandling() {
+		modeButton.GetComponentInChildren<Text>().text = "Defense mode";
+	}
+
+	override public void FirstLocationSent() {
+		modeButton.GetComponentInChildren<Text>().text = "Attack mode";
 	}
 }

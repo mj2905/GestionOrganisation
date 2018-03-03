@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : LocationListener
 {
 
     public float speed;
@@ -23,16 +23,15 @@ public class PlayerController : MonoBehaviour
 	private static double horizontalDistance = topRightX - topLeftX;
 	private static double verticalDistance = topLeftY - botLeftY;
 
-	private static double epflCenterDifY = 0;//epflCenterY - defaultY; 
-	private static double epflCenterDifX = 0;//epflCenterX - defaultX;
+	private static double epflCenterDifY = 0;//epflCenterY - defaultY;//0;
+	private static double epflCenterDifX = 0;//epflCenterX - defaultX;//0;
 
 	private static double lastPosY = defaultY, lastPosX = defaultX;
 
-	//private static double[,] tmp = new double[4,2]{
-	//	{topLeftY, topLeftX}, {topRightY, topRightX}, {botLeftY, botLeftX}, {botRightY, botRightX}
-	//};
+	private double lastLatitude;
+	private double lastLongitude;
 
-	private const bool DEBUG = true;
+	private const bool DEBUG = false;
 
 	//Obtained by computing the unity size of the map
 	/*
@@ -48,71 +47,42 @@ public class PlayerController : MonoBehaviour
 
 	private const double hFactor = 2*77.15; //(1/l, 1/2h)/(l, h) = (1/2, 1/2). Need to multiply by 2 to get (1,1) and by the factors to reach the position in editor
 	private const double vFactor = 2*50.0;
-	bool locationWasStarted = false;
 	private Vector3 initialPosition;
-
-	public void BeginLocation() {
-		Input.location.Start (5.0f, 5.0f);
-		locationWasStarted = true;
-	}
-
-	public void StopLocation() {
-		Input.location.Stop ();
-		locationWasStarted = false;
-	}
 
     void Start()
     {
+		gameObject.GetComponent<Renderer>().enabled = false;
 		initialPosition = new Vector3(77.15f, 8, -50.0f);
 		transform.localPosition = new Vector3(12, 8, -7);
+
+		lastLatitude = 0;
+		lastLongitude = 0;
 		currentZone = null;
     }
 
-	void OnApplicationFocus(bool focusStatus) {
-		if (locationWasStarted) {
-			if (!focusStatus) {
-				print ("Stopped");
-				StopLocation ();
-				locationWasStarted = true; //So that the next app focus will begin again the location
-			} else {
-				print ("Restart");
-				BeginLocation ();
-			}
-		}
-	}
-
-	void OnDisable() {
-		StopLocation ();
-	}
-
 	Vector3 GetPosition() {
-		if (Input.location.isEnabledByUser && Input.location.status == LocationServiceStatus.Running) {
 
-			//int time = ((int)(Time.time/2))%4;
-			//Debug.Log (time);
-			//tmp [time, 1];
-			//tmp [time, 0];
-
-			double posX = epflCenterDifX + MercatorProjection.lonToX(Input.location.lastData.longitude);
-			double posY = epflCenterDifY + MercatorProjection.latToY(Input.location.lastData.latitude);
-
-			double moveHorizontal = (posX - topLeftX)*hFactor/horizontalDistance;
-			double moveVertical = (posY - topLeftY)*vFactor/verticalDistance;
-
-			if (DEBUG) {
-				if (posX != lastPosX || posY != lastPosY) {
-					print ("-----" + posX + " " + epflCenterX + " " + topLeftX + " " + topRightX);
-					print ("-----" + posY + " " + epflCenterY + " " + topLeftY + " " + botLeftY);
-					print ("mh:" + moveHorizontal + " | mv:" + moveVertical);
-				}
-			}
-
-			lastPosY = posY;
-			lastPosX = posX;
-			return -new Vector3 ((float)moveHorizontal, 0.0f, (float)moveVertical);
-		} else {
-			return new Vector3 (0.0f, 0.0f, 0.0f);
+		if (lastLongitude == 0 && lastLatitude == 0) {
+			return new Vector3 (0, 0, 0);
 		}
+
+		double posX = epflCenterDifX + MercatorProjection.lonToX(lastLongitude);
+		double posY = epflCenterDifY + MercatorProjection.latToY(lastLatitude);
+
+		double moveHorizontal = (posX - topLeftX)*hFactor/horizontalDistance;
+		double moveVertical = (posY - topLeftY)*vFactor/verticalDistance;
+
+		if (DEBUG) {
+			if (posX != lastPosX || posY != lastPosY) {
+				print ("-----" + posX + " " + epflCenterX + " " + topLeftX + " " + topRightX);
+				print ("-----" + posY + " " + epflCenterY + " " + topLeftY + " " + botLeftY);
+				print ("mh:" + moveHorizontal + " | mv:" + moveVertical);
+			}
+		}
+
+		lastPosY = posY;
+		lastPosX = posX;
+		return -new Vector3 ((float)moveHorizontal, 0.0f, (float)moveVertical);
 	}
 
 	void FixedUpdate()
@@ -143,7 +113,24 @@ public class PlayerController : MonoBehaviour
 			return "";
 	}
 
+
 	public Vector2 GetMarkerPosition(){
 		return new Vector2 (gameObject.transform.localPosition.x, gameObject.transform.localPosition.z);
 	}
+
+	override public void CoordinateUpdate(double latitude, double longitude) {
+		lastLatitude = latitude;
+		lastLongitude = longitude;
+	}
+
+	override public void StopLocationHandling() {
+		lastLatitude = 0;
+		lastLongitude = 0;
+		gameObject.GetComponent<Renderer>().enabled = false;
+	}
+
+	override public void FirstLocationSent() {
+		gameObject.GetComponent<Renderer>().enabled = true;
+	}
+
 }
