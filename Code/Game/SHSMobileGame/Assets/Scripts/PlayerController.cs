@@ -10,9 +10,9 @@ public class PlayerController : LocationListener
 	private static double epflCenterY = MercatorProjection.latToY(46.52018), epflCenterX = MercatorProjection.lonToX(6.56586);
 
 	//TODO: remettre les bonnes coordonnées de l'epfl, et pas celles de test
-	//private static double defaultY = MercatorProjection.latToY(46.55598), defaultX = MercatorProjection.lonToX(6.699792);
+	private static double defaultY = MercatorProjection.latToY(46.55598), defaultX = MercatorProjection.lonToX(6.699792);
 	//rolex : private static double defaultY = MercatorProjection.latToY(46.5189), defaultX = MercatorProjection.lonToX(6.5683);
-	private static double defaultY = epflCenterY, defaultX = epflCenterX;
+	//private static double defaultY = epflCenterY, defaultX = epflCenterX;
 
 
 	private static double topLeftY = MercatorProjection.latToY(46.52261), topLeftX = MercatorProjection.lonToX(6.56058);
@@ -23,13 +23,11 @@ public class PlayerController : LocationListener
 	private static double horizontalDistance = topRightX - topLeftX;
 	private static double verticalDistance = topLeftY - botLeftY;
 
-	private static double epflCenterDifY = 0;//epflCenterY - defaultY;//0;
-	private static double epflCenterDifX = 0;//epflCenterX - defaultX;//0;
+	private static double epflCenterDifY = epflCenterY - defaultY;//0;
+	private static double epflCenterDifX = epflCenterX - defaultX;//0;
 
-	private static double lastPosY = defaultY, lastPosX = defaultX;
-
-	private double lastLatitude;
-	private double lastLongitude;
+	private double moveVertical;
+	private double moveHorizontal;
 
 	private const bool DEBUG = false;
 
@@ -55,33 +53,13 @@ public class PlayerController : LocationListener
 		initialPosition = new Vector3(77.15f, 8, -50.0f);
 		transform.localPosition = new Vector3(12, 8, -7);
 
-		lastLatitude = 0;
-		lastLongitude = 0;
+		moveVertical = 0;
+		moveHorizontal = 0;
+		 
 		currentZone = null;
     }
 
 	Vector3 GetPosition() {
-
-		if (lastLongitude == 0 && lastLatitude == 0) {
-			return new Vector3 (0, 0, 0);
-		}
-
-		double posX = epflCenterDifX + MercatorProjection.lonToX(lastLongitude);
-		double posY = epflCenterDifY + MercatorProjection.latToY(lastLatitude);
-
-		double moveHorizontal = (posX - topLeftX)*hFactor/horizontalDistance;
-		double moveVertical = (posY - topLeftY)*vFactor/verticalDistance;
-
-		if (DEBUG) {
-			if (posX != lastPosX || posY != lastPosY) {
-				print ("-----" + posX + " " + epflCenterX + " " + topLeftX + " " + topRightX);
-				print ("-----" + posY + " " + epflCenterY + " " + topLeftY + " " + botLeftY);
-				print ("mh:" + moveHorizontal + " | mv:" + moveVertical);
-			}
-		}
-
-		lastPosY = posY;
-		lastPosX = posX;
 		return -new Vector3 ((float)moveHorizontal, 0.0f, (float)moveVertical);
 	}
 
@@ -119,13 +97,28 @@ public class PlayerController : LocationListener
 	}
 
 	override public void CoordinateUpdate(double latitude, double longitude) {
-		lastLatitude = latitude;
-		lastLongitude = longitude;
+
+		double lastMovH = moveHorizontal, lastMovV = moveVertical;
+
+		double posX = epflCenterDifX + MercatorProjection.lonToX(longitude);
+		double posY = epflCenterDifY + MercatorProjection.latToY(latitude);
+
+		moveHorizontal = (posX - topLeftX)*hFactor/horizontalDistance;
+		moveVertical = (posY - topLeftY)*vFactor/verticalDistance;
+
+		if (DEBUG) {
+			if (moveHorizontal != lastMovH || moveVertical != lastMovV) {
+				print ("-----" + posX + " " + epflCenterX + " " + topLeftX + " " + topRightX);
+				print ("-----" + posY + " " + epflCenterY + " " + topLeftY + " " + botLeftY);
+				print ("mh:" + moveHorizontal + " | mv:" + moveVertical);
+			}
+		}
+
 	}
 
 	override public void StopLocationHandling() {
-		lastLatitude = 0;
-		lastLongitude = 0;
+		moveVertical = 0;
+		moveHorizontal = 0;
 		gameObject.GetComponent<Renderer>().enabled = false;
 	}
 
