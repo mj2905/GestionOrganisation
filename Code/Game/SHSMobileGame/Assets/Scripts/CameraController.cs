@@ -37,6 +37,8 @@ public class CameraController : LocationListener {
 	private Vector3 initialPosition;
 	private bool isAttackMode = false;
 
+	public Button changeModeButton;
+
 
 	enum state {Idle,Clicking,Dragging,Focusing,Focused,Unfocusing,FixedOnPlayer,MovingToPlayer,MovingToInitialPos};
 	private state currentState = state.Idle;
@@ -156,9 +158,13 @@ public class CameraController : LocationListener {
 			}
 			if (transform.position == positionBeforeFocus) {
 				currentState = state.Idle;
+				changeModeButton.interactable = true;
 			}
 			break;
 		case state.Focusing:
+			
+			changeModeButton.interactable = false;
+
 			if (focusedBuilding != null) {
 				transform.position = Vector3.MoveTowards (transform.position, focusedBuilding.transform.position + new Vector3 (0, 30, -30), SPEED_ZOOM);
 				transform.rotation = Quaternion.RotateTowards (transform.rotation,  Quaternion.Euler(45,0,0), SPEED_ZOOM);
