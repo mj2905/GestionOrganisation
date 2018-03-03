@@ -47,7 +47,7 @@ public class UiManager : LocationListener
 		turretButtonAnimator.SetBool ("isInside", isAttackMode && game.IsPlayerInsideZone());
 	}
 
-	override public void CoordinateUpdate(double latitude, double longitude) {}
+	override public void CoordinateUpdate(MapCoordinate coords) {}
 
 	override public void StopLocationHandling() {
 		isAttackMode = false;
