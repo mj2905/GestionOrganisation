@@ -8,13 +8,15 @@ public static class CoordinateConstants {
 
 	public static readonly MapCoordinate TEST_LOC_MAP = new MapCoordinate(6.699792, 46.55598);
 	public static readonly MapCoordinate ROLEX_MAP = new MapCoordinate(6.5683, 46.5189);
+	public static readonly MapCoordinate IN_MAP = new MapCoordinate(6.56378, 46.51852);
+
 	public static readonly MapCoordinate EPFL_CENTER_MAP = new MapCoordinate(6.56586, 46.52018);
 	public static readonly MapCoordinate EPFL_TOP_LEFT_MAP = new MapCoordinate(6.56058, 46.52261);
 	public static readonly MapCoordinate EPFL_TOP_RIGHT_MAP = new MapCoordinate(6.5731, 46.52261);
 	public static readonly MapCoordinate EPFL_BOT_LEFT_MAP = new MapCoordinate(6.56058, 46.51705);
 	public static readonly MapCoordinate EPFL_BOT_RIGHT_MAP = new MapCoordinate(6.5731, 46.51705);
 
-	public static readonly WalkingPath WALKING_PATH = new WalkingPath(EPFL_CENTER_MAP, ROLEX_MAP);
+	public static readonly WalkingPath WALKING_PATH = new WalkingPath(EPFL_CENTER_MAP, IN_MAP);
 
 	public static readonly XYCoordinate TEST_LOC_XY = TEST_LOC_MAP.toXYMercator();
 	public static readonly XYCoordinate ROLEX_XY = ROLEX_MAP.toXYMercator();

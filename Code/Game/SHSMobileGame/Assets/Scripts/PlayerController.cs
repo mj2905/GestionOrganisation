@@ -32,8 +32,8 @@ public class PlayerController : LocationListener
     void Start()
     {
 		gameObject.GetComponent<Renderer>().enabled = false;
-		initialPosition = new Vector3(77.15f, 3.5f, -50.0f);
-		transform.localPosition = new Vector3(12, 3.5f, -7);
+		initialPosition = new Vector3(77.15f, 2, -50.0f);
+		transform.localPosition = new Vector3(12, 2, -7);
 
 		moveVertical = 0;
 		moveHorizontal = 0;
