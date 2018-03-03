@@ -2,8 +2,9 @@
 
 public static class CoordinateConstants {
 
-	public const bool DEBUG = false;
-
+	//No debug : real scenario at epfl. Test location : can test from location test_loc_map, without being at epfl. Walking path : can test using the walking path WALKING_PATH
+	public enum DEBUG_STATE {NO_DEBUG, TEST_LOCATION, WALKING_PATH};
+	public const DEBUG_STATE DEBUG = DEBUG_STATE.WALKING_PATH;
 
 	public static readonly MapCoordinate TEST_LOC_MAP = new MapCoordinate(6.699792, 46.55598);
 	public static readonly MapCoordinate ROLEX_MAP = new MapCoordinate(6.5683, 46.5189);
@@ -12,6 +13,8 @@ public static class CoordinateConstants {
 	public static readonly MapCoordinate EPFL_TOP_RIGHT_MAP = new MapCoordinate(6.5731, 46.52261);
 	public static readonly MapCoordinate EPFL_BOT_LEFT_MAP = new MapCoordinate(6.56058, 46.51705);
 	public static readonly MapCoordinate EPFL_BOT_RIGHT_MAP = new MapCoordinate(6.5731, 46.51705);
+
+	public static readonly WalkingPath WALKING_PATH = new WalkingPath(EPFL_CENTER_MAP, ROLEX_MAP);
 
 	public static readonly XYCoordinate TEST_LOC_XY = TEST_LOC_MAP.toXYMercator();
 	public static readonly XYCoordinate ROLEX_XY = ROLEX_MAP.toXYMercator();

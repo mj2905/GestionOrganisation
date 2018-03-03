@@ -83,9 +83,11 @@ public class LocationHandler : MonoBehaviour {
 	private void HandleCoordinates() {
 
 		MapCoordinate oldCoords = coords;
-		coords = new MapCoordinate (Input.location.lastData.longitude, Input.location.lastData.latitude);
+		coords = CoordinateConstants.DEBUG == CoordinateConstants.DEBUG_STATE.WALKING_PATH ? 
+			CoordinateConstants.WALKING_PATH.next() :
+			new MapCoordinate (Input.location.lastData.longitude, Input.location.lastData.latitude);
 
-		if(!CoordinateConstants.DEBUG && (coords > CoordinateConstants.EPFL_TOP_RIGHT_MAP || coords < CoordinateConstants.EPFL_BOT_LEFT_MAP)) {
+		if (CoordinateConstants.DEBUG == CoordinateConstants.DEBUG_STATE.NO_DEBUG && (coords > CoordinateConstants.EPFL_TOP_RIGHT_MAP || coords < CoordinateConstants.EPFL_BOT_LEFT_MAP)) {
 
 			DeactivateLocation ();
 			popup.SetText ("To be in attack mode, you have to be on the EPFL campus");
