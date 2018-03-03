@@ -1,5 +1,7 @@
 ﻿public static class CoordinateConstants {
-	
+
+	public const bool DEBUG = true;
+
 	public const double TEST_LOC_LAT = 46.55598, TEST_LOC_LONG = 6.699792;
 	public const double ROLEX_LAT = 46.5189, ROLEX_LONG = 6.5683;
 	public const double EPFL_CENTER_LAT = 46.52018, EPFL_CENTER_LONG = 6.56586;

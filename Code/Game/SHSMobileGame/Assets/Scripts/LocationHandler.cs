@@ -89,8 +89,13 @@ public class LocationHandler : MonoBehaviour {
 		longitude = Input.location.lastData.longitude;
 		latitude = Input.location.lastData.latitude;
 
+		if (!CoordinateConstants.DEBUG && (longitude > CoordinateConstants.EPFL_TOP_RIGHT_LONG || longitude < CoordinateConstants.EPFL_TOP_LEFT_LONG ||
+			latitude > CoordinateConstants.EPFL_TOP_LEFT_LAT || latitude < CoordinateConstants.EPFL_BOT_LEFT_LAT)) {
 
-		if (longitude != lastLong || latitude != lastLat) {
+			DeactivateLocation ();
+			popup.SetText ("To be in attack mode, you have to be on the EPFL campus");
+
+		} else if (longitude != lastLong || latitude != lastLat) {
 			foreach (LocationListener listener in listeners) {
 				listener.CoordinateUpdate (latitude, longitude);
 
@@ -109,7 +114,7 @@ public class LocationHandler : MonoBehaviour {
 			if (locationWasEnabled) {
 				DeactivateLocation ();
 			}
-			popup.SetText ("You have to enable the geolocation to be able to be in attack mode. To do so, go to Settings, SHSGameTest and choose to allow location access.");
+			popup.SetText ("You have to enable the geolocation to be able to be in attack mode. To do so, go to Settings, SHSGameTest and choose to allow location access");
 		}
 
 		if (locationWasEnabled && Input.location.status == LocationServiceStatus.Running) {

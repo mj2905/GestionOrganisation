@@ -11068,6 +11068,7 @@ MonoBehaviour:
   left: {fileID: 457797316}
   right: {fileID: 2013577823}
   Limit: {fileID: 1136435524}
+  changeModeButton: {fileID: 352992037}
 --- !u!114 &2119692151 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114167157941284556, guid: e4d676b8642cc234b945d72797baf237,

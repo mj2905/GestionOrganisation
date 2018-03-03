@@ -7,10 +7,8 @@ public class PlayerController : LocationListener
     public float speed;
 	private GameObject currentZone;
 
-	private const bool DEBUG = false;
-
-	private static readonly double epflCenterDifY = DEBUG ? CoordinateConstants.EPFL_CENTER_POS_Y - CoordinateConstants.TEST_LOC_POS_Y : 0;
-	private static readonly double epflCenterDifX = DEBUG ? CoordinateConstants.EPFL_CENTER_POS_X - CoordinateConstants.TEST_LOC_POS_X : 0;
+	private static readonly double epflCenterDifY = CoordinateConstants.DEBUG ? CoordinateConstants.EPFL_CENTER_POS_Y - CoordinateConstants.TEST_LOC_POS_Y : 0;
+	private static readonly double epflCenterDifX = CoordinateConstants.DEBUG ? CoordinateConstants.EPFL_CENTER_POS_X - CoordinateConstants.TEST_LOC_POS_X : 0;
 
 	private double moveVertical;
 	private double moveHorizontal;
@@ -90,7 +88,7 @@ public class PlayerController : LocationListener
 		moveHorizontal = (posX - CoordinateConstants.EPFL_TOP_LEFT_POS_X)*H_FACTOR/CoordinateConstants.EPFL_HORIZONTAL_DISTANCE;
 		moveVertical = (posY - CoordinateConstants.EPFL_TOP_LEFT_POS_Y)*V_FACTOR/CoordinateConstants.EPFL_VERTICAL_DISTANCE;
 
-		if (DEBUG) {
+		if (CoordinateConstants.DEBUG) {
 			if (moveHorizontal != lastMovH || moveVertical != lastMovV) {
 				print ("mh:" + moveHorizontal + " | mv:" + moveVertical);
 			}
