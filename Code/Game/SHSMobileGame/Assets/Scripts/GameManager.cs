@@ -120,7 +120,7 @@ public class GameManager : LocationListener {
 	}
 		
 
-	override public void CoordinateUpdate(double latitude, double longitude) {}
+	override public void CoordinateUpdate(MapCoordinate coords) {}
 
 	override public void StopLocationHandling() {
 		modeButton.GetComponentInChildren<Text>().text = "Defense mode";

@@ -78,6 +78,7 @@
      <Compile Include="Assets\Scripts\UIScripts\UiManager.cs" />
      <Compile Include="Assets\Scripts\User.cs" />
      <Compile Include="Assets\Scripts\UserLocationGet.cs" />
+     <Compile Include="Assets\Scripts\WalkingPath.cs" />
      <Compile Include="Assets\Scripts\Zone.cs" />
      <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
      <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-auth-unity\maven-metadata.xml" />

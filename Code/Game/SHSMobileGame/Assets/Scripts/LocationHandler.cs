@@ -10,8 +10,8 @@ public class LocationHandler : MonoBehaviour {
 
 	public PopupScript popup;
 
-	private double latitude = 0;
-	private double longitude = 0;
+	private MapCoordinate coords = MapCoordinate.ZERO();
+
 	private bool firstLocation = false;
 	private bool started = false;
 
@@ -31,8 +31,7 @@ public class LocationHandler : MonoBehaviour {
 		if (locationWasEnabled) {
 			Input.location.Stop ();
 			started = false;
-			latitude = 0;
-			longitude = 0;
+			coords = MapCoordinate.ZERO();
 		}
 	}
 
@@ -83,21 +82,19 @@ public class LocationHandler : MonoBehaviour {
 
 	private void HandleCoordinates() {
 
-		double lastLong = longitude;
-		double lastLat = latitude;
+		MapCoordinate oldCoords = coords;
+		coords = CoordinateConstants.DEBUG == CoordinateConstants.DEBUG_STATE.WALKING_PATH ? 
+			CoordinateConstants.WALKING_PATH.next() :
+			new MapCoordinate (Input.location.lastData.longitude, Input.location.lastData.latitude);
 
-		longitude = Input.location.lastData.longitude;
-		latitude = Input.location.lastData.latitude;
-
-		if (!CoordinateConstants.DEBUG && (longitude > CoordinateConstants.EPFL_TOP_RIGHT_LONG || longitude < CoordinateConstants.EPFL_TOP_LEFT_LONG ||
-			latitude > CoordinateConstants.EPFL_TOP_LEFT_LAT || latitude < CoordinateConstants.EPFL_BOT_LEFT_LAT)) {
+		if (CoordinateConstants.DEBUG == CoordinateConstants.DEBUG_STATE.NO_DEBUG && (coords > CoordinateConstants.EPFL_TOP_RIGHT_MAP || coords < CoordinateConstants.EPFL_BOT_LEFT_MAP)) {
 
 			DeactivateLocation ();
 			popup.SetText ("To be in attack mode, you have to be on the EPFL campus");
 
-		} else if (longitude != lastLong || latitude != lastLat) {
+		} else if (coords != oldCoords) {
 			foreach (LocationListener listener in listeners) {
-				listener.CoordinateUpdate (latitude, longitude);
+				listener.CoordinateUpdate (coords);
 
 				if (firstLocation) {
 					listener.FirstLocationSent ();
@@ -124,7 +121,7 @@ public class LocationHandler : MonoBehaviour {
 }
 
 public abstract class LocationListener : MonoBehaviour {
-	abstract public void CoordinateUpdate(double latitude, double longitude);
+	abstract public void CoordinateUpdate(MapCoordinate coords);
 	abstract public void StopLocationHandling();
 	abstract public void FirstLocationSent();
 }

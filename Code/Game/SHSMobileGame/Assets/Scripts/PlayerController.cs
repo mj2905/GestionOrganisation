@@ -7,8 +7,8 @@ public class PlayerController : LocationListener
     public float speed;
 	private GameObject currentZone;
 
-	private static readonly double epflCenterDifY = CoordinateConstants.DEBUG ? CoordinateConstants.EPFL_CENTER_POS_Y - CoordinateConstants.TEST_LOC_POS_Y : 0;
-	private static readonly double epflCenterDifX = CoordinateConstants.DEBUG ? CoordinateConstants.EPFL_CENTER_POS_X - CoordinateConstants.TEST_LOC_POS_X : 0;
+	private static readonly XYCoordinate EPFL_CENTER_DIF = CoordinateConstants.DEBUG == CoordinateConstants.DEBUG_STATE.TEST_LOCATION ? 
+															CoordinateConstants.EPFL_CENTER_XY - CoordinateConstants.TEST_LOC_XY : XYCoordinate.ZERO ();
 
 	private double moveVertical;
 	private double moveHorizontal;
@@ -32,8 +32,8 @@ public class PlayerController : LocationListener
     void Start()
     {
 		gameObject.GetComponent<Renderer>().enabled = false;
-		initialPosition = new Vector3(77.15f, 8, -50.0f);
-		transform.localPosition = new Vector3(12, 8, -7);
+		initialPosition = new Vector3(77.15f, 3.5f, -50.0f);
+		transform.localPosition = new Vector3(12, 3.5f, -7);
 
 		moveVertical = 0;
 		moveHorizontal = 0;
@@ -78,17 +78,16 @@ public class PlayerController : LocationListener
 		return new Vector2 (gameObject.transform.localPosition.x, gameObject.transform.localPosition.z);
 	}
 
-	override public void CoordinateUpdate(double latitude, double longitude) {
+	override public void CoordinateUpdate(MapCoordinate coords) {
 
 		double lastMovH = moveHorizontal, lastMovV = moveVertical;
 
-		double posX = epflCenterDifX + MercatorProjection.lonToX(longitude);
-		double posY = epflCenterDifY + MercatorProjection.latToY(latitude);
+		XYCoordinate posXY = EPFL_CENTER_DIF + coords.toXYMercator ();
 
-		moveHorizontal = (posX - CoordinateConstants.EPFL_TOP_LEFT_POS_X)*H_FACTOR/CoordinateConstants.EPFL_HORIZONTAL_DISTANCE;
-		moveVertical = (posY - CoordinateConstants.EPFL_TOP_LEFT_POS_Y)*V_FACTOR/CoordinateConstants.EPFL_VERTICAL_DISTANCE;
+		moveHorizontal = (posXY.x() - CoordinateConstants.EPFL_TOP_LEFT_XY.x())*H_FACTOR/CoordinateConstants.EPFL_HORIZONTAL_DISTANCE;
+		moveVertical = (posXY.y() - CoordinateConstants.EPFL_TOP_LEFT_XY.y())*V_FACTOR/CoordinateConstants.EPFL_VERTICAL_DISTANCE;
 
-		if (CoordinateConstants.DEBUG) {
+		if (CoordinateConstants.DEBUG != CoordinateConstants.DEBUG_STATE.NO_DEBUG) {
 			if (moveHorizontal != lastMovH || moveVertical != lastMovV) {
 				print ("mh:" + moveHorizontal + " | mv:" + moveVertical);
 			}

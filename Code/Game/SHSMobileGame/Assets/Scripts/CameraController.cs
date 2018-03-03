@@ -210,7 +210,7 @@ public class CameraController : LocationListener {
 		return results.Count > 0;
 	}
 
-	override public void CoordinateUpdate(double latitude, double longitude) {}
+	override public void CoordinateUpdate(MapCoordinate coords) {}
 
 	override public void StopLocationHandling() {
 		currentState = state.MovingToInitialPos;

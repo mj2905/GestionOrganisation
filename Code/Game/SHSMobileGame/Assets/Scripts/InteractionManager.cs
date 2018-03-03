@@ -105,7 +105,7 @@ public class InteractionManager : LocationListener {
 		}
 	}
 
-	override public void CoordinateUpdate(double latitude, double longitude) {}
+	override public void CoordinateUpdate(MapCoordinate coords) {}
 
 	override public void StopLocationHandling() {
 		isAttackMode = false;

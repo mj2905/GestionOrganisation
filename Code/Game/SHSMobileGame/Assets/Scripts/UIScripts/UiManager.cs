@@ -11,6 +11,7 @@ public class UiManager : LocationListener
 	public Text scoreText;
 	public GameManager game;
 	public Animator turretButtonAnimator;
+	public LocationHandler locationHandler;
 
 	private PopupScript popup;
 
@@ -38,6 +39,7 @@ public class UiManager : LocationListener
 	public void PlaceTurret(){
 		if (game.IsPlayerInsideZone ()) {
 			turretButtonAnimator.SetBool ("isClicked", true);
+			locationHandler.DeactivateLocation ();
 			game.AddTerminalAtPlayerPosition ();
 		}
 	}
@@ -47,7 +49,7 @@ public class UiManager : LocationListener
 		turretButtonAnimator.SetBool ("isInside", isAttackMode && game.IsPlayerInsideZone());
 	}
 
-	override public void CoordinateUpdate(double latitude, double longitude) {}
+	override public void CoordinateUpdate(MapCoordinate coords) {}
 
 	override public void StopLocationHandling() {
 		isAttackMode = false;
