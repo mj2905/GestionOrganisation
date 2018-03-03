@@ -2,7 +2,7 @@
 
 public static class CoordinateConstants {
 
-	public const bool DEBUG = true;
+	public const bool DEBUG = false;
 
 
 	public static readonly MapCoordinate TEST_LOC_MAP = new MapCoordinate(6.699792, 46.55598);
