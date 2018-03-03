@@ -13,6 +13,7 @@ public class GameManager : LocationListener {
 	public PlayerController player;
 	public Button modeButton;
 	public Zone[] zones;
+	private Dictionary<string, Zone> zoneDict = new Dictionary<string, Zone>();
 
 	private Game previousGame;
 	private Game currentGame;
@@ -28,6 +29,10 @@ public class GameManager : LocationListener {
 
 		previousGame = new Game ();
 		currentGame = new Game ();
+
+		for (int i = 0; i < zones.Length; i++) {
+			zoneDict[zones [i].zoneId] = zones [i];
+		}
 	}
 	
 	// Update is called once per frame
@@ -83,8 +88,12 @@ public class GameManager : LocationListener {
 		IList<Zone> zones = currentGame.GetZones ();
 
 		foreach(Zone z in zones){
-			//Zone unityZone = zonesRoot.transform.Find (z.zoneId);
-			//z.copyInto (unityZone);
+
+			//If the received zone id is valid, update the game with the value received from DB
+			if (zoneDict.ContainsKey(z.zoneId)) {
+				z.copyInto (zoneDict [z.zoneId]);
+			}
+
 		}
 
 	}
