@@ -1,18 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/WalkingPath.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UIScripts\UiManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/ClickHandler.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GameManager.cs" Line="123" Column="60" />
-      <File FileName="Assets/Scripts/LocationHandler.cs" Line="95" Column="36" />
-      <File FileName="Assets/Scripts/CameraController.cs" Line="43" Column="2" />
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="95" Column="3" />
-      <File FileName="Assets/Scripts/InteractionManager.cs" Line="108" Column="60" />
-      <File FileName="Assets/Scripts/UIScripts/UiManager.cs" Line="50" Column="60" />
-      <File FileName="Assets/Scripts/SignUpScene.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/FirebaseManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CoordinateConstants.cs" Line="7" Column="59" />
-      <File FileName="Assets/Scripts/WalkingPath.cs" Line="18" Column="19" />
+      <File FileName="Assets\Scripts\ClickHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LocationHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CameraController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="40" Column="4" />
+      <File FileName="Assets\Scripts\InteractionManager.cs" Line="108" Column="60" />
+      <File FileName="Assets\Scripts\UIScripts\UiManager.cs" Line="42" Column="19" />
+      <File FileName="Assets\Scripts\SignUpScene.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\FirebaseManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CoordinateConstants.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\WalkingPath.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
