@@ -1,0 +1,595 @@
+{
+  "Game" : {
+    "Teams" : [ null, {
+      "score" : 102,
+      "token" : 0
+    }, {
+      "score" : 1541,
+      "token" : 8
+    }, {
+      "score" : 179,
+      "token" : 5
+    }, {
+      "score" : 0,
+      "token" : 2
+    } ],
+    "Terminals" : {
+      "4-1" : {
+        "hp" : 100,
+        "level" : 3,
+        "strength" : 10,
+        "team" : 4,
+        "x" : -18,
+        "z" : 22.25137710571289,
+        "zoneId" : "RLC"
+      },
+      "4-3" : {
+        "hp" : 100,
+        "level" : 3,
+        "strength" : 10,
+        "team" : 3,
+        "x" : -29.310148239135742,
+        "z" : 30.791126251220703,
+        "zoneId" : "RLC"
+      }
+    },
+    "Zones" : {
+      "BC" : {
+        "health" : 1000,
+        "team" : 2
+      },
+      "BI" : {
+        "health" : 1000,
+        "team" : 2
+      },
+      "BM" : {
+        "health" : 1000,
+        "team" : 2
+      },
+      "CH" : {
+        "health" : 1000,
+        "team" : 2
+      },
+      "CM" : {
+        "health" : 1000,
+        "team" : 1
+      },
+      "CE" : {
+        "health" : 1000,
+        "team" : 1
+      },
+      "CO" : {
+        "health" : 1000,
+        "team" : 2
+      },
+      "ELA" : {
+        "health" : 1000,
+        "team" : 2
+      },
+      "ELG_ELH" : {
+        "health" : 1000,
+        "team" : 2
+      },
+      "GC" : {
+        "health" : 1000,
+        "team" : 2
+      },
+      "GR" : {
+        "health" : 1000,
+        "team" : 2
+      },
+      "INM" : {
+        "health" : 1000,
+        "team" : 2
+      },
+      "MA" : {
+        "health" : 1000,
+        "team" : 2
+      },
+      "MED" : {
+        "health" : 1000,
+        "team" : 2
+      },
+      "METRO" : {
+        "health" : 1000,
+        "team" : 2
+      },
+      "MX" : {
+        "health" : 1000,
+        "team" : 2
+      },
+      "OR" : {
+        "health" : 1000,
+        "team" : 2
+      },
+      "PAV" : {
+        "health" : 1000,
+        "team" : 2
+      },
+      "PH" : {
+        "health" : 1000,
+        "team" : 2
+      },
+      "RLC" : {
+        "damages" : {
+          "4" : 4770
+        },
+        "health" : 4510,
+        "team" : 2
+      },
+      "SG" : {
+        "health" : 1000,
+        "team" : 2
+      },
+      "SV" : {
+        "health" : 1000,
+        "team" : 3
+      }
+    }
+  },
+  "Users" : {
+    "1075" : {
+      "credits" : 3695,
+      "level" : 4,
+      "team" : 1,
+      "xp" : 157
+    },
+    "2030" : {
+      "credits" : 4954,
+      "level" : 3,
+      "team" : 1,
+      "xp" : 35
+    },
+    "3620" : {
+      "credits" : 3258,
+      "level" : 1,
+      "team" : 1,
+      "xp" : 196
+    },
+    "8165" : {
+      "credits" : 5056,
+      "level" : 0,
+      "team" : 1,
+      "xp" : 23
+    },
+    "10524" : {
+      "credits" : 3794,
+      "level" : 1,
+      "team" : 2,
+      "xp" : 47
+    },
+    "11647" : {
+      "credits" : 2489,
+      "level" : 2,
+      "team" : 1,
+      "xp" : 21
+    },
+    "12125" : {
+      "credits" : 2432,
+      "level" : 3,
+      "team" : 2,
+      "xp" : 70
+    },
+    "13041" : {
+      "credits" : 4095,
+      "level" : 4,
+      "team" : 2,
+      "xp" : 50
+    },
+    "18722" : {
+      "credits" : 4317,
+      "level" : 3,
+      "team" : 0,
+      "xp" : 134
+    },
+    "21608" : {
+      "credits" : 1612,
+      "level" : 4,
+      "team" : 2,
+      "xp" : 156
+    },
+    "22667" : {
+      "credits" : 5154,
+      "level" : 1,
+      "team" : 1,
+      "xp" : 100
+    },
+    "24662" : {
+      "credits" : 3335,
+      "level" : 1,
+      "team" : 1,
+      "xp" : 63
+    },
+    "24688" : {
+      "credits" : 4827,
+      "level" : 4,
+      "team" : 2,
+      "xp" : 157
+    },
+    "26403" : {
+      "credits" : 3174,
+      "level" : 3,
+      "team" : 1,
+      "xp" : 94
+    },
+    "28187" : {
+      "credits" : 1856,
+      "level" : 1,
+      "team" : 1,
+      "xp" : 105
+    },
+    "30000" : {
+      "credits" : 4266,
+      "level" : 1,
+      "team" : 0,
+      "xp" : 162
+    },
+    "34187" : {
+      "credits" : 2546,
+      "level" : 1,
+      "team" : 2,
+      "xp" : 127
+    },
+    "34198" : {
+      "credits" : 3325,
+      "level" : 3,
+      "team" : 1,
+      "xp" : 77
+    },
+    "35094" : {
+      "credits" : 3492,
+      "level" : 0,
+      "team" : 2,
+      "xp" : 20
+    },
+    "35861" : {
+      "credits" : 3156,
+      "level" : 4,
+      "team" : 1,
+      "xp" : 69
+    },
+    "39378" : {
+      "credits" : 4310,
+      "level" : 2,
+      "team" : 2,
+      "xp" : 50
+    },
+    "46445" : {
+      "credits" : 4510,
+      "level" : 4,
+      "team" : 1,
+      "xp" : 85
+    },
+    "49491" : {
+      "credits" : 2117,
+      "level" : 4,
+      "team" : 1,
+      "xp" : 35
+    },
+    "49583" : {
+      "credits" : 4384,
+      "level" : 1,
+      "team" : 1,
+      "xp" : 51
+    },
+    "49968" : {
+      "credits" : 5059,
+      "level" : 2,
+      "team" : 0,
+      "xp" : 123
+    },
+    "51782" : {
+      "credits" : 4973,
+      "level" : 3,
+      "team" : 0,
+      "xp" : 69
+    },
+    "51939" : {
+      "credits" : 1732,
+      "level" : 0,
+      "team" : 1,
+      "xp" : 75
+    },
+    "52637" : {
+      "credits" : 5160,
+      "level" : 3,
+      "team" : 0,
+      "xp" : 170
+    },
+    "55328" : {
+      "credits" : 2865,
+      "level" : 1,
+      "team" : 0,
+      "xp" : 133
+    },
+    "56181" : {
+      "credits" : 4977,
+      "level" : 2,
+      "team" : 1,
+      "xp" : 123
+    },
+    "58732" : {
+      "credits" : 435,
+      "level" : 1,
+      "team" : 0,
+      "xp" : 174
+    },
+    "61752" : {
+      "credits" : 3978,
+      "level" : 4,
+      "team" : 2,
+      "xp" : 184
+    },
+    "62888" : {
+      "credits" : 3175,
+      "level" : 2,
+      "team" : 1,
+      "xp" : 180
+    },
+    "63810" : {
+      "credits" : 1441,
+      "level" : 3,
+      "team" : 0,
+      "xp" : 118
+    },
+    "65264" : {
+      "credits" : 351,
+      "level" : 3,
+      "team" : 1,
+      "xp" : 151
+    },
+    "66722" : {
+      "credits" : 1189,
+      "level" : 4,
+      "team" : 1,
+      "xp" : 95
+    },
+    "67454" : {
+      "credits" : 1382,
+      "level" : 4,
+      "team" : 2,
+      "xp" : 24
+    },
+    "67630" : {
+      "credits" : 3743,
+      "level" : 3,
+      "team" : 2,
+      "xp" : 66
+    },
+    "69362" : {
+      "credits" : 1451,
+      "level" : 3,
+      "team" : 1,
+      "xp" : 79
+    },
+    "71450" : {
+      "credits" : 832,
+      "level" : 0,
+      "team" : 0,
+      "xp" : 37
+    },
+    "72419" : {
+      "credits" : 740,
+      "level" : 1,
+      "team" : 1,
+      "xp" : 161
+    },
+    "75621" : {
+      "credits" : 3323,
+      "level" : 4,
+      "team" : 0,
+      "xp" : 163
+    },
+    "76562" : {
+      "credits" : 5123,
+      "level" : 4,
+      "team" : 2,
+      "xp" : 47
+    },
+    "76690" : {
+      "credits" : 1465,
+      "level" : 3,
+      "team" : 0,
+      "xp" : 110
+    },
+    "77557" : {
+      "credits" : 2915,
+      "level" : 1,
+      "team" : 1,
+      "xp" : 152
+    },
+    "80889" : {
+      "credits" : 923,
+      "level" : 1,
+      "team" : 0,
+      "xp" : 194
+    },
+    "80983" : {
+      "credits" : 1374,
+      "level" : 1,
+      "team" : 0,
+      "xp" : 128
+    },
+    "83522" : {
+      "credits" : 3737,
+      "level" : 2,
+      "team" : 0,
+      "xp" : 173
+    },
+    "88095" : {
+      "credits" : 452,
+      "level" : 2,
+      "team" : 2,
+      "xp" : 115
+    },
+    "94524" : {
+      "credits" : 585,
+      "level" : 1,
+      "team" : 2,
+      "xp" : 184
+    },
+    "0QVKCJJJwWVHrnKjJEqpW1BF2512" : {
+      "credits" : 77,
+      "level" : 0,
+      "team" : 1,
+      "xp" : 0
+    },
+    "41o7cWdCwGM7pQ8iZHsJtD0Ho6e2" : {
+      "credits" : 1119,
+      "level" : 1,
+      "team" : 3,
+      "xp" : 100
+    },
+    "4rbL31bD6IPS4QHAF81tUGsYs6p2" : {
+      "credits" : 77,
+      "level" : 0,
+      "team" : 4,
+      "xp" : 0
+    },
+    "7JEd0xGpdpfph7HtQTYiI1bQSDM2" : {
+      "credits" : 77,
+      "level" : 0,
+      "team" : 4,
+      "xp" : 0
+    },
+    "7XiN6GSJfSa8GMCDNkMHSu8Zvhm2" : {
+      "credits" : 81,
+      "level" : 0,
+      "team" : 3,
+      "xp" : 0
+    },
+    "AN5gBHmIEjVs78FzsTPgpRJ5wWA2" : {
+      "credits" : 81,
+      "level" : 0,
+      "team" : 4,
+      "xp" : 0
+    },
+    "CAqyjV5gxHSunMsqQm3sBeQfup63" : {
+      "credits" : 77,
+      "level" : 0,
+      "team" : 4,
+      "xp" : 0
+    },
+    "GP6lBaL3aScdWwxfmh348zRGZb22" : {
+      "credits" : 77,
+      "level" : 0,
+      "team" : 2,
+      "xp" : 0
+    },
+    "KYftpFwo6fhSpbmtSFLef0EMK232" : {
+      "credits" : 82,
+      "id" : 0,
+      "level" : 0,
+      "xp" : 10
+    },
+    "LTGgmjuYSiXMJ64e51pNgiqFBMv2" : {
+      "credits" : 81,
+      "level" : 0,
+      "team" : 1,
+      "xp" : 0
+    },
+    "PaOziXq9CRSuGUwGTcM2cfHRg6V2" : {
+      "credits" : 77,
+      "level" : 0,
+      "team" : 2,
+      "xp" : 0
+    },
+    "QY7780zNU9QSmujXeCgPJmmntkR2" : {
+      "credits" : 91,
+      "level" : 0,
+      "team" : 2,
+      "xp" : 0
+    },
+    "T8sKlKpVUzPbdqJ81wMQpnUQhxV2" : {
+      "credits" : 81,
+      "level" : 0,
+      "team" : 1,
+      "xp" : 0
+    },
+    "Y3c7IdSyKggHZZRQieeWIrsthjg1" : {
+      "credits" : 81,
+      "id" : 0,
+      "level" : 0,
+      "xp" : 0
+    },
+    "a0JTHCBoLeUaI8fXH2PIw5zJ7rv1" : {
+      "credits" : 77,
+      "level" : 0,
+      "team" : 3,
+      "xp" : 0
+    },
+    "aFB45wPyoBOYGogDoV26EKerKVI3" : {
+      "credits" : 183,
+      "effects" : {
+        "303" : {
+          "multiplier" : 2,
+          "ttl" : -100
+        }
+      },
+      "id" : 0,
+      "level" : 1,
+      "xp" : 200
+    },
+    "cuMeKM3fBIQHCD0DHXSLHUAYwl03" : {
+      "credits" : 81,
+      "level" : 0,
+      "team" : 1,
+      "xp" : 0
+    },
+    "eqxqfae0taTHbXVA3dxe7atuKui2" : {
+      "credits" : 842,
+      "level" : 1,
+      "team" : 1,
+      "xp" : 242
+    },
+    "hbQTDSqCyGeiIa7hozSbonLWqBh2" : {
+      "credits" : 91,
+      "id" : 0,
+      "level" : 0,
+      "xp" : 0
+    },
+    "j053oY5JblQbFNx5kGZEP1gQtQF3" : {
+      "credits" : 77,
+      "level" : 0,
+      "team" : 2,
+      "xp" : 0
+    },
+    "j7Et8Fh8rYVFpmywG1W92kEvNwC2" : {
+      "credits" : 77,
+      "level" : 0,
+      "team" : 1,
+      "xp" : 0
+    },
+    "jrKiwFRdWAenkQlwMcMDHaIXBvz2" : {
+      "credits" : 77,
+      "level" : 0,
+      "team" : 4,
+      "xp" : 0
+    },
+    "rPIRGSLoSkP91T0VfElpXKPSbgs1" : {
+      "credits" : 95,
+      "id" : 0,
+      "level" : 0,
+      "xp" : 0
+    },
+    "t7vXhoAXSocDPzB4dB0q47vkZHk2" : {
+      "credits" : 77,
+      "level" : 0,
+      "team" : 3,
+      "xp" : 0
+    },
+    "xUwe81t9ChfVuL6CkTODRtGQePr2" : {
+      "credits" : 77,
+      "level" : 0,
+      "team" : 1,
+      "xp" : 0
+    },
+    "y2T5gDfjDmba1CQWjrHGNH9P4Jz1" : {
+      "credits" : 77,
+      "level" : 0,
+      "team" : 4,
+      "xp" : 0
+    }
+  },
+  "timer" : 12
+}
