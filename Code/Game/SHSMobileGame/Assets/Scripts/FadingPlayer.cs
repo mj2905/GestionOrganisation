@@ -1,11 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FadingPlayer : MonoBehaviour {
 
 	public float fadingSpeed = 1;
-	private const float factor = 0.1f;
+	private const float factor = 0.01f;
 	private Vector3 initialPosition;
 
 	// Use this for initialization
