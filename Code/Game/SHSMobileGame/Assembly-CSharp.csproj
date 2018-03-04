@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\ToggleMenu.cs" />
      <Compile Include="Assets\Scripts\TowerSpawner.cs" />
      <Compile Include="Assets\Scripts\UIScripts\CameraFacingBillboard.cs" />
+     <Compile Include="Assets\Scripts\UIScripts\TextUpdate.cs" />
      <Compile Include="Assets\Scripts\UIScripts\UiManager.cs" />
      <Compile Include="Assets\Scripts\User.cs" />
      <Compile Include="Assets\Scripts\UserLocationGet.cs" />

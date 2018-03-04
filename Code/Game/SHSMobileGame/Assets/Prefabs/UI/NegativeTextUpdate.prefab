@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224683092461708328}
+  - component: {fileID: 114091479414406470}
   m_Layer: 5
   m_Name: NegativeTextUpdate
   m_TagString: Untagged
@@ -36,7 +37,7 @@ GameObject:
   - component: {fileID: 224329264164045928}
   - component: {fileID: 222193005065413812}
   - component: {fileID: 114991663884528370}
-  - component: {fileID: 95257792482352260}
+  - component: {fileID: 95866382977291454}
   m_Layer: 5
   m_Name: NegativeAnimatedText
   m_TagString: Untagged
@@ -44,7 +45,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &95257792482352260
+--- !u!95 &95866382977291454
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -53,7 +54,7 @@ Animator:
   m_GameObject: {fileID: 1954568186624176}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3a208931718e1e54f8017d48ff4b0df8, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6e7a910921f44b847b0f00afb41a1f97, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -61,6 +62,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114091479414406470
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1081879247221354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e11410220c4ea4ba500424ff79318b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 95866382977291454}
 --- !u!114 &114991663884528370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -134,6 +147,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -128.7, y: 232.69}
+  m_AnchoredPosition: {x: 57.70977, y: 500.7008}
   m_SizeDelta: {x: 100, y: 47.98}
   m_Pivot: {x: 0.5, y: 0.5}
