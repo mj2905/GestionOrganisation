@@ -17,6 +17,7 @@ public class InteractionManager : LocationListener {
 	private Text popupTerminalHP;
 	private Text popupTerminalLevel;
 	private Text popupTerminalTeam;
+	private Text popupTerminalStrength;
 	private Text popupTerminalActionButtonText;
 
 	public GameObject zonePopup;
@@ -35,6 +36,7 @@ public class InteractionManager : LocationListener {
 		popupZoneTeam = zonePopup.transform.Find ("TeamLabel").GetComponent<Text> ();
 		popupTerminalHP = terminalPopup.transform.Find ("HPLabel").GetComponent<Text> ();
 		popupTerminalLevel = terminalPopup.transform.Find ("LevelLabel").GetComponent<Text> ();
+		popupTerminalStrength = terminalPopup.transform.Find ("StrengthLabel").GetComponent<Text> ();
 		popupTerminalTeam = terminalPopup.transform.Find ("TeamLabel").GetComponent<Text> ();
 
 		popupTerminalActionButtonText = terminalPopup.transform.Find ("ActionButton").transform.Find ("ActionButtonText").GetComponent<Text> ();
@@ -43,7 +45,7 @@ public class InteractionManager : LocationListener {
 	// Update is called once per frame
 	void Update () {
 		if (targetedZone != null) {
-			popupZoneName.text = "Zone: " + targetedZone.name;
+			popupZoneName.text = "Name: " + targetedZone.name;
 			popupZoneHP.text = "HP: " + targetedZone.health;
 			popupZoneLevel.text = "Level: " + targetedZone.level;
 			popupZoneTeam.text = "Team: " + targetedZone.team;
@@ -52,6 +54,7 @@ public class InteractionManager : LocationListener {
 		if (targetedTerminal != null) {
 			popupTerminalHP.text = "HP: " + targetedTerminal.hp;
 			popupTerminalLevel.text = "Level: " + targetedTerminal.level;
+			popupTerminalStrength.text = "Strength: " + targetedTerminal.strength;
 			popupTerminalTeam.text = "Team: " + targetedTerminal.team;
 		}
 	}

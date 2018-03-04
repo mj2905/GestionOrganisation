@@ -1,19 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LocationHandler.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Managers\InteractionManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/LocationHandler.cs" Line="81" Column="37" />
-      <File FileName="Assets/Scripts/ClickHandler.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CameraController.cs" Line="43" Column="2" />
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="101" Column="93" />
-      <File FileName="Assets/Scripts/InteractionManager.cs" Line="108" Column="60" />
-      <File FileName="Assets/Scripts/UIScripts/UiManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/SignUpScene.cs" Line="4" Column="1" />
-      <File FileName="Assets/Scripts/FirebaseManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CoordinateConstants.cs" Line="8" Column="2" />
-      <File FileName="Assets/Scripts/WalkingPath.cs" Line="18" Column="19" />
-      <File FileName="Assets/Scripts/FadingPlayer.cs" Line="8" Column="33" />
+      <File FileName="Assets\Scripts\UIScripts\TextUpdate.cs" Line="19" Column="38" />
+      <File FileName="Assets\Scripts\TowerSpawner.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UIScripts\UiManager.cs" Line="86" Column="5" />
+      <File FileName="Assets\Scripts\Managers\FirebaseManager.cs" Line="74" Column="17" />
+      <File FileName="Assets\Scripts\Managers\InteractionManager.cs" Line="48" Column="30" />
+      <File FileName="Assets\Scripts\Managers\GameManager.cs" Line="108" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
