@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class InteractionManager : LocationListener {
 
 	public GameManager gameManager;
+	public FirebaseManager firebaseManager;
 
 	private Zone targetedZone;
 	private Terminal targetedTerminal;
