@@ -14,6 +14,7 @@ public class GameManager : LocationListener {
 	public Button modeButton;
 	public Zone[] zones;
 	private Dictionary<string, Zone> zoneDict = new Dictionary<string, Zone>();
+	private Dictionary<string, Terminal> terminalDict = new Dictionary<string, Terminal>();
 
 	private Game previousGame;
 	private Game currentGame;
@@ -72,14 +73,20 @@ public class GameManager : LocationListener {
 			t.gameObject.transform.localPosition = new Vector3(newTerminals [i].x,2,newTerminals [i].z);
 			t.SetTarget(GameObject.Find("SceneRoot/Zones/"+newTerminals[i].zoneId +"/"+newTerminals[i].zoneId+"_building/" + newTerminals[i].zoneId+"_volume"));
 			t.Init ();
+			terminalDict.Add (t.GetTerminalId (), t);
 		}
 
 		for (int i = 0; i < deletedTerminals.Count; i++) {
-			Destroy(GameObject.Find("SceneRoot/"+deletedTerminals[i].GetTerminalId()));
+			if (terminalDict.ContainsKey (deletedTerminals [i].GetTerminalId ())) {
+				Destroy (terminalDict[deletedTerminals [i].GetTerminalId()].gameObject);
+				terminalDict.Remove (deletedTerminals [i].GetTerminalId ());
+			}
 		}
 
 		for (int i = 0; i < modifiedTerminals.Count; i++) {
-			GameObject.Find ("SceneRoot/" + modifiedTerminals [i].GetTerminalId ()).GetComponent<Terminal> ().Copy (modifiedTerminals [i]);
+			if (terminalDict.ContainsKey (modifiedTerminals [i].GetTerminalId ())) {
+				terminalDict [modifiedTerminals [i].GetTerminalId()].Copy (modifiedTerminals [i]);
+			}
 		}
 	}
 
