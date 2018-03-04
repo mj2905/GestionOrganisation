@@ -13,7 +13,7 @@ public class FirebaseManager
 	public static Firebase.Auth.FirebaseAuth auth;
 	public static Firebase.Database.DatabaseReference reference;
 	public static Firebase.Auth.FirebaseUser user;
-	public static int userTeam;
+	public static int userTeam = -1;
 
 	private static GameManager gameManager;
 

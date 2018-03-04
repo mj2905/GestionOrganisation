@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class InteractionManager : LocationListener {
 
 	public GameManager gameManager;
-	public FirebaseManager firebaseManager;
 
 	private Zone targetedZone;
 	private Terminal targetedTerminal;
@@ -77,7 +76,7 @@ public class InteractionManager : LocationListener {
 			zonePopup.SetActive (false);
 			terminalPopup.SetActive (true);
 
-			if (isAttackMode) {
+			if (FirebaseManager.userTeam == targetedTerminal.team) {
 				popupTerminalActionButtonText.text = "Buff";
 			} else {
 				popupTerminalActionButtonText.text = "Smash";
