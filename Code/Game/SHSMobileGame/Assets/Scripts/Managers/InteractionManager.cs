@@ -91,14 +91,22 @@ public class InteractionManager : LocationListener {
 		}
 	}
 
-	public void buffTerminal(){
+	public void dispatchTerminalAction(){
+		if (FirebaseManager.userTeam == targetedTerminal.team) {
+			buffTerminal ();
+		} else {
+			smashTerminal ();
+		}
+	}
+
+	private void buffTerminal(){
 		if(targetedTerminal != null){
 			print ("Buffing terminal ");
 			FirebaseManager.BuffTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_BUFF_AMOUNT);
 		}
 	}
 
-	public void attackTerminal(){
+	private void smashTerminal(){
 		if(targetedTerminal != null){
 			print ("Attacking terminal ");
 			FirebaseManager.HurtTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_SMASH_AMOUNT);
