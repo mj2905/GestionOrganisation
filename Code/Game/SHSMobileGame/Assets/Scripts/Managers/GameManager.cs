@@ -93,16 +93,12 @@ public class GameManager : LocationListener {
 	public void DrawZones(){
 
 		IList<Zone> zones = currentGame.GetZones ();
-
 		foreach(Zone z in zones){
-
 			//If the received zone id is valid, update the game with the value received from DB
 			if (zoneDict.ContainsKey(z.zoneId)) {
-				z.copyInto (zoneDict [z.zoneId]);
+				zoneDict [z.zoneId].Copy (z);
 			}
-
 		}
-
 	}
 
 	public void UpdateScoreAndCredit(string xp, string credit){

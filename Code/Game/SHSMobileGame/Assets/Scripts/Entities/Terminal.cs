@@ -19,6 +19,7 @@ public class Terminal : MonoBehaviour
 	public int team;
 	public float x;
 	public float z;
+	public int[] damages;
 
 	private Image healthBar;
 	private Image levelBar;
