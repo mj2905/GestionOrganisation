@@ -18,8 +18,9 @@ public class InteractionManager : LocationListener {
 	private Text popupTerminalLevel;
 	private Text popupTerminalTeam;
 	private Text popupTerminalStrength;
-	private Text popupTerminalActionButtonText;
+	private Text actionButtonText;
 
+	public Button actionButton;
 	public GameObject zonePopup;
 	public GameObject terminalPopup;
 
@@ -39,7 +40,7 @@ public class InteractionManager : LocationListener {
 		popupTerminalStrength = terminalPopup.transform.Find ("StrengthLabel").GetComponent<Text> ();
 		popupTerminalTeam = terminalPopup.transform.Find ("TeamLabel").GetComponent<Text> ();
 
-		popupTerminalActionButtonText = terminalPopup.transform.Find ("ActionButton").transform.Find ("ActionButtonText").GetComponent<Text> ();
+		actionButtonText = actionButton.transform.Find ("Text").GetComponent<Text> ();
 	}
 	
 	// Update is called once per frame
@@ -64,9 +65,14 @@ public class InteractionManager : LocationListener {
 
 		if (targetedZone == null) {
 			zonePopup.SetActive (false);
+			actionButtonText.text = "No action";
+			actionButton.interactable = false;
 		} else {
+			targetedTerminal = null;
 			terminalPopup.SetActive (false);
 			zonePopup.SetActive (true);
+			actionButtonText.text = "Heal";
+			actionButton.interactable = true;
 		}
 	}
 
@@ -75,14 +81,17 @@ public class InteractionManager : LocationListener {
 
 		if (targetedTerminal == null) {
 			terminalPopup.SetActive (false);
+			actionButtonText.text = "No action";
+			actionButton.interactable = false;
 		} else {
+			targetedZone = null;
 			zonePopup.SetActive (false);
 			terminalPopup.SetActive (true);
-
+			actionButton.interactable = true;
 			if (FirebaseManager.userTeam == targetedTerminal.team) {
-				popupTerminalActionButtonText.text = "Buff";
+				actionButtonText.text = "Buff";
 			} else {
-				popupTerminalActionButtonText.text = "Smash";
+				actionButtonText.text = "Smash";
 			}
 		}
 	}
@@ -94,11 +103,18 @@ public class InteractionManager : LocationListener {
 		}
 	}
 
-	public void dispatchTerminalAction(){
-		if (FirebaseManager.userTeam == targetedTerminal.team) {
-			buffTerminal ();
+	public void dispatchAction(){
+
+		if (targetedZone != null) {
+			healZone ();
+		} else if (targetedTerminal != null) {
+			if (FirebaseManager.userTeam == targetedTerminal.team) {
+				buffTerminal ();
+			} else {
+				smashTerminal ();
+			}
 		} else {
-			smashTerminal ();
+			Debug.Log ("Neither a zone nor a terminal was selected upon call of action button");
 		}
 	}
 
