@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LocationHandler : MonoBehaviour {
+public class LocationHandler : LocationListener {
 
 	private const int ATTACK = 1;
 	private const int DEFENSE = 0;
@@ -15,8 +15,10 @@ public class LocationHandler : MonoBehaviour {
 
 	private bool firstLocation = false;
 	private bool started = false;
+	private bool isAttackMode = false; 
 
 	public LocationListener[] listeners;
+	private Collider[] colliders = new Collider[10];
 
 	private bool locationWasEnabled = false; //by app, when someone clicks on attack button for example
 	//invariant : if locationWasEnabled = false, location is stopped
@@ -57,6 +59,7 @@ public class LocationHandler : MonoBehaviour {
 	void Start () {
 		locationWasEnabled = PlayerPrefs.GetInt (USERPREF_ATTACK_KEY, DEFENSE) == ATTACK;
 		ActivateLocationIfPossible (locationWasEnabled); //should not run location at first, will be useful when app has quit
+		isAttackMode = false;
 	}
 
 	public void SwitchMode() {
@@ -89,14 +92,31 @@ public class LocationHandler : MonoBehaviour {
 			CoordinateConstants.WALKING_PATH.next() :
 			new MapCoordinate (Input.location.lastData.longitude, Input.location.lastData.latitude);
 
+		fadingPlayer.SetCoordsInvisible (coords); //used to get its 3d vector, can be used here because only choices after are either a location deactivated => reset, or put again to same position.
+		Vector3 pos = fadingPlayer.transform.position;
+		//print (pos.x + " " + pos.y + " " + pos.z);
+
+		int colls = Physics.OverlapBoxNonAlloc(pos, new Vector3(1,1,1), colliders);
+		//print (colls);
+
+		bool isInSafeZone = false;
+		for (int i = 0; i < colls; ++i) {
+			//print (colliders [i].gameObject.name);
+			if (colliders[i] is CapsuleCollider) {
+				isInSafeZone = true;
+				break;
+			}
+		}
+
 		if (CoordinateConstants.DEBUG == CoordinateConstants.DEBUG_STATE.NO_DEBUG && (coords > CoordinateConstants.EPFL_TOP_RIGHT_MAP || coords < CoordinateConstants.EPFL_BOT_LEFT_MAP)) {
 
 			DeactivateLocation ();
 			popup.SetText ("To be in attack mode, you have to be on the EPFL campus");
 
-		} else if(!PlayerController.IsInSafeZone()) {
+		} else if(!isInSafeZone && !isAttackMode) {
+			
+			fadingPlayer.SetCoordsVisible (coords);
 
-			fadingPlayer.SetCoords (coords);
 			DeactivateLocation ();
 			popup.SetText ("The player has to be in a safe zone to switch to attack mode");
 
@@ -125,6 +145,16 @@ public class LocationHandler : MonoBehaviour {
 		if (locationWasEnabled && Input.location.status == LocationServiceStatus.Running) {
 			HandleCoordinates ();
 		}
+	}
+
+	override public void CoordinateUpdate(MapCoordinate coords) {}
+
+	override public void StopLocationHandling() {
+		isAttackMode = false;
+	}
+
+	override public void FirstLocationSent() {
+		isAttackMode = true;
 	}
 }
 

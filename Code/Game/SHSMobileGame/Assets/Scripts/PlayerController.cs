@@ -11,11 +11,6 @@ public class PlayerController : LocationListener
 	private double moveVertical;
 	private double moveHorizontal;
 
-	private static bool inSafeZone;
-	public static bool IsInSafeZone() {
-		return inSafeZone;
-	}
-
 	//Obtained by computing the unity size of the map
 	/*
 	 * (77.15) x (50)
@@ -40,7 +35,6 @@ public class PlayerController : LocationListener
 		moveHorizontal = 0;
 		 
 		currentZone = null;
-		inSafeZone = false;
     }
 
 	Vector3 GetPosition() {
@@ -55,7 +49,6 @@ public class PlayerController : LocationListener
 	void OnTriggerEnter(Collider other) 
 	{
 		if (other is CapsuleCollider) {
-			inSafeZone = true;
 			print ("Safe zone entered: " + other.gameObject.name);
 		}
 		else {
@@ -67,7 +60,6 @@ public class PlayerController : LocationListener
 	void OnTriggerExit(Collider other)
 	{
 		if (other is CapsuleCollider) {
-			inSafeZone = false;
 			print ("Safe zone exited: " + other.gameObject.name);
 		} else {
 			currentZone = null;

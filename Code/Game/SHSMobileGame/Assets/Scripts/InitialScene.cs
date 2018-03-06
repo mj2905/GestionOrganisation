@@ -51,7 +51,6 @@ public class InitialScene : MonoBehaviour
 
 	public void UpdateMail ()
 	{
-		print ("hello");
 		this.eMailText = eMail.text;
 		SwitchSignInButtonActivation ();
 	}

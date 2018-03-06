@@ -4630,7 +4630,7 @@ Prefab:
     - target: {fileID: 2300000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9029840a0f041ac4ca509448c9589b5a, type: 2}
+      objectReference: {fileID: 2100000, guid: d22a0cae666704bbab76267bf4924c53, type: 2}
     - target: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
@@ -6973,6 +6973,7 @@ MonoBehaviour:
   - {fileID: 1001960608}
   - {fileID: 1951455292}
   - {fileID: 1342705400}
+  - {fileID: 1145270403}
 --- !u!4 &1145270404
 Transform:
   m_ObjectHideFlags: 0

@@ -117,6 +117,7 @@ public class FirebaseManager
 				task2 => {
 					if (task2.IsFaulted) {
 						executeWhenFails();
+						Debug.LogError ("Faulted");
 						popup.SetText(((FirebaseException)task.Exception.InnerExceptions[0]).Message.ToString());
 					}
 					else if (task2.IsCompleted) {
@@ -127,6 +128,7 @@ public class FirebaseManager
 						}
 						else {
 							executeWhenFails();
+							Debug.LogError ("No existing user");
 							popup.SetText("No existing user for this signed in user");
 						}
 					}
