@@ -14,6 +14,12 @@ public class InteractionManager : LocationListener {
 	private Text popupZoneHP;
 	private Text popupZoneLevel;
 	private Text popupZoneTeam;
+
+	private Text popupZoneDamagePercentBlue;
+	private Text popupZoneDamagePercentRed;
+	private Text popupZoneDamagePercentGreen;
+	private Text popupZoneDamagePercentYellow;
+
 	private Text popupTerminalHP;
 	private Text popupTerminalLevel;
 	private Text popupTerminalTeam;
@@ -35,6 +41,12 @@ public class InteractionManager : LocationListener {
 		popupZoneHP = zonePopup.transform.Find ("HPLabel").GetComponent<Text> ();
 		popupZoneLevel = zonePopup.transform.Find ("LevelLabel").GetComponent<Text> ();
 		popupZoneTeam = zonePopup.transform.Find ("TeamLabel").GetComponent<Text> ();
+
+		popupZoneDamagePercentBlue = zonePopup.transform.Find ("DamagePercentBlue").GetComponent<Text> ();
+		popupZoneDamagePercentRed = zonePopup.transform.Find ("DamagePercentRed").GetComponent<Text> ();
+		popupZoneDamagePercentGreen = zonePopup.transform.Find ("DamagePercentGreen").GetComponent<Text> ();
+		popupZoneDamagePercentYellow = zonePopup.transform.Find ("DamagePercentYellow").GetComponent<Text> ();
+
 		popupTerminalHP = terminalPopup.transform.Find ("HPLabel").GetComponent<Text> ();
 		popupTerminalLevel = terminalPopup.transform.Find ("LevelLabel").GetComponent<Text> ();
 		popupTerminalStrength = terminalPopup.transform.Find ("StrengthLabel").GetComponent<Text> ();
@@ -42,14 +54,30 @@ public class InteractionManager : LocationListener {
 
 		actionButtonText = actionButton.transform.Find ("Text").GetComponent<Text> ();
 	}
-	
+
+	private void UpdateDamagePercent(Text popupZoneDamagePercent,Damages damages,int damageTeam,int currentTeam){
+		if (damageTeam == currentTeam) {
+			popupZoneDamagePercent.text = "/";
+		} else {
+			if (damages.isDamaged ()) {
+				Debug.Log (damages.GetDamage (damageTeam) / (float)(damages.getTotalDamages ()) * 100f);
+				popupZoneDamagePercent.text = (damages.GetDamage (damageTeam) / (float)(damages.getTotalDamages ()) * 100f).ToString ("0.0") + "%"; 
+			}
+		}
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if (targetedZone != null) {
-			popupZoneName.text = "Name: " + targetedZone.name;
+			popupZoneName.text = targetedZone.name;
 			popupZoneHP.text = "HP: " + targetedZone.health;
 			popupZoneLevel.text = "Level: " + targetedZone.level;
 			popupZoneTeam.text = "Team: " + targetedZone.team;
+
+			UpdateDamagePercent (popupZoneDamagePercentGreen, targetedZone.damages, 1, targetedZone.team);
+			UpdateDamagePercent (popupZoneDamagePercentRed, targetedZone.damages, 2, targetedZone.team);
+			UpdateDamagePercent (popupZoneDamagePercentYellow, targetedZone.damages,3, targetedZone.team);
+			UpdateDamagePercent (popupZoneDamagePercentBlue, targetedZone.damages, 4, targetedZone.team);
 		}
 
 		if (targetedTerminal != null) {

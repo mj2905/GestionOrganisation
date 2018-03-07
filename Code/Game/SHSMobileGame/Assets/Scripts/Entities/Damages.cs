@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 public class Damages{
-	public int[] damages = new int[] {0, 0, 0, 0};
+	private int[] damages = new int[] {0, 0, 0, 0};
 
 	public Damages(){}
 
@@ -28,6 +28,18 @@ public class Damages{
 			}
 		}
 		return false;
+	}
+
+	public int getTotalDamages(){
+		int res = 0;
+		for (int i = 0; i < damages.Length; i++) {
+			res += damages [i];
+		}
+		return res;
+	}
+
+	public int GetDamage(int teamNumber){
+		return damages [teamNumber - 1];
 	}
 
 	public int getTeamHighestDamage(){

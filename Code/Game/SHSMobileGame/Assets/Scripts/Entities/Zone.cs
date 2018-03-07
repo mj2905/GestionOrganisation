@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class Zone : MonoBehaviour {
 
-	public const float HP_MAX = 1000f;
-	public const float LEVEL_MAX = 5f;
-
 	public string zoneId;
 	public string name;
 	public int health;
@@ -33,8 +30,8 @@ public class Zone : MonoBehaviour {
 
 	void Update(){
 		
-		healthBar.fillAmount = (float)(health) / HP_MAX;
-		levelBar.fillAmount =  (float)(level) / LEVEL_MAX;
+		healthBar.fillAmount = (float)(health) / QuantitiesConstants.HP_MAX;
+		levelBar.fillAmount =  (float)(level) / QuantitiesConstants.LEVEL_MAX;
 
 		switch(currentState){
 		case state.Idle:
@@ -87,9 +84,11 @@ public class Zone : MonoBehaviour {
 		this.zoneId = zoneId;
 		this.health = Int32.Parse(entry["health"].ToString());
 		this.team = Int32.Parse(entry["team"].ToString());
-		if (entry.ContainsKey("damages")) {
+		if (entry.ContainsKey ("damages")) {
 			IDictionary<string,System.Object> damages = (IDictionary<string,System.Object>)entry ["damages"];
 			this.damages = new Damages (damages);
+		} else {
+			this.damages = new Damages ();
 		}
 	}
 
