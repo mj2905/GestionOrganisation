@@ -54,7 +54,18 @@ public class InteractionManager : LocationListener {
 
 		actionButtonText = actionButton.transform.Find ("Text").GetComponent<Text> ();
 	}
-	
+
+	private void UpdateDamagePercent(Text popupZoneDamagePercent,Damages damages,int damageTeam,int currentTeam){
+		if (damageTeam == currentTeam) {
+			popupZoneDamagePercent.text = "/";
+		} else {
+			if (damages.isDamaged ()) {
+				Debug.Log (damages.GetDamage (damageTeam) / (float)(damages.getTotalDamages ()) * 100f);
+				popupZoneDamagePercent.text = (damages.GetDamage (damageTeam) / (float)(damages.getTotalDamages ()) * 100f).ToString ("0.0") + "%"; 
+			}
+		}
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if (targetedZone != null) {
@@ -62,6 +73,11 @@ public class InteractionManager : LocationListener {
 			popupZoneHP.text = "HP: " + targetedZone.health;
 			popupZoneLevel.text = "Level: " + targetedZone.level;
 			popupZoneTeam.text = "Team: " + targetedZone.team;
+
+			UpdateDamagePercent (popupZoneDamagePercentGreen, targetedZone.damages, 1, targetedZone.team);
+			UpdateDamagePercent (popupZoneDamagePercentRed, targetedZone.damages, 2, targetedZone.team);
+			UpdateDamagePercent (popupZoneDamagePercentYellow, targetedZone.damages,3, targetedZone.team);
+			UpdateDamagePercent (popupZoneDamagePercentBlue, targetedZone.damages, 4, targetedZone.team);
 		}
 
 		if (targetedTerminal != null) {

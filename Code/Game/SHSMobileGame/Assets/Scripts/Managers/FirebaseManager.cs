@@ -69,9 +69,10 @@ public class FirebaseManager
 		if (snapshot != null) {
 			object credit = snapshot.Child("credits").Value;
 			object xp = snapshot.Child("xp").Value;
+			object level = snapshot.Child("level").Value;
 		
 			if (credit != null && xp != null) {
-				gameManager.UpdateScoreAndCredit (xp.ToString(),credit.ToString());
+				gameManager.UpdateUserStat (xp.ToString(),credit.ToString(),level.ToString());
 			}
 		}
 	}
@@ -261,7 +262,7 @@ public class FirebaseManager
 
 				long health_value = (long)health_obtained;
 
-				mutableData.Value = Math.Min(Zone.HP_MAX, health_value + amount);
+				mutableData.Value = Math.Min(QuantitiesConstants.HP_MAX, health_value + amount);
 
 				return TransactionResult.Success(mutableData);
 			}
