@@ -60,7 +60,6 @@ public class InteractionManager : LocationListener {
 			popupZoneDamagePercent.text = "/";
 		} else {
 			if (damages.isDamaged ()) {
-				Debug.Log (damages.GetDamage (damageTeam) / (float)(damages.getTotalDamages ()) * 100f);
 				popupZoneDamagePercent.text = (damages.GetDamage (damageTeam) / (float)(damages.getTotalDamages ()) * 100f).ToString ("0.0") + "%"; 
 			}
 		}

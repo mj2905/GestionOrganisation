@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class Damages{
 	private int[] damages = new int[] {0, 0, 0, 0};
@@ -18,6 +19,15 @@ public class Damages{
 		}
 		if(entry.ContainsKey("4")){
 			damages[3] =  Int32.Parse(entry["4"].ToString());
+		}
+	}
+
+	public Damages (List<System.Object> entry){
+		for (int i = 0; i < Math.Min(entry.Count-1,4); i++) {
+			System.Object damage = entry [i+1];
+			if (damage != null) {
+				damages [i] =  Int32.Parse(damage.ToString());
+			}
 		}
 	}
 
