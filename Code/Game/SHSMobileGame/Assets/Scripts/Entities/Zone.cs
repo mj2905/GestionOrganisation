@@ -85,8 +85,13 @@ public class Zone : MonoBehaviour {
 		this.health = Int32.Parse(entry["health"].ToString());
 		this.team = Int32.Parse(entry["team"].ToString());
 		if (entry.ContainsKey ("damages")) {
-			IDictionary<string,System.Object> damages = (IDictionary<string,System.Object>)entry ["damages"];
-			this.damages = new Damages (damages);
+			if (entry ["damages"] as IDictionary<string,System.Object> != null) {
+				IDictionary<string,System.Object> damagesDict = (IDictionary<string,System.Object>)entry ["damages"];
+				this.damages = new Damages (damagesDict);
+			} else {
+				List<System.Object> damagesList = (List<System.Object>)entry ["damages"];
+				this.damages = new Damages (damagesList);
+			}
 		} else {
 			this.damages = new Damages ();
 		}

@@ -60,7 +60,6 @@ public class InteractionManager : LocationListener {
 			popupZoneDamagePercent.text = "/";
 		} else {
 			if (damages.isDamaged ()) {
-				Debug.Log (damages.GetDamage (damageTeam) / (float)(damages.getTotalDamages ()) * 100f);
 				popupZoneDamagePercent.text = (damages.GetDamage (damageTeam) / (float)(damages.getTotalDamages ()) * 100f).ToString ("0.0") + "%"; 
 			}
 		}
@@ -72,7 +71,8 @@ public class InteractionManager : LocationListener {
 			popupZoneName.text = targetedZone.name;
 			popupZoneHP.text = "HP: " + targetedZone.health;
 			popupZoneLevel.text = "Level: " + targetedZone.level;
-			popupZoneTeam.text = "Team: " + targetedZone.team;
+			popupZoneTeam.text = ColorConstants.getColorAsString(targetedZone.team);
+			popupZoneTeam.color = ColorConstants.getTextColor (targetedZone.team);
 
 			UpdateDamagePercent (popupZoneDamagePercentGreen, targetedZone.damages, 1, targetedZone.team);
 			UpdateDamagePercent (popupZoneDamagePercentRed, targetedZone.damages, 2, targetedZone.team);

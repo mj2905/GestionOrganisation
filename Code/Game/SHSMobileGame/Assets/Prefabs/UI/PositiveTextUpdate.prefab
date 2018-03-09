@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 222384135411292342}
   - component: {fileID: 114499730550092760}
   - component: {fileID: 95934878596573938}
+  - component: {fileID: 114491777686965676}
   m_Layer: 5
   m_Name: PositiveAnimatedText
   m_TagString: Untagged
@@ -74,6 +75,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 95934878596573938}
+--- !u!114 &114491777686965676
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1345190325494958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114499730550092760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,7 +110,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: b8ba7b5d9f702c046a5eb3ea8bc57c2e, type: 3}
-    m_FontSize: 22
+    m_FontSize: 28
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
@@ -129,7 +144,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -185.50555, y: -142.80861}
+  m_AnchoredPosition: {x: -19.100021, y: 144.20215}
   m_SizeDelta: {x: 100, y: 47.98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224801939485362204
@@ -148,5 +163,5 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -0.0000076294}
-  m_SizeDelta: {x: 43.77, y: 30}
+  m_SizeDelta: {x: 43.77, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
