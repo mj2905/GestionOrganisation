@@ -3544,7 +3544,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score: '
+  m_Text: 'Xp:'
 --- !u!222 &585914935
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8148,6 +8148,7 @@ MonoBehaviour:
   creditText: {fileID: 1661139713}
   scoreText: {fileID: 585914934}
   levelText: {fileID: 1798089263}
+  multiplierText: {fileID: 1915366154}
   game: {fileID: 818770027}
   turretButtonAnimator: {fileID: 2093323890}
   locationHandler: {fileID: 1145270403}

@@ -58,6 +58,9 @@
      <Compile Include="Assets\Scripts\Constants\QuantitiesConstants.cs" />
      <Compile Include="Assets\Scripts\Crypto.cs" />
      <Compile Include="Assets\Scripts\Entities\Damages.cs" />
+     <Compile Include="Assets\Scripts\Entities\Effects\Achievement.cs" />
+     <Compile Include="Assets\Scripts\Entities\Effects\Effects.cs" />
+     <Compile Include="Assets\Scripts\Entities\Effects\Medal.cs" />
      <Compile Include="Assets\Scripts\Entities\Game.cs" />
      <Compile Include="Assets\Scripts\Entities\Team.cs" />
      <Compile Include="Assets\Scripts\Entities\Terminal.cs" />
