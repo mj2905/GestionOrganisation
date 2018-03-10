@@ -136,8 +136,8 @@ public class FirebaseManager
 						}
 						else {
 							executeWhenFails();
-							Debug.LogError ("No existing user");
-							popup.SetText("No existing user for this signed in user");
+							Debug.LogError ("Corrupted account, please contact the coding team");
+							popup.SetText("Corrupted account, please contact the coding team");
 						}
 					}
 				});

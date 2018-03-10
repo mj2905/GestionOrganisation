@@ -109,6 +109,7 @@ public class CameraController : LocationListener {
 								//Notify the interaction manager that the user focused on a zone
 								Zone targetZone = hit.transform.gameObject.GetComponent<Zone> ();
 								interactionManager.updateTargetedZone (targetZone);
+								gameManager.DrawTerminalsUI (targetZone.zoneId);
 							}
 
 						} else {
@@ -139,6 +140,7 @@ public class CameraController : LocationListener {
 								print ("CameraController: remove popups");
 								interactionManager.updateTargetedZone (null);
 								interactionManager.updateTargetedTerminal (null);
+								gameManager.DrawTerminalsUI ("");
 							}
 						}
 					} else {

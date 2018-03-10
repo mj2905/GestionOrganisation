@@ -125,6 +125,11 @@ public class Terminal : MonoBehaviour
 		this.target = gameObject;
 	}
 
+	public void ShowUI(bool show) {
+		Vector3 v = show ? new Vector3 (0.03000003f, 0.03000003f, 0.03000003f) : new Vector3 (0, 0, 0);
+		GameObject.Find (terminalId+"/TowerStatsCanvas").transform.localScale = v;//Find (terminalId+"/TowerStatsCanvas").SetActive (show);
+	}
+
 	public override bool Equals (object obj)
 	{
 		if (obj == null)
