@@ -11,6 +11,7 @@ public class UiManager : LocationListener
 	public Text creditText;
 	public Text scoreText;
 	public Text levelText;
+	public Text multiplierText;
 
 	public GameManager game;
 	public Animator turretButtonAnimator;
@@ -39,11 +40,9 @@ public class UiManager : LocationListener
 		popup.transform.SetAsLastSibling ();
 	}
 
-	public void UpdateUserStat(string xp, string credit,string level){
-
+	public void UpdateUserStat(string xp, string credit,string level,Effects effects){
 
 		int creditAsInt = Int32.Parse (credit);
-
 		int creditDiff = creditAsInt - previousCredit;
 		previousCredit = creditAsInt;
 
@@ -60,6 +59,7 @@ public class UiManager : LocationListener
 		scoreText.text = "Xp: " + xp;
 		creditText.text = "Credits: " + credit;
 		levelText.text = "Level: " + level;
+		multiplierText.text = "Multiplier: x" + effects.GetTotalMultiplier();
 	}
 
 	public void SetPopUpText(string text){

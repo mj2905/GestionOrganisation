@@ -50,7 +50,7 @@ public class FirebaseManager
 	}
 
 	public static void SetListenerCreditScore(){
-		reference.Child("Users").Child (FirebaseManager.user.UserId).ValueChanged += HandleScoreCreditChanged;
+		reference.Child("Users").Child (FirebaseManager.user.UserId).ValueChanged += HandleUserChanged;
 	}
 
 	public static void SetListenerGame(){
@@ -58,7 +58,7 @@ public class FirebaseManager
 	}
 
 
-	private static void HandleScoreCreditChanged (object sender, ValueChangedEventArgs args)
+	private static void HandleUserChanged (object sender, ValueChangedEventArgs args)
 	{
 		if (args.DatabaseError != null) {
 			Debug.LogError (args.DatabaseError.Message);
@@ -70,9 +70,16 @@ public class FirebaseManager
 			object credit = snapshot.Child("credits").Value;
 			object xp = snapshot.Child("xp").Value;
 			object level = snapshot.Child("level").Value;
-		
-			if (credit != null && xp != null) {
-				gameManager.UpdateUserStat (xp.ToString(),credit.ToString(),level.ToString());
+			Effects effects;
+
+			if (snapshot.HasChild ("effects")) {
+				effects = new Effects (snapshot.Child ("effects").Value);
+			} else {
+				effects = new Effects (null);
+			}
+
+			if (credit != null && xp != null && level != null) {
+				gameManager.UpdateUserStat (xp.ToString (), credit.ToString (), level.ToString (), effects);
 			}
 		}
 	}

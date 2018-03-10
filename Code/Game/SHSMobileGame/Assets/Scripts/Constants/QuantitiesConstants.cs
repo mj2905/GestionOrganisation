@@ -10,6 +10,7 @@ public static class QuantitiesConstants
 	public const int MINIMUM_HEALTH_SWITCH_COLOR = 100;
 	public const int HP_MAX = 1000;
 	public const int LEVEL_MAX = 5;
+	public const int TTL_ACHIEVEMENT = -100;
 }
 
 
