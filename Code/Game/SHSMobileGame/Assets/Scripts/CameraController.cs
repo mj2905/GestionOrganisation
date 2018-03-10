@@ -141,7 +141,6 @@ public class CameraController : LocationListener {
 								gameManager.DrawTerminalsUI ("");
 							} else {
 								Zone targetZone = hit2.transform.gameObject.GetComponent<Zone> ();
-								interactionManager.updateTargetedTerminal (null);
 								interactionManager.updateTargetedZone (targetZone);
 								print ("CameraController: back to zone");
 							}
@@ -212,8 +211,7 @@ public class CameraController : LocationListener {
 		eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 		List<RaycastResult> results = new List<RaycastResult>();
 		EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-
-		return !results.TrueForAll (result => result.sortingLayer != 5); //if all results are not in 5th sorting layer, return false
+		return results.Count > 0;
 	}
 
 	override public void CoordinateUpdate(MapCoordinate coords) {}

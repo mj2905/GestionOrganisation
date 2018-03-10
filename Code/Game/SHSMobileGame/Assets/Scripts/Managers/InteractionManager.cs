@@ -56,7 +56,7 @@ public class InteractionManager : LocationListener {
 		popupTerminalTeam = terminalPopup.transform.Find ("TeamLabel").GetComponent<Text> ();
 
 		actionButtonText = actionButton.transform.Find ("Text").GetComponent<Text> ();
-		terminalPopup.transform.localScale = new Vector3 (0, 0, 0);
+		//terminalPopup.transform.localScale = new Vector3 (0, 0, 0);
 	}
 
 	private void UpdateDamagePercent(Text popupZoneDamagePercent,Damages damages,int damageTeam,int currentTeam){
@@ -108,7 +108,7 @@ public class InteractionManager : LocationListener {
 				targetedTerminal = null;
 			}
 
-			terminalPopup.transform.localScale = new Vector3 (0, 0, 0);
+			terminalPopup.SetActive (false);//.transform.localScale = new Vector3 (0, 0, 0);
 			zonePopup.SetActive (true);
 			actionButtonText.text = "Heal";
 			actionButton.interactable = true;
@@ -120,10 +120,13 @@ public class InteractionManager : LocationListener {
 		this.targetedTerminal = terminal;
 
 		if (targetedTerminal == null) {
-			
-			oldTerminal.callbackWhenDestroyed = null;
 
-			terminalPopup.transform.localScale = new Vector3 (0, 0, 0);
+			if (oldTerminal != null) {
+				oldTerminal.callbackWhenDestroyed = null;
+				oldTerminal = null;
+			}
+
+			terminalPopup.SetActive (false);//.transform.localScale = new Vector3 (0, 0, 0);
 			actionButtonText.text = "No action";
 			actionButton.interactable = false;
 		} else {
@@ -131,7 +134,7 @@ public class InteractionManager : LocationListener {
 			targetedZone = null;
 
 			zonePopup.SetActive (false);
-			terminalPopup.transform.localScale = new Vector3 (1, 1, 1);
+			terminalPopup.SetActive (true);//.transform.localScale = new Vector3 (1, 1, 1);
 			actionButton.interactable = true;
 			if (FirebaseManager.userTeam == targetedTerminal.team) {
 				actionButtonText.text = "Buff";
