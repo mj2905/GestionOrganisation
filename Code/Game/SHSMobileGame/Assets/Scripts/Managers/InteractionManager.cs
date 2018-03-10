@@ -113,8 +113,10 @@ public class InteractionManager : LocationListener {
 			if (FirebaseManager.userTeam == zone.team) {
 				actionButtonText.text = "Heal";
 				actionButton.interactable = true;
+			} else {
+				actionButtonText.text = "No action";
+				actionButton.interactable = false;
 			}
-			actionButton.interactable = false;
 		}
 	}
 
