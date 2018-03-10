@@ -20,6 +20,8 @@ public class GameManager : LocationListener {
 	private Game currentGame;
 	private string zoneIdClicked;
 
+	public PopupScript messagePopup;
+
 	void Awake(){
 		FirebaseManager.SetMainGameRef (this);
 	}
@@ -117,7 +119,7 @@ public class GameManager : LocationListener {
 
 		Terminal terminal = new Terminal (FirebaseManager.userTeam.ToString() + "-"+(maxIndex+1).ToString(),zoneId,3,100,100,FirebaseManager.userTeam,x,z);
 		//uiManager.SetPopUpText (zoneId);
-		FirebaseManager.AddTerminal (terminal);
+		FirebaseManager.AddTerminal (terminal, messagePopup);
 	}
 
 	public void AddTerminalAtPlayerPosition(){

@@ -103,9 +103,7 @@ public class CameraController : LocationListener {
 							focusedBuilding = hit.transform.gameObject;
 							currentState = state.Focusing;
 
-							if (isAttackMode) {
-
-							} else {
+							if (!isAttackMode) {
 								//Notify the interaction manager that the user focused on a zone
 								Zone targetZone = hit.transform.gameObject.GetComponent<Zone> ();
 								interactionManager.updateTargetedZone (targetZone);
@@ -132,7 +130,7 @@ public class CameraController : LocationListener {
 			Ray ray2 = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit2;
 			if (!IsPointerOverUIObject() && Input.GetMouseButton (0)) {
-				if (Physics.Raycast (ray2, out hit2, 1000)) {
+				if (Physics.Raycast (ray2, out hit2, 1000000)) {
 					if (hit2.transform.gameObject.tag == "Zone" || hit2.transform.gameObject.tag == "Ground") {
 						if (focusedBuilding != null) {
 							if (hit2.transform.gameObject.name != focusedBuilding.name) {
@@ -141,6 +139,11 @@ public class CameraController : LocationListener {
 								interactionManager.updateTargetedZone (null);
 								interactionManager.updateTargetedTerminal (null);
 								gameManager.DrawTerminalsUI ("");
+							} else {
+								Zone targetZone = hit2.transform.gameObject.GetComponent<Zone> ();
+								interactionManager.updateTargetedTerminal (null);
+								interactionManager.updateTargetedZone (targetZone);
+								print ("CameraController: back to zone");
 							}
 						}
 					} else {
@@ -209,7 +212,8 @@ public class CameraController : LocationListener {
 		eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 		List<RaycastResult> results = new List<RaycastResult>();
 		EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-		return results.Count > 0;
+
+		return !results.TrueForAll (result => result.sortingLayer != 5); //if all results are not in 5th sorting layer, return false
 	}
 
 	override public void CoordinateUpdate(MapCoordinate coords) {}

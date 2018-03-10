@@ -26,6 +26,9 @@ public class Zone : MonoBehaviour {
 	private state currentState;
 
 	void Start() {
+		if(damages == null) {
+			damages = new Damages();
+		}
 	}
 
 	void Update(){
