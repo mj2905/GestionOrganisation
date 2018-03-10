@@ -110,8 +110,11 @@ public class InteractionManager : LocationListener {
 
 			terminalPopup.SetActive (false);//.transform.localScale = new Vector3 (0, 0, 0);
 			zonePopup.SetActive (true);
-			actionButtonText.text = "Heal";
-			actionButton.interactable = true;
+			if (FirebaseManager.userTeam == zone.team) {
+				actionButtonText.text = "Heal";
+				actionButton.interactable = true;
+			}
+			actionButton.interactable = false;
 		}
 	}
 
