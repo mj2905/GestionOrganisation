@@ -25,11 +25,19 @@ public class Terminal : MonoBehaviour
 	private Image levelBar;
 	private Image powerBar;
 
+	public Action callbackWhenDestroyed;
+
 	void Start(){
 		//terminalId = "Terminal";
 		healthBar = GameObject.Find (terminalId+"/TowerStatsCanvas/HealthBG/HealthBar").GetComponent<Image>();
 		levelBar = GameObject.Find (terminalId+"/TowerStatsCanvas/LevelBG/LevelBar").GetComponent<Image>();
 		powerBar = GameObject.Find (terminalId+"/TowerStatsCanvas/PowerBG/PowerBar").GetComponent<Image>();
+	}
+
+	void OnDisable() {
+		if (callbackWhenDestroyed != null) {
+			callbackWhenDestroyed ();
+		}
 	}
 
 	public void Init(){

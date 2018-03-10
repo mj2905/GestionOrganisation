@@ -33,6 +33,7 @@ public class InteractionManager : LocationListener {
 	public PopupScript messagePopup;
 
 	private bool isAttackMode = false;
+	private Terminal actualTerminal;
 
 	// Use this for initialization
 	void Start () {
@@ -79,7 +80,7 @@ public class InteractionManager : LocationListener {
 			popupZoneLevel.text = "Level: " + targetedZone.level;
 			popupZoneTeam.text = ColorConstants.getColorAsString(targetedZone.team);
 			popupZoneTeam.color = ColorConstants.getTextColor (targetedZone.team);
-			print (targetedZone.name);
+
 			UpdateDamagePercent (popupZoneDamagePercentGreen, targetedZone.damages, 1, targetedZone.team);
 			UpdateDamagePercent (popupZoneDamagePercentRed, targetedZone.damages, 2, targetedZone.team);
 			UpdateDamagePercent (popupZoneDamagePercentYellow, targetedZone.damages,3, targetedZone.team);
@@ -102,7 +103,11 @@ public class InteractionManager : LocationListener {
 			actionButtonText.text = "No action";
 			actionButton.interactable = false;
 		} else {
-			targetedTerminal = null;
+			if (targetedTerminal != null) {
+				targetedTerminal.callbackWhenDestroyed = null;
+				targetedTerminal = null;
+			}
+
 			terminalPopup.transform.localScale = new Vector3 (0, 0, 0);
 			zonePopup.SetActive (true);
 			actionButtonText.text = "Heal";
@@ -111,14 +116,20 @@ public class InteractionManager : LocationListener {
 	}
 
 	public void updateTargetedTerminal(Terminal terminal){
+		Terminal oldTerminal = this.targetedTerminal;
 		this.targetedTerminal = terminal;
 
 		if (targetedTerminal == null) {
+			
+			oldTerminal.callbackWhenDestroyed = null;
+
 			terminalPopup.transform.localScale = new Vector3 (0, 0, 0);
 			actionButtonText.text = "No action";
 			actionButton.interactable = false;
 		} else {
+			terminal.callbackWhenDestroyed = () => updateTargetedTerminal (null);
 			targetedZone = null;
+
 			zonePopup.SetActive (false);
 			terminalPopup.transform.localScale = new Vector3 (1, 1, 1);
 			actionButton.interactable = true;
