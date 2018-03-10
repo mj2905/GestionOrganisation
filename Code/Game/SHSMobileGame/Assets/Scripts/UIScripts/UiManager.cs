@@ -47,19 +47,19 @@ public class UiManager : LocationListener
 		int creditDiff = creditAsInt - previousCredit;
 		previousCredit = creditAsInt;
 
-		if (creditDiff < 0) {
-			TextUpdate textUpdate = (TextUpdate)Instantiate (negativeUpdate, creditUpdateHandle.transform);
-			textUpdate.transform.position = creditUpdateHandle.transform.position + new Vector3(UnityEngine.Random.Range(-10f, 10f), 0, 0);
-			textUpdate.setText (creditDiff.ToString ());
-		} else if (creditDiff > 0) {
-			TextUpdate textUpdate = (TextUpdate)Instantiate (positiveUpdate, creditUpdateHandle.transform);
-			textUpdate.transform.position = creditUpdateHandle.transform.position + new Vector3(UnityEngine.Random.Range(-10f, 10f), 0, 0);
-			textUpdate.setText (creditDiff.ToString ());
-		}
-
 		scoreText.text = "Xp: " + xp;
 		creditText.text = "Credits: " + credit;
 		levelText.text = "Level: " + level;
+
+		if (creditDiff < 0) {
+			TextUpdate textUpdate = (TextUpdate)Instantiate (negativeUpdate, creditUpdateHandle.transform);
+			textUpdate.transform.position = creditUpdateHandle.transform.position;
+			textUpdate.setText (creditDiff.ToString ());
+		} else if (creditDiff > 0) {
+			TextUpdate textUpdate = (TextUpdate)Instantiate (positiveUpdate, creditUpdateHandle.transform);
+			textUpdate.transform.position = creditUpdateHandle.transform.position;
+			textUpdate.setText ('+'+creditDiff.ToString ());
+		}
 	}
 
 	public void SetPopUpText(string text){
