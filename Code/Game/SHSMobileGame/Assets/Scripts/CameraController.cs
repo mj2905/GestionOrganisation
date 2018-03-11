@@ -95,26 +95,39 @@ public class CameraController : LocationListener {
 			} else {
 				timer = 0;
 				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-				RaycastHit hit;
-					if (Physics.Raycast (ray, out hit, 1000)) {
-						if (hit.transform.gameObject.tag == "Zone") {
-							positionBeforeFocus = transform.position;
-							rotationBeforeFocus = transform.rotation;
-							focusedBuilding = hit.transform.gameObject;
-							currentState = state.Focusing;
+				//RaycastHit hit;
+					//if (Physics.Raycast (ray, out hit, 1000)) {
+				RaycastHit[] hits = Physics.RaycastAll (ray, 1000);
 
-							if (!isAttackMode) {
-								//Notify the interaction manager that the user focused on a zone
-								Zone targetZone = hit.transform.gameObject.GetComponent<Zone> ();
-								interactionManager.updateTargetedZone (targetZone);
-								gameManager.DrawTerminalsUI (targetZone.zoneId);
-							}
-
-						} else {
-							currentState = state.Idle;
-						}
+				bool has_hit = false;
+				int hitOne = -1;
+				for (int i = 0; i < hits.Length; ++i) {
+					if (hits[i].transform.gameObject.tag == "Zone") {
+						has_hit = true;
+						hitOne = i;
+						break;
+					}
 				}
+
+				if (has_hit) {
+					positionBeforeFocus = transform.position;
+					rotationBeforeFocus = transform.rotation;
+					focusedBuilding = hits[hitOne].transform.gameObject;
+					currentState = state.Focusing;
+
+					if (!isAttackMode) {
+						//Notify the interaction manager that the user focused on a zone
+						Zone targetZone = hits[hitOne].transform.gameObject.GetComponent<Zone> ();
+						interactionManager.updateTargetedZone (targetZone);
+						gameManager.DrawTerminalsUI (targetZone.zoneId);
+					}
+
+				} else {
+					currentState = state.Idle;
+				}
+
 			}
+
 			break;
 		case state.Dragging:
 			if (!Input.GetMouseButton (0)) {
