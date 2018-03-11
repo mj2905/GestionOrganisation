@@ -338,7 +338,7 @@ public class FirebaseManager
 					
 					if (innerTask.Exception != null) {
 						reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.ZONE_HEAL_COST));
-						messagePopup.SetText("Zone is already at maximum health");
+						messagePopup.SetText("This zone is already at maximum health");
 					}
 
 				});
