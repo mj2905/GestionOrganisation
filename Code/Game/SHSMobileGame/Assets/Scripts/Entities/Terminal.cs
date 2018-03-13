@@ -66,6 +66,11 @@ public class Terminal : MonoBehaviour
 				break;
 			}
 
+			Color teamColor = ColorConstants.getColor (team);
+			healthBar.color = teamColor;
+			levelBar.color = teamColor;
+			powerBar.color = teamColor;
+
 			Instantiate (
 				Resources.Load("Effects/Prefabs/"+color+"LaserEffect"),
 				gameObject.transform.position + new Vector3(0,2,0),
