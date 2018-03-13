@@ -7,6 +7,12 @@ using UnityEngine.UI;
 
 public class UiManager : LocationListener
 {
+	private Effects previousEffects = new Effects();
+	private Canvas canvas;
+	private Dictionary<string, Medal> medalDict = new Dictionary<string, Medal>();
+
+	public Transform initialPosition;
+	public Medal MedalPrefab;
 
 	public Text creditText;
 	public Text scoreText;
@@ -30,7 +36,6 @@ public class UiManager : LocationListener
 	private int debugtmp = 0;
 	private int tmpVal = 1000;
 
-
 	// Use this for initialization
 	void Awake ()
 	{
@@ -38,6 +43,7 @@ public class UiManager : LocationListener
 		popup = clone.GetComponent<PopupScript>();		
 		popup.transform.SetParent (this.transform.parent,false);
 		popup.transform.SetAsLastSibling ();
+		canvas = GetComponentInParent<Canvas> ();
 	}
 
 	public void UpdateUserStat(string xp, string credit,string level,Effects effects){
@@ -60,7 +66,44 @@ public class UiManager : LocationListener
 			textUpdate.transform.position = creditUpdateHandle.transform.position;
 			textUpdate.setText ('+'+creditDiff.ToString ());
 		}
+
+		Effects newEffects = effects.GetNewEffects (previousEffects);
+		Effects modifiedEffects = effects.GetModifiedEffects (previousEffects);
+		Effects deletedEffects = effects.GetDeletedEffects (previousEffects);
+
+		ModifyEffects (modifiedEffects);
+		DeleteEffects (deletedEffects);
+		AddNewEffects (newEffects);
+
+		previousEffects = effects;
 	}
+
+	public void DeleteEffects(Effects effects){
+		foreach (Medal medal in effects.medals) {
+			if (medalDict.ContainsKey (medal.GetName ())) { 
+				Destroy (medalDict[medal.GetName()].gameObject);
+				medalDict.Remove (medal.GetName());
+			}
+		}
+	}
+
+	public void AddNewEffects(Effects effects){
+		for (int i = 0; i < effects.medals.Count; i++) {
+			Medal m = (Medal)Instantiate (MedalPrefab);
+
+			m.gameObject.transform.localPosition = initialPosition.position + new Vector3((1.2f*(medalDict.Count)) * m.gameObject.GetComponent<RectTransform>().rect.width,0,0);
+			m.transform.SetParent (canvas.transform);
+			m.Copy (effects.medals[i]);
+			medalDict.Add (m.GetName(),m);
+		}
+	}
+
+	public void ModifyEffects(Effects effects){
+		foreach (Medal medal in effects.medals) {
+			medalDict [medal.GetName()].Copy(medal);
+		}
+	}
+
 
 	public void SetPopUpText(string text){
 		popup.SetText (text);
