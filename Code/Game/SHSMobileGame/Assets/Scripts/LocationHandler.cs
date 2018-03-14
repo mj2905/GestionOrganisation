@@ -25,7 +25,7 @@ public class LocationHandler : LocationListener {
 
 	private void BeginLocation() {
 		if (locationWasEnabled && !started) {
-			Input.location.Start (5.0f, 5.0f);
+			Input.location.Start (1.0f, 0);
 			firstLocation = true;
 			started = true;
 		}
