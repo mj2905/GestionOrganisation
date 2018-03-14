@@ -99,7 +99,7 @@ public class LocationHandler : LocationListener {
 		int colls = Physics.OverlapBoxNonAlloc(pos, new Vector3(1,1,1), colliders);
 		//print (colls);
 
-		bool isInSafeZone = false;
+		bool isInSafeZone = true;
 		for (int i = 0; i < colls; ++i) {
 			//print (colliders [i].gameObject.name);
 			if (colliders[i] is CapsuleCollider) {
@@ -111,14 +111,14 @@ public class LocationHandler : LocationListener {
 		if (CoordinateConstants.DEBUG == CoordinateConstants.DEBUG_STATE.NO_DEBUG && (coords > CoordinateConstants.EPFL_TOP_RIGHT_MAP || coords < CoordinateConstants.EPFL_BOT_LEFT_MAP)) {
 
 			DeactivateLocation ();
-			popup.SetText ("To be in attack mode, you have to be on the EPFL campus");
+			popup.SetText ("You have to be on the EPFL campus to switch to attack mode");
 
 		} else if(!isInSafeZone && !isAttackMode) {
 			
 			fadingPlayer.SetCoordsVisible (coords);
 
 			DeactivateLocation ();
-			popup.SetText ("The player has to be in a safe zone to switch to attack mode");
+			popup.SetText ("You have to be in a safe zone to switch to attack mode");
 
 		} else if (coords != oldCoords) {
 			foreach (LocationListener listener in listeners) {
