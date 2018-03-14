@@ -14,6 +14,12 @@ public class Medal : MonoBehaviour{
 	private RectTransform rectTransform;
 	private Vector2 offsetMax;
 
+	private bool destroy = false;
+	private bool destroyed = false;
+
+	private Vector3 initialPosition;
+	private int position;
+
 	public Medal (string name, int multiplier,int ttl)
 	{
 		this.name = name;
@@ -39,16 +45,42 @@ public class Medal : MonoBehaviour{
 		name = medal.GetName ();
 	}
 
+	public void SetInitialPosition(Vector3 initialPosition){
+		this.initialPosition = initialPosition;
+	}
+
+	public void SetPosition(int position){
+		this.position = position;
+	}
+
 	public void Start(){
 		rectTransform = imageTime.GetComponent<RectTransform> ();
 		height = rectTransform.rect.height;
 		offsetMax = rectTransform.offsetMax;
 
 		textMult.text = "x " + multiplier;
+
+		transform.position = initialPosition - new Vector3(100,((1.2f*(position)))*GetComponent<RectTransform>().rect.height,0);
 	}
 		
 	public void Update(){
-		rectTransform.offsetMax = new Vector2(0,(-1+(float)(this.GetTtl ()) / (float)(EffectsConstants.GetMedalByName (this.GetName ()).GetTtl ())) * height);
+		if (!destroyed) {
+			if (!destroy) {
+				transform.position = Vector3.MoveTowards (transform.position, initialPosition - new Vector3 (0, ((1.2f * (position))) * GetComponent<RectTransform> ().rect.height, 0), 12);
+				rectTransform.offsetMax = new Vector2 (0, (-1 + (float)(this.GetTtl ()) / (float)(EffectsConstants.GetMedalByName (this.GetName ()).GetTtl ())) * height);
+			} else {
+				transform.localScale = Vector3.MoveTowards (transform.localScale, new Vector3 (0, 0, 0), 0.1f);
+			}
+
+			if (transform.localScale == new Vector3 (0, 0, 0)) {
+				Destroy (this.gameObject);
+				destroyed = true;
+			}
+		}
+	}
+
+	public void DestroyMedal(){
+		destroy = true;
 	}
 
 	public override bool Equals (object obj)

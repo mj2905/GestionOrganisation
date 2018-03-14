@@ -9,7 +9,7 @@ public class UiManager : LocationListener
 {
 	private Effects previousEffects = new Effects();
 	private Canvas canvas;
-	private Dictionary<string, Medal> medalDict = new Dictionary<string, Medal>();
+	private List<Tuple<string, Medal>> medalList = new List<Tuple<string, Medal>>();
 
 	public Transform initialPosition;
 	public Medal MedalPrefab;
@@ -71,36 +71,52 @@ public class UiManager : LocationListener
 		Effects modifiedEffects = effects.GetModifiedEffects (previousEffects);
 		Effects deletedEffects = effects.GetDeletedEffects (previousEffects);
 
-		ModifyEffects (modifiedEffects);
 		DeleteEffects (deletedEffects);
+		ModifyEffects (modifiedEffects);
 		AddNewEffects (newEffects);
 
+		UpdateCurrentMedalPosition ();
+
 		previousEffects = effects;
+
+		Debug.Log (medalList.Count);
+	}
+
+	public void	UpdateCurrentMedalPosition (){
+		for (int i = 0; i < medalList.Count; i++) {
+			medalList [i].Item2.SetPosition (i);
+		}
 	}
 
 	public void DeleteEffects(Effects effects){
 		foreach (Medal medal in effects.medals) {
-			if (medalDict.ContainsKey (medal.GetName ())) { 
-				Destroy (medalDict[medal.GetName()].gameObject);
-				medalDict.Remove (medal.GetName());
+			foreach (var medalUnity in medalList) {
+				if (medalUnity.Item1 == medal.GetName ()) {
+					medalUnity.Item2.DestroyMedal ();
+				}
 			}
+			medalList.RemoveAll(item => item.Item1 == medal.GetName ());
 		}
 	}
 
 	public void AddNewEffects(Effects effects){
 		for (int i = 0; i < effects.medals.Count; i++) {
 			Medal m = (Medal)Instantiate (MedalPrefab);
-
-			m.gameObject.transform.localPosition = initialPosition.position + new Vector3((1.2f*(medalDict.Count)) * m.gameObject.GetComponent<RectTransform>().rect.width,0,0);
+			m.SetInitialPosition (initialPosition.position);
+			m.SetPosition(medalList.Count);
 			m.transform.SetParent (canvas.transform);
 			m.Copy (effects.medals[i]);
-			medalDict.Add (m.GetName(),m);
+			medalList.Add (new Tuple<string,Medal>(m.GetName(),m));
 		}
 	}
 
 	public void ModifyEffects(Effects effects){
 		foreach (Medal medal in effects.medals) {
-			medalDict [medal.GetName()].Copy(medal);
+			foreach (var medalUnity in medalList) {
+				if (medalUnity.Item1 == medal.GetName ()) {
+					medalUnity.Item2.Copy (medal);
+				}
+			}
 		}
 	}
 
