@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class Effects{
 	public List<Achievement> achievements = new List<Achievement> ();
 	public List<Medal> medals = new List<Medal> ();
 
-	public Effects (){}
+	public Effects (){
+	}
+
+	public Effects (List<Achievement> achievements,List<Medal> medals){
+		this.medals = medals;
+		this.achievements = achievements;
+	}
 
 	public Effects (System.Object effects)
 	{
@@ -18,9 +25,9 @@ public class Effects{
 				int multiplier = Int32.Parse(stat["multiplier"].ToString());
 
 				if (ttl == QuantitiesConstants.TTL_ACHIEVEMENT) {
-					achievements.Add (new Achievement (multiplier,entry.Key));
+					achievements.Add (new Achievement (entry.Key,multiplier));
 				} else {
-					medals.Add (new Medal (multiplier,ttl));
+					medals.Add (new Medal (entry.Key,multiplier,ttl));
 				}
 			}
 		}
@@ -42,5 +49,43 @@ public class Effects{
 		}
 		return res;
 	}
+
+	private Effects GetDifferenceEffects(Effects previousEffects){
+		HashSet<Medal> medalsHash = new HashSet<Medal> (this.medals);
+		HashSet<Medal> previousMedalsHash = new HashSet<Medal> (previousEffects.medals);
+
+		medalsHash.ExceptWith (previousMedalsHash);
+
+		HashSet<Achievement> achievementsHash = new HashSet<Achievement> (this.achievements);
+		HashSet<Achievement> previousAchievementsHash = new HashSet<Achievement> (previousEffects.achievements);
+
+		achievementsHash.ExceptWith (previousAchievementsHash);
+
+		return new Effects (new List<Achievement>(achievementsHash), new List<Medal>(medalsHash));
+	}
+
+	public Effects GetNewEffects(Effects previousEffects){
+		return this.GetDifferenceEffects (previousEffects);
+	}
+
+	public Effects GetDeletedEffects(Effects previousEffects){
+		Effects e = previousEffects.GetDifferenceEffects (this);
+		return previousEffects.GetDifferenceEffects (this);
+	}
+
+	public Effects GetModifiedEffects(Effects previousEffects){
+		HashSet<Medal> medalsHash = new HashSet<Medal> (this.medals);
+		HashSet<Medal> previousMedalsHash = new HashSet<Medal> (previousEffects.medals);
+				
+		medalsHash.IntersectWith (previousMedalsHash);
+
+		HashSet<Achievement> achievementsHash = new HashSet<Achievement> (this.achievements);
+		HashSet<Achievement> previousAchievementsHash = new HashSet<Achievement> (previousEffects.achievements);
+
+		achievementsHash.IntersectWith (previousAchievementsHash);
+
+		return new Effects (new List<Achievement>(achievementsHash), new List<Medal>(medalsHash));
+	}
+		
 }
 
