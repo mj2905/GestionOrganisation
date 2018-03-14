@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LocationHandler : LocationListener {
 
@@ -10,6 +11,7 @@ public class LocationHandler : LocationListener {
 
 	public PopupScript popup;
 	public FadingPlayer fadingPlayer;
+	public Text locationTextTmp;
 
 	private MapCoordinate coords = MapCoordinate.ZERO();
 
@@ -92,6 +94,8 @@ public class LocationHandler : LocationListener {
 			CoordinateConstants.WALKING_PATH.next() :
 			new MapCoordinate (Input.location.lastData.longitude, Input.location.lastData.latitude);
 
+		locationTextTmp.text = string.Format("lon:{0} / lat:{1}", coords.Item1, coords.Item2);
+
 		fadingPlayer.SetCoordsInvisible (coords); //used to get its 3d vector, can be used here because only choices after are either a location deactivated => reset, or put again to same position.
 		Vector3 pos = fadingPlayer.transform.position;
 		//print (pos.x + " " + pos.y + " " + pos.z);
@@ -129,6 +133,10 @@ public class LocationHandler : LocationListener {
 				}
 			}
 			firstLocation = false;
+
+			Input.location.Stop ();
+			Input.location.Start (1.0f, 1);
+
 		}
 	}
 
