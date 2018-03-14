@@ -25,11 +25,19 @@ public class Terminal : MonoBehaviour
 	private Image levelBar;
 	private Image powerBar;
 
+	public Action callbackWhenDestroyed;
+
 	void Start(){
 		//terminalId = "Terminal";
 		healthBar = GameObject.Find (terminalId+"/TowerStatsCanvas/HealthBG/HealthBar").GetComponent<Image>();
 		levelBar = GameObject.Find (terminalId+"/TowerStatsCanvas/LevelBG/LevelBar").GetComponent<Image>();
 		powerBar = GameObject.Find (terminalId+"/TowerStatsCanvas/PowerBG/PowerBar").GetComponent<Image>();
+	}
+
+	void OnDisable() {
+		if (callbackWhenDestroyed != null) {
+			callbackWhenDestroyed ();
+		}
 	}
 
 	public void Init(){
@@ -57,6 +65,11 @@ public class Terminal : MonoBehaviour
 				color = "Blue";
 				break;
 			}
+
+			Color teamColor = ColorConstants.getColor (team);
+			healthBar.color = teamColor;
+			levelBar.color = teamColor;
+			powerBar.color = teamColor;
 
 			Instantiate (
 				Resources.Load("Effects/Prefabs/"+color+"LaserEffect"),
@@ -123,6 +136,11 @@ public class Terminal : MonoBehaviour
 
 	public void SetTarget(GameObject gameObject){
 		this.target = gameObject;
+	}
+
+	public void ShowUI(bool show) {
+		Vector3 v = show ? new Vector3 (0.03000003f, 0.03000003f, 0.03000003f) : new Vector3 (0, 0, 0);
+		GameObject.Find (terminalId+"/TowerStatsCanvas").transform.localScale = v;
 	}
 
 	public override bool Equals (object obj)

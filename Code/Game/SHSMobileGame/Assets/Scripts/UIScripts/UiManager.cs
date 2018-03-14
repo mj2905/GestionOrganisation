@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +7,17 @@ using UnityEngine.UI;
 
 public class UiManager : LocationListener
 {
+	private Effects previousEffects = new Effects();
+	private Canvas canvas;
+	private List<Tuple<string, Medal>> medalList = new List<Tuple<string, Medal>>();
+
+	public Transform initialPosition;
+	public Medal MedalPrefab;
 
 	public Text creditText;
 	public Text scoreText;
 	public Text levelText;
+	public Text multiplierText;
 
 	public GameManager game;
 	public Animator turretButtonAnimator;
@@ -29,7 +36,6 @@ public class UiManager : LocationListener
 	private int debugtmp = 0;
 	private int tmpVal = 1000;
 
-
 	// Use this for initialization
 	void Awake ()
 	{
@@ -37,30 +43,83 @@ public class UiManager : LocationListener
 		popup = clone.GetComponent<PopupScript>();		
 		popup.transform.SetParent (this.transform.parent,false);
 		popup.transform.SetAsLastSibling ();
+		canvas = GetComponentInParent<Canvas> ();
 	}
 
-	public void UpdateUserStat(string xp, string credit,string level){
-
+	public void UpdateUserStat(string xp, string credit,string level,Effects effects){
 
 		int creditAsInt = Int32.Parse (credit);
-
 		int creditDiff = creditAsInt - previousCredit;
 		previousCredit = creditAsInt;
-
-		if (creditDiff < 0) {
-			TextUpdate textUpdate = (TextUpdate)Instantiate (negativeUpdate, creditUpdateHandle.transform);
-			textUpdate.transform.position = creditUpdateHandle.transform.position + new Vector3(UnityEngine.Random.Range(-10f, 10f), 0, 0);
-			textUpdate.setText (creditDiff.ToString ());
-		} else if (creditDiff > 0) {
-			TextUpdate textUpdate = (TextUpdate)Instantiate (positiveUpdate, creditUpdateHandle.transform);
-			textUpdate.transform.position = creditUpdateHandle.transform.position + new Vector3(UnityEngine.Random.Range(-10f, 10f), 0, 0);
-			textUpdate.setText (creditDiff.ToString ());
-		}
 
 		scoreText.text = "Xp: " + xp;
 		creditText.text = "Credits: " + credit;
 		levelText.text = "Level: " + level;
+		multiplierText.text = "Multiplier: x" + effects.GetTotalMultiplier();
+
+		if (creditDiff < 0) {
+			TextUpdate textUpdate = (TextUpdate)Instantiate (negativeUpdate, creditUpdateHandle.transform);
+			textUpdate.transform.position = creditUpdateHandle.transform.position;
+			textUpdate.setText (creditDiff.ToString ());
+		} else if (creditDiff > 0) {
+			TextUpdate textUpdate = (TextUpdate)Instantiate (positiveUpdate, creditUpdateHandle.transform);
+			textUpdate.transform.position = creditUpdateHandle.transform.position;
+			textUpdate.setText ('+'+creditDiff.ToString ());
+		}
+
+		Effects newEffects = effects.GetNewEffects (previousEffects);
+		Effects modifiedEffects = effects.GetModifiedEffects (previousEffects);
+		Effects deletedEffects = effects.GetDeletedEffects (previousEffects);
+
+		DeleteEffects (deletedEffects);
+		ModifyEffects (modifiedEffects);
+		AddNewEffects (newEffects);
+
+		UpdateCurrentMedalPosition ();
+
+		previousEffects = effects;
+
+		Debug.Log (medalList.Count);
 	}
+
+	public void	UpdateCurrentMedalPosition (){
+		for (int i = 0; i < medalList.Count; i++) {
+			medalList [i].Item2.SetPosition (i);
+		}
+	}
+
+	public void DeleteEffects(Effects effects){
+		foreach (Medal medal in effects.medals) {
+			foreach (var medalUnity in medalList) {
+				if (medalUnity.Item1 == medal.GetName ()) {
+					medalUnity.Item2.DestroyMedal ();
+				}
+			}
+			medalList.RemoveAll(item => item.Item1 == medal.GetName ());
+		}
+	}
+
+	public void AddNewEffects(Effects effects){
+		for (int i = 0; i < effects.medals.Count; i++) {
+			Medal m = (Medal)Instantiate (MedalPrefab);
+			m.SetInitialPosition (initialPosition.position);
+			m.SetPosition(medalList.Count);
+			m.transform.SetParent (canvas.transform);
+			m.Copy (effects.medals[i]);
+			medalList.Add (new Tuple<string,Medal>(m.GetName(),m));
+		}
+	}
+
+	public void ModifyEffects(Effects effects){
+		foreach (Medal medal in effects.medals) {
+			foreach (var medalUnity in medalList) {
+				if (medalUnity.Item1 == medal.GetName ()) {
+					medalUnity.Item2.Copy (medal);
+				}
+			}
+		}
+	}
+
 
 	public void SetPopUpText(string text){
 		popup.SetText (text);

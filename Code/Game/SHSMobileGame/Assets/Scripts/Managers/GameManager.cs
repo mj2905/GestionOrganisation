@@ -18,6 +18,9 @@ public class GameManager : LocationListener {
 
 	private Game previousGame;
 	private Game currentGame;
+	private string zoneIdClicked;
+
+	public PopupScript messagePopup;
 
 	void Awake(){
 		FirebaseManager.SetMainGameRef (this);
@@ -34,21 +37,8 @@ public class GameManager : LocationListener {
 		for (int i = 0; i < zones.Length; i++) {
 			zoneDict[zones [i].zoneId] = zones [i];
 		}
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetMouseButtonDown(0)){
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			RaycastHit hit;
 
-			if (Physics.Raycast (ray, out hit, 1000)) {
-				if (hit.transform.gameObject.tag == "Terminal") {
-					Terminal clickedTerminal = hit.transform.gameObject.GetComponentInParent<Terminal>();
-					FirebaseManager.HurtTerminal (clickedTerminal.GetTerminalId(), 20);
-				}
-			}
-		}
+		zoneIdClicked = "";
 	}
 
 	public void ChangeGame(Game game){
@@ -56,6 +46,13 @@ public class GameManager : LocationListener {
 		currentGame = game;
 		DrawTerminals ();
 		DrawZones ();
+	}
+
+	public void DrawTerminalsUI(string zoneId) {
+		zoneIdClicked = zoneId;
+		foreach(KeyValuePair<string, Terminal> entry in terminalDict) {
+			entry.Value.ShowUI (entry.Value.zoneId == zoneId);
+		}
 	}
 
 	public void DrawTerminals(){
@@ -74,6 +71,7 @@ public class GameManager : LocationListener {
 			t.SetTarget(GameObject.Find("SceneRoot/Zones/"+newTerminals[i].zoneId +"/"+newTerminals[i].zoneId+"_building/" + newTerminals[i].zoneId+"_volume"));
 			t.Init ();
 			terminalDict.Add (t.GetTerminalId (), t);
+			t.ShowUI (zoneIdClicked == t.zoneId); //If concurrence problem, comes from here (some terminal added, in the meantime the user clicked on the screen, and with bad luck the infos are not printed)
 		}
 
 		for (int i = 0; i < deletedTerminals.Count; i++) {
@@ -86,6 +84,7 @@ public class GameManager : LocationListener {
 		for (int i = 0; i < modifiedTerminals.Count; i++) {
 			if (terminalDict.ContainsKey (modifiedTerminals [i].GetTerminalId ())) {
 				terminalDict [modifiedTerminals [i].GetTerminalId()].Copy (modifiedTerminals [i]);
+				modifiedTerminals [i].ShowUI (zoneIdClicked == modifiedTerminals [i].zoneId);
 			}
 		}
 	}
@@ -101,8 +100,8 @@ public class GameManager : LocationListener {
 		}
 	}
 
-	public void UpdateUserStat(string xp, string credit,string level){
-		uiManager.UpdateUserStat (xp, credit,level);
+	public void UpdateUserStat(string xp, string credit,string level,Effects effects){
+		uiManager.UpdateUserStat (xp, credit,level,effects);
 	}
 
 	public void AddTerminal(string zoneId,float x, float z){
@@ -120,7 +119,7 @@ public class GameManager : LocationListener {
 
 		Terminal terminal = new Terminal (FirebaseManager.userTeam.ToString() + "-"+(maxIndex+1).ToString(),zoneId,3,100,100,FirebaseManager.userTeam,x,z);
 		//uiManager.SetPopUpText (zoneId);
-		FirebaseManager.AddTerminal (terminal);
+		FirebaseManager.AddTerminal (terminal, messagePopup);
 	}
 
 	public void AddTerminalAtPlayerPosition(){

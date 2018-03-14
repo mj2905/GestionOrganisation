@@ -50,7 +50,7 @@ public class FirebaseManager
 	}
 
 	public static void SetListenerCreditScore(){
-		reference.Child("Users").Child (FirebaseManager.user.UserId).ValueChanged += HandleScoreCreditChanged;
+		reference.Child("Users").Child (FirebaseManager.user.UserId).ValueChanged += HandleUserChanged;
 	}
 
 	public static void SetListenerGame(){
@@ -58,7 +58,7 @@ public class FirebaseManager
 	}
 
 
-	private static void HandleScoreCreditChanged (object sender, ValueChangedEventArgs args)
+	private static void HandleUserChanged (object sender, ValueChangedEventArgs args)
 	{
 		if (args.DatabaseError != null) {
 			Debug.LogError (args.DatabaseError.Message);
@@ -70,9 +70,16 @@ public class FirebaseManager
 			object credit = snapshot.Child("credits").Value;
 			object xp = snapshot.Child("xp").Value;
 			object level = snapshot.Child("level").Value;
-		
-			if (credit != null && xp != null) {
-				gameManager.UpdateUserStat (xp.ToString(),credit.ToString(),level.ToString());
+			Effects effects;
+
+			if (snapshot.HasChild ("effects")) {
+				effects = new Effects (snapshot.Child ("effects").Value);
+			} else {
+				effects = new Effects (null);
+			}
+
+			if (credit != null && xp != null && level != null) {
+				gameManager.UpdateUserStat (xp.ToString (), credit.ToString (), level.ToString (), effects);
 			}
 		}
 	}
@@ -129,8 +136,8 @@ public class FirebaseManager
 						}
 						else {
 							executeWhenFails();
-							Debug.LogError ("No existing user");
-							popup.SetText("No existing user for this signed in user");
+							Debug.LogError ("Corrupted account, please contact the coding team");
+							popup.SetText("Corrupted account, please contact the coding team");
 						}
 					}
 				});
@@ -200,7 +207,7 @@ public class FirebaseManager
 			if(credits_obtained != null) {
 
 				//Cap credits at max value
-				long credit_value = Math.Min((long)credits_obtained + amount, User.MAX_CREDITS);
+				long credit_value = (long)credits_obtained + amount;//Math.Min((long)credits_obtained + amount, User.MAX_CREDITS);
 
 				//The transaction should not go through if the number of credits goes below the minimum threshold
 				if(User.MIN_CREDITS <= credit_value){
@@ -225,7 +232,7 @@ public class FirebaseManager
 
 				if(health_value > 0) {
 
-					mutableData.Value = health_value - amount;
+					mutableData.Value = Math.Max(0, health_value - amount);
 					return TransactionResult.Success(mutableData);
 
 				}
@@ -244,8 +251,12 @@ public class FirebaseManager
 			if(strength_obtained != null) {
 
 				long strength_value = (long)strength_obtained;
-				mutableData.Value = strength_value + amount;
-				return TransactionResult.Success(mutableData);
+
+				if(strength_value < QuantitiesConstants.STRENGTH_MAX) {
+
+					mutableData.Value = Math.Min(QuantitiesConstants.STRENGTH_MAX, strength_value + amount);
+					return TransactionResult.Success(mutableData);
+				}
 			}
 
 			return TransactionResult.Abort();
@@ -262,66 +273,78 @@ public class FirebaseManager
 
 				long health_value = (long)health_obtained;
 
-				mutableData.Value = Math.Min(QuantitiesConstants.HP_MAX, health_value + amount);
+				if(health_value < QuantitiesConstants.HP_MAX) {
+					mutableData.Value = Math.Min(QuantitiesConstants.HP_MAX, health_value + amount);
 
-				return TransactionResult.Success(mutableData);
+					return TransactionResult.Success(mutableData);
+				}
 			}
 
 			return TransactionResult.Abort();
 		};
 	}
 
-	public static void AddTerminal(Terminal terminal){
+	public static void AddTerminal(Terminal terminal, PopupScript messagePopup){
 		reference.Child ("Game").RunTransaction (AddTerminalTransaction (terminal)).ContinueWith(task => {
 			if (task.Exception != null) {
-				Debug.Log("Not enough tokens for the team");
+				messagePopup.SetText("Not enough tokens for the team");
 			}
 		});
 	}
 
-	public static void HurtTerminal(string terminalID, long amount){
+	public static void HurtTerminal(string terminalID, long amount, PopupScript messagePopup){
+		Debug.Log("Credit transac begin");
 		reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.TERMINAL_SMASH_COST)).ContinueWith (task => {
-
+			Debug.Log("Credits transac finished");
 			if (task.Exception == null) {
+				Debug.Log("HP transac begin");
 				reference.Child ("Game/Terminals/").Child(terminalID).Child("hp").RunTransaction (HurtTerminalTransaction (amount)).ContinueWith(innerTask => {
-					if (task.Exception != null) {
-						Debug.Log("This terminal is already dead");
+					Debug.Log("HP transac finished");
+					if (innerTask.Exception != null) {
+						messagePopup.SetText("This terminal is already dead");
+						Debug.Log("terminal already dead");
+						reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.TERMINAL_SMASH_COST));
 					}
 				});
 			} else {
 				Debug.Log("Could not deduct enough credit to smash the terminal");
+				messagePopup.SetText("You don't have enough credits to smash the terminal");
 			}
 		});
 	}
 
-	public static void BuffTerminal(string terminalID, long amount){
+	public static void BuffTerminal(string terminalID, long amount, PopupScript messagePopup){
 		reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.TERMINAL_BUFF_COST)).ContinueWith (task => {
 
 			if (task.Exception == null) {
 				reference.Child("Game/Terminals/").Child(terminalID).Child("strength").RunTransaction(BuffTerminalTransaction(amount)).ContinueWith(innerTask =>{
-					if (task.Exception != null) {
-						Debug.Log("This terminal is already maximally buffed");
+					if (innerTask.Exception != null) {
+						reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.TERMINAL_BUFF_COST));
+						messagePopup.SetText("This terminal is already maximally buffed");
 					}
 				});
 			} else {
 				Debug.Log("Could not deduct enough credit to buff the terminal");
+				messagePopup.SetText("You don't have enough credits to buff the terminal");
 			}
 		});
 	}
 
-	public static void HealZone(string zoneID, long amount){
+	public static void HealZone(string zoneID, long amount, PopupScript messagePopup){
 		reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.ZONE_HEAL_COST)).ContinueWith (task => {
 
 			if (task.Exception == null) {
 				reference.Child ("Game/Zones/").Child (zoneID).Child ("health").RunTransaction (HealZoneTransaction (amount)).ContinueWith (innerTask => {
 					
 					if (innerTask.Exception != null) {
-						Debug.Log ("Zone is already at maximum health");
+						reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.ZONE_HEAL_COST));
+						messagePopup.SetText("This zone is already at maximum health");
 					}
 
 				});
 			} else {
 				Debug.Log("Could not deduct enough credit to heal the zone");
+				messagePopup.SetText("You don't have enough credits to heal the zone");
 			}
 		});
 	}

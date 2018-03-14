@@ -30,7 +30,10 @@ public class InteractionManager : LocationListener {
 	public GameObject zonePopup;
 	public GameObject terminalPopup;
 
+	public PopupScript messagePopup;
+
 	private bool isAttackMode = false;
+	private Terminal actualTerminal;
 
 	// Use this for initialization
 	void Start () {
@@ -53,14 +56,18 @@ public class InteractionManager : LocationListener {
 		popupTerminalTeam = terminalPopup.transform.Find ("TeamLabel").GetComponent<Text> ();
 
 		actionButtonText = actionButton.transform.Find ("Text").GetComponent<Text> ();
+		//terminalPopup.transform.localScale = new Vector3 (0, 0, 0);
 	}
 
 	private void UpdateDamagePercent(Text popupZoneDamagePercent,Damages damages,int damageTeam,int currentTeam){
 		if (damageTeam == currentTeam) {
 			popupZoneDamagePercent.text = "/";
 		} else {
+
 			if (damages.isDamaged ()) {
 				popupZoneDamagePercent.text = (damages.GetDamage (damageTeam) / (float)(damages.getTotalDamages ()) * 100f).ToString ("0.0") + "%"; 
+			} else {
+				popupZoneDamagePercent.text = "0.0%"; 
 			}
 		}
 	}
@@ -96,25 +103,43 @@ public class InteractionManager : LocationListener {
 			actionButtonText.text = "No action";
 			actionButton.interactable = false;
 		} else {
-			targetedTerminal = null;
-			terminalPopup.SetActive (false);
+			if (targetedTerminal != null) {
+				targetedTerminal.callbackWhenDestroyed = null;
+				targetedTerminal = null;
+			}
+
+			terminalPopup.SetActive (false);//.transform.localScale = new Vector3 (0, 0, 0);
 			zonePopup.SetActive (true);
-			actionButtonText.text = "Heal";
-			actionButton.interactable = true;
+			if (FirebaseManager.userTeam == zone.team) {
+				actionButtonText.text = "Heal";
+				actionButton.interactable = true;
+			} else {
+				actionButtonText.text = "No action";
+				actionButton.interactable = false;
+			}
 		}
 	}
 
 	public void updateTargetedTerminal(Terminal terminal){
+		Terminal oldTerminal = this.targetedTerminal;
 		this.targetedTerminal = terminal;
 
 		if (targetedTerminal == null) {
-			terminalPopup.SetActive (false);
+
+			if (oldTerminal != null) {
+				oldTerminal.callbackWhenDestroyed = null;
+				oldTerminal = null;
+			}
+
+			terminalPopup.SetActive (false);//.transform.localScale = new Vector3 (0, 0, 0);
 			actionButtonText.text = "No action";
 			actionButton.interactable = false;
 		} else {
+			terminal.callbackWhenDestroyed = () => updateTargetedTerminal (null);
 			targetedZone = null;
+
 			zonePopup.SetActive (false);
-			terminalPopup.SetActive (true);
+			terminalPopup.SetActive (true);//.transform.localScale = new Vector3 (1, 1, 1);
 			actionButton.interactable = true;
 			if (FirebaseManager.userTeam == targetedTerminal.team) {
 				actionButtonText.text = "Buff";
@@ -127,7 +152,7 @@ public class InteractionManager : LocationListener {
 	public void healZone(){
 		if (targetedZone != null) {
 			print ("Healing zone " + targetedZone.name);
-			FirebaseManager.HealZone (targetedZone.zoneId, QuantitiesConstants.ZONE_HEAL_AMOUNT);
+			FirebaseManager.HealZone (targetedZone.zoneId, QuantitiesConstants.ZONE_HEAL_AMOUNT, messagePopup);
 		}
 	}
 
@@ -149,14 +174,14 @@ public class InteractionManager : LocationListener {
 	private void buffTerminal(){
 		if(targetedTerminal != null){
 			print ("Buffing terminal ");
-			FirebaseManager.BuffTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_BUFF_AMOUNT);
+			FirebaseManager.BuffTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_BUFF_AMOUNT, messagePopup);
 		}
 	}
 
 	private void smashTerminal(){
 		if(targetedTerminal != null){
 			print ("Attacking terminal ");
-			FirebaseManager.HurtTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_SMASH_AMOUNT);
+			FirebaseManager.HurtTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_SMASH_AMOUNT, messagePopup);
 		}
 	}
 

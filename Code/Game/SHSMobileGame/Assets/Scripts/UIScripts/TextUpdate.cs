@@ -12,15 +12,13 @@ public class TextUpdate : MonoBehaviour {
 	void Start () {
 		AnimatorClipInfo[] clipInfo = animator.GetCurrentAnimatorClipInfo (0);
 		Destroy (gameObject, clipInfo [0].clip.length);
+		animator.GetComponent<Text> ().resizeTextForBestFit = true;
+		animator.GetComponent<Text> ().alignment = TextAnchor.MiddleRight;
 
 	}
 		
 	public void setText(string text){
 		animator.GetComponent<Text> ().text = text;
 	}
-
-	// Update is called once per frame
-	void Update () {
 		
-	}
 }
