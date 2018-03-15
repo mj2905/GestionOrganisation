@@ -147,6 +147,6 @@ public class GameManager : LocationListener {
 	}
 
 	public void addTransaction(){
-		FirebaseManager.AddTerminalStat ();
+		FirebaseManager.AddTerminalBuffedStat ();
 	}
 }
