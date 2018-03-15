@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LocationHandler : LocationListener {
 
@@ -10,6 +11,7 @@ public class LocationHandler : LocationListener {
 
 	public PopupScript popup;
 	public FadingPlayer fadingPlayer;
+	public Text locationTextTmp;
 
 	private MapCoordinate coords = MapCoordinate.ZERO();
 
@@ -92,6 +94,8 @@ public class LocationHandler : LocationListener {
 			CoordinateConstants.WALKING_PATH.next() :
 			new MapCoordinate (Input.location.lastData.longitude, Input.location.lastData.latitude);
 
+		locationTextTmp.text = string.Format("lon:{0} / lat:{1}", coords.Item1, coords.Item2);
+
 		fadingPlayer.SetCoordsInvisible (coords); //used to get its 3d vector, can be used here because only choices after are either a location deactivated => reset, or put again to same position.
 		Vector3 pos = fadingPlayer.transform.position;
 		//print (pos.x + " " + pos.y + " " + pos.z);
@@ -99,7 +103,7 @@ public class LocationHandler : LocationListener {
 		int colls = Physics.OverlapBoxNonAlloc(pos, new Vector3(1,1,1), colliders);
 		//print (colls);
 
-		bool isInSafeZone = false;
+		bool isInSafeZone = true;
 		for (int i = 0; i < colls; ++i) {
 			//print (colliders [i].gameObject.name);
 			if (colliders[i] is CapsuleCollider) {
@@ -111,14 +115,14 @@ public class LocationHandler : LocationListener {
 		if (CoordinateConstants.DEBUG == CoordinateConstants.DEBUG_STATE.NO_DEBUG && (coords > CoordinateConstants.EPFL_TOP_RIGHT_MAP || coords < CoordinateConstants.EPFL_BOT_LEFT_MAP)) {
 
 			DeactivateLocation ();
-			popup.SetText ("To be in attack mode, you have to be on the EPFL campus");
+			popup.SetText ("You have to be on the EPFL campus to switch to attack mode");
 
 		} else if(!isInSafeZone && !isAttackMode) {
 			
 			fadingPlayer.SetCoordsVisible (coords);
 
 			DeactivateLocation ();
-			popup.SetText ("The player has to be in a safe zone to switch to attack mode");
+			popup.SetText ("You have to be in a safe zone to switch to attack mode");
 
 		} else if (coords != oldCoords) {
 			foreach (LocationListener listener in listeners) {
@@ -129,6 +133,10 @@ public class LocationHandler : LocationListener {
 				}
 			}
 			firstLocation = false;
+
+			Input.location.Stop ();
+			Input.location.Start (1.0f, 1);
+
 		}
 	}
 

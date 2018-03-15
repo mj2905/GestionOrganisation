@@ -41,6 +41,12 @@ public class Terminal : MonoBehaviour
 	}
 
 	public void Init(){
+
+		Color teamColor = ColorConstants.getColor (team);
+		healthBar.color = teamColor;
+		levelBar.color = teamColor;
+		powerBar.color = teamColor;
+
 		if (target != null) {
 
 			Vector3 targetPos = target.gameObject.transform.position;
@@ -48,7 +54,7 @@ public class Terminal : MonoBehaviour
 			gameObject.transform.LookAt(targetLookAtPos);
 
 			string color = "";
-			switch(team){
+			switch (team) {
 			case 1:
 				color = "Green";
 				break;
@@ -65,11 +71,6 @@ public class Terminal : MonoBehaviour
 				color = "Blue";
 				break;
 			}
-
-			Color teamColor = ColorConstants.getColor (team);
-			healthBar.color = teamColor;
-			levelBar.color = teamColor;
-			powerBar.color = teamColor;
 
 			Instantiate (
 				Resources.Load("Effects/Prefabs/"+color+"LaserEffect"),

@@ -28,8 +28,8 @@ public class PlayerController : LocationListener
     void Start()
     {
 		gameObject.GetComponent<Renderer>().enabled = false;
-		initialPosition = new Vector3(77.15f, 2, -50.0f);
-		transform.localPosition = new Vector3(12, 2, -7);
+		initialPosition = new Vector3(77.15f, 8, -50.0f);
+		transform.localPosition = new Vector3(12, 8, -7);
 
 		moveVertical = 0;
 		moveHorizontal = 0;

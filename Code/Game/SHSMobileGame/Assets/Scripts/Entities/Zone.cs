@@ -19,7 +19,7 @@ public class Zone : MonoBehaviour {
 
 	private Color colorSwitching;
 
-	private const float SPEED_OF_TRANSITION = 1f;
+	private const float SPEED_OF_TRANSITION = 2f;
 	private float timer = 0;
 
 	enum state {Idle,LerpingToNormalColor,LerpingToDamagedColor,ColoredNormalColor,ColoredDamagedColor}

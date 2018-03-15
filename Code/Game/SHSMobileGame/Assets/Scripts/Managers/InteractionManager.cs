@@ -91,7 +91,8 @@ public class InteractionManager : LocationListener {
 			popupTerminalHP.text = "HP: " + targetedTerminal.hp;
 			popupTerminalLevel.text = "Level: " + targetedTerminal.level;
 			popupTerminalStrength.text = "Strength: " + targetedTerminal.strength;
-			popupTerminalTeam.text = "Team: " + targetedTerminal.team;
+			popupTerminalTeam.text = ColorConstants.getColorAsString(targetedTerminal.team);
+			popupTerminalTeam.color = ColorConstants.getTextColor (targetedTerminal.team);
 		}
 	}
 
