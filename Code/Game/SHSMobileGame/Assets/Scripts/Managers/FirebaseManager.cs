@@ -192,6 +192,28 @@ public class FirebaseManager
 		});
 	}
 
+	private static Func<MutableData, TransactionResult> AddTerminalStatTransaction() 
+	{
+		return mutableData => {
+
+			object numberOfTerminal = mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminal").Value;
+
+			if(numberOfTerminal == null){
+				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminal").Value = 1;
+			} else{
+				long number = (long)numberOfTerminal;
+				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminal").Value = number + 1;
+
+			}
+			return TransactionResult.Success(mutableData);
+		};
+	}
+
+	public static void AddTerminalStat(){
+		reference.Child ("Users/").RunTransaction (AddTerminalStatTransaction ()).ContinueWith (task => {
+		});
+	}
+
 	public static Func<MutableData, TransactionResult> AddTerminalTransaction(Terminal t) 
 	{
 		return mutableData => {

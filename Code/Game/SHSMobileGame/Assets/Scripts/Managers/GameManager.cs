@@ -145,4 +145,8 @@ public class GameManager : LocationListener {
 	public void AddMedal(Medal m){
 		FirebaseManager.AddMedal (m);
 	}
+
+	public void addTransaction(){
+		FirebaseManager.AddTerminalStat ();
+	}
 }
