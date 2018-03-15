@@ -192,73 +192,6 @@ public class FirebaseManager
 		});
 	}
 
-	private static Func<MutableData, TransactionResult> AddTerminalStatTransaction() 
-	{
-		return mutableData => {
-
-			object numberOfTerminal = mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminal").Value;
-
-			if(numberOfTerminal == null){
-				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminal").Value = 1;
-			} else{
-				long number = (long)numberOfTerminal;
-				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminal").Value = number + 1;
-
-			}
-			return TransactionResult.Success(mutableData);
-		};
-	}
-
-	public static void AddTerminalStat(){
-		reference.Child ("Users/").RunTransaction (AddTerminalStatTransaction ()).ContinueWith (task => {
-		});
-	}
-
-
-	private static Func<MutableData, TransactionResult> AddBuffedTerminalsStatTransaction() 
-	{
-		return mutableData => {
-
-			object numberOfTerminal = mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalBuffed").Value;
-
-			if(numberOfTerminal == null){
-				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalBuffed").Value = 1;
-			} else{
-				long number = (long)numberOfTerminal;
-				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalBuffed").Value = number + 1;
-
-			}
-			return TransactionResult.Success(mutableData);
-		};
-	}
-
-	public static void AddTerminalBuffedStat(){
-		reference.Child ("Users/").RunTransaction (AddBuffedTerminalsStatTransaction ()).ContinueWith (task => {
-		});
-	}
-
-
-	private static Func<MutableData, TransactionResult> AddDamagedTerminalsStatTransaction() 
-	{
-		return mutableData => {
-
-			object numberOfTerminal = mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalDamaged").Value;
-
-			if(numberOfTerminal == null){
-				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalDamaged").Value = 1;
-			} else{
-				long number = (long)numberOfTerminal;
-				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalDamaged").Value = number + 1;
-			}
-			return TransactionResult.Success(mutableData);
-		};
-	}
-
-	public static void AddTerminalDamagedStat(){
-		reference.Child ("Users/").RunTransaction (AddDamagedTerminalsStatTransaction ()).ContinueWith (task => {
-		});
-	}
-
 	public static Func<MutableData, TransactionResult> AddTerminalTransaction(Terminal t) 
 	{
 		return mutableData => {
@@ -368,6 +301,8 @@ public class FirebaseManager
 		reference.Child ("Game").RunTransaction (AddTerminalTransaction (terminal)).ContinueWith(task => {
 			if (task.Exception != null) {
 				messagePopup.SetText("Not enough tokens for the team");
+			} else{
+				AddTerminalStat();
 			}
 		});
 	}
@@ -384,6 +319,8 @@ public class FirebaseManager
 						messagePopup.SetText("This terminal is already dead");
 						Debug.Log("terminal already dead");
 						reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.TERMINAL_SMASH_COST));
+					}else{
+						AddTerminalDamagedStat();
 					}
 				});
 			} else {
@@ -401,6 +338,8 @@ public class FirebaseManager
 					if (innerTask.Exception != null) {
 						reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.TERMINAL_BUFF_COST));
 						messagePopup.SetText("This terminal is already maximally buffed");
+					}else{
+						AddTerminalBuffedStat();
 					}
 				});
 			} else {
@@ -419,13 +358,102 @@ public class FirebaseManager
 					if (innerTask.Exception != null) {
 						reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.ZONE_HEAL_COST));
 						messagePopup.SetText("This zone is already at maximum health");
+					} else{
+						AddZoneHealStat();
 					}
-
 				});
 			} else {
 				Debug.Log("Could not deduct enough credit to heal the zone");
 				messagePopup.SetText("You don't have enough credits to heal the zone");
 			}
+		});
+	}
+
+	private static Func<MutableData, TransactionResult> AddTerminalStatTransaction() 
+	{
+		return mutableData => {
+
+			object numberOfTerminal = mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalPlaced").Value;
+
+			if(numberOfTerminal == null){
+				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalPlaced").Value = 1;
+			} else{
+				long number = (long)numberOfTerminal;
+				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalPlaced").Value = number + 1;
+
+			}
+			return TransactionResult.Success(mutableData);
+		};
+	}
+
+	public static void AddTerminalStat(){
+		reference.Child ("Users/").RunTransaction (AddTerminalStatTransaction ()).ContinueWith (task => {
+		});
+	}
+
+
+	private static Func<MutableData, TransactionResult> AddBuffedTerminalsStatTransaction() 
+	{
+		return mutableData => {
+
+			object numberOfTerminal = mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalBuffed").Value;
+
+			if(numberOfTerminal == null){
+				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalBuffed").Value = 1;
+			} else{
+				long number = (long)numberOfTerminal;
+				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalBuffed").Value = number + 1;
+
+			}
+			return TransactionResult.Success(mutableData);
+		};
+	}
+
+	public static void AddTerminalBuffedStat(){
+		reference.Child ("Users/").RunTransaction (AddBuffedTerminalsStatTransaction ()).ContinueWith (task => {
+		});
+	}
+
+
+	private static Func<MutableData, TransactionResult> AddDamagedTerminalsStatTransaction() 
+	{
+		return mutableData => {
+
+			object numberOfTerminal = mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalDamaged").Value;
+
+			if(numberOfTerminal == null){
+				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalDamaged").Value = 1;
+			} else{
+				long number = (long)numberOfTerminal;
+				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalDamaged").Value = number + 1;
+			}
+			return TransactionResult.Success(mutableData);
+		};
+	}
+
+	public static void AddTerminalDamagedStat(){
+		reference.Child ("Users/").RunTransaction (AddDamagedTerminalsStatTransaction ()).ContinueWith (task => {
+		});
+	}
+
+	private static Func<MutableData, TransactionResult> AddZoneHealStatTransaction() 
+	{
+		return mutableData => {
+
+			object numberOfTerminal = mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfZoneHeal").Value;
+
+			if(numberOfTerminal == null){
+				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfZoneHeal").Value = 1;
+			} else{
+				long number = (long)numberOfTerminal;
+				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfZoneHeal").Value = number + 1;
+			}
+			return TransactionResult.Success(mutableData);
+		};
+	}
+
+	public static void AddZoneHealStat(){
+		reference.Child ("Users/").RunTransaction (AddDamagedTerminalsStatTransaction ()).ContinueWith (task => {
 		});
 	}
 }
