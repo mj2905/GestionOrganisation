@@ -78,8 +78,6 @@ public class UiManager : LocationListener
 		UpdateCurrentMedalPosition ();
 
 		previousEffects = effects;
-
-		Debug.Log (medalList.Count);
 	}
 
 	public void	UpdateCurrentMedalPosition (){

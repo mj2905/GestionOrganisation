@@ -179,6 +179,19 @@ public class FirebaseManager
 		reference.Child("Users").Child(userId).SetRawJsonValueAsync(json);
 	}
 
+	private static Func<MutableData, TransactionResult> AddMedalTransaction(Medal m) 
+	{
+		return mutableData => {
+				mutableData.Child (FirebaseManager.user.UserId + "/queue/").Value = m.ToMap();
+				return TransactionResult.Success(mutableData);
+		};
+	}
+
+	public static void AddMedal(Medal medal){
+		reference.Child ("Users/").RunTransaction (AddMedalTransaction (medal)).ContinueWith (task => {
+		});
+	}
+
 	public static Func<MutableData, TransactionResult> AddTerminalTransaction(Terminal t) 
 	{
 		return mutableData => {
