@@ -237,6 +237,28 @@ public class FirebaseManager
 		});
 	}
 
+
+	private static Func<MutableData, TransactionResult> AddDamagedTerminalsStatTransaction() 
+	{
+		return mutableData => {
+
+			object numberOfTerminal = mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalDamaged").Value;
+
+			if(numberOfTerminal == null){
+				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalDamaged").Value = 1;
+			} else{
+				long number = (long)numberOfTerminal;
+				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalDamaged").Value = number + 1;
+			}
+			return TransactionResult.Success(mutableData);
+		};
+	}
+
+	public static void AddTerminalDamagedStat(){
+		reference.Child ("Users/").RunTransaction (AddDamagedTerminalsStatTransaction ()).ContinueWith (task => {
+		});
+	}
+
 	public static Func<MutableData, TransactionResult> AddTerminalTransaction(Terminal t) 
 	{
 		return mutableData => {
