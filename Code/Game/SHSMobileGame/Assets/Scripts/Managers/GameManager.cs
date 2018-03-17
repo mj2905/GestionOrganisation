@@ -100,8 +100,8 @@ public class GameManager : LocationListener {
 		}
 	}
 
-	public void UpdateUserStat(string xp, string credit,string level,Effects effects){
-		uiManager.UpdateUserStat (xp, credit,level,effects);
+	public void UpdateUserStat(string xp, string credit,string level,Effects effects,Statistics statistics){
+		uiManager.UpdateUserStat (xp, credit,level,effects,statistics);
 	}
 
 	public void AddTerminal(string zoneId,float x, float z){

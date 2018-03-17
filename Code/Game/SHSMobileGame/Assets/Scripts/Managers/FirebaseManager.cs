@@ -86,7 +86,7 @@ public class FirebaseManager
 			}
 
 			if (credit != null && xp != null && level != null) {
-				gameManager.UpdateUserStat (xp.ToString (), credit.ToString (), level.ToString (), effects);
+				gameManager.UpdateUserStat (xp.ToString (), credit.ToString (), level.ToString (), effects,statistics);
 			}
 		}
 	}

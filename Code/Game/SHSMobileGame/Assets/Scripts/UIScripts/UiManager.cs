@@ -27,6 +27,11 @@ public class UiManager : LocationListener
 	public GameObject creditUpdateHandle;
 	public GameObject scoreUpdateHandle;
 
+	public Text numberOfTerminalPlaced;
+	public Text numberOfTerminalBuffed;
+	public Text numberOfTerminalDamaged;
+	public Text numberOfZoneHealed;
+
 	private PopupScript popup;
 
 	private bool isAttackMode = false;
@@ -49,7 +54,7 @@ public class UiManager : LocationListener
 		canvas = GetComponentInParent<Canvas> ();
 	}
 
-	public void UpdateUserStat(string xp, string credit,string level,Effects effects){
+	public void UpdateUserStat(string xp, string credit,string level,Effects effects,Statistics statistics){
 
 		int creditAsInt = Int32.Parse (credit);
 		int creditDiff = creditAsInt - previousCredit;
