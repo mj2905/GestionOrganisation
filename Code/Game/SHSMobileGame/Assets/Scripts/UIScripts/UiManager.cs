@@ -36,6 +36,9 @@ public class UiManager : LocationListener
 	private int debugtmp = 0;
 	private int tmpVal = 1000;
 
+	private bool showAchievementMenu = false;
+	public Canvas achievementMenu;
+
 	// Use this for initialization
 	void Awake ()
 	{
@@ -78,8 +81,6 @@ public class UiManager : LocationListener
 		UpdateCurrentMedalPosition ();
 
 		previousEffects = effects;
-
-		Debug.Log (medalList.Count);
 	}
 
 	public void	UpdateCurrentMedalPosition (){
@@ -156,5 +157,10 @@ public class UiManager : LocationListener
 
 	override public void FirstLocationSent() {
 		isAttackMode = true;
+	}
+
+	public void ToggleAchievementMenu(){
+		showAchievementMenu = !showAchievementMenu;
+		achievementMenu.enabled = showAchievementMenu;
 	}
 }
