@@ -75,6 +75,8 @@ public class UiManager : LocationListener
 			textUpdate.setText ('+'+creditDiff.ToString ());
 		}
 
+		UpdateAchievement (statistics);
+
 		Effects newEffects = effects.GetNewEffects (previousEffects);
 		Effects modifiedEffects = effects.GetModifiedEffects (previousEffects);
 		Effects deletedEffects = effects.GetDeletedEffects (previousEffects);
@@ -86,6 +88,34 @@ public class UiManager : LocationListener
 		UpdateCurrentMedalPosition ();
 
 		previousEffects = effects;
+	}
+
+	private void UpdateAchievement (Statistics statistics){
+		foreach (KeyValuePair<string, int> entry in statistics.GetDict()) {
+			switch (entry.Key) {
+			case "numberOfTerminalPlaced":
+				CheckIfAchievementUnlocked (numberOfTerminalPlaced, "numberOfTerminalPlaced", entry.Value);
+				break;
+			case "numberOfTerminalBuffed":
+				CheckIfAchievementUnlocked (numberOfTerminalBuffed, "numberOfTerminalBuffed", entry.Value);
+				break;
+			case "numberOfTerminalDamaged":
+				CheckIfAchievementUnlocked (numberOfTerminalDamaged, "numberOfTerminalDamaged", entry.Value);
+				break;
+			case "numberOfZoneHealed":
+				CheckIfAchievementUnlocked (numberOfZoneHealed, "numberOfZoneHealed", entry.Value);
+				break;
+			}
+		}
+	}
+
+	private void CheckIfAchievementUnlocked(Text text,string name,int num){
+		int maxNum = AchievementsConstants.achievementMaxValue [name];
+		if (num >= maxNum) {
+			text.text = "DONE!";
+		} else {
+			text.text = num.ToString() + "/" + num.ToString ();
+		}
 	}
 
 	public void	UpdateCurrentMedalPosition (){

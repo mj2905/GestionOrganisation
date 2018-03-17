@@ -3,39 +3,50 @@ using System.Collections.Generic;
 
 public class Statistics{
 
-	private int numberOfTerminalPlaced = 0;
-	private int numberOfTerminalBuffed = 0;
-	private int numberOfTerminalDamaged = 0;
-	private int numberOfZoneHealed = 0;
+	private IDictionary<string,int> statisticsDict = new Dictionary<string,int>();
 
 	public Statistics (System.Object statistics){
+		InitStat ();
+
 		if (statistics != null) {
-			IDictionary<string,System.Object> statisticsDict = (IDictionary<string,System.Object>)statistics;
-			foreach (KeyValuePair<string, System.Object> entry in statisticsDict) {
+			IDictionary<string,System.Object> objectDict = (IDictionary<string,System.Object>)statistics;
+			foreach (KeyValuePair<string, System.Object> entry in objectDict) {
 				switch (entry.Key) {
 				case "numberOfTerminalPlaced":
-					numberOfTerminalPlaced = Int32.Parse (entry.Value.ToString ());
+					statisticsDict ["numberOfTerminalPlaced"] = Int32.Parse (entry.Value.ToString ());
 					break;
 				case "numberOfTerminalBuffed":
-					numberOfTerminalBuffed = Int32.Parse (entry.Value.ToString ());
+					statisticsDict ["numberOfTerminalBuffed"] = Int32.Parse (entry.Value.ToString ());
 					break;
 				case "numberOfTerminalDamaged":
-					numberOfTerminalDamaged = Int32.Parse (entry.Value.ToString ());
+					statisticsDict ["numberOfTerminalDamaged"] = Int32.Parse (entry.Value.ToString ());
 					break;
 				case "numberOfZoneHealed":
-					numberOfZoneHealed = Int32.Parse (entry.Value.ToString ());
+					statisticsDict ["numberOfZoneHealed"] = Int32.Parse (entry.Value.ToString ());
 					break;
 				}
 			}
 		}
 	}
 
+	public IDictionary<string,int> GetDict(){
+		return statisticsDict;
+	}
+
+	private void InitStat(){
+		statisticsDict ["numberOfTerminalPlaced"] = 0;
+		statisticsDict ["numberOfTerminalBuffed"] = 0;
+		statisticsDict ["numberOfTerminalDamaged"] = 0;
+		statisticsDict ["numberOfZoneHealed"] = 0;
+	}
+
+
 	public Statistics (int numberOfTerminalPlaced, int numberOfTerminalBuffed, int numberOfTerminalDamaged, int numberOfZoneHealed)
 	{
-		this.numberOfTerminalPlaced = numberOfTerminalPlaced;
-		this.numberOfTerminalBuffed = numberOfTerminalBuffed;
-		this.numberOfTerminalDamaged = numberOfTerminalDamaged;
-		this.numberOfZoneHealed = numberOfZoneHealed;
+		statisticsDict ["numberOfTerminalPlaced"] = numberOfTerminalPlaced;
+		statisticsDict ["numberOfTerminalBuffed"] = numberOfTerminalBuffed;
+		statisticsDict ["numberOfTerminalDamaged"] = numberOfTerminalDamaged;
+		statisticsDict ["numberOfZoneHealed"] = numberOfZoneHealed;
 	}
 }
 
