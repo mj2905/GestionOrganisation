@@ -63,6 +63,7 @@
      <Compile Include="Assets\Scripts\Entities\Effects\Effects.cs" />
      <Compile Include="Assets\Scripts\Entities\Effects\Medal.cs" />
      <Compile Include="Assets\Scripts\Entities\Game.cs" />
+     <Compile Include="Assets\Scripts\Entities\Statistics.cs" />
      <Compile Include="Assets\Scripts\Entities\Team.cs" />
      <Compile Include="Assets\Scripts\Entities\Terminal.cs" />
      <Compile Include="Assets\Scripts\Entities\User.cs" />
@@ -70,6 +71,7 @@
      <Compile Include="Assets\Scripts\FadingPlayer.cs" />
      <Compile Include="Assets\Scripts\InitialScene.cs" />
      <Compile Include="Assets\Scripts\LocationHandler.cs" />
+     <Compile Include="Assets\Scripts\LocationSmoother.cs" />
      <Compile Include="Assets\Scripts\Logout.cs" />
      <Compile Include="Assets\Scripts\Managers\FirebaseManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GameManager.cs" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class LocationHandler : LocationListener {
 
@@ -15,11 +16,10 @@ public class LocationHandler : LocationListener {
 
 	private MapCoordinate coords = MapCoordinate.ZERO();
 
-	private bool firstLocation = false;
 	private bool started = false;
 	private bool isAttackMode = false; 
 
-	public LocationListener[] listeners;
+	public LocationSmoother locationSmoother;
 	private Collider[] colliders = new Collider[10];
 
 	private bool locationWasEnabled = false; //by app, when someone clicks on attack button for example
@@ -28,7 +28,6 @@ public class LocationHandler : LocationListener {
 	private void BeginLocation() {
 		if (locationWasEnabled && !started) {
 			Input.location.Start (1.0f, 0);
-			firstLocation = true;
 			started = true;
 		}
 	}
@@ -82,9 +81,8 @@ public class LocationHandler : LocationListener {
 		StopLocation ();
 		locationWasEnabled = false;
 		PlayerPrefs.SetInt (USERPREF_ATTACK_KEY, DEFENSE);
-		foreach (LocationListener listener in listeners) {
-			listener.StopLocationHandling ();
-		}
+
+		locationSmoother.StopLocationHandling ();
 	}
 
 	private void HandleCoordinates() {
@@ -125,14 +123,8 @@ public class LocationHandler : LocationListener {
 			popup.SetText ("You have to be in a safe zone to switch to attack mode");
 
 		} else if (coords != oldCoords) {
-			foreach (LocationListener listener in listeners) {
-				listener.CoordinateUpdate (coords);
 
-				if (firstLocation) {
-					listener.FirstLocationSent ();
-				}
-			}
-			firstLocation = false;
+			locationSmoother.CoordinateUpdate (coords);
 
 			Input.location.Stop ();
 			Input.location.Start (1.0f, 1);
@@ -155,7 +147,7 @@ public class LocationHandler : LocationListener {
 		}
 	}
 
-	override public void CoordinateUpdate(MapCoordinate coords) {}
+	override public void CoordinateUpdate(XYCoordinate coords) {}
 
 	override public void StopLocationHandling() {
 		isAttackMode = false;
@@ -167,7 +159,7 @@ public class LocationHandler : LocationListener {
 }
 
 public abstract class LocationListener : MonoBehaviour {
-	abstract public void CoordinateUpdate(MapCoordinate coords);
+	abstract public void CoordinateUpdate(XYCoordinate coords);
 	abstract public void StopLocationHandling();
 	abstract public void FirstLocationSent();
 }
