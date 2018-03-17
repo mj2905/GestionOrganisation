@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 public static class CoordinateConstants {
 
@@ -46,6 +47,10 @@ public class XYCoordinate : Tuple<double, double> {
 	public XYCoordinate(double x, double y):base(x, y)
 	{}
 
+	private static double sq(double x) {
+		return x * x;
+	}
+
 	private double Item1() { return base.Item1; }
 	private double Item2() { return base.Item2; }
 
@@ -57,12 +62,20 @@ public class XYCoordinate : Tuple<double, double> {
 		return Item2();
 	}
 
+	public float distanceTo(XYCoordinate other) {
+		return Mathf.Sqrt((float)(sq(x () - other.x ()) + sq (y () - other.y ()))); 
+	}
+
 	public static XYCoordinate operator- (XYCoordinate a, XYCoordinate b) {
 		return new XYCoordinate (a.x () - b.x (), a.y () - b.y ());
 	}
 
 	public static XYCoordinate operator+ (XYCoordinate a, XYCoordinate b) {
 		return new XYCoordinate (a.x () + b.x (), a.y () + b.y ());
+	}
+
+	public static XYCoordinate operator* (double lambda, XYCoordinate a) {
+		return new XYCoordinate(lambda * a.x(), lambda * a.y());
 	}
 
 	public static XYCoordinate ZERO() {

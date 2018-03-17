@@ -154,7 +154,7 @@ public class UiManager : LocationListener
 		*/
 	}
 
-	override public void CoordinateUpdate(MapCoordinate coords) {}
+	override public void CoordinateUpdate(XYCoordinate coords) {}
 
 	override public void StopLocationHandling() {
 		isAttackMode = false;
