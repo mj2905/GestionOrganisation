@@ -89,7 +89,6 @@
      <Compile Include="Assets\Scripts\UIScripts\ReplaceCreditUpdateHandle.cs" />
      <Compile Include="Assets\Scripts\UIScripts\TextUpdate.cs" />
      <Compile Include="Assets\Scripts\UIScripts\UiManager.cs" />
-     <Compile Include="Assets\Scripts\UserLocationGet.cs" />
      <Compile Include="Assets\Scripts\WalkingPath.cs" />
      <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
      <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-auth-unity\maven-metadata.xml" />

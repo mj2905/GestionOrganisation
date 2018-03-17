@@ -28,8 +28,8 @@ public class PlayerController : LocationListener
     void Start()
     {
 		gameObject.GetComponent<Renderer>().enabled = false;
-		initialPosition = new Vector3(77.15f, 8, -50.0f);
-		transform.localPosition = new Vector3(12, 8, -7);
+		initialPosition = new Vector3(77.15f, 2, -50.0f);
+		transform.localPosition = new Vector3(12, 2, -7);
 
 		moveVertical = 0;
 		moveHorizontal = 0;
@@ -55,9 +55,8 @@ public class PlayerController : LocationListener
 			currentZone = other.gameObject;
 			print ("Entered: " + currentZone.name);
 
-			Color color = currentZone.GetComponent<MeshRenderer> ().material.color;
-			color.a = 0.1f;
-			currentZone.GetComponent<MeshRenderer> ().material.color = color;
+			currentZone.transform.parent.localPosition -= new Vector3 (0, 2, 0);
+			//currentZone.transform.localPosition += new Vector3 (0, 0, 7);
 		}
 	}
 
@@ -68,9 +67,8 @@ public class PlayerController : LocationListener
 		} else {
 			print ("Exited: " + currentZone.name);
 
-			Color color = currentZone.GetComponent<MeshRenderer> ().material.color;
-			color.a = 1;
-			currentZone.GetComponent<MeshRenderer> ().material.color = color;
+			//currentZone.transform.localPosition -= new Vector3 (0, 0, 7);
+			currentZone.transform.parent.localPosition += new Vector3 (0, 2, 0);
 
 			currentZone = null;
 		}
