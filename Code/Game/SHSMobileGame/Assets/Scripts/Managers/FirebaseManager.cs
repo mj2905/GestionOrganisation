@@ -71,6 +71,7 @@ public class FirebaseManager
 			object xp = snapshot.Child("xp").Value;
 			object level = snapshot.Child("level").Value;
 			Effects effects;
+			Statistics statistics;
 
 			if (snapshot.HasChild ("effects")) {
 				effects = new Effects (snapshot.Child ("effects").Value);
@@ -78,8 +79,14 @@ public class FirebaseManager
 				effects = new Effects (null);
 			}
 
+			if (snapshot.HasChild ("stat")) {
+				statistics = new Statistics (snapshot.Child ("stat").Value);
+			} else {
+				statistics = new Statistics (null);
+			}
+
 			if (credit != null && xp != null && level != null) {
-				gameManager.UpdateUserStat (xp.ToString (), credit.ToString (), level.ToString (), effects);
+				gameManager.UpdateUserStat (xp.ToString (), credit.ToString (), level.ToString (), effects,statistics);
 			}
 		}
 	}

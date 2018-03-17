@@ -8,10 +8,9 @@ using UnityEngine.UI;
 public class UiManager : LocationListener
 {
 	private Effects previousEffects = new Effects();
-	private Canvas canvas;
 	private List<Tuple<string, Medal>> medalList = new List<Tuple<string, Medal>>();
 
-	public Transform initialPosition;
+	public GameObject initialPosition;
 	public Medal MedalPrefab;
 
 	public Text creditText;
@@ -26,6 +25,11 @@ public class UiManager : LocationListener
 	public TextUpdate negativeUpdate;
 	public GameObject creditUpdateHandle;
 	public GameObject scoreUpdateHandle;
+
+	public Text numberOfTerminalPlaced;
+	public Text numberOfTerminalBuffed;
+	public Text numberOfTerminalDamaged;
+	public Text numberOfZoneHealed;
 
 	private PopupScript popup;
 
@@ -46,10 +50,9 @@ public class UiManager : LocationListener
 		popup = clone.GetComponent<PopupScript>();		
 		popup.transform.SetParent (this.transform.parent,false);
 		popup.transform.SetAsLastSibling ();
-		canvas = GetComponentInParent<Canvas> ();
 	}
 
-	public void UpdateUserStat(string xp, string credit,string level,Effects effects){
+	public void UpdateUserStat(string xp, string credit,string level,Effects effects,Statistics statistics){
 
 		int creditAsInt = Int32.Parse (credit);
 		int creditDiff = creditAsInt - previousCredit;
@@ -70,6 +73,8 @@ public class UiManager : LocationListener
 			textUpdate.setText ('+'+creditDiff.ToString ());
 		}
 
+		UpdateAchievement (statistics);
+
 		Effects newEffects = effects.GetNewEffects (previousEffects);
 		Effects modifiedEffects = effects.GetModifiedEffects (previousEffects);
 		Effects deletedEffects = effects.GetDeletedEffects (previousEffects);
@@ -81,6 +86,34 @@ public class UiManager : LocationListener
 		UpdateCurrentMedalPosition ();
 
 		previousEffects = effects;
+	}
+
+	private void UpdateAchievement (Statistics statistics){
+		foreach (KeyValuePair<string, int> entry in statistics.GetDict()) {
+			switch (entry.Key) {
+			case "numberOfTerminalPlaced":
+				CheckIfAchievementUnlocked (numberOfTerminalPlaced, "numberOfTerminalPlaced", entry.Value);
+				break;
+			case "numberOfTerminalBuffed":
+				CheckIfAchievementUnlocked (numberOfTerminalBuffed, "numberOfTerminalBuffed", entry.Value);
+				break;
+			case "numberOfTerminalDamaged":
+				CheckIfAchievementUnlocked (numberOfTerminalDamaged, "numberOfTerminalDamaged", entry.Value);
+				break;
+			case "numberOfZoneHealed":
+				CheckIfAchievementUnlocked (numberOfZoneHealed, "numberOfZoneHealed", entry.Value);
+				break;
+			}
+		}
+	}
+
+	private void CheckIfAchievementUnlocked(Text text,string name,int num){
+		int maxNum = AchievementsConstants.achievementMaxValue [name];
+		if (num >= maxNum) {
+			text.text = "DONE!";
+		} else {
+			text.text = num.ToString() + "/" + maxNum.ToString ();
+		}
 	}
 
 	public void	UpdateCurrentMedalPosition (){
@@ -103,9 +136,9 @@ public class UiManager : LocationListener
 	public void AddNewEffects(Effects effects){
 		for (int i = 0; i < effects.medals.Count; i++) {
 			Medal m = (Medal)Instantiate (MedalPrefab);
-			m.SetInitialPosition (initialPosition.position);
+			m.SetInitialPosition (initialPosition.transform.position);
 			m.SetPosition(medalList.Count);
-			m.transform.SetParent (canvas.transform);
+			m.transform.SetParent (initialPosition.gameObject.transform);
 			m.Copy (effects.medals[i]);
 			medalList.Add (new Tuple<string,Medal>(m.GetName(),m));
 		}
@@ -161,6 +194,7 @@ public class UiManager : LocationListener
 
 	public void ToggleAchievementMenu(){
 		showAchievementMenu = !showAchievementMenu;
-		achievementMenu.enabled = showAchievementMenu;
+		Debug.Log (achievementMenu.enabled);
+		achievementMenu.gameObject.SetActive(showAchievementMenu);
 	}
 }
