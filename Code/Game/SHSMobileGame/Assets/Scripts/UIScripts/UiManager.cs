@@ -8,10 +8,9 @@ using UnityEngine.UI;
 public class UiManager : LocationListener
 {
 	private Effects previousEffects = new Effects();
-	private Canvas canvas;
 	private List<Tuple<string, Medal>> medalList = new List<Tuple<string, Medal>>();
 
-	public Transform initialPosition;
+	public GameObject initialPosition;
 	public Medal MedalPrefab;
 
 	public Text creditText;
@@ -51,7 +50,6 @@ public class UiManager : LocationListener
 		popup = clone.GetComponent<PopupScript>();		
 		popup.transform.SetParent (this.transform.parent,false);
 		popup.transform.SetAsLastSibling ();
-		canvas = GetComponentInParent<Canvas> ();
 	}
 
 	public void UpdateUserStat(string xp, string credit,string level,Effects effects,Statistics statistics){
@@ -114,7 +112,7 @@ public class UiManager : LocationListener
 		if (num >= maxNum) {
 			text.text = "DONE!";
 		} else {
-			text.text = num.ToString() + "/" + num.ToString ();
+			text.text = num.ToString() + "/" + maxNum.ToString ();
 		}
 	}
 
@@ -138,9 +136,9 @@ public class UiManager : LocationListener
 	public void AddNewEffects(Effects effects){
 		for (int i = 0; i < effects.medals.Count; i++) {
 			Medal m = (Medal)Instantiate (MedalPrefab);
-			m.SetInitialPosition (initialPosition.position);
+			m.SetInitialPosition (initialPosition.transform.position);
 			m.SetPosition(medalList.Count);
-			m.transform.SetParent (canvas.transform);
+			m.transform.SetParent (initialPosition.gameObject.transform);
 			m.Copy (effects.medals[i]);
 			medalList.Add (new Tuple<string,Medal>(m.GetName(),m));
 		}
@@ -196,6 +194,7 @@ public class UiManager : LocationListener
 
 	public void ToggleAchievementMenu(){
 		showAchievementMenu = !showAchievementMenu;
-		achievementMenu.enabled = showAchievementMenu;
+		Debug.Log (achievementMenu.enabled);
+		achievementMenu.gameObject.SetActive(showAchievementMenu);
 	}
 }
