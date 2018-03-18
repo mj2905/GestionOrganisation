@@ -29,7 +29,7 @@ public class PlayerController : LocationListener
     {
 		gameObject.GetComponent<Renderer>().enabled = false;
 		initialPosition = new Vector3(77.15f, 2, -50.0f);
-		transform.localPosition = new Vector3(12, 2, -7);
+		transform.localPosition = initialPosition;
 
 		moveVertical = 0;
 		moveHorizontal = 0;
@@ -43,7 +43,7 @@ public class PlayerController : LocationListener
 
 	void FixedUpdate()
     {
-		//transform.localPosition = initialPosition + GetPosition();
+		transform.localPosition = initialPosition + GetPosition();
     }
 
 	void OnTriggerEnter(Collider other) 
@@ -55,8 +55,14 @@ public class PlayerController : LocationListener
 			currentZone = other.gameObject;
 			print ("Entered: " + currentZone.name);
 
-			currentZone.transform.parent.localPosition -= new Vector3 (0, 2, 0);
-			//currentZone.transform.localPosition += new Vector3 (0, 0, 7);
+			Transform p = currentZone.transform;
+
+			while (!p.parent.name.EndsWith ("_building")) {
+				p = p.parent;
+			}
+
+			currentZone.transform.position += new Vector3 (0, 1, 0);
+			p.parent.position -= new Vector3 (0, 1, 0);
 		}
 	}
 
@@ -65,10 +71,16 @@ public class PlayerController : LocationListener
 		if (other is CapsuleCollider) {
 			print ("Safe zone exited: " + other.gameObject.name);
 		} else {
-			print ("Exited: " + currentZone.name);
+			print ("Exited: " + other.gameObject.name);
 
-			//currentZone.transform.localPosition -= new Vector3 (0, 0, 7);
-			currentZone.transform.parent.localPosition += new Vector3 (0, 2, 0);
+			Transform p = other.gameObject.transform;
+
+			while (!p.parent.name.EndsWith ("_building")) {
+				p = p.parent;
+			}
+
+			p.parent.position += new Vector3 (0, 1, 0);
+			currentZone.transform.position -= new Vector3 (0, 1, 0);
 
 			currentZone = null;
 		}

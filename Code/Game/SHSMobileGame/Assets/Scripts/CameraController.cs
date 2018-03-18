@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class CameraController : LocationListener {
     
 	public GameObject player;
+	public GameObject fadingplayer;
 	public InteractionManager interactionManager;
 	public Camera camera;
 	public GameManager gameManager;
@@ -40,7 +41,7 @@ public class CameraController : LocationListener {
 	public Button changeModeButton;
 
 
-	enum state {Idle,Clicking,Dragging,Focusing,Focused,Unfocusing,FixedOnPlayer,MovingToPlayer,MovingToInitialPos};
+	enum state {Idle,Clicking,Dragging,Focusing,Focused,Unfocusing,FixedOnPlayer, FixedOnFadingPlayer,MovingToPlayer, MovingToFadingPlayer,MovingToInitialPos};
 	private state currentState = state.Idle;
 
 	private float timer = 0f;
@@ -63,6 +64,9 @@ public class CameraController : LocationListener {
 		case state.FixedOnPlayer:
 			transform.position = player.transform.position + offset;
 			return;
+		case state.FixedOnFadingPlayer:
+			transform.position = fadingplayer.transform.position + offset;
+			return;
 		case state.MovingToInitialPos:
 			transform.rotation = Quaternion.RotateTowards (transform.rotation, this.rotationBeforeFocus, SPEED_ZOOM);
 			transform.position = Vector3.MoveTowards (transform.position, initialPosition, SPEED_SWITCH_MODE);
@@ -70,11 +74,19 @@ public class CameraController : LocationListener {
 				currentState = state.Idle;
 			}
 			break;
+		
 		case state.MovingToPlayer:
 			transform.rotation = Quaternion.RotateTowards (transform.rotation, this.rotationBeforeFocus, SPEED_ZOOM);
 			transform.position = Vector3.MoveTowards (transform.position, player.transform.position + offset, SPEED_SWITCH_MODE);
 			if (transform.position == player.transform.position + offset) {
 				currentState = state.FixedOnPlayer;
+			}
+			break;
+		case state.MovingToFadingPlayer:
+			transform.rotation = Quaternion.RotateTowards (transform.rotation, this.rotationBeforeFocus, SPEED_ZOOM);
+			transform.position = Vector3.MoveTowards (transform.position, fadingplayer.transform.position + offset, SPEED_SWITCH_MODE);
+			if (transform.position == fadingplayer.transform.position + offset) {
+				currentState = state.FixedOnFadingPlayer;
 			}
 			break;
 		case state.Idle:
@@ -225,6 +237,20 @@ public class CameraController : LocationListener {
 		List<RaycastResult> results = new List<RaycastResult>();
 		EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
 		return results.Count > 0;
+	}
+
+	public void GoToFadingPlayer() {
+		if (!isAttackMode) {
+			currentState = state.MovingToFadingPlayer;
+			changeModeButton.interactable = false;
+		}
+	}
+
+	public void LeaveFadingPlayer() {
+		if (!isAttackMode) {
+			currentState = state.MovingToInitialPos;
+			changeModeButton.interactable = true;
+		}
 	}
 
 	override public void CoordinateUpdate(XYCoordinate coords) {}
