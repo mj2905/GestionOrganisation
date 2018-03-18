@@ -29,13 +29,13 @@ public class EffectsConstants
 			return medal404;
 		case "505":
 			return medal505;
-		case "terminalPlaced":
+		case "terminalPlacedMedal":
 			return terminalPlacedMedal;
-		case "terminalDamaged":
+		case "terminalDamagedMedal":
 			return terminalDamagedMedal;
-		case "terminalBuffed":
+		case "terminalBuffedMedal":
 			return terminalBuffedMedal;
-		case "zoneHealed":
+		case "zoneHealedMedal":
 			return zoneHealedMedal;
 		}
 
