@@ -559,9 +559,18 @@ public class FirebaseManager
 				long number = (long)numberOfTerminal;
 				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalDamaged").Value = number + 1;
 
-				object dataAchivement = mutableData.Child (FirebaseManager.user.UserId + "/effects/terminalBuffedAchievement").Value;
-				object dataAchivement = mutableData.Child (FirebaseManager.user.UserId + "/effects/terminalBuffedAchievement").Value;
-
+				if(number + 1 >= EffectObtentionConstants.achievementMaxValue["numberOfTerminalDamaged"]){
+					object dataAchivement = mutableData.Child (FirebaseManager.user.UserId + "/effects/terminalDamagedAchievement").Value;
+					if(dataAchivement == null){
+						dataAchivement = EffectsConstants.terminalDamagedAchievement.ToMap();
+					}
+					if(number % EffectObtentionConstants.medalNumberObtention["numberOfTerminalBuffed"] == 0){
+						object dataMedal = mutableData.Child (FirebaseManager.user.UserId + "/effects/terminalDamagedMedal").Value;
+						if(dataMedal == null){
+							dataMedal = EffectsConstants.terminalDamagedMedal.ToMap();
+						}
+					}
+				}
 			}
 			return TransactionResult.Success(mutableData);
 		};
