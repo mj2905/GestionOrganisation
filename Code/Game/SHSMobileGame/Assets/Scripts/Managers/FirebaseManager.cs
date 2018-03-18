@@ -311,14 +311,17 @@ public class FirebaseManager
 		return mutableData => {
 
 			object level_obtained = mutableData.Child("level").Value;
+			object health_obtained = mutableData.Child("health").Value;
 
-			if(level_obtained != null) {
+			if(level_obtained != null && health_obtained != null) {
 
 				long level_value = (long)level_obtained;
+				long health_value = (long)health_obtained;
 
-				if(level_value == level && level < QuantitiesConstants.ZONE_LEVEL_MAX) {
+				if(health_value > 0 && level_value == level && level < QuantitiesConstants.ZONE_LEVEL_MAX) {
 
 					mutableData.Child("level").Value = level+1;
+					mutableData.Child("health").Value = QuantitiesConstants.ZONE_MAX_HEALTH_VALUES[level+1];
 
 					return TransactionResult.Success(mutableData);
 				}
@@ -333,14 +336,17 @@ public class FirebaseManager
 		return mutableData => {
 
 			object level_obtained = mutableData.Child("level").Value;
+			object health_obtained = mutableData.Child("hp").Value;
 
-			if(level_obtained != null) {
+			if(level_obtained != null && health_obtained != null) {
 
 				long level_value = (long)level_obtained;
+				long health_value = (long)health_obtained;
 
-				if(level_value == level && level < QuantitiesConstants.TERMINAL_LEVEL_MAX) {
+				if(health_value > 0 && level_value == level && level < QuantitiesConstants.TERMINAL_LEVEL_MAX) {
 
 					mutableData.Child("level").Value = level+1;
+					mutableData.Child("hp").Value = QuantitiesConstants.TERMINAL_MAX_HEALTH_VALUES[level+1];
 
 					return TransactionResult.Success(mutableData);
 				}
