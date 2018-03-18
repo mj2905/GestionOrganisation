@@ -292,8 +292,12 @@ public class FirebaseManager
 
 			if(health_obtained != null && level_obtained != null) {
 
+
 				long health_value = (long)health_obtained;
-				long max_health_value = (long)QuantitiesConstants.ZONE_MAX_HEALTH_VALUES[(int)level_obtained];
+				long level_value = (long)level_obtained;
+
+				int max_health_value = QuantitiesConstants.ZONE_MAX_HEALTH_VALUES[level_value];
+				Debug.Log(max_health_value);
 
 				if(health_value < max_health_value) {
 					mutableData.Child("health").Value = Math.Min(max_health_value, health_value + amount);
