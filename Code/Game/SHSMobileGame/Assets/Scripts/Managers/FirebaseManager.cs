@@ -71,6 +71,7 @@ public class FirebaseManager
 			object xp = snapshot.Child("xp").Value;
 			object level = snapshot.Child("level").Value;
 			Effects effects;
+			Statistics statistics;
 
 			if (snapshot.HasChild ("effects")) {
 				effects = new Effects (snapshot.Child ("effects").Value);
@@ -78,8 +79,14 @@ public class FirebaseManager
 				effects = new Effects (null);
 			}
 
+			if (snapshot.HasChild ("stat")) {
+				statistics = new Statistics (snapshot.Child ("stat").Value);
+			} else {
+				statistics = new Statistics (null);
+			}
+
 			if (credit != null && xp != null && level != null) {
-				gameManager.UpdateUserStat (xp.ToString (), credit.ToString (), level.ToString (), effects);
+				gameManager.UpdateUserStat (xp.ToString (), credit.ToString (), level.ToString (), effects,statistics);
 			}
 		}
 	}
@@ -179,6 +186,19 @@ public class FirebaseManager
 		reference.Child("Users").Child(userId).SetRawJsonValueAsync(json);
 	}
 
+	private static Func<MutableData, TransactionResult> AddMedalTransaction(Medal m) 
+	{
+		return mutableData => {
+				mutableData.Child (FirebaseManager.user.UserId + "/queue/").Value = m.ToMap();
+				return TransactionResult.Success(mutableData);
+		};
+	}
+
+	public static void AddMedal(Medal medal){
+		reference.Child ("Users/").RunTransaction (AddMedalTransaction (medal)).ContinueWith (task => {
+		});
+	}
+
 	public static Func<MutableData, TransactionResult> AddTerminalTransaction(Terminal t) 
 	{
 		return mutableData => {
@@ -267,14 +287,41 @@ public class FirebaseManager
 	{
 		return mutableData => {
 
-			object health_obtained = mutableData.Value;
+			object health_obtained = mutableData.Child ("health").Value;
+			object max_health_obtained = mutableData.Child ("maxhealth").Value;
 
-			if(health_obtained != null) {
+			if(health_obtained != null && max_health_obtained != null) {
 
 				long health_value = (long)health_obtained;
+				long max_health_value = (long)max_health_obtained;
 
-				if(health_value < QuantitiesConstants.HP_MAX) {
-					mutableData.Value = Math.Min(QuantitiesConstants.HP_MAX, health_value + amount);
+				if(health_value < max_health_value) {
+					mutableData.Child("health").Value = Math.Min(max_health_value, health_value + amount);
+
+					return TransactionResult.Success(mutableData);
+				}
+			}
+
+			return TransactionResult.Abort();
+		};
+	}
+
+	private static Func<MutableData, TransactionResult> ImproveZoneTransaction(int oldMaxHealth, int newmaxhealth) 
+	{
+		return mutableData => {
+
+			object max_health_obtained = mutableData.Value;
+			Debug.Log("11:" + max_health_obtained.ToString());
+
+			if(max_health_obtained != null) {
+
+				Debug.Log(max_health_obtained);
+				long max_health_value = (long)max_health_obtained;
+				Debug.Log(max_health_value);
+
+				if(max_health_value == oldMaxHealth) {
+
+					mutableData.Value = newmaxhealth;
 
 					return TransactionResult.Success(mutableData);
 				}
@@ -288,22 +335,26 @@ public class FirebaseManager
 		reference.Child ("Game").RunTransaction (AddTerminalTransaction (terminal)).ContinueWith(task => {
 			if (task.Exception != null) {
 				messagePopup.SetText("Not enough tokens for the team");
+			} else{
+				AddTerminalStat();
 			}
 		});
 	}
 
 	public static void HurtTerminal(string terminalID, long amount, PopupScript messagePopup){
-		Debug.Log("Credit transac begin");
+
 		reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.TERMINAL_SMASH_COST)).ContinueWith (task => {
-			Debug.Log("Credits transac finished");
+
 			if (task.Exception == null) {
-				Debug.Log("HP transac begin");
+
 				reference.Child ("Game/Terminals/").Child(terminalID).Child("hp").RunTransaction (HurtTerminalTransaction (amount)).ContinueWith(innerTask => {
-					Debug.Log("HP transac finished");
+
 					if (innerTask.Exception != null) {
 						messagePopup.SetText("This terminal is already dead");
-						Debug.Log("terminal already dead");
+
 						reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.TERMINAL_SMASH_COST));
+					}else{
+						AddTerminalDamagedStat();
 					}
 				});
 			} else {
@@ -321,6 +372,8 @@ public class FirebaseManager
 					if (innerTask.Exception != null) {
 						reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.TERMINAL_BUFF_COST));
 						messagePopup.SetText("This terminal is already maximally buffed");
+					}else{
+						AddTerminalBuffedStat();
 					}
 				});
 			} else {
@@ -334,18 +387,175 @@ public class FirebaseManager
 		reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.ZONE_HEAL_COST)).ContinueWith (task => {
 
 			if (task.Exception == null) {
-				reference.Child ("Game/Zones/").Child (zoneID).Child ("health").RunTransaction (HealZoneTransaction (amount)).ContinueWith (innerTask => {
+				reference.Child ("Game/Zones/").Child (zoneID).RunTransaction (HealZoneTransaction (amount)).ContinueWith (innerTask => {
 					
 					if (innerTask.Exception != null) {
 						reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.ZONE_HEAL_COST));
 						messagePopup.SetText("This zone is already at maximum health");
+					} else{
+						AddZoneHealStat();
 					}
-
 				});
 			} else {
 				Debug.Log("Could not deduct enough credit to heal the zone");
 				messagePopup.SetText("You don't have enough credits to heal the zone");
 			}
+		});
+	}
+
+	public static void ImproveZone (string zoneID, int oldMaxHealth, PopupScript messagePopup)
+	{
+
+		int ind = Array.IndexOf (QuantitiesConstants.ZONE_MAX_HEALTH_VALUES, oldMaxHealth);
+		if (ind >= 0 && ind + 1 < QuantitiesConstants.ZONE_MAX_HEALTH_VALUES.Length) {
+			reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.ZONE_MAX_HEALTH_COST [ind + 1])).ContinueWith (task3 => {
+				if (task3.Exception == null) {
+					reference.Child ("Game/Zones/").Child (zoneID).Child ("maxhealth").RunTransaction (ImproveZoneTransaction (QuantitiesConstants.ZONE_MAX_HEALTH_VALUES [ind], QuantitiesConstants.ZONE_MAX_HEALTH_VALUES [ind + 1])).ContinueWith (innerTask => {
+						if (innerTask.Exception != null) {
+							messagePopup.SetText ("This zone has been improved by someone else");
+							reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.ZONE_MAX_HEALTH_COST [ind + 1]));
+						}
+					});
+				} else {
+					Debug.Log ("Could not deduct enough credit to smash the terminal");
+					messagePopup.SetText ("You don't have enough credits to improve the zone");
+				}
+			});
+		} else {
+			messagePopup.SetText ("Maximal level reached for that zone");
+		}
+	}
+
+	/*
+	public static void ImproveZone(string zoneID, PopupScript messagePopup){
+		reference.Child ("Game/Zones/").Child (zoneID).Child ("maxhealth").GetValueAsync ().ContinueWith ( task => {
+			if (task.IsCompleted) {
+				DataSnapshot snapshot = task.Result;
+				if(snapshot != null){
+					int maxhealth = Int32.Parse(snapshot.Value.ToString());
+					int ind = Array.IndexOf(QuantitiesConstants.ZONE_MAX_HEALTH_VALUES, maxhealth);
+					if(ind >= 0 && ind + 1 < QuantitiesConstants.ZONE_MAX_HEALTH_VALUES.Length) {
+						reference.Child ("Users/").Child (user.UserId).Child ("credits").GetValueAsync ().ContinueWith( task2 => {
+							if (task2.IsCompleted) {
+								DataSnapshot snapshot2 = task2.Result;
+								if(snapshot2 != null){
+									long credit_value = Int32.Parse(snapshot2.Value.ToString()) - QuantitiesConstants.ZONE_MAX_HEALTH_COST[ind+1];
+									if(User.MIN_CREDITS <= credit_value) {
+										reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.ZONE_MAX_HEALTH_COST[ind+1])).ContinueWith (task3 => {
+											if (task3.Exception == null) {
+												reference.Child ("Game/Zones/").Child(zoneID).Child("maxhealth").RunTransaction (ImproveZoneTransaction(QuantitiesConstants.ZONE_MAX_HEALTH_VALUES[ind], QuantitiesConstants.ZONE_MAX_HEALTH_VALUES[ind+1])).ContinueWith(innerTask => {
+													if (innerTask.Exception != null) {
+														messagePopup.SetText("This zone has been improved by someone else");
+														reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.ZONE_MAX_HEALTH_COST[ind+1]));
+													}
+												});
+											} else {
+												Debug.Log("Could not deduct enough credit to smash the terminal");
+												messagePopup.SetText("You don't have enough credits to improve the zone");
+											}
+										});
+									} else {
+										Debug.Log("Could not deduct enough credit to smash the terminal");
+										messagePopup.SetText("You don't have enough credits to improve the zone");
+									}
+								}
+							}
+						});
+					} else {
+						messagePopup.SetText("Internal error");
+					}
+				}
+			}
+		});
+	}
+	*/
+
+
+	private static Func<MutableData, TransactionResult> AddTerminalStatTransaction() 
+	{
+		return mutableData => {
+
+			object numberOfTerminal = mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalPlaced").Value;
+
+			if(numberOfTerminal == null){
+				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalPlaced").Value = 1;
+			} else{
+				long number = (long)numberOfTerminal;
+				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalPlaced").Value = number + 1;
+
+			}
+			return TransactionResult.Success(mutableData);
+		};
+	}
+
+	public static void AddTerminalStat(){
+		reference.Child ("Users/").RunTransaction (AddTerminalStatTransaction ()).ContinueWith (task => {
+		});
+	}
+
+
+	private static Func<MutableData, TransactionResult> AddBuffedTerminalsStatTransaction() 
+	{
+		return mutableData => {
+
+			object numberOfTerminal = mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalBuffed").Value;
+
+			if(numberOfTerminal == null){
+				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalBuffed").Value = 1;
+			} else{
+				long number = (long)numberOfTerminal;
+				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalBuffed").Value = number + 1;
+
+			}
+			return TransactionResult.Success(mutableData);
+		};
+	}
+
+	public static void AddTerminalBuffedStat(){
+		reference.Child ("Users/").RunTransaction (AddBuffedTerminalsStatTransaction ()).ContinueWith (task => {
+		});
+	}
+
+
+	private static Func<MutableData, TransactionResult> AddDamagedTerminalsStatTransaction() 
+	{
+		return mutableData => {
+
+			object numberOfTerminal = mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalDamaged").Value;
+
+			if(numberOfTerminal == null){
+				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalDamaged").Value = 1;
+			} else{
+				long number = (long)numberOfTerminal;
+				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfTerminalDamaged").Value = number + 1;
+			}
+			return TransactionResult.Success(mutableData);
+		};
+	}
+
+	public static void AddTerminalDamagedStat(){
+		reference.Child ("Users/").RunTransaction (AddDamagedTerminalsStatTransaction ()).ContinueWith (task => {
+		});
+	}
+
+	private static Func<MutableData, TransactionResult> AddZoneHealStatTransaction() 
+	{
+		return mutableData => {
+
+			object numberOfTerminal = mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfZoneHeal").Value;
+
+			if(numberOfTerminal == null){
+				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfZoneHeal").Value = 1;
+			} else{
+				long number = (long)numberOfTerminal;
+				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfZoneHeal").Value = number + 1;
+			}
+			return TransactionResult.Success(mutableData);
+		};
+	}
+
+	public static void AddZoneHealStat(){
+		reference.Child ("Users/").RunTransaction (AddDamagedTerminalsStatTransaction ()).ContinueWith (task => {
 		});
 	}
 }

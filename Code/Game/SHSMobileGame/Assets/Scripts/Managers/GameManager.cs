@@ -100,8 +100,8 @@ public class GameManager : LocationListener {
 		}
 	}
 
-	public void UpdateUserStat(string xp, string credit,string level,Effects effects){
-		uiManager.UpdateUserStat (xp, credit,level,effects);
+	public void UpdateUserStat(string xp, string credit,string level,Effects effects,Statistics statistics){
+		uiManager.UpdateUserStat (xp, credit,level,effects,statistics);
 	}
 
 	public void AddTerminal(string zoneId,float x, float z){
@@ -124,6 +124,7 @@ public class GameManager : LocationListener {
 
 	public void AddTerminalAtPlayerPosition(){
 		this.AddTerminal (player.GetCurrentZoneName (), player.GetMarkerPosition ().x, player.GetMarkerPosition ().y);
+		AddMedal (EffectsConstants.fearlessMedal);
 	}
 
 	public bool IsPlayerInsideZone(){
@@ -131,7 +132,7 @@ public class GameManager : LocationListener {
 	}
 		
 
-	override public void CoordinateUpdate(MapCoordinate coords) {}
+	override public void CoordinateUpdate(XYCoordinate coords) {}
 
 	override public void StopLocationHandling() {
 		modeButton.GetComponentInChildren<Text>().text = "Defense mode";
@@ -139,5 +140,13 @@ public class GameManager : LocationListener {
 
 	override public void FirstLocationSent() {
 		modeButton.GetComponentInChildren<Text>().text = "Attack mode";
+	}
+
+	public void AddMedal(Medal m){
+		FirebaseManager.AddMedal (m);
+	}
+
+	public void addTransaction(){
+		FirebaseManager.AddTerminalDamagedStat ();
 	}
 }

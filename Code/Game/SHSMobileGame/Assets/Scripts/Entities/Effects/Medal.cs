@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class Medal : MonoBehaviour{
 
@@ -101,6 +102,12 @@ public class Medal : MonoBehaviour{
 		unchecked {
 			return (name != null ? name.GetHashCode () : 0);
 		}
+	}
+
+	public Dictionary<string, object> ToMap() {
+		Dictionary<string, object> fields = new Dictionary<string, object>();
+		fields.Add (name, 0);
+		return fields;
 	}
 	
 }

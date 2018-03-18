@@ -8,6 +8,7 @@ public class EffectsConstants
 	public static Medal medal404 = new Medal("404",2,15);	
 	public static Medal medal505 = new Medal("505",4,5);	
 
+	public static Medal fearlessMedal = new Medal("Fearless",3,5);	
 
 	public static Medal GetMedalByName(string name){
 		switch (name) {
@@ -19,6 +20,8 @@ public class EffectsConstants
 			return medal404;
 		case "505":
 			return medal505;
+		case "Fearless":
+			return fearlessMedal;
 		}
 
 		return null;

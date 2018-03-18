@@ -43,7 +43,7 @@ public class PlayerController : LocationListener
 
 	void FixedUpdate()
     {
-		transform.localPosition = initialPosition + GetPosition();
+		//transform.localPosition = initialPosition + GetPosition();
     }
 
 	void OnTriggerEnter(Collider other) 
@@ -54,6 +54,9 @@ public class PlayerController : LocationListener
 		else {
 			currentZone = other.gameObject;
 			print ("Entered: " + currentZone.name);
+
+			currentZone.transform.parent.localPosition -= new Vector3 (0, 2, 0);
+			//currentZone.transform.localPosition += new Vector3 (0, 0, 7);
 		}
 	}
 
@@ -62,8 +65,12 @@ public class PlayerController : LocationListener
 		if (other is CapsuleCollider) {
 			print ("Safe zone exited: " + other.gameObject.name);
 		} else {
+			print ("Exited: " + currentZone.name);
+
+			//currentZone.transform.localPosition -= new Vector3 (0, 0, 7);
+			currentZone.transform.parent.localPosition += new Vector3 (0, 2, 0);
+
 			currentZone = null;
-			print ("Exited: " + other.gameObject.name);
 		}
 	}
 
@@ -83,11 +90,11 @@ public class PlayerController : LocationListener
 		return new Vector2 (gameObject.transform.localPosition.x, gameObject.transform.localPosition.z);
 	}
 
-	override public void CoordinateUpdate(MapCoordinate coords) {
+	override public void CoordinateUpdate(XYCoordinate coords) {
 
 		double lastMovH = moveHorizontal, lastMovV = moveVertical;
 
-		XYCoordinate posXY = CoordinateConstants.EPFL_CENTER_DIF + coords.toXYMercator ();
+		XYCoordinate posXY = CoordinateConstants.EPFL_CENTER_DIF + coords;
 
 		moveHorizontal = (posXY.x() - CoordinateConstants.EPFL_TOP_LEFT_XY.x())*CoordinateConstants.H_FACTOR/CoordinateConstants.EPFL_HORIZONTAL_DISTANCE;
 		moveVertical = (posXY.y() - CoordinateConstants.EPFL_TOP_LEFT_XY.y())*CoordinateConstants.V_FACTOR/CoordinateConstants.EPFL_VERTICAL_DISTANCE;

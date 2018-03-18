@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 public class LocationHandler : LocationListener {
 
@@ -10,14 +12,14 @@ public class LocationHandler : LocationListener {
 
 	public PopupScript popup;
 	public FadingPlayer fadingPlayer;
+	public Text locationTextTmp;
 
 	private MapCoordinate coords = MapCoordinate.ZERO();
 
-	private bool firstLocation = false;
 	private bool started = false;
 	private bool isAttackMode = false; 
 
-	public LocationListener[] listeners;
+	public LocationSmoother locationSmoother;
 	private Collider[] colliders = new Collider[10];
 
 	private bool locationWasEnabled = false; //by app, when someone clicks on attack button for example
@@ -26,7 +28,6 @@ public class LocationHandler : LocationListener {
 	private void BeginLocation() {
 		if (locationWasEnabled && !started) {
 			Input.location.Start (1.0f, 0);
-			firstLocation = true;
 			started = true;
 		}
 	}
@@ -80,9 +81,8 @@ public class LocationHandler : LocationListener {
 		StopLocation ();
 		locationWasEnabled = false;
 		PlayerPrefs.SetInt (USERPREF_ATTACK_KEY, DEFENSE);
-		foreach (LocationListener listener in listeners) {
-			listener.StopLocationHandling ();
-		}
+
+		locationSmoother.StopLocationHandling ();
 	}
 
 	private void HandleCoordinates() {
@@ -92,6 +92,8 @@ public class LocationHandler : LocationListener {
 			CoordinateConstants.WALKING_PATH.next() :
 			new MapCoordinate (Input.location.lastData.longitude, Input.location.lastData.latitude);
 
+		locationTextTmp.text = string.Format("lon:{0} / lat:{1}", coords.Item1, coords.Item2);
+
 		fadingPlayer.SetCoordsInvisible (coords); //used to get its 3d vector, can be used here because only choices after are either a location deactivated => reset, or put again to same position.
 		Vector3 pos = fadingPlayer.transform.position;
 		//print (pos.x + " " + pos.y + " " + pos.z);
@@ -99,7 +101,7 @@ public class LocationHandler : LocationListener {
 		int colls = Physics.OverlapBoxNonAlloc(pos, new Vector3(1,1,1), colliders);
 		//print (colls);
 
-		bool isInSafeZone = false;
+		bool isInSafeZone = true;
 		for (int i = 0; i < colls; ++i) {
 			//print (colliders [i].gameObject.name);
 			if (colliders[i] is CapsuleCollider) {
@@ -111,24 +113,22 @@ public class LocationHandler : LocationListener {
 		if (CoordinateConstants.DEBUG == CoordinateConstants.DEBUG_STATE.NO_DEBUG && (coords > CoordinateConstants.EPFL_TOP_RIGHT_MAP || coords < CoordinateConstants.EPFL_BOT_LEFT_MAP)) {
 
 			DeactivateLocation ();
-			popup.SetText ("To be in attack mode, you have to be on the EPFL campus");
+			popup.SetText ("You have to be on the EPFL campus to switch to attack mode");
 
 		} else if(!isInSafeZone && !isAttackMode) {
 			
 			fadingPlayer.SetCoordsVisible (coords);
 
 			DeactivateLocation ();
-			popup.SetText ("The player has to be in a safe zone to switch to attack mode");
+			popup.SetText ("You have to be in a safe zone to switch to attack mode");
 
 		} else if (coords != oldCoords) {
-			foreach (LocationListener listener in listeners) {
-				listener.CoordinateUpdate (coords);
 
-				if (firstLocation) {
-					listener.FirstLocationSent ();
-				}
-			}
-			firstLocation = false;
+			locationSmoother.CoordinateUpdate (coords);
+
+			Input.location.Stop ();
+			Input.location.Start (1.0f, 1);
+
 		}
 	}
 
@@ -147,7 +147,7 @@ public class LocationHandler : LocationListener {
 		}
 	}
 
-	override public void CoordinateUpdate(MapCoordinate coords) {}
+	override public void CoordinateUpdate(XYCoordinate coords) {}
 
 	override public void StopLocationHandling() {
 		isAttackMode = false;
@@ -159,7 +159,7 @@ public class LocationHandler : LocationListener {
 }
 
 public abstract class LocationListener : MonoBehaviour {
-	abstract public void CoordinateUpdate(MapCoordinate coords);
+	abstract public void CoordinateUpdate(XYCoordinate coords);
 	abstract public void StopLocationHandling();
 	abstract public void FirstLocationSent();
 }

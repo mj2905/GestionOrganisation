@@ -8,6 +8,7 @@ public class WalkingPath {
 	private readonly MapCoordinate endPoint;
 	private double lambda;
 	private double direction = 1;
+	public bool switchAllowed = false;
 
 	public WalkingPath(MapCoordinate begPoint, MapCoordinate endPoint, double speed=1) {
 		Assert.IsTrue (speed > 0 && speed < 10);
@@ -23,10 +24,10 @@ public class WalkingPath {
 		lambda += direction*(speed / 1000);
 
 		if (lambda > 1) {
-			direction = -1;
+			direction = switchAllowed ? -1 : 1;
 			lambda = 1;
 		} else if (lambda < 0) {
-			direction = 1;
+			direction = switchAllowed ? 1 : -1;
 			lambda = 0;
 		}
 
