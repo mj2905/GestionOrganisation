@@ -192,10 +192,14 @@ public class UiManager : LocationListener
 
 	override public void StopLocationHandling() {
 		isAttackMode = false;
+		backgroundTop.color = ColorConstants.getColor(FirebaseManager.userTeam);
+		backgroundBottom.color = ColorConstants.getColor(FirebaseManager.userTeam);
 	}
 
 	override public void FirstLocationSent() {
 		isAttackMode = true;
+		backgroundTop.color = ColorConstants.attack;
+		backgroundBottom.color = ColorConstants.attack;
 	}
 
 	public void ToggleAchievementMenu(){
