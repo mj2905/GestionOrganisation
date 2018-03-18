@@ -7,6 +7,8 @@ public static class ColorConstants
 	public static Color team3 = new Color(1,1,0,0.2f); // Yellow 
 	public static Color team4 = new Color(0,0,1,0.2f); // Blue
 
+	public static Color attack = new Color(0.12f,0.12f,0.12f,0.2f); // Black
+
 	public static string textTeam1 = "ENAC";
 	public static string textTeam2 = "STI";
 	public static string textTeam3 = "FSB";
@@ -16,6 +18,8 @@ public static class ColorConstants
 	public static Color textColorTeam2 = new Color(255/255.0f, 81/255.0f, 81/255.0f, 1.0f); // Red
 	public static Color textColorTeam3 = new Color(255/255.0f, 255/255.0f, 0/255.0f, 1.0f); // Yellow
 	public static Color textColorTeam4 = new Color(94/255.0f, 182/255.0f, 255/255.0f, 1.0f); // Blue
+
+
 
 	public static Color getColor(int teamNumber){
 		Color color;

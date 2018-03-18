@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class Terminal : MonoBehaviour
 	{
 
-	private const float HP_MAX = 100f;
-	private const float LEVEL_MAX = 5f;
 	private const float POWER_MAX = 100f;
 
 	private GameObject target;
@@ -83,8 +81,8 @@ public class Terminal : MonoBehaviour
 	}
 		
 	void Update(){
-		healthBar.fillAmount = (float)(hp) / HP_MAX;
-		levelBar.fillAmount =  (float)(level) / LEVEL_MAX;
+		healthBar.fillAmount = (float)(hp) / QuantitiesConstants.TERMINAL_MAX_HEALTH_VALUES[level];
+		levelBar.fillAmount =  (float)(level) / QuantitiesConstants.TERMINAL_LEVEL_MAX;
 		powerBar.fillAmount = (float)(strength) / POWER_MAX;
 	}
 

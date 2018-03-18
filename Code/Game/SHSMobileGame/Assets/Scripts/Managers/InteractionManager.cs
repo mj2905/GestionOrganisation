@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class InteractionManager : LocationListener {
 
@@ -9,6 +10,7 @@ public class InteractionManager : LocationListener {
 
 	private Zone targetedZone;
 	private Terminal targetedTerminal;
+	private int credits;
 
 	private Text popupZoneName;
 	private Text popupZoneHP;
@@ -24,10 +26,10 @@ public class InteractionManager : LocationListener {
 	private Text popupTerminalLevel;
 	private Text popupTerminalTeam;
 	private Text popupTerminalStrength;
-	private Text actionButtonText;
 
-	public Button actionButton;
-	public Button improveButton;
+	public ActionButtonHandler actionButton;
+	public ImproveButtonHandler improveButton;
+
 	public GameObject zonePopup;
 	public GameObject terminalPopup;
 
@@ -56,7 +58,6 @@ public class InteractionManager : LocationListener {
 		popupTerminalStrength = terminalPopup.transform.Find ("StrengthLabel").GetComponent<Text> ();
 		popupTerminalTeam = terminalPopup.transform.Find ("TeamLabel").GetComponent<Text> ();
 
-		actionButtonText = actionButton.transform.Find ("Text").GetComponent<Text> ();
 		//terminalPopup.transform.localScale = new Vector3 (0, 0, 0);
 	}
 
@@ -76,6 +77,9 @@ public class InteractionManager : LocationListener {
 	// Update is called once per frame
 	void Update () {
 		if (targetedZone != null) {
+
+			actionButton.setTargetZoneHealth (targetedZone.health, targetedZone.level);
+			improveButton.setTargetZoneHealth(targetedZone.health, targetedZone.level);
 			popupZoneName.text = targetedZone.name;
 			popupZoneHP.text = "HP: " + targetedZone.health;
 			popupZoneLevel.text = "Level: " + targetedZone.level;
@@ -86,9 +90,12 @@ public class InteractionManager : LocationListener {
 			UpdateDamagePercent (popupZoneDamagePercentRed, targetedZone.damages, 2, targetedZone.team);
 			UpdateDamagePercent (popupZoneDamagePercentYellow, targetedZone.damages,3, targetedZone.team);
 			UpdateDamagePercent (popupZoneDamagePercentBlue, targetedZone.damages, 4, targetedZone.team);
+
 		}
 
 		if (targetedTerminal != null) {
+			actionButton.setTargetTerminalHealth (targetedTerminal.hp, targetedTerminal.level);
+			improveButton.setTargetTerminalHealth (targetedTerminal.hp, targetedTerminal.level);
 			popupTerminalHP.text = "HP: " + targetedTerminal.hp;
 			popupTerminalLevel.text = "Level: " + targetedTerminal.level;
 			popupTerminalStrength.text = "Strength: " + targetedTerminal.strength;
@@ -97,31 +104,40 @@ public class InteractionManager : LocationListener {
 		}
 	}
 
+	public void updateCreditsInfo(string credits) {
+		int creditAsInt = Int32.Parse (credits);
+		this.credits = creditAsInt;
+		actionButton.setCredits (creditAsInt);
+		improveButton.setCredits (creditAsInt);
+	}
+
+	public void updateZoneInfo(Zone zone) {
+		if (this.targetedZone != null && this.targetedZone.zoneId == zone.zoneId && this.targetedZone.team != zone.team) {
+			updateTargetedZone (null);
+		}
+	}
+
 	public void updateTargetedZone(Zone zone){
 		this.targetedZone = zone;
 
 		if (targetedZone == null) {
 			zonePopup.SetActive (false);
-			actionButtonText.text = "No action";
-			actionButton.interactable = false;
-			improveButton.interactable = false;
+
+			actionButton.targetingNothing ();
+			improveButton.targetingNothing ();
+
 		} else {
 			if (targetedTerminal != null) {
-				targetedTerminal.callbackWhenDestroyed = null;
+				targetedTerminal.callbackWhenDestroyed = () => {};
 				targetedTerminal = null;
 			}
 
 			terminalPopup.SetActive (false);//.transform.localScale = new Vector3 (0, 0, 0);
 			zonePopup.SetActive (true);
-			if (FirebaseManager.userTeam == zone.team) {
-				improveButton.interactable = true;
-				actionButtonText.text = "Heal";
-				actionButton.interactable = true;
-			} else {
-				improveButton.interactable = false;
-				actionButtonText.text = "No action";
-				actionButton.interactable = false;
-			}
+
+			actionButton.targetingZone (FirebaseManager.userTeam == zone.team, targetedZone.health, targetedZone.level, credits);
+			improveButton.targetingZone (FirebaseManager.userTeam == zone.team, targetedZone.health, targetedZone.level, credits);
+
 		}
 	}
 
@@ -132,27 +148,25 @@ public class InteractionManager : LocationListener {
 		if (targetedTerminal == null) {
 
 			if (oldTerminal != null) {
-				oldTerminal.callbackWhenDestroyed = null;
+				oldTerminal.callbackWhenDestroyed = () => {};
 				oldTerminal = null;
 			}
 
 			terminalPopup.SetActive (false);//.transform.localScale = new Vector3 (0, 0, 0);
-			actionButtonText.text = "No action";
-			actionButton.interactable = false;
-			improveButton.interactable = false;
+
+			actionButton.targetingNothing ();
+			improveButton.targetingNothing ();
+
 		} else {
 			terminal.callbackWhenDestroyed = () => updateTargetedTerminal (null);
 			targetedZone = null;
 
 			zonePopup.SetActive (false);
 			terminalPopup.SetActive (true);//.transform.localScale = new Vector3 (1, 1, 1);
-			actionButton.interactable = true;
-			if (FirebaseManager.userTeam == targetedTerminal.team) {
-				actionButtonText.text = "Buff";
-				improveButton.interactable = true;
-			} else {
-				actionButtonText.text = "Smash";
-			}
+
+			actionButton.targetingTerminal (FirebaseManager.userTeam == targetedTerminal.team, targetedTerminal.hp, targetedTerminal.level, credits);
+			improveButton.targetingTerminal (FirebaseManager.userTeam == targetedTerminal.team, targetedTerminal.hp, targetedTerminal.level, credits);
+
 		}
 	}
 
@@ -166,7 +180,7 @@ public class InteractionManager : LocationListener {
 	public void improveZone(){
 		if (targetedZone != null) {
 			print ("Improving zone " + targetedZone.name);
-			FirebaseManager.ImproveZone (targetedZone.zoneId, targetedZone.maxhealth, messagePopup);
+			FirebaseManager.ImproveZone (targetedZone.zoneId, targetedZone.level, messagePopup);
 		}
 	}
 
@@ -211,12 +225,11 @@ public class InteractionManager : LocationListener {
 			FirebaseManager.HurtTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_SMASH_AMOUNT, messagePopup);
 		}
 	}
-
-	//TODO
+		
 	private void improveTerminal(){
 		if(targetedTerminal != null){
 			print ("Improving terminal ");
-			//FirebaseManager.ImproveTerminal (targetedTerminal.GetTerminalId (), messagePopup);
+			FirebaseManager.ImproveTerminal (targetedTerminal.GetTerminalId (), targetedTerminal.level, messagePopup);
 		}
 	}
 
