@@ -43,6 +43,9 @@ public class UiManager : LocationListener
 	private bool showAchievementMenu = false;
 	public Canvas achievementMenu;
 
+	public Image backgroundTop;
+	public Image backgroundBottom;
+
 	// Use this for initialization
 	void Awake ()
 	{
@@ -52,7 +55,7 @@ public class UiManager : LocationListener
 		popup.transform.SetAsLastSibling ();
 	}
 
-	public void UpdateUserStat(string xp, string credit,string level,Effects effects,Statistics statistics){
+	public void UpdateUserStat(string xp, string credit, int team,string level,Effects effects,Statistics statistics){
 
 		int creditAsInt = Int32.Parse (credit);
 		int creditDiff = creditAsInt - previousCredit;
@@ -86,6 +89,9 @@ public class UiManager : LocationListener
 		UpdateCurrentMedalPosition ();
 
 		previousEffects = effects;
+
+		backgroundTop.color = ColorConstants.getColor (team);
+		backgroundBottom.color = ColorConstants.getColor (team);
 	}
 
 	private void UpdateAchievement (Statistics statistics){

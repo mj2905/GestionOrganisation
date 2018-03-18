@@ -102,9 +102,9 @@ public class GameManager : LocationListener {
 		}
 	}
 
-	public void UpdateUserStat(string xp, string credit,string level,Effects effects,Statistics statistics){
+	public void UpdateUserStat(string xp, string credit, int team,string level,Effects effects,Statistics statistics){
 		interactionManager.updateCreditsInfo (credit);
-		uiManager.UpdateUserStat (xp, credit,level,effects,statistics);
+		uiManager.UpdateUserStat (xp, credit, team,level,effects,statistics);
 	}
 
 	public void AddTerminal(string zoneId,float x, float z){
@@ -138,11 +138,11 @@ public class GameManager : LocationListener {
 	override public void CoordinateUpdate(XYCoordinate coords) {}
 
 	override public void StopLocationHandling() {
-		modeButton.GetComponentInChildren<Text>().text = "Defense mode";
+		modeButton.GetComponentInChildren<Text>().text = "Switch to Attack";
 	}
 
 	override public void FirstLocationSent() {
-		modeButton.GetComponentInChildren<Text>().text = "Attack mode";
+		modeButton.GetComponentInChildren<Text>().text = "Switch to Defense";
 	}
 
 	public void AddMedal(Medal m){

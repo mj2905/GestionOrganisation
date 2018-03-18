@@ -68,6 +68,7 @@ public class FirebaseManager
 		// Do something with snapshot...
 		if (snapshot != null) {
 			object credit = snapshot.Child("credits").Value;
+			FirebaseManager.userTeam = Int32.Parse(snapshot.Child("team").Value.ToString());
 			object xp = snapshot.Child("xp").Value;
 			object level = snapshot.Child("level").Value;
 			Effects effects;
@@ -86,7 +87,7 @@ public class FirebaseManager
 			}
 
 			if (credit != null && xp != null && level != null) {
-				gameManager.UpdateUserStat (xp.ToString (), credit.ToString (), level.ToString (), effects,statistics);
+				gameManager.UpdateUserStat (xp.ToString (), credit.ToString (), FirebaseManager.userTeam, level.ToString (), effects,statistics);
 			}
 		}
 	}
@@ -297,7 +298,6 @@ public class FirebaseManager
 				long level_value = (long)level_obtained;
 
 				int max_health_value = QuantitiesConstants.ZONE_MAX_HEALTH_VALUES[level_value];
-				Debug.Log(max_health_value);
 
 				if(health_value < max_health_value) {
 					mutableData.Child("health").Value = Math.Min(max_health_value, health_value + amount);
