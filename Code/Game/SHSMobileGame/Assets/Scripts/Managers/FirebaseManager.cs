@@ -592,6 +592,19 @@ public class FirebaseManager
 			} else{
 				long number = (long)numberOfTerminal;
 				mutableData.Child (FirebaseManager.user.UserId + "/stat/numberOfZoneHeal").Value = number + 1;
+
+				if(number + 1 >= EffectObtentionConstants.achievementMaxValue["numberOfZoneHeal"]){
+					object dataAchivement = mutableData.Child (FirebaseManager.user.UserId + "/effects/zoneHealedAchievement").Value;
+					if(dataAchivement == null){
+						dataAchivement = EffectsConstants.zoneHealedAchievement.ToMap();
+					}
+					if(number % EffectObtentionConstants.medalNumberObtention["numberOfZoneHeal"] == 0){
+						object dataMedal = mutableData.Child (FirebaseManager.user.UserId + "/effects/zoneHealedMedal").Value;
+						if(dataMedal == null){
+							dataMedal = EffectsConstants.zoneHealedMedal.ToMap();
+						}
+					}
+				}
 			}
 			return TransactionResult.Success(mutableData);
 		};
