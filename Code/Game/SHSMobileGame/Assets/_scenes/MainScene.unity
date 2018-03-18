@@ -2217,8 +2217,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1951455292}
-        m_MethodName: dispatchActionImprove
+      - m_Target: {fileID: 1145270403}
+        m_MethodName: SwitchMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

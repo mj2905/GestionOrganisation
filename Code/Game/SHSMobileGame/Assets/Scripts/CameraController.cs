@@ -19,7 +19,7 @@ public class CameraController : LocationListener {
 	private const float SPEED_ZOOM = 4f;
 	private const float SPEED_OUTSIDE = 3f;
 	private const float SPEED_SWITCH_MODE = 5f;
-	private const float TIME_OF_CLICK = 0.12f;
+	private const float TIME_OF_CLICK = 0.05f;
 
     private Vector3 dragOrigin;
     private Vector3 previousSceneRootPos;
@@ -85,7 +85,7 @@ public class CameraController : LocationListener {
 		case state.Clicking:
 			if (Input.GetMouseButton (0)) {
 				timer += Time.deltaTime;
-				Debug.Log (timer.ToString ());
+				//Debug.Log (timer.ToString ());
 				if (timer > TIME_OF_CLICK) {
 					timer = 0;
 					currentState = state.Dragging;
