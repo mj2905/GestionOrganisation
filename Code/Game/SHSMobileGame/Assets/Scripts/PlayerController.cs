@@ -55,7 +55,7 @@ public class PlayerController : LocationListener
 			currentZone = other.gameObject;
 			print ("Entered: " + currentZone.name);
 
-			currentZone.transform.parent.localPosition -= new Vector3 (0, 2, 0);
+			//currentZone.transform.parent.localPosition -= new Vector3 (0, 2, 0);
 			//currentZone.transform.localPosition += new Vector3 (0, 0, 7);
 		}
 	}
@@ -68,7 +68,7 @@ public class PlayerController : LocationListener
 			print ("Exited: " + currentZone.name);
 
 			//currentZone.transform.localPosition -= new Vector3 (0, 0, 7);
-			currentZone.transform.parent.localPosition += new Vector3 (0, 2, 0);
+			//currentZone.transform.parent.localPosition += new Vector3 (0, 2, 0);
 
 			currentZone = null;
 		}
