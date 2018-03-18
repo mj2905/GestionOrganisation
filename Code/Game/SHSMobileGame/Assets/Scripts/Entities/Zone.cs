@@ -8,6 +8,7 @@ public class Zone : MonoBehaviour {
 	public string zoneId;
 	public string name;
 	public int health;
+	public int maxhealth = 1000;
 	public int level;
 	public int team;
 	public Damages damages;
@@ -33,7 +34,7 @@ public class Zone : MonoBehaviour {
 
 	void Update(){
 		
-		healthBar.fillAmount = (float)(health) / QuantitiesConstants.HP_MAX;
+		healthBar.fillAmount = (float)(health) / (float) maxhealth;
 		levelBar.fillAmount =  (float)(level) / QuantitiesConstants.LEVEL_MAX;
 
 		switch(currentState){
@@ -74,10 +75,11 @@ public class Zone : MonoBehaviour {
 		}
 	}
 
-	public Zone (string zoneId,int health, int team,Damages damages)
+	public Zone (string zoneId,int health, int maxhealth, int team,Damages damages)
 	{
 		this.zoneId = zoneId;
 		this.health = health;
+		this.maxhealth = maxhealth;
 		this.team = team;
 		this.damages = damages;
 	}
@@ -86,6 +88,7 @@ public class Zone : MonoBehaviour {
 	{
 		this.zoneId = zoneId;
 		this.health = Int32.Parse(entry["health"].ToString());
+		this.maxhealth = Int32.Parse(entry["maxhealth"].ToString());
 		this.team = Int32.Parse(entry["team"].ToString());
 		if (entry.ContainsKey ("damages")) {
 			if (entry ["damages"] as IDictionary<string,System.Object> != null) {
@@ -103,6 +106,7 @@ public class Zone : MonoBehaviour {
 	public void Copy(Zone other){
 		this.health = other.health;
 		this.level = other.level;
+		this.maxhealth = other.maxhealth;
 		this.team = other.team;
 		this.damages = other.damages;
 	}

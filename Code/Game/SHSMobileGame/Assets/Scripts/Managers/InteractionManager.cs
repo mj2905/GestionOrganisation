@@ -27,6 +27,7 @@ public class InteractionManager : LocationListener {
 	private Text actionButtonText;
 
 	public Button actionButton;
+	public Button improveButton;
 	public GameObject zonePopup;
 	public GameObject terminalPopup;
 
@@ -103,6 +104,7 @@ public class InteractionManager : LocationListener {
 			zonePopup.SetActive (false);
 			actionButtonText.text = "No action";
 			actionButton.interactable = false;
+			improveButton.interactable = false;
 		} else {
 			if (targetedTerminal != null) {
 				targetedTerminal.callbackWhenDestroyed = null;
@@ -112,9 +114,11 @@ public class InteractionManager : LocationListener {
 			terminalPopup.SetActive (false);//.transform.localScale = new Vector3 (0, 0, 0);
 			zonePopup.SetActive (true);
 			if (FirebaseManager.userTeam == zone.team) {
+				improveButton.interactable = true;
 				actionButtonText.text = "Heal";
 				actionButton.interactable = true;
 			} else {
+				improveButton.interactable = false;
 				actionButtonText.text = "No action";
 				actionButton.interactable = false;
 			}
@@ -135,6 +139,7 @@ public class InteractionManager : LocationListener {
 			terminalPopup.SetActive (false);//.transform.localScale = new Vector3 (0, 0, 0);
 			actionButtonText.text = "No action";
 			actionButton.interactable = false;
+			improveButton.interactable = false;
 		} else {
 			terminal.callbackWhenDestroyed = () => updateTargetedTerminal (null);
 			targetedZone = null;
@@ -144,6 +149,7 @@ public class InteractionManager : LocationListener {
 			actionButton.interactable = true;
 			if (FirebaseManager.userTeam == targetedTerminal.team) {
 				actionButtonText.text = "Buff";
+				improveButton.interactable = true;
 			} else {
 				actionButtonText.text = "Smash";
 			}
@@ -154,6 +160,13 @@ public class InteractionManager : LocationListener {
 		if (targetedZone != null) {
 			print ("Healing zone " + targetedZone.name);
 			FirebaseManager.HealZone (targetedZone.zoneId, QuantitiesConstants.ZONE_HEAL_AMOUNT, messagePopup);
+		}
+	}
+
+	public void improveZone(){
+		if (targetedZone != null) {
+			print ("Improving zone " + targetedZone.name);
+			FirebaseManager.ImproveZone (targetedZone.zoneId, targetedZone.maxhealth, messagePopup);
 		}
 	}
 
@@ -172,6 +185,19 @@ public class InteractionManager : LocationListener {
 		}
 	}
 
+	public void dispatchActionImprove(){
+
+		if (targetedZone != null) {
+			improveZone ();
+		} else if (targetedTerminal != null) {
+			if (FirebaseManager.userTeam == targetedTerminal.team) {
+				improveTerminal ();
+			}
+		} else {
+			Debug.Log ("Neither a zone nor a terminal was selected upon call of improve button");
+		}
+	}
+
 	private void buffTerminal(){
 		if(targetedTerminal != null){
 			print ("Buffing terminal ");
@@ -183,6 +209,14 @@ public class InteractionManager : LocationListener {
 		if(targetedTerminal != null){
 			print ("Attacking terminal ");
 			FirebaseManager.HurtTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_SMASH_AMOUNT, messagePopup);
+		}
+	}
+
+	//TODO
+	private void improveTerminal(){
+		if(targetedTerminal != null){
+			print ("Improving terminal ");
+			//FirebaseManager.ImproveTerminal (targetedTerminal.GetTerminalId (), messagePopup);
 		}
 	}
 
