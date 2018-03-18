@@ -1569,7 +1569,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Defense mode
+  m_Text: Switch to Attack
 --- !u!222 &245737525
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2217,8 +2217,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1951455292}
-        m_MethodName: dispatchActionImprove
+      - m_Target: {fileID: 1145270403}
+        m_MethodName: SwitchMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9909,6 +9909,8 @@ MonoBehaviour:
   numberOfTerminalDamaged: {fileID: 1656988302}
   numberOfZoneHealed: {fileID: 1789291121}
   achievementMenu: {fileID: 1191849185}
+  backgroundTop: {fileID: 895644624}
+  backgroundBottom: {fileID: 500060695}
 --- !u!1 &1370974978
 GameObject:
   m_ObjectHideFlags: 0

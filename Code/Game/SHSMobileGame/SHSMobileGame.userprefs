@@ -1,19 +1,55 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Managers/FirebaseManager.cs">
+<<<<<<< HEAD
+<<<<<<< HEAD
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Entities\Zone.cs">
     <Files>
-      <File FileName="Assets/Scripts/Menu/MenuHandler.cs" Line="13" Column="9" />
+      <File FileName="Assets\Scripts\Constants\CoordinateConstants.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LocationHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\InitialScene.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\FirebaseManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UIScripts\UiManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CameraController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\InteractionManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Constants\QuantitiesConstants.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Entities\Zone.cs" Line="93" Column="11" />
+      <File FileName="Assets\Scripts\Entities\Damages.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Constants\ColorConstants.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Entities\User.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Entities\Game.cs" Line="39" Column="34" />
+      <File FileName="Assets\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" Line="1" Column="1" />
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Entities\Effects\Medal.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Entities\Effects\Medal.cs" Line="65" Column="3" />
+      <File FileName="Assets\Scripts\UIScripts\UiManager.cs" Line="101" Column="2" />
+      <File FileName="Assets\Scripts\Entities\Effects\Achievement.cs" Line="7" Column="48" />
+      <File FileName="Assets\Scripts\Managers\GameManager.cs" Line="104" Column="13" />
+      <File FileName="Assets\Scripts\Constants\EffectsConstants.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\InteractionManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Entities\Effects\Effects.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Constants\ColorConstants.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Constants\CoordinateConstants.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CameraController.cs" Line="21" Column="22" />
+>>>>>>> 59998739df186744323c219c76cb05ca788434f0
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerController.cs">
+    <Files>
       <File FileName="Assets/Scripts/MercatorProjection.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/LocationHandler.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CameraController.cs" Line="38" Column="36" />
-      <File FileName="Assets/Scripts/Managers/FirebaseManager.cs" Line="406" Column="32" />
-      <File FileName="Assets/Scripts/Constants/QuantitiesConstants.cs" Line="13" Column="16" />
-      <File FileName="Assets/Scripts/Managers/InteractionManager.cs" Line="163" Column="4" />
+      <File FileName="Assets/Scripts/CameraController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Managers/FirebaseManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Constants/QuantitiesConstants.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Managers/InteractionManager.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Entities/Terminal.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Entities/Damages.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Entities/Zone.cs" Line="110" Column="26" />
-      <File FileName="Assets/Scripts/Entities/Game.cs" Line="32" Column="5" />
-      <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="44" Column="14" />
+      <File FileName="Assets/Scripts/Entities/Zone.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="109" Column="2" />
+      <File FileName="Assets/Scripts/Persistency.cs" Line="1" Column="1" />
+>>>>>>> 0ffb6c75d9f2d54ced89796174397a95bf693837
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
