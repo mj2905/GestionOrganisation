@@ -29,7 +29,7 @@ public class PlayerController : LocationListener
     {
 		gameObject.GetComponent<Renderer>().enabled = false;
 		initialPosition = new Vector3(77.15f, 2, -50.0f);
-		transform.localPosition = new Vector3(12, 2, -7);
+		transform.localPosition = initialPosition;
 
 		moveVertical = 0;
 		moveHorizontal = 0;
@@ -43,7 +43,7 @@ public class PlayerController : LocationListener
 
 	void FixedUpdate()
     {
-		//transform.localPosition = initialPosition + GetPosition();
+		transform.localPosition = initialPosition + GetPosition();
     }
 
 	void OnTriggerEnter(Collider other) 

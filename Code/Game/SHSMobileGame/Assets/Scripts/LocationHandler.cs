@@ -96,12 +96,12 @@ public class LocationHandler : LocationListener {
 
 		fadingPlayer.SetCoordsInvisible (coords); //used to get its 3d vector, can be used here because only choices after are either a location deactivated => reset, or put again to same position.
 		Vector3 pos = fadingPlayer.transform.position;
-		//print (pos.x + " " + pos.y + " " + pos.z);
+		print ("h:"+pos.x + " " + pos.y + " " + pos.z);
 
 		int colls = Physics.OverlapBoxNonAlloc(pos, new Vector3(1,1,1), colliders);
 		//print (colls);
 
-		bool isInSafeZone = true;
+		bool isInSafeZone = false;
 		for (int i = 0; i < colls; ++i) {
 			//print (colliders [i].gameObject.name);
 			if (colliders[i] is CapsuleCollider) {
@@ -116,10 +116,11 @@ public class LocationHandler : LocationListener {
 			popup.SetText ("You have to be on the EPFL campus to switch to attack mode");
 
 		} else if(!isInSafeZone && !isAttackMode) {
-			
-			fadingPlayer.SetCoordsVisible (coords);
 
 			DeactivateLocation ();
+
+			fadingPlayer.SetCoordsVisible (coords);
+
 			popup.SetText ("You have to be in a safe zone to switch to attack mode");
 
 		} else if (coords != oldCoords) {

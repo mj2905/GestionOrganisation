@@ -20,7 +20,7 @@ public static class CoordinateConstants {
 	public static readonly MapCoordinate EPFL_BOT_LEFT_MAP = new MapCoordinate(6.56058, 46.51705);
 	public static readonly MapCoordinate EPFL_BOT_RIGHT_MAP = new MapCoordinate(6.5731, 46.51705);
 
-	public static readonly WalkingPath WALKING_PATH = new WalkingPath(BM, EPFL_CENTER_ZONE);
+	public static readonly WalkingPath WALKING_PATH = new WalkingPath(ROLEX_MAP, EPFL_CENTER_ZONE);
 
 	public static readonly XYCoordinate TEST_LOC_XY = TEST_LOC_MAP.toXYMercator();
 	public static readonly XYCoordinate ROLEX_XY = ROLEX_MAP.toXYMercator();
