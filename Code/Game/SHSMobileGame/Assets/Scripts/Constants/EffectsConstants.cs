@@ -8,7 +8,16 @@ public class EffectsConstants
 	public static Medal medal404 = new Medal("404",2,15);	
 	public static Medal medal505 = new Medal("505",4,5);	
 
-	public static Medal fearlessMedal = new Medal("Fearless",3,5);	
+	public static Medal terminalPlacedMedal = new Medal("terminalPlacedMedal",3,5);
+	public static Medal terminalDamagedMedal = new Medal("terminalDamagedMedal",3,5);	
+	public static Medal terminalBuffedMedal = new Medal("terminalBuffedMedal",3,5);	
+	public static Medal zoneHealedMedal = new Medal("zoneHealedMedal",3,5);
+
+	public static Achievement terminalPlacedAchievement = new Achievement("terminalPlacedAchievement",3);
+	public static Achievement terminalDamagedAchievement = new Achievement("terminalDamagedAchievement",3);	
+	public static Achievement terminalBuffedAchievement = new Achievement("terminalBuffedAchievement",3);	
+	public static Achievement zoneHealedAchievement = new Achievement("zoneHealedAchievement",3);	
+
 
 	public static Medal GetMedalByName(string name){
 		switch (name) {
@@ -20,8 +29,14 @@ public class EffectsConstants
 			return medal404;
 		case "505":
 			return medal505;
-		case "Fearless":
-			return fearlessMedal;
+		case "terminalPlaced":
+			return terminalPlacedMedal;
+		case "terminalDamaged":
+			return terminalDamagedMedal;
+		case "terminalBuffed":
+			return terminalBuffedMedal;
+		case "zoneHealed":
+			return zoneHealedMedal;
 		}
 
 		return null;

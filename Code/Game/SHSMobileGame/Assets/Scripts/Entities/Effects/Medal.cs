@@ -106,7 +106,8 @@ public class Medal : MonoBehaviour{
 
 	public Dictionary<string, object> ToMap() {
 		Dictionary<string, object> fields = new Dictionary<string, object>();
-		fields.Add (name, 0);
+		fields.Add ("multiplier",multiplier);
+		fields.Add ("ttl",ttl);
 		return fields;
 	}
 	

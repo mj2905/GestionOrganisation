@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public class Achievement{
 	private int multiplier;
+	private int ttl = QuantitiesConstants.TTL_ACHIEVEMENT;
 	private string name;
 		
 	public Achievement (string name,int multiplier)
@@ -32,6 +34,13 @@ public class Achievement{
 		unchecked {
 			return (name != null ? name.GetHashCode () : 0);
 		}
+	}
+
+	public Dictionary<string, object> ToMap() {
+		Dictionary<string, object> fields = new Dictionary<string, object>();
+		fields.Add ("multiplier",multiplier);
+		fields.Add ("ttl",ttl);
+		return fields;
 	}
 }
 

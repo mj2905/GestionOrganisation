@@ -108,7 +108,7 @@ public class UiManager : LocationListener
 	}
 
 	private void CheckIfAchievementUnlocked(Text text,string name,int num){
-		int maxNum = AchievementsConstants.achievementMaxValue [name];
+		int maxNum = EffectObtentionConstants.achievementMaxValue [name];
 		if (num >= maxNum) {
 			text.text = "DONE!";
 		} else {

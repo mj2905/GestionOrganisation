@@ -127,7 +127,6 @@ public class GameManager : LocationListener {
 
 	public void AddTerminalAtPlayerPosition(){
 		this.AddTerminal (player.GetCurrentZoneName (), player.GetMarkerPosition ().x, player.GetMarkerPosition ().y);
-		AddMedal (EffectsConstants.fearlessMedal);
 	}
 
 	public bool IsPlayerInsideZone(){
@@ -143,10 +142,6 @@ public class GameManager : LocationListener {
 
 	override public void FirstLocationSent() {
 		modeButton.GetComponentInChildren<Text>().text = "Attack mode";
-	}
-
-	public void AddMedal(Medal m){
-		FirebaseManager.AddMedal (m);
 	}
 
 	public void addTransaction(){
