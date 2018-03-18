@@ -288,12 +288,12 @@ public class FirebaseManager
 		return mutableData => {
 
 			object health_obtained = mutableData.Child ("health").Value;
-			object max_health_obtained = mutableData.Child ("maxhealth").Value;
+			object level_obtained = mutableData.Child ("level").Value;
 
-			if(health_obtained != null && max_health_obtained != null) {
+			if(health_obtained != null && level_obtained != null) {
 
 				long health_value = (long)health_obtained;
-				long max_health_value = (long)max_health_obtained;
+				long max_health_value = (long)QuantitiesConstants.ZONE_MAX_HEALTH_VALUES[(int)level_obtained];
 
 				if(health_value < max_health_value) {
 					mutableData.Child("health").Value = Math.Min(max_health_value, health_value + amount);
@@ -306,22 +306,41 @@ public class FirebaseManager
 		};
 	}
 
-	private static Func<MutableData, TransactionResult> ImproveZoneTransaction(int oldMaxHealth, int newmaxhealth) 
+	private static Func<MutableData, TransactionResult> ImproveZoneTransaction(int level) 
 	{
 		return mutableData => {
 
-			object max_health_obtained = mutableData.Value;
-			Debug.Log("11:" + max_health_obtained.ToString());
+			object level_obtained = mutableData.Child("level").Value;
 
-			if(max_health_obtained != null) {
+			if(level_obtained != null) {
 
-				Debug.Log(max_health_obtained);
-				long max_health_value = (long)max_health_obtained;
-				Debug.Log(max_health_value);
+				long level_value = (long)level_obtained;
 
-				if(max_health_value == oldMaxHealth) {
+				if(level_value == level && level < QuantitiesConstants.ZONE_LEVEL_MAX) {
 
-					mutableData.Value = newmaxhealth;
+					mutableData.Child("level").Value = level+1;
+
+					return TransactionResult.Success(mutableData);
+				}
+			}
+
+			return TransactionResult.Abort();
+		};
+	}
+
+	private static Func<MutableData, TransactionResult> ImproveTerminalTransaction(int level) 
+	{
+		return mutableData => {
+
+			object level_obtained = mutableData.Child("level").Value;
+
+			if(level_obtained != null) {
+
+				long level_value = (long)level_obtained;
+
+				if(level_value == level && level < QuantitiesConstants.TERMINAL_LEVEL_MAX) {
+
+					mutableData.Child("level").Value = level+1;
 
 					return TransactionResult.Success(mutableData);
 				}
@@ -403,21 +422,20 @@ public class FirebaseManager
 		});
 	}
 
-	public static void ImproveZone (string zoneID, int oldMaxHealth, PopupScript messagePopup)
+	public static void ImproveZone (string zoneID, int level, PopupScript messagePopup)
 	{
 
-		int ind = Array.IndexOf (QuantitiesConstants.ZONE_MAX_HEALTH_VALUES, oldMaxHealth);
-		if (ind >= 0 && ind + 1 < QuantitiesConstants.ZONE_MAX_HEALTH_VALUES.Length) {
-			reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.ZONE_MAX_HEALTH_COST [ind + 1])).ContinueWith (task3 => {
+		if (level >= 0 && level + 1 < QuantitiesConstants.ZONE_MAX_HEALTH_VALUES.Length) {
+			reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.ZONE_MAX_HEALTH_COST [level + 1])).ContinueWith (task3 => {
 				if (task3.Exception == null) {
-					reference.Child ("Game/Zones/").Child (zoneID).Child ("maxhealth").RunTransaction (ImproveZoneTransaction (QuantitiesConstants.ZONE_MAX_HEALTH_VALUES [ind], QuantitiesConstants.ZONE_MAX_HEALTH_VALUES [ind + 1])).ContinueWith (innerTask => {
+					reference.Child ("Game/Zones/").Child (zoneID).RunTransaction (ImproveZoneTransaction (level)).ContinueWith (innerTask => {
 						if (innerTask.Exception != null) {
 							messagePopup.SetText ("This zone has been improved by someone else");
-							reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.ZONE_MAX_HEALTH_COST [ind + 1]));
+							reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.ZONE_MAX_HEALTH_COST [level + 1]));
 						}
 					});
 				} else {
-					Debug.Log ("Could not deduct enough credit to smash the terminal");
+					Debug.Log ("Could not deduct enough credit to improve the zone");
 					messagePopup.SetText ("You don't have enough credits to improve the zone");
 				}
 			});
@@ -425,50 +443,28 @@ public class FirebaseManager
 			messagePopup.SetText ("Maximal level reached for that zone");
 		}
 	}
+		
+	public static void ImproveTerminal (string zoneID, int level, PopupScript messagePopup)
+	{
 
-	/*
-	public static void ImproveZone(string zoneID, PopupScript messagePopup){
-		reference.Child ("Game/Zones/").Child (zoneID).Child ("maxhealth").GetValueAsync ().ContinueWith ( task => {
-			if (task.IsCompleted) {
-				DataSnapshot snapshot = task.Result;
-				if(snapshot != null){
-					int maxhealth = Int32.Parse(snapshot.Value.ToString());
-					int ind = Array.IndexOf(QuantitiesConstants.ZONE_MAX_HEALTH_VALUES, maxhealth);
-					if(ind >= 0 && ind + 1 < QuantitiesConstants.ZONE_MAX_HEALTH_VALUES.Length) {
-						reference.Child ("Users/").Child (user.UserId).Child ("credits").GetValueAsync ().ContinueWith( task2 => {
-							if (task2.IsCompleted) {
-								DataSnapshot snapshot2 = task2.Result;
-								if(snapshot2 != null){
-									long credit_value = Int32.Parse(snapshot2.Value.ToString()) - QuantitiesConstants.ZONE_MAX_HEALTH_COST[ind+1];
-									if(User.MIN_CREDITS <= credit_value) {
-										reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.ZONE_MAX_HEALTH_COST[ind+1])).ContinueWith (task3 => {
-											if (task3.Exception == null) {
-												reference.Child ("Game/Zones/").Child(zoneID).Child("maxhealth").RunTransaction (ImproveZoneTransaction(QuantitiesConstants.ZONE_MAX_HEALTH_VALUES[ind], QuantitiesConstants.ZONE_MAX_HEALTH_VALUES[ind+1])).ContinueWith(innerTask => {
-													if (innerTask.Exception != null) {
-														messagePopup.SetText("This zone has been improved by someone else");
-														reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.ZONE_MAX_HEALTH_COST[ind+1]));
-													}
-												});
-											} else {
-												Debug.Log("Could not deduct enough credit to smash the terminal");
-												messagePopup.SetText("You don't have enough credits to improve the zone");
-											}
-										});
-									} else {
-										Debug.Log("Could not deduct enough credit to smash the terminal");
-										messagePopup.SetText("You don't have enough credits to improve the zone");
-									}
-								}
-							}
-						});
-					} else {
-						messagePopup.SetText("Internal error");
-					}
+		if (level >= 0 && level + 1 < QuantitiesConstants.TERMINAL_MAX_HEALTH_VALUES.Length) {
+			reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.TERMINAL_MAX_HEALTH_COST [level + 1])).ContinueWith (task3 => {
+				if (task3.Exception == null) {
+					reference.Child ("Game/Zones/").Child (zoneID).RunTransaction (ImproveZoneTransaction (level)).ContinueWith (innerTask => {
+						if (innerTask.Exception != null) {
+							messagePopup.SetText ("This terminal has been improved by someone else");
+							reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.TERMINAL_MAX_HEALTH_COST [level + 1]));
+						}
+					});
+				} else {
+					Debug.Log ("Could not deduct enough credit to improve the terminal");
+					messagePopup.SetText ("You don't have enough credits to improve the terminal");
 				}
-			}
-		});
+			});
+		} else {
+			messagePopup.SetText ("Maximal level reached for that terminal");
+		}
 	}
-	*/
 
 
 	private static Func<MutableData, TransactionResult> AddTerminalStatTransaction() 

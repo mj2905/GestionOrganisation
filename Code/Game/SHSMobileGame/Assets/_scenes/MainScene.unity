@@ -214,7 +214,6 @@ MonoBehaviour:
   zoneId: MED
   name: MED
   health: 0
-  maxhealth: 1000
   level: 0
   team: 0
   healthBar: {fileID: 1324895731}
@@ -1835,7 +1834,6 @@ MonoBehaviour:
   zoneId: ELA
   name: ELA
   health: 0
-  maxhealth: 1000
   level: 0
   team: 0
   healthBar: {fileID: 2119692151}
@@ -2121,7 +2119,6 @@ MonoBehaviour:
   zoneId: PH
   name: PH
   health: 0
-  maxhealth: 1000
   level: 0
   team: 0
   healthBar: {fileID: 586704552}
@@ -2373,7 +2370,6 @@ MonoBehaviour:
   zoneId: CH
   name: CH
   health: 0
-  maxhealth: 1000
   level: 0
   team: 0
   healthBar: {fileID: 1420347595}
@@ -3006,7 +3002,6 @@ MonoBehaviour:
   zoneId: SG
   name: SG
   health: 0
-  maxhealth: 1000
   level: 0
   team: 0
   healthBar: {fileID: 1294793476}
@@ -3775,7 +3770,6 @@ MonoBehaviour:
   zoneId: PAV
   name: Pavillion
   health: 0
-  maxhealth: 1000
   level: 0
   team: 0
   healthBar: {fileID: 1589780508}
@@ -5855,6 +5849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 1342705400}
+  interactionManager: {fileID: 1951455292}
   sceneRoot: {fileID: 1228100744}
   zonesRoot: {fileID: 1675804248}
   terminalPrefab: {fileID: 114140774469156708, guid: 791e108d0e7b6a64483ef0c278bffbd0,
@@ -6016,7 +6011,6 @@ MonoBehaviour:
   zoneId: CE
   name: CE
   health: 0
-  maxhealth: 1000
   level: 0
   team: 0
   healthBar: {fileID: 1765768636}
@@ -6423,7 +6417,6 @@ MonoBehaviour:
   zoneId: RLC
   name: Rolex
   health: 0
-  maxhealth: 1000
   level: 0
   team: 0
   healthBar: {fileID: 878039519}
@@ -7614,7 +7607,6 @@ MonoBehaviour:
   zoneId: MX
   name: MX
   health: 0
-  maxhealth: 1000
   level: 0
   team: 0
   healthBar: {fileID: 1666639478}
@@ -7645,8 +7637,9 @@ GameObject:
   - component: {fileID: 1103135031}
   - component: {fileID: 1103135030}
   - component: {fileID: 1103135029}
+  - component: {fileID: 1103135032}
   m_Layer: 5
-  m_Name: Improve
+  m_Name: ImproveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7756,6 +7749,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1103135027}
+--- !u!114 &1103135032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1103135027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cbb8c224d7c84040a02be7ab91b67dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1110620080
 Prefab:
   m_ObjectHideFlags: 0
@@ -7933,7 +7937,6 @@ MonoBehaviour:
   zoneId: CO
   name: CO
   health: 0
-  maxhealth: 1000
   level: 0
   team: 0
   healthBar: {fileID: 656720255}
@@ -8037,7 +8040,6 @@ MonoBehaviour:
   zoneId: GC
   name: GC
   health: 0
-  maxhealth: 1000
   level: 0
   team: 0
   healthBar: {fileID: 377377057}
@@ -8301,6 +8303,8 @@ MonoBehaviour:
   - {fileID: 1342705400}
   - {fileID: 818770027}
   - {fileID: 1145270403}
+  - {fileID: 1539511915}
+  - {fileID: 1103135032}
   speed: 0.5
 --- !u!1001 &1146441560
 Prefab:
@@ -9653,7 +9657,6 @@ MonoBehaviour:
   zoneId: GR
   name: GR
   health: 0
-  maxhealth: 1000
   level: 0
   team: 0
   healthBar: {fileID: 624985195}
@@ -10312,7 +10315,6 @@ MonoBehaviour:
   zoneId: OR
   name: OneRoof
   health: 0
-  maxhealth: 1000
   level: 0
   team: 0
   healthBar: {fileID: 41263507}
@@ -10544,6 +10546,7 @@ GameObject:
   - component: {fileID: 1539511914}
   - component: {fileID: 1539511913}
   - component: {fileID: 1539511912}
+  - component: {fileID: 1539511915}
   m_Layer: 5
   m_Name: ActionButton
   m_TagString: Untagged
@@ -10655,6 +10658,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1539511910}
+--- !u!114 &1539511915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1539511910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a7f2fad055549628af849ec7ec7502, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1550908223
 GameObject:
   m_ObjectHideFlags: 0
@@ -10755,7 +10769,6 @@ MonoBehaviour:
   zoneId: INM
   name: INM
   health: 0
-  maxhealth: 1000
   level: 0
   team: 0
   healthBar: {fileID: 1904161319}
@@ -12765,7 +12778,6 @@ MonoBehaviour:
   zoneId: MA
   name: MA
   health: 0
-  maxhealth: 1000
   level: 0
   team: 0
   healthBar: {fileID: 2144237988}
@@ -13074,7 +13086,6 @@ MonoBehaviour:
   zoneId: METRO
   name: Metro
   health: 0
-  maxhealth: 1000
   level: 0
   team: 0
   healthBar: {fileID: 2057865450}
@@ -13434,7 +13445,6 @@ MonoBehaviour:
   zoneId: SV
   name: SV
   health: 0
-  maxhealth: 1000
   level: 0
   team: 0
   healthBar: {fileID: 53493404}
@@ -13644,7 +13654,6 @@ MonoBehaviour:
   zoneId: BI
   name: BI
   health: 0
-  maxhealth: 1000
   level: 0
   team: 0
   healthBar: {fileID: 1418808538}
@@ -14005,7 +14014,6 @@ MonoBehaviour:
   zoneId: CM
   name: CM
   health: 0
-  maxhealth: 1000
   level: 0
   team: 0
   healthBar: {fileID: 1150916257}
@@ -14038,8 +14046,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 818770027}
-  actionButton: {fileID: 1539511912}
-  improveButton: {fileID: 1103135029}
+  actionButton: {fileID: 1539511915}
+  improveButton: {fileID: 1103135032}
   zonePopup: {fileID: 1840133861}
   terminalPopup: {fileID: 215381138}
   messagePopup: {fileID: 1038846808}
@@ -14547,7 +14555,6 @@ MonoBehaviour:
   zoneId: BC
   name: BC
   health: 0
-  maxhealth: 1000
   level: 0
   team: 0
   healthBar: {fileID: 1317920772}

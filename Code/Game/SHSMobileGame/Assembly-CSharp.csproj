@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\ActionButtonHandler.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\ClickHandler.cs" />
      <Compile Include="Assets\Scripts\Constants\AchievementsConstants.cs" />
@@ -70,6 +71,7 @@
      <Compile Include="Assets\Scripts\Entities\User.cs" />
      <Compile Include="Assets\Scripts\Entities\Zone.cs" />
      <Compile Include="Assets\Scripts\FadingPlayer.cs" />
+     <Compile Include="Assets\Scripts\ImproveButtonHandler.cs" />
      <Compile Include="Assets\Scripts\InitialScene.cs" />
      <Compile Include="Assets\Scripts\LocationHandler.cs" />
      <Compile Include="Assets\Scripts\LocationSmoother.cs" />
