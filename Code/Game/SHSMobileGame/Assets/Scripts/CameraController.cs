@@ -44,7 +44,7 @@ public class CameraController : LocationListener {
 	public Button changeModeButton;
 
 
-	enum state {Idle,Clicking,Dragging,Focusing,Focused,Unfocusing,FixedOnPlayer, FixedOnFadingPlayer,MovingToPlayer, MovingToFadingPlayer,MovingToInitialPos};
+	enum state {Idle,Clicking,Dragging,Focusing,Focused,Unfocusing,FixedOnPlayer, FixedOnFadingPlayer,MovingToPlayer, MovingToFadingPlayer,MovingToInitialPos,MovingToPosition};
 	private state currentState = state.Idle;
 
 	// Use this for initialization
@@ -262,5 +262,10 @@ public class CameraController : LocationListener {
 	override public void FirstLocationSent() {
 		currentState = state.MovingToPlayer;
 		isAttackMode = true;
+	}
+
+	public void GoToBuilding(GameObject focusedBuilding){
+		this.focusedBuilding = focusedBuilding;
+		currentState = state.Focusing;
 	}
 }

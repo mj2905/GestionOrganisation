@@ -7,17 +7,15 @@ public class Notification : MonoBehaviour
 	private bool destroy = false;
 	private bool destroyed = false;
 
-	private Vector3 initialPosition,targetPosition;
+	private Vector3 initialPosition;
+	private GameObject targetBuilding;
 	private int position;
 	private CameraController camera;
+
 		public Notification (){}
 
-		public void Start(){
-			this.camera = Camera.main.GetComponent<CameraController> ();
-		}
-
-		public void SetTargetPosition(Vector3 targetPosition){
-			this.targetPosition = targetPosition;
+		public void SetTargetPosition(GameObject targetBuilding){
+			this.targetBuilding = targetBuilding;
 		}
 
 		public void SetInitialPosition(Vector3 initialPosition){
@@ -28,11 +26,9 @@ public class Notification : MonoBehaviour
 			this.position = position;
 		}
 
-		public void SetPosition(int position){
-			this.position = position;
-		}
-
 		public void Start(){
+		this.camera = Camera.main.GetComponent<CameraController> ();
+
 			transform.position = initialPosition - new Vector3(100,((1.2f*(position)))*GetComponent<RectTransform>().rect.height,0);
 		}
 
@@ -50,5 +46,10 @@ public class Notification : MonoBehaviour
 				}
 			}
 		}
+
+	public void GoToNotification(){
+		this.camera.GoToBuilding (targetBuilding);
+		destroy = true;
+	}
 }
 
