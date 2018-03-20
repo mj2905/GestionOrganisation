@@ -20,7 +20,7 @@ public class CameraController : LocationListener {
 	private const float SPEED_ZOOM = 4f;
 	private const float SPEED_OUTSIDE = 3f;
 	private const float SPEED_SWITCH_MODE = 5f;
-	private const float TIME_OF_CLICK = 0.05f;
+	private const float MAX_DIST_DRAG = 0.5f;
 
     private Vector3 dragOrigin;
     private Vector3 previousSceneRootPos;
@@ -38,13 +38,14 @@ public class CameraController : LocationListener {
 	private Vector3 initialPosition;
 	private bool isAttackMode = false;
 
+	private Vector3 startPosition;
+	private Vector3 currentPosition;
+
 	public Button changeModeButton;
 
 
 	enum state {Idle,Clicking,Dragging,Focusing,Focused,Unfocusing,FixedOnPlayer, FixedOnFadingPlayer,MovingToPlayer, MovingToFadingPlayer,MovingToInitialPos};
 	private state currentState = state.Idle;
-
-	private float timer = 0f;
 
 	// Use this for initialization
 	void Start () {
@@ -59,7 +60,7 @@ public class CameraController : LocationListener {
 	}
 
 	void Update(){
-		//Debug.Log (currentState);
+		Debug.Log (currentState);
 		switch (currentState) {
 		case state.FixedOnPlayer:
 			transform.position = player.transform.position + offset;
@@ -92,52 +93,50 @@ public class CameraController : LocationListener {
 		case state.Idle:
 			if (!IsPointerOverUIObject() && Input.GetMouseButton (0)) {
 				this.currentState = state.Clicking;
+				this.startPosition = camera.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, camera.transform.position.y));
 			}
 			break;
 		case state.Clicking:
 			if (Input.GetMouseButton (0)) {
-				timer += Time.deltaTime;
-				//Debug.Log (timer.ToString ());
-				if (timer > TIME_OF_CLICK) {
-					timer = 0;
+				currentPosition = camera.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, camera.transform.position.y));
+				Debug.Log ((startPosition - currentPosition).magnitude);
+				if ((startPosition - currentPosition).magnitude > MAX_DIST_DRAG) {
+					dragOrigin = currentPosition;
 					currentState = state.Dragging;
-					dragOrigin = camera.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, camera.transform.position.y));
 					previousSceneRootPos = sceneRoot.gameObject.transform.position;
 				}
-			} else {
-				timer = 0;
-				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-				//RaycastHit hit;
+			}else {
+					Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+					//RaycastHit hit;
 					//if (Physics.Raycast (ray, out hit, 1000)) {
-				RaycastHit[] hits = Physics.RaycastAll (ray, 1000);
+					RaycastHit[] hits = Physics.RaycastAll (ray, 1000);
 
-				bool has_hit = false;
-				int hitOne = -1;
-				for (int i = 0; i < hits.Length; ++i) {
-					if (hits[i].transform.gameObject.tag == "Zone") {
-						has_hit = true;
-						hitOne = i;
-						break;
-					}
-				}
-
-				if (has_hit) {
-					positionBeforeFocus = transform.position;
-					rotationBeforeFocus = transform.rotation;
-					focusedBuilding = hits[hitOne].transform.gameObject;
-					currentState = state.Focusing;
-
-					if (!isAttackMode) {
-						//Notify the interaction manager that the user focused on a zone
-						Zone targetZone = hits[hitOne].transform.gameObject.GetComponent<Zone> ();
-						interactionManager.updateTargetedZone (targetZone);
-						gameManager.DrawTerminalsUI (targetZone.zoneId);
+					bool has_hit = false;
+					int hitOne = -1;
+					for (int i = 0; i < hits.Length; ++i) {
+						if (hits [i].transform.gameObject.tag == "Zone") {
+							has_hit = true;
+							hitOne = i;
+							break;
+						}
 					}
 
-				} else {
-					currentState = state.Idle;
-				}
+					if (has_hit) {
+						positionBeforeFocus = transform.position;
+						rotationBeforeFocus = transform.rotation;
+						focusedBuilding = hits [hitOne].transform.gameObject;
+						currentState = state.Focusing;
 
+						if (!isAttackMode) {
+							//Notify the interaction manager that the user focused on a zone
+							Zone targetZone = hits [hitOne].transform.gameObject.GetComponent<Zone> ();
+							interactionManager.updateTargetedZone (targetZone);
+							gameManager.DrawTerminalsUI (targetZone.zoneId);
+						}
+
+					} else {
+						currentState = state.Idle;
+					}
 			}
 
 			break;
