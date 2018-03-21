@@ -25,13 +25,6 @@ public class Terminal : MonoBehaviour
 
 	public Action callbackWhenDestroyed;
 
-	void Start(){
-		//terminalId = "Terminal";
-		healthBar = GameObject.Find (terminalId+"/TowerStatsCanvas/HealthBG/HealthBar").GetComponent<Image>();
-		levelBar = GameObject.Find (terminalId+"/TowerStatsCanvas/LevelBG/LevelBar").GetComponent<Image>();
-		powerBar = GameObject.Find (terminalId+"/TowerStatsCanvas/PowerBG/PowerBar").GetComponent<Image>();
-	}
-
 	void OnDisable() {
 		if (callbackWhenDestroyed != null) {
 			callbackWhenDestroyed ();
@@ -39,13 +32,18 @@ public class Terminal : MonoBehaviour
 	}
 
 	public void Init(){
+		healthBar = GameObject.Find (terminalId+"/TowerStatsCanvas/HealthBG/HealthBar").GetComponent<Image>();
+		levelBar = GameObject.Find (terminalId+"/TowerStatsCanvas/LevelBG/LevelBar").GetComponent<Image>();
+		powerBar = GameObject.Find (terminalId+"/TowerStatsCanvas/PowerBG/PowerBar").GetComponent<Image>();
 
 		Color teamColor = ColorConstants.getColor (team);
 		healthBar.color = teamColor;
 		levelBar.color = teamColor;
 		powerBar.color = teamColor;
+		Debug.Log (target);
 
 		if (target != null) {
+			Debug.Log ("3");
 
 			Vector3 targetPos = target.gameObject.transform.position;
 			Vector3 targetLookAtPos = new Vector3 (targetPos.x, gameObject.transform.position.y, targetPos.z); 

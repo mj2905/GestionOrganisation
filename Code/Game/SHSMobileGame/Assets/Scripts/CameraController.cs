@@ -60,7 +60,7 @@ public class CameraController : LocationListener {
 	}
 
 	void Update(){
-		Debug.Log (currentState);
+		//Debug.Log (currentState);
 		switch (currentState) {
 		case state.FixedOnPlayer:
 			transform.position = player.transform.position + offset;

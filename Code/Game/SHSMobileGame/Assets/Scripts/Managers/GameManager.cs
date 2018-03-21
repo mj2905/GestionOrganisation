@@ -47,6 +47,7 @@ public class GameManager : LocationListener {
 		currentGame = game;
 		DrawTerminals ();
 		DrawZones ();
+		uiManager.SetCurrentTerminals (previousGame,currentGame);
 	}
 
 	public void DrawTerminalsUI(string zoneId) {
@@ -69,7 +70,7 @@ public class GameManager : LocationListener {
 			
 			t.Copy (newTerminals [i]);
 			t.gameObject.transform.localPosition = new Vector3(newTerminals [i].x,2,newTerminals [i].z);
-			t.SetTarget(GameObject.Find("SceneRoot/Zones/"+newTerminals[i].zoneId +"/"+newTerminals[i].zoneId+"_building/" + newTerminals[i].zoneId+"_volume"));
+			t.SetTarget(GameObject.Find(newTerminals[i].zoneId+"_volume"));
 			t.Init ();
 			terminalDict.Add (t.GetTerminalId (), t);
 			t.ShowUI (zoneIdClicked == t.zoneId); //If concurrence problem, comes from here (some terminal added, in the meantime the user clicked on the screen, and with bad luck the infos are not printed)

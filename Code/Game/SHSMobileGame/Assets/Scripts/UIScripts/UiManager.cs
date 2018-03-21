@@ -9,9 +9,13 @@ public class UiManager : LocationListener
 {
 	private Effects previousEffects = new Effects();
 	private List<Tuple<string, Medal>> medalList = new List<Tuple<string, Medal>>();
+	private List<Tuple<string, Notification>> notificationList = new List<Tuple<string, Notification>>();
 
-	public GameObject initialPosition;
+	public GameObject initialMedalPosition;
+	public GameObject initialNotificationPosition;
+
 	public Medal MedalPrefab;
+	public Notification NotificationPrefab;
 
 	public Text creditText;
 	public Text scoreText;
@@ -142,9 +146,9 @@ public class UiManager : LocationListener
 	public void AddNewEffects(Effects effects){
 		for (int i = 0; i < effects.medals.Count; i++) {
 			Medal m = (Medal)Instantiate (MedalPrefab);
-			m.SetInitialPosition (initialPosition.transform.position);
+			m.SetInitialPosition (initialMedalPosition.transform.position);
 			m.SetPosition(medalList.Count);
-			m.transform.SetParent (initialPosition.gameObject.transform);
+			m.transform.SetParent (initialMedalPosition.gameObject.transform);
 			m.Copy (effects.medals[i]);
 			medalList.Add (new Tuple<string,Medal>(m.GetName(),m));
 		}
@@ -206,5 +210,28 @@ public class UiManager : LocationListener
 		showAchievementMenu = !showAchievementMenu;
 		Debug.Log (achievementMenu.enabled);
 		achievementMenu.gameObject.SetActive(showAchievementMenu);
+	}
+
+	public void SetCurrentTerminals(Game previousGame,Game newGame){
+		foreach (Terminal terminal in newGame.GetDeletedTerminals(previousGame)) {
+			foreach (var notification in notificationList) {
+				if (notification.Item1 == terminal.GetTerminalId ()) {
+					notification.Item2.DestroyNotification ();
+				}
+			}
+			notificationList.RemoveAll(item => item.Item1 == terminal.GetTerminalId ());
+		}
+
+		foreach(var terminal in newGame.GetNewAllyTerminals(previousGame)) {
+			Notification n = (Notification)Instantiate (NotificationPrefab);
+			n.SetType (Notification.Type.AllyTerminal);
+			n.SetTargetPosition (terminal.Value.gameObject);
+			n.SetInitialPosition (initialNotificationPosition.transform.position);
+			n.SetPosition(notificationList.Count);
+			n.transform.SetParent (initialNotificationPosition.gameObject.transform);
+			notificationList.Add (new Tuple<string,Notification>(terminal.Value.GetTerminalId(),n));
+		}
+
+
 	}
 }

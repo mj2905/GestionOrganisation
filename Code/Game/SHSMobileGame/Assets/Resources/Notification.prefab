@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 222747186496313826}
   - component: {fileID: 114827272414948416}
   - component: {fileID: 114632460982650712}
+  - component: {fileID: 114042615570857420}
   m_Layer: 5
   m_Name: Notification
   m_TagString: Untagged
@@ -79,6 +80,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Button
+--- !u!114 &114042615570857420
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1820430670393648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b0c16207fc53a247855fffaad5e8b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114632460982650712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,7 +129,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114827272414948416}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114042615570857420}
+        m_MethodName: GoToNotification
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114827272414948416

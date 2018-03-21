@@ -101,5 +101,44 @@ public class Game
 		return this.zones.AsReadOnly();
 	}
 
+	public Dictionary<string,Terminal> GetEnemyTerminalsAttackingAlly(List<Terminal> terminals){
+		Dictionary<string,Terminal> res = new Dictionary<string,Terminal>();
+		foreach (Terminal terminal in terminals) {
+			if (terminal.team != FirebaseManager.userTeam) {
+				foreach (Zone zone in zones) {
+					if (zone.zoneId == terminal.zoneId) {
+						res.Add (terminal.GetTerminalId (), terminal);
+					}
+				}
+			}
+		}
+		return res;
+	}
+
+	public Dictionary<string,Terminal> GetAllyTerminals(List<Terminal> terminals){
+		Dictionary<string,Terminal> res = new Dictionary<string,Terminal>();
+		foreach (Terminal terminal in terminals) {
+			if (terminal.team == FirebaseManager.userTeam) {
+				res.Add (terminal.GetTerminalId (), terminal);
+			}
+		}
+		return res;
+	}
+
+	public Dictionary<string,Terminal> GetNewAllyTerminals(Game pastGame){
+		return GetAllyTerminals (GetNewTerminals(pastGame));
+	}
+
+	public Dictionary<string,Terminal> GetDeletedAllyTerminals(Game pastGame){
+		return GetAllyTerminals (GetDeletedTerminals(pastGame));
+	}
+
+	public Dictionary<string,Terminal> GetNewEnemyTerminals(Game pastGame){
+		return GetEnemyTerminalsAttackingAlly (GetNewTerminals(pastGame));
+	}
+
+	public Dictionary<string,Terminal> GetDeletedEnemyTerminals(Game pastGame){
+		return GetEnemyTerminalsAttackingAlly (GetDeletedTerminals(pastGame));
+	}
 }
 
