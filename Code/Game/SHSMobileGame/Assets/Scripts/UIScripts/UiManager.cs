@@ -239,7 +239,6 @@ public class UiManager : LocationListener
 
 		foreach(var terminal in newGame.GetNewEnemyTerminals(previousGame)) {
 			Notification n = (Notification)Instantiate (NotificationPrefab);
-			Debug.Log (notificationList.Count);
 			n.SetPosition(notificationList.Count);
 			n.SetInitialPosition (initialNotificationPosition.transform.position);
 			n.SetType (Notification.Type.EnemyTerminal);
