@@ -47,7 +47,7 @@ public class GameManager : LocationListener {
 		currentGame = game;
 		DrawTerminals ();
 		DrawZones ();
-		uiManager.SetCurrentTerminals (previousGame,currentGame);
+		uiManager.SetCurrentTerminals (previousGame,currentGame,zoneDict);
 	}
 
 	public void DrawTerminalsUI(string zoneId) {

@@ -212,26 +212,55 @@ public class UiManager : LocationListener
 		achievementMenu.gameObject.SetActive(showAchievementMenu);
 	}
 
-	public void SetCurrentTerminals(Game previousGame,Game newGame){
+	public void SetCurrentTerminals(Game previousGame,Game newGame,Dictionary<string, Zone> zoneDict){
 		foreach (Terminal terminal in newGame.GetDeletedTerminals(previousGame)) {
+			string name = "";
 			foreach (var notification in notificationList) {
-				if (notification.Item1 == terminal.GetTerminalId ()) {
+				if (notification.Item1.Contains(terminal.GetTerminalId ())) {
+					name = notification.Item2.GetName ();
 					notification.Item2.DestroyNotification ();
 				}
 			}
-			notificationList.RemoveAll(item => item.Item1 == terminal.GetTerminalId ());
+			removeNotification (name);
 		}
 
 		foreach(var terminal in newGame.GetNewAllyTerminals(previousGame)) {
 			Notification n = (Notification)Instantiate (NotificationPrefab);
-			n.SetType (Notification.Type.AllyTerminal);
-			n.SetTargetPosition (terminal.Value.gameObject);
-			n.SetInitialPosition (initialNotificationPosition.transform.position);
 			n.SetPosition(notificationList.Count);
+			n.SetInitialPosition (initialNotificationPosition.transform.position);
+			n.SetType (Notification.Type.AllyTerminal);
+			n.SetUi (this);
+			n.SetText (zoneDict[terminal.Value.zoneId].name);
+			n.SetName (terminal.Value.GetTerminalId () + "_ally");
+			n.SetTargetPosition (zoneDict[terminal.Value.zoneId]);
 			n.transform.SetParent (initialNotificationPosition.gameObject.transform);
-			notificationList.Add (new Tuple<string,Notification>(terminal.Value.GetTerminalId(),n));
+			notificationList.Add (new Tuple<string,Notification>(n.GetName(),n));
 		}
 
+		foreach(var terminal in newGame.GetNewEnemyTerminals(previousGame)) {
+			Notification n = (Notification)Instantiate (NotificationPrefab);
+			Debug.Log (notificationList.Count);
+			n.SetPosition(notificationList.Count);
+			n.SetInitialPosition (initialNotificationPosition.transform.position);
+			n.SetType (Notification.Type.EnemyTerminal);
+			n.SetUi (this);
+			n.SetText (zoneDict[terminal.Value.zoneId].name);
+			n.SetName (terminal.Value.GetTerminalId()+"_enemy");
+			n.SetTargetPosition (zoneDict[terminal.Value.zoneId]);
+			n.transform.SetParent (initialNotificationPosition.gameObject.transform);
+			notificationList.Add (new Tuple<string,Notification>(n.GetName(),n));
+		}
 
+		for (int i = 0; i < notificationList.Count; i++) {
+			notificationList [i].Item2.SetPosition (i);
+		}
+	}
+
+	public void removeNotification(string name){
+		notificationList.RemoveAll(item => item.Item1 == name);
+
+		for (int i = 0; i < notificationList.Count; i++) {
+			notificationList [i].Item2.SetPosition (i);
+		}
 	}
 }

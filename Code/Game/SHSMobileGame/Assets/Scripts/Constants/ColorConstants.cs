@@ -19,7 +19,8 @@ public static class ColorConstants
 	public static Color textColorTeam3 = new Color(255/255.0f, 255/255.0f, 0/255.0f, 1.0f); // Yellow
 	public static Color textColorTeam4 = new Color(94/255.0f, 182/255.0f, 255/255.0f, 1.0f); // Blue
 
-
+	public static Color colorNotificationAlly = new Color(50/255.0f, 50/255.0f, 220/255.0f, 0.8f); // Green
+	public static Color colorNotificationEnemy = new Color(220/255.0f, 50/255.0f, 50/255.0f, 0.8f); // Green
 
 	public static Color getColor(int teamNumber){
 		Color color;
@@ -86,7 +87,6 @@ public static class ColorConstants
 			break;
 		}
 		return color;
-
 	}
 }
 

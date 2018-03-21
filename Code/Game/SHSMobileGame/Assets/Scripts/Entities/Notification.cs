@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Notification : MonoBehaviour
 	{
@@ -8,16 +9,21 @@ public class Notification : MonoBehaviour
 	private bool destroyed = false;
 
 	private Vector3 initialPosition;
-	private GameObject targetBuilding;
+	private Zone targetBuilding;
 	private int position;
 	private CameraController camera;
+	private UiManager ui;
+	private string name;
+
+	public Text text;
+	public Image image;
 
 	public enum Type{AllyTerminal,EnemyTerminal}
 	private Type currentType;
 
 		public Notification (){}
 
-		public void SetTargetPosition(GameObject targetBuilding){
+		public void SetTargetPosition(Zone targetBuilding){
 			this.targetBuilding = targetBuilding;
 		}
 
@@ -30,9 +36,9 @@ public class Notification : MonoBehaviour
 		}
 
 		public void Start(){
-		this.camera = Camera.main.GetComponent<CameraController> ();
-
-			transform.position = initialPosition + new Vector3(100,((1.2f*(position)))*GetComponent<RectTransform>().rect.height,0);
+			this.camera = Camera.main.GetComponent<CameraController> ();
+			Debug.Log (position);
+			transform.position = initialPosition - new Vector3(-100,((1.2f*(position)))*GetComponent<RectTransform>().rect.height,0);
 		}
 
 		public void Update(){
@@ -51,8 +57,13 @@ public class Notification : MonoBehaviour
 		}
 
 	public void GoToNotification(){
+		ui.removeNotification (this.name);
 		this.camera.GoToBuilding (targetBuilding);
 		destroy = true;
+	}
+
+	public void SetName(string name){
+		this.name = name;
 	}
 
 	public void DestroyNotification(){
@@ -61,6 +72,26 @@ public class Notification : MonoBehaviour
 
 	public void SetType(Type type){
 		currentType = type;
+		switch(type){
+		case Type.AllyTerminal:
+			image.color = ColorConstants.colorNotificationAlly;
+			break;
+		case Type.EnemyTerminal:
+			image.color = ColorConstants.colorNotificationEnemy;
+			break;
+		}
+	}
+
+	public void SetText(string name){
+		text.text = name.ToUpper();
+	}
+
+	public void SetUi(UiManager ui){
+		this.ui = ui;
+	}
+
+	public string GetName(){
+		return name;
 	}
 }
 

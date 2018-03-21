@@ -264,8 +264,10 @@ public class CameraController : LocationListener {
 		isAttackMode = true;
 	}
 
-	public void GoToBuilding(GameObject focusedBuilding){
-		this.focusedBuilding = focusedBuilding;
+	public void GoToBuilding(Zone focusedBuilding){
+		this.focusedBuilding = focusedBuilding.gameObject;
+		interactionManager.updateTargetedZone (focusedBuilding);
+		gameManager.DrawTerminalsUI (focusedBuilding.zoneId);
 		currentState = state.Focusing;
 	}
 }

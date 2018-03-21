@@ -106,7 +106,7 @@ public class Game
 		foreach (Terminal terminal in terminals) {
 			if (terminal.team != FirebaseManager.userTeam) {
 				foreach (Zone zone in zones) {
-					if (zone.zoneId == terminal.zoneId) {
+					if (zone.zoneId == terminal.zoneId && zone.team == FirebaseManager.userTeam) {
 						res.Add (terminal.GetTerminalId (), terminal);
 					}
 				}

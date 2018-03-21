@@ -40,11 +40,8 @@ public class Terminal : MonoBehaviour
 		healthBar.color = teamColor;
 		levelBar.color = teamColor;
 		powerBar.color = teamColor;
-		Debug.Log (target);
 
 		if (target != null) {
-			Debug.Log ("3");
-
 			Vector3 targetPos = target.gameObject.transform.position;
 			Vector3 targetLookAtPos = new Vector3 (targetPos.x, gameObject.transform.position.y, targetPos.z); 
 			gameObject.transform.LookAt(targetLookAtPos);
