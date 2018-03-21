@@ -18,6 +18,43 @@ public class FadingPlayer : MonoBehaviour {
 		hasBeenVisible = false;
 	}
 
+	void OnTriggerEnter(Collider other) 
+	{
+		if (other is CapsuleCollider) {
+			//print ("Safe zone entered: " + other.gameObject.name);
+		}
+		else {
+
+			Transform p = other.gameObject.transform;
+
+			while (!p.parent.name.EndsWith ("_building")) {
+				p = p.parent;
+			}
+
+			other.gameObject.transform.position += new Vector3 (0, 1, 0);
+			p.parent.position -= new Vector3 (0, 1, 0);
+		}
+	}
+
+	void OnTriggerExit(Collider other)
+	{
+		if (other is CapsuleCollider) {
+			//print ("Safe zone exited: " + other.gameObject.name);
+		} else {
+			print ("Exited: " + other.gameObject.name);
+
+			Transform p = other.gameObject.transform;
+
+			while (!p.parent.name.EndsWith ("_building")) {
+				p = p.parent;
+			}
+
+			p.parent.position += new Vector3 (0, 1, 0);
+			other.gameObject.transform.position -= new Vector3 (0, 1, 0);
+
+		}
+	}
+
 	private static float max(float a, float b) {
 		return a > b ? a : b;
 	}
