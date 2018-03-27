@@ -2,6 +2,8 @@
 
 public static class ColorConstants
 {
+
+	public enum TEAMS {ENAC = 1, STI = 2, FSB = 3, ICSV = 4};
 	public static Color team1 = new Color(0,1,0,0.2f); // Green
 	public static Color team2 = new Color(1,0,0,0.2f); // Red
 	public static Color team3 = new Color(1,1,0,0.2f); // Yellow 
@@ -18,6 +20,7 @@ public static class ColorConstants
 	public static Color textColorTeam2 = new Color(255/255.0f, 81/255.0f, 81/255.0f, 1.0f); // Red
 	public static Color textColorTeam3 = new Color(255/255.0f, 255/255.0f, 0/255.0f, 1.0f); // Yellow
 	public static Color textColorTeam4 = new Color(94/255.0f, 182/255.0f, 255/255.0f, 1.0f); // Blue
+	public static Color textColorDefault = new Color(1.0f,1.0f,1.0f, 1.0f); // Blue
 
 	public static Color colorNotificationAlly = new Color(50/255.0f, 50/255.0f, 220/255.0f, 0.8f); // Green
 	public static Color colorNotificationEnemy = new Color(220/255.0f, 50/255.0f, 50/255.0f, 0.8f); // Green
@@ -60,7 +63,7 @@ public static class ColorConstants
 			color = ColorConstants.textColorTeam4;
 			break;
 		default:
-			color = ColorConstants.textColorTeam1;
+			color = ColorConstants.textColorDefault;
 			break;
 		}
 		return color;

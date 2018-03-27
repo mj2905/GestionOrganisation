@@ -14,12 +14,25 @@ public class Zone : MonoBehaviour {
 	public Image healthBar;
 	public Image levelBar;
 
+	public Image flag;
+	public Image dmgENAC;
+	public Image dmgSTI;
+	public Image dmgFSB;
+	public Image dmgICSV;
+
+	/*public float dmgTmp;
+	public float dmg1;
+	public float dmg2;
+	public float dmg3;
+	public float dmg4;*/
+
 	private bool isSwitching = true;
 	private bool isTimerIncreasing = true;
 
 	private Color colorSwitching;
 
 	private const float SPEED_OF_TRANSITION = 2f;
+	private const float DEGREES = 360;
 	private float timer = 0;
 
 	enum state {Idle,LerpingToNormalColor,LerpingToDamagedColor,ColoredNormalColor,ColoredDamagedColor}
@@ -29,10 +42,16 @@ public class Zone : MonoBehaviour {
 		if(damages == null) {
 			damages = new Damages();
 		}
+
+		dmgENAC.color = ColorConstants.getTextColor ((int)ColorConstants.TEAMS.ENAC);
+		dmgSTI.color = ColorConstants.getTextColor ((int)ColorConstants.TEAMS.STI);
+		dmgFSB.color = ColorConstants.getTextColor ((int)ColorConstants.TEAMS.FSB);
+		dmgICSV.color = ColorConstants.getTextColor ((int)ColorConstants.TEAMS.ICSV);
 	}
 
 	void Update(){
-		
+
+		updateDonutChart ();
 		healthBar.fillAmount = (float)(health) / (float) QuantitiesConstants.ZONE_MAX_HEALTH_VALUES[level];
 		levelBar.fillAmount =  (float)(level) / QuantitiesConstants.ZONE_LEVEL_MAX;
 
@@ -72,6 +91,35 @@ public class Zone : MonoBehaviour {
 			}
 			break;
 		}
+	}
+
+	private void updateDonutChart(){
+		// Total damages in donut chart should match lost hp from zone
+		// current hp / max hp gives the amount all the damage should sum to in [0,1] interval
+		// compute proportion of total damaged for each team, multiply by the above value
+
+		float hpProp = (float)(health) / (float) QuantitiesConstants.ZONE_MAX_HEALTH_VALUES[level];
+
+		flag.color = ColorConstants.getTextColor ((int)team);
+
+		float totalDamages = (float)damages.getTotalDamages (); //dmgTmp
+		if (totalDamages <= 0.01) {
+			return;
+		}
+
+		dmgENAC.fillAmount = (damages.GetDamage ((int)ColorConstants.TEAMS.ENAC) / totalDamages) * hpProp;
+		dmgSTI.fillAmount = (damages.GetDamage ((int)ColorConstants.TEAMS.STI) / totalDamages)  * hpProp;
+		dmgFSB.fillAmount = (damages.GetDamage ((int)ColorConstants.TEAMS.FSB) / totalDamages)  * hpProp;
+		dmgICSV.fillAmount = (damages.GetDamage ((int)ColorConstants.TEAMS.ICSV) / totalDamages)  * hpProp;
+	
+		/*dmgENAC.fillAmount = (dmg1 / totalDamages) * hpProp;
+		dmgSTI.fillAmount = (dmg2 / totalDamages)  * hpProp;
+		dmgFSB.fillAmount = (dmg3 / totalDamages)  * hpProp;
+		dmgICSV.fillAmount = (dmg4 / totalDamages)  * hpProp;*/
+
+		dmgSTI.transform.localEulerAngles = new Vector3(0, 0, -dmgENAC.fillAmount * DEGREES);
+		dmgFSB.transform.localEulerAngles = new Vector3(0, 0, -(dmgENAC.fillAmount + dmgSTI.fillAmount) * DEGREES);
+		dmgICSV.transform.localEulerAngles = new Vector3(0, 0, -(dmgENAC.fillAmount + dmgSTI.fillAmount + dmgICSV.fillAmount) * DEGREES);
 	}
 
 	public Zone (string zoneId, int level, int health, int team,Damages damages)
