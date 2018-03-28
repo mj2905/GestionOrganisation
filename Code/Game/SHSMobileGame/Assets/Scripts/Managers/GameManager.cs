@@ -81,6 +81,7 @@ public class GameManager : LocationListener {
 				leaderboardManager.ChangeScore (ColorConstants.getColorAsString(teams[i].getTeamId()), "Points", increment);
 			}
 		}
+			
 		uiManager.SetCurrentTerminals (previousGame,currentGame,zoneDict);
 	}
 

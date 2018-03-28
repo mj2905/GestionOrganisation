@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222171859190282756}
   - component: {fileID: 114421362260538206}
   - component: {fileID: 114669107534359144}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114119781779162122}
   - component: {fileID: 114125369128035634}
   - component: {fileID: 114067371619218456}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: ZoneStatsChart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 224623830422542146}
   - component: {fileID: 222062007224683780}
   - component: {fileID: 114180911980544140}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Flag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 224179795896277288}
   - component: {fileID: 222921362130093784}
   - component: {fileID: 114351302377331874}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: FillFSB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 224982457027396002}
   - component: {fileID: 222989245080337338}
   - component: {fileID: 114694320207463426}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: FillENAC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 224204120022298176}
   - component: {fileID: 222257228104890278}
   - component: {fileID: 114052391401795048}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fills
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 224549480612700896}
   - component: {fileID: 222739586879570184}
   - component: {fileID: 114673076094322004}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: FillICSV
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 224232521035948090}
   - component: {fileID: 222865111589747832}
   - component: {fileID: 114586687167302450}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: FillSTI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
