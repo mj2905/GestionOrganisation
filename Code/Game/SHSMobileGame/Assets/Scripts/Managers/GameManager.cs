@@ -23,12 +23,16 @@ public class GameManager : LocationListener {
 
 	public PopupScript messagePopup;
 
+	public GameObject waitingScreen;
+
 	void Awake(){
 		FirebaseManager.SetMainGameRef (this);
 	}
 
 	// Use this for initialization
 	void Start () {
+		waitingScreen.SetActive (true);
+
 		FirebaseManager.SetListenerCreditScore ();
 		FirebaseManager.SetListenerGame ();
 
@@ -43,6 +47,8 @@ public class GameManager : LocationListener {
 	}
 
 	public void ChangeGame(Game game){
+		waitingScreen.SetActive (false);
+
 		previousGame = currentGame;
 		currentGame = game;
 		DrawTerminals ();

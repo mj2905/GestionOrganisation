@@ -94,8 +94,10 @@ public class UiManager : LocationListener
 
 		previousEffects = effects;
 
-		backgroundTop.color = ColorConstants.getColor (team);
-		backgroundBottom.color = ColorConstants.getColor (team);
+		Color color = ColorConstants.getColor (team);
+		color.a = 0.5f;
+		backgroundTop.color = color;
+		backgroundBottom.color = color;
 	}
 
 	private void UpdateAchievement (Statistics statistics){
