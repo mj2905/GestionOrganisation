@@ -74,6 +74,8 @@
      <Compile Include="Assets\Scripts\FadingPlayer.cs" />
      <Compile Include="Assets\Scripts\ImproveButtonHandler.cs" />
      <Compile Include="Assets\Scripts\InitialScene.cs" />
+     <Compile Include="Assets\Scripts\LeaderBoardManager.cs" />
+     <Compile Include="Assets\Scripts\LeaderBoardScript.cs" />
      <Compile Include="Assets\Scripts\LocationHandler.cs" />
      <Compile Include="Assets\Scripts\LocationSmoother.cs" />
      <Compile Include="Assets\Scripts\Managers\FirebaseManager.cs" />
@@ -87,6 +89,7 @@
      <Compile Include="Assets\Scripts\Prefab Scipts\PopupScript.cs" />
      <Compile Include="Assets\Scripts\SignUpScene.cs" />
      <Compile Include="Assets\Scripts\SpinningWheel.cs" />
+     <Compile Include="Assets\Scripts\TeamScoreList.cs" />
      <Compile Include="Assets\Scripts\TextDissolve.cs" />
      <Compile Include="Assets\Scripts\ToggleMenu.cs" />
      <Compile Include="Assets\Scripts\TowerSpawner.cs" />
