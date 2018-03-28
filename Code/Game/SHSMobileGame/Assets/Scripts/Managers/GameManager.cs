@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +21,8 @@ public class GameManager : LocationListener {
 	private Game currentGame;
 	private string zoneIdClicked;
 
+	private LeaderBoardManager leaderboardManager;
+
 	public PopupScript messagePopup;
 
 	public GameObject waitingScreen;
@@ -31,7 +33,15 @@ public class GameManager : LocationListener {
 
 	// Use this for initialization
 	void Start () {
-		waitingScreen.SetActive (true);
+
+        waitingScreen.SetActive (true);
+		leaderboardManager = GameObject.FindObjectOfType<LeaderBoardManager> ();
+
+		if (leaderboardManager == null) {
+
+			Debug.Log ("failed to load leaderboard");
+
+		}
 
 		FirebaseManager.SetListenerCreditScore ();
 		FirebaseManager.SetListenerGame ();
@@ -41,6 +51,12 @@ public class GameManager : LocationListener {
 
 		for (int i = 0; i < zones.Length; i++) {
 			zoneDict[zones [i].zoneId] = zones [i];
+		}
+
+		List<Team> teams = currentGame.teams;
+
+		for (int i = 0; i < teams.Count; i++) {
+			leaderboardManager.SetScore (ColorConstants.getColorAsString(teams[i].getTeamId()), "Points", teams [i].score);
 		}
 
 		zoneIdClicked = "";
@@ -53,6 +69,18 @@ public class GameManager : LocationListener {
 		currentGame = game;
 		DrawTerminals ();
 		DrawZones ();
+
+		List<Team> teams = currentGame.teams;
+
+		for (int i = 0; i < teams.Count; i++) {
+
+			float increment = teams [i].score - leaderboardManager.GetScore (ColorConstants.getColorAsString(teams[i].getTeamId()), "Points");
+
+			if(increment != 0 ){
+
+				leaderboardManager.ChangeScore (ColorConstants.getColorAsString(teams[i].getTeamId()), "Points", increment);
+			}
+		}
 		uiManager.SetCurrentTerminals (previousGame,currentGame,zoneDict);
 	}
 

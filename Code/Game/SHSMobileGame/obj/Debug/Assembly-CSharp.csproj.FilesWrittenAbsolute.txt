@@ -116,6 +116,42 @@
 /Users/MJ/Desktop/tmp8/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/UnityEditor.iOS.Extensions.Xcode.xml
 /Users/MJ/Desktop/tmp8/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/UnityEditor.iOS.Extensions.Common.dll
 /Users/MJ/Desktop/tmp8/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/UnityEditor.iOS.Extensions.Common.dll.mdb
+<<<<<<< HEAD
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/obj/Debug/Assembly-CSharp.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/obj/Debug/Assembly-CSharp.dll.mdb
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/UnityEngine.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/UnityEditor.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/UnityEngine.UIAutomation.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/UnityEngine.TestRunner.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/nunit.framework.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/UnityEngine.Timeline.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/UnityEngine.GoogleAudioSpatializer.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/UnityEngine.HoloLens.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/UnityEngine.SpatialTracking.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/Unity.Compat.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/Unity.Tasks.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/Firebase.Auth.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/Google.MiniJson.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/Google.Sharpen.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/Firebase.Database.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/Firebase.App.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/UnityEngine.Analytics.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/UnityEngine.Purchasing.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/Unity.Cecil.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/ExCSS.Unity.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/Unity.DataContract.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/Unity.Legacy.NRefactory.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/Unity.Cecil.Pdb.dll
+/Users/francisdamachi/Desktop/epfl/Master/SHS/newNewNewMaster/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/Unity.Cecil.Mdb.dll
+=======
 /Users/MJ/Desktop/tmp9/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/Assembly-CSharp.dll.mdb
 /Users/MJ/Desktop/tmp9/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/Assembly-CSharp.dll
 /Users/MJ/Desktop/tmp9/GestionOrganisation/Code/Game/SHSMobileGame/obj/Debug/Assembly-CSharp.dll
@@ -178,3 +214,4 @@
 /Users/MJ/Desktop/tmp9/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/UnityEditor.iOS.Extensions.Xcode.xml
 /Users/MJ/Desktop/tmp9/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/UnityEditor.iOS.Extensions.Common.dll
 /Users/MJ/Desktop/tmp9/GestionOrganisation/Code/Game/SHSMobileGame/Temp/bin/Debug/UnityEditor.iOS.Extensions.Common.dll.mdb
+>>>>>>> master
