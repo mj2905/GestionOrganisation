@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +25,8 @@ public class GameManager : LocationListener {
 
 	public PopupScript messagePopup;
 
+	public GameObject waitingScreen;
+
 	void Awake(){
 		FirebaseManager.SetMainGameRef (this);
 	}
@@ -32,6 +34,7 @@ public class GameManager : LocationListener {
 	// Use this for initialization
 	void Start () {
 
+        waitingScreen.SetActive (true);
 		leaderboardManager = GameObject.FindObjectOfType<LeaderBoardManager> ();
 
 		if (leaderboardManager == null) {
@@ -60,6 +63,8 @@ public class GameManager : LocationListener {
 	}
 
 	public void ChangeGame(Game game){
+		waitingScreen.SetActive (false);
+
 		previousGame = currentGame;
 		currentGame = game;
 		DrawTerminals ();
