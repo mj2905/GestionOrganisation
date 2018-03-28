@@ -21,6 +21,10 @@ public class Team
 		this.score = Int32.Parse(entry["score"].ToString());
 		this.token = Int32.Parse(entry["token"].ToString());
 	}
+
+	public int getTeamId(){
+		return teamId;
+	}
 }
 
 
