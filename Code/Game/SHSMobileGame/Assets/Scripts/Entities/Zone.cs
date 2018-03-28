@@ -8,13 +8,11 @@ public class Zone : MonoBehaviour {
 	public GameObject statsChart;
 	public string zoneId;
 	public string name;
-	public Text levelText;
+	private Text levelText;
 	public int health;
 	public int level;
 	public int team;
 	public Damages damages;
-	public Image healthBar;
-	public Image levelBar;
 
 	private Image flag;
 	private Image dmgENAC;
@@ -63,8 +61,6 @@ public class Zone : MonoBehaviour {
 	void Update(){
 
 		updateDonutChart ();
-		healthBar.fillAmount = (float)(health) / (float) QuantitiesConstants.ZONE_MAX_HEALTH_VALUES[level];
-		levelBar.fillAmount =  (float)(level) / QuantitiesConstants.ZONE_LEVEL_MAX;
 
 		switch(currentState){
 		case state.Idle:
