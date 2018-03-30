@@ -46,10 +46,11 @@ public class CameraController : LocationListener {
 	// TOUCH GESTURE VARIABLE
 	private Vector2 touchOrigin = -Vector2.one;
 	private float perspectiveZoomSpeed = .08f;
-	private int firstTouchId = -1;
+	private int mainFingerId = 0;
 	private Touch t0;
 	private Touch t1;
 
+	Dictionary<int, Touch> touchDict;
 
 	enum state {Idle,Clicking,Dragging,Focusing,Focused,Unfocusing,FixedOnPlayer, FixedOnFadingPlayer,MovingToPlayer, MovingToFadingPlayer,MovingToInitialPos,MovingToPosition};
 	private state currentState = state.Idle;
@@ -67,16 +68,27 @@ public class CameraController : LocationListener {
 
 		Touch t0 = new Touch ();
 		Touch t1 = new Touch ();
+
+		touchDict = new Dictionary<int, Touch> ();
 	}
 
 	void Update(){
 		//Debug.Log (currentState);
 
+		// Reset fingerID if no more touches, otherwise if first touch, set it to 0.
+		if (Input.touchCount == 0) {
+			mainFingerId = -1;
+		} else if (mainFingerId == -1) {
+			mainFingerId = 0;
+		}
+
 		if (Input.touchCount >= 1) {
 			t0 = Input.GetTouch (0);
+			touchDict[t0.fingerId] = t0;
 		}
 		if (Input.touchCount >= 2) {
 			t1 = Input.GetTouch (1);
+			touchDict[t1.fingerId] = t1;
 			handleZoom ();
 		}
 
@@ -89,9 +101,9 @@ public class CameraController : LocationListener {
 		switch (currentState) {
 		case state.Idle:
 			if (Input.touchCount > 0) {
-				if (!IsPointerOverUIObject () && t0.phase == TouchPhase.Began) {
+				if (!IsPointerOverUIObject () && touchDict[mainFingerId].phase == TouchPhase.Began) {
 					this.currentState = state.Clicking;
-					this.startPosition = camera.ScreenToWorldPoint (new Vector3 (t0.position.x, t0.position.y, camera.transform.position.y));
+					this.startPosition = camera.ScreenToWorldPoint (new Vector3 (touchDict[mainFingerId].position.x, touchDict[mainFingerId].position.y, camera.transform.position.y));
 				}
 			}
 			break;
@@ -181,17 +193,17 @@ public class CameraController : LocationListener {
 
 	private void handleClickState(){
 		if (Input.touchCount > 0) {
-			if (t0.phase == TouchPhase.Moved) {
-				currentPosition = camera.ScreenToWorldPoint (new Vector3 (t0.position.x, t0.position.y, camera.transform.position.y));
+			if (touchDict[mainFingerId].phase == TouchPhase.Moved) {
+				currentPosition = camera.ScreenToWorldPoint (new Vector3 (touchDict[mainFingerId].position.x, touchDict[mainFingerId].position.y, camera.transform.position.y));
 				//Debug.Log ((startPosition - currentPosition).magnitude);
 				if ((startPosition - currentPosition).magnitude > MAX_DIST_DRAG) {
 					dragOrigin = currentPosition;
 					currentState = state.Dragging;
 					previousSceneRootPos = sceneRoot.gameObject.transform.position;
 				}
-			} else if (t0.phase == TouchPhase.Ended) {
+			} else if (touchDict[mainFingerId].phase == TouchPhase.Ended) {
 
-				Ray ray = Camera.main.ScreenPointToRay (t0.position);
+				Ray ray = Camera.main.ScreenPointToRay (touchDict[mainFingerId].position);
 				//RaycastHit hit;
 				//if (Physics.Raycast (ray, out hit, 1000)) {
 				RaycastHit[] hits = Physics.RaycastAll (ray, 1000);
@@ -228,12 +240,23 @@ public class CameraController : LocationListener {
 
 	private void handleDragState(){
 		if (Input.touchCount > 0) {
-			if (t0.phase == TouchPhase.Ended) {
-				currentState = state.Idle;
+			if (touchDict[mainFingerId].phase == TouchPhase.Ended) {
+				// Continue dragging if multiple fingers
+				if (Input.touchCount >= 2) {
+					Vector3 currentWorldPos = camera.ScreenToWorldPoint (new Vector3 (touchDict[mainFingerId].position.x, touchDict[mainFingerId].position.y, camera.transform.position.y));
+					mainFingerId = (t0.fingerId != mainFingerId) ? t0.fingerId : t1.fingerId;
+					Debug.Log ("Main fingerID: " + mainFingerId);
+					Vector3 newWorldPos = camera.ScreenToWorldPoint (new Vector3 (touchDict[mainFingerId].position.x, touchDict[mainFingerId].position.y, camera.transform.position.y));
+					dragOrigin += newWorldPos - currentWorldPos;
+				} else {
+					currentState = state.Idle;
+				}
 			} else {
-				Vector3 currentWorldPos = camera.ScreenToWorldPoint (new Vector3 (t0.position.x, t0.position.y, camera.transform.position.y));
+				Vector3 currentWorldPos = camera.ScreenToWorldPoint (new Vector3 (touchDict[mainFingerId].position.x, touchDict[mainFingerId].position.y, camera.transform.position.y));
 				Vector3 move = currentWorldPos - dragOrigin;
+
 				move.y = 0.0f;
+				Debug.Log("x: "+move.x+" y: "+move.y+" z: "+move.z);
 				sceneRoot.gameObject.transform.position = previousSceneRootPos + move;
 			}
 		}
@@ -241,10 +264,10 @@ public class CameraController : LocationListener {
 
 	private void handleFocusedState(){
 		if (Input.touchCount > 0) {
-			Ray ray2 = Camera.main.ScreenPointToRay (t0.position);
+			Ray ray2 = Camera.main.ScreenPointToRay (touchDict[mainFingerId].position);
 			RaycastHit hit2;
 
-			if (!IsPointerOverUIObject () && t0.phase == TouchPhase.Ended) {
+			if (!IsPointerOverUIObject () && touchDict[mainFingerId].phase == TouchPhase.Ended) {
 				if (Physics.Raycast (ray2, out hit2, 1000000)) {
 					if (hit2.transform.gameObject.tag == "Zone" || hit2.transform.gameObject.tag == "Ground") {
 						if (focusedBuilding != null) {
@@ -300,7 +323,7 @@ public class CameraController : LocationListener {
 
 	private bool IsPointerOverUIObject() {
 		PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
-		eventDataCurrentPosition.position = new Vector2(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y);
+		eventDataCurrentPosition.position = new Vector2(touchDict[mainFingerId].position.x, touchDict[mainFingerId].position.y);
 		List<RaycastResult> results = new List<RaycastResult>();
 		EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
 		return results.Count > 0;
