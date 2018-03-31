@@ -18,7 +18,7 @@ public class UiManager : LocationListener
 	public Notification NotificationPrefab;
 
 	public Text creditText;
-	public Text scoreText;
+	public Image scoreBar;
 	public Text levelText;
 	public Text multiplierText;
 
@@ -28,7 +28,7 @@ public class UiManager : LocationListener
 	public TextUpdate positiveUpdate;
 	public TextUpdate negativeUpdate;
 	public GameObject creditUpdateHandle;
-	public GameObject scoreUpdateHandle;
+	//public GameObject scoreUpdateHandle;
 
 	public Text numberOfTerminalPlaced;
 	public Text numberOfTerminalBuffed;
@@ -64,11 +64,21 @@ public class UiManager : LocationListener
 		int creditAsInt = Int32.Parse (credit);
 		int creditDiff = creditAsInt - previousCredit;
 		previousCredit = creditAsInt;
-
-		scoreText.text = "Xp: " + xp;
-		creditText.text = "Credits: " + credit;
-		levelText.text = "Level: " + level;
-		multiplierText.text = "Multiplier: x" + effects.GetTotalMultiplier();
+		int lvlAsInt = Int32.Parse (level);
+		int xpAsInt = Int32.Parse (xp);
+		if(lvlAsInt < QuantitiesConstants.PLAYER_XP_THRESHOLDS.Length - 1){
+			Debug.Log ("lvl as int: " + lvlAsInt);
+			Debug.Log ("xp: " + xpAsInt);
+			Debug.Log ("lvl threshold : " + QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt ]);
+			Debug.Log ("lvl threshold + 1 : " + QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt + 1]);
+			scoreBar.fillAmount = (float)(xpAsInt - QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt ]) / (float)(QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt+1] - QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt ]);
+		} else {
+			scoreBar.fillAmount = 1;
+			scoreBar.color = ColorConstants.GRAY; 
+		}
+		creditText.text = credit;
+		levelText.text = level;
+		multiplierText.text = "x" + 100 * effects.GetTotalMultiplier() + "%";
 
 		if (creditDiff < 0) {
 			TextUpdate textUpdate = (TextUpdate)Instantiate (negativeUpdate, creditUpdateHandle.transform);
@@ -94,10 +104,10 @@ public class UiManager : LocationListener
 
 		previousEffects = effects;
 
-		Color color = ColorConstants.getColor (team);
+		/*Color color = ColorConstants.getColor (team);
 		color.a = 0.5f;
 		backgroundTop.color = color;
-		backgroundBottom.color = color;
+		backgroundBottom.color = color;*/
 	}
 
 	private void UpdateAchievement (Statistics statistics){

@@ -33,7 +33,6 @@ public class LeaderBoardScript : MonoBehaviour {
 		//baseLeaderBoard = GameObject.Find ("ZoneBoardPanel");
 		//baseLeaderBoard.SetActive (!baseLeaderBoard);
 
-
 	}
 
 	void Update(){
