@@ -20,7 +20,7 @@ public class CameraController : LocationListener {
 	private const float SPEED_ZOOM = 4f;
 	private const float SPEED_OUTSIDE = 3f;
 	private const float SPEED_SWITCH_MODE = 5f;
-	private const float MAX_DIST_DRAG = 2.0f;
+	private const float MAX_DIST_DRAG = 4.0f;
 
     private Vector3 dragOrigin;
     private Vector3 previousSceneRootPos;

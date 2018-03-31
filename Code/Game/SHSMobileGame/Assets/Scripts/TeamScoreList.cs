@@ -66,8 +66,6 @@ public class TeamScoreList : MonoBehaviour {
 
 			team.color = c; 
 			points.color = c;
-
-
 		}
 
 	}

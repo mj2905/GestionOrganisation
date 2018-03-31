@@ -20,7 +20,7 @@ public class Zone : MonoBehaviour {
 	private Image dmgFSB;
 	private Image dmgICSV;
 
-	private const bool ZONE_DEBUG = true;
+	private const bool ZONE_DEBUG = false;
 
 	public float dmgTmp;
 	public float dmg1;

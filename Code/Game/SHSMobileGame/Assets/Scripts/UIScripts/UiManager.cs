@@ -28,7 +28,7 @@ public class UiManager : LocationListener
 	public TextUpdate positiveUpdate;
 	public TextUpdate negativeUpdate;
 	public GameObject creditUpdateHandle;
-	public GameObject scoreUpdateHandle;
+	//public GameObject scoreUpdateHandle;
 
 	public Text numberOfTerminalPlaced;
 	public Text numberOfTerminalBuffed;
@@ -65,10 +65,10 @@ public class UiManager : LocationListener
 		int creditDiff = creditAsInt - previousCredit;
 		previousCredit = creditAsInt;
 
-		scoreText.text = "Xp: " + xp;
-		creditText.text = "Credits: " + credit;
-		levelText.text = "Level: " + level;
-		multiplierText.text = "Multiplier: x" + effects.GetTotalMultiplier();
+		//scoreText.text = "Xp: " + xp;
+		creditText.text = credit;
+		levelText.text = level;
+		multiplierText.text = "x" + 100 * effects.GetTotalMultiplier() + "%";
 
 		if (creditDiff < 0) {
 			TextUpdate textUpdate = (TextUpdate)Instantiate (negativeUpdate, creditUpdateHandle.transform);
@@ -94,10 +94,10 @@ public class UiManager : LocationListener
 
 		previousEffects = effects;
 
-		Color color = ColorConstants.getColor (team);
+		/*Color color = ColorConstants.getColor (team);
 		color.a = 0.5f;
 		backgroundTop.color = color;
-		backgroundBottom.color = color;
+		backgroundBottom.color = color;*/
 	}
 
 	private void UpdateAchievement (Statistics statistics){

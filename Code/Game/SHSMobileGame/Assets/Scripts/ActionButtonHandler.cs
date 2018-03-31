@@ -41,10 +41,10 @@ public class ActionButtonHandler : LocationListener {
 					actionButtonText.text = "Buff ✝";
 					actionButton.interactable = false;
 				} else if (credits < -QuantitiesConstants.TERMINAL_BUFF_COST) {
-					actionButtonText.text = "Buff "+ (-QuantitiesConstants.TERMINAL_BUFF_COST) +"₡";
+					actionButtonText.text = "Buff "+ (-QuantitiesConstants.TERMINAL_BUFF_COST) +"$";
 					actionButton.interactable = false;
 				} else {
-					actionButtonText.text = "Buff "+ (-QuantitiesConstants.TERMINAL_BUFF_COST) +"₡";
+					actionButtonText.text = "Buff "+ (-QuantitiesConstants.TERMINAL_BUFF_COST) +"$";
 					actionButton.interactable = true;
 				}
 			} else {
@@ -52,10 +52,10 @@ public class ActionButtonHandler : LocationListener {
 					actionButtonText.text = "Smash ✝";
 					actionButton.interactable = false;
 				} else if (credits < -QuantitiesConstants.TERMINAL_SMASH_COST) {
-					actionButtonText.text = "Smash " + (-QuantitiesConstants.TERMINAL_SMASH_COST) + "₡";
+					actionButtonText.text = "Smash " + (-QuantitiesConstants.TERMINAL_SMASH_COST) + "$";
 					actionButton.interactable = false;
 				} else {
-					actionButtonText.text = "Smash " + (-QuantitiesConstants.TERMINAL_SMASH_COST) + "₡";
+					actionButtonText.text = "Smash " + (-QuantitiesConstants.TERMINAL_SMASH_COST) + "$";
 					actionButton.interactable = true;
 				}
 			}
@@ -68,10 +68,10 @@ public class ActionButtonHandler : LocationListener {
 					actionButtonText.text = "Heal ✝";
 					actionButton.interactable = false;
 				} else if (credits < -QuantitiesConstants.ZONE_HEAL_COST) {
-					actionButtonText.text = "Heal "+ (-QuantitiesConstants.ZONE_HEAL_COST) +"₡";
+					actionButtonText.text = "Heal "+ (-QuantitiesConstants.ZONE_HEAL_COST) +"$";
 					actionButton.interactable = false;
 				} else {
-					actionButtonText.text = "Heal "+ (-QuantitiesConstants.ZONE_HEAL_COST) +"₡";
+					actionButtonText.text = "Heal "+ (-QuantitiesConstants.ZONE_HEAL_COST) +"$";
 					actionButton.interactable = true;
 				}
 			} else {
