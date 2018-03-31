@@ -20,7 +20,7 @@ public class CameraController : LocationListener {
 	private const float SPEED_ZOOM = 4f;
 	private const float SPEED_OUTSIDE = 3f;
 	private const float SPEED_SWITCH_MODE = 5f;
-	private const float MAX_DIST_DRAG = 0.5f;
+	private const float MAX_DIST_DRAG = 2.0f;
 
     private Vector3 dragOrigin;
     private Vector3 previousSceneRootPos;
@@ -78,19 +78,24 @@ public class CameraController : LocationListener {
 		// Reset fingerID if no more touches, otherwise if first touch, set it to 0.
 		if (Input.touchCount == 0) {
 			mainFingerId = -1;
-		} else if (mainFingerId == -1) {
-			mainFingerId = 0;
+			Debug.Log ("Reset mainfingerID");
 		}
 
 		if (Input.touchCount >= 1) {
 			t0 = Input.GetTouch (0);
 			touchDict[t0.fingerId] = t0;
+
+			if (mainFingerId == -1) {
+				mainFingerId = t0.fingerId;
+			}
 		}
 		if (Input.touchCount >= 2) {
 			t1 = Input.GetTouch (1);
 			touchDict[t1.fingerId] = t1;
 			handleZoom ();
 		}
+
+		Debug.Log ("Current state: " + currentState);
 
 		updateState ();
 		recenterOutboundCamera ();
@@ -101,9 +106,9 @@ public class CameraController : LocationListener {
 		switch (currentState) {
 		case state.Idle:
 			if (Input.touchCount > 0) {
-				if (!IsPointerOverUIObject () && touchDict[mainFingerId].phase == TouchPhase.Began) {
+				if (!IsPointerOverUIObject ()) {
 					this.currentState = state.Clicking;
-					this.startPosition = camera.ScreenToWorldPoint (new Vector3 (touchDict[mainFingerId].position.x, touchDict[mainFingerId].position.y, camera.transform.position.y));
+					//this.startPosition = camera.ScreenToWorldPoint (new Vector3 (touchDict[mainFingerId].position.x, touchDict[mainFingerId].position.y, camera.transform.position.y));
 				}
 			}
 			break;
@@ -171,7 +176,7 @@ public class CameraController : LocationListener {
 	}
 
 	private void handleZoom(){
-		if (Input.touchCount == 2) {
+		if (Input.touchCount >= 2) {
 			// Find the position in the previous frame of each touch.
 			Vector2 touchZeroPrevPos = t0.position - t0.deltaPosition;
 			Vector2 touchOnePrevPos = t1.position - t1.deltaPosition;
@@ -194,10 +199,10 @@ public class CameraController : LocationListener {
 	private void handleClickState(){
 		if (Input.touchCount > 0) {
 			if (touchDict[mainFingerId].phase == TouchPhase.Moved) {
-				currentPosition = camera.ScreenToWorldPoint (new Vector3 (touchDict[mainFingerId].position.x, touchDict[mainFingerId].position.y, camera.transform.position.y));
+				dragOrigin = camera.ScreenToWorldPoint (new Vector3 (touchDict[mainFingerId].position.x, touchDict[mainFingerId].position.y, camera.transform.position.y));
 				//Debug.Log ((startPosition - currentPosition).magnitude);
-				if ((startPosition - currentPosition).magnitude > MAX_DIST_DRAG) {
-					dragOrigin = currentPosition;
+				if (touchDict[mainFingerId].deltaPosition.magnitude > MAX_DIST_DRAG) {
+					//dragOrigin = currentPosition;
 					currentState = state.Dragging;
 					previousSceneRootPos = sceneRoot.gameObject.transform.position;
 				}
@@ -240,25 +245,24 @@ public class CameraController : LocationListener {
 
 	private void handleDragState(){
 		if (Input.touchCount > 0) {
-			if (touchDict[mainFingerId].phase == TouchPhase.Ended) {
-				// Continue dragging if multiple fingers
-				if (Input.touchCount >= 2) {
-					Vector3 currentWorldPos = camera.ScreenToWorldPoint (new Vector3 (touchDict[mainFingerId].position.x, touchDict[mainFingerId].position.y, camera.transform.position.y));
-					mainFingerId = (t0.fingerId != mainFingerId) ? t0.fingerId : t1.fingerId;
-					Debug.Log ("Main fingerID: " + mainFingerId);
-					Vector3 newWorldPos = camera.ScreenToWorldPoint (new Vector3 (touchDict[mainFingerId].position.x, touchDict[mainFingerId].position.y, camera.transform.position.y));
-					dragOrigin += newWorldPos - currentWorldPos;
-				} else {
-					currentState = state.Idle;
-				}
-			} else {
-				Vector3 currentWorldPos = camera.ScreenToWorldPoint (new Vector3 (touchDict[mainFingerId].position.x, touchDict[mainFingerId].position.y, camera.transform.position.y));
+			if (Input.touchCount > 1 && touchDict [mainFingerId].phase == TouchPhase.Ended) {
+				// Continue dragging if there are other fingers on screen
+				Vector3 currentWorldPos = camera.ScreenToWorldPoint (new Vector3 (touchDict [mainFingerId].position.x, touchDict [mainFingerId].position.y, camera.transform.position.y));
+				mainFingerId = (t0.fingerId != mainFingerId) ? t0.fingerId : t1.fingerId;
+				Debug.Log ("Main fingerID: " + mainFingerId);
+				Vector3 newWorldPos = camera.ScreenToWorldPoint (new Vector3 (touchDict [mainFingerId].position.x, touchDict [mainFingerId].position.y, camera.transform.position.y));
+				dragOrigin += newWorldPos - currentWorldPos;
+
+			} else if (touchDict [mainFingerId].phase == TouchPhase.Moved) {
+				Vector3 currentWorldPos = camera.ScreenToWorldPoint (new Vector3 (touchDict [mainFingerId].position.x, touchDict [mainFingerId].position.y, camera.transform.position.y));
 				Vector3 move = currentWorldPos - dragOrigin;
 
 				move.y = 0.0f;
-				Debug.Log("x: "+move.x+" y: "+move.y+" z: "+move.z);
+				Debug.Log ("x: " + move.x + " y: " + move.y + " z: " + move.z);
 				sceneRoot.gameObject.transform.position = previousSceneRootPos + move;
 			}
+		} else {
+			currentState = state.Idle;
 		}
 	}
 
