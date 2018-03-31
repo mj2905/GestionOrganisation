@@ -18,7 +18,7 @@ public class UiManager : LocationListener
 	public Notification NotificationPrefab;
 
 	public Text creditText;
-	public Text scoreText;
+	//public Text scoreText;
 	public Text levelText;
 	public Text multiplierText;
 
