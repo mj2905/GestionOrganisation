@@ -65,8 +65,13 @@ public class UiManager : LocationListener
 		int creditDiff = creditAsInt - previousCredit;
 		previousCredit = creditAsInt;
 		int lvlAsInt = Int32.Parse (level);
+		int xpAsInt = Int32.Parse (xp);
 		if(lvlAsInt < QuantitiesConstants.PLAYER_XP_THRESHOLDS.Length - 1){
-			scoreBar.fillAmount = (float)(Int32.Parse(xp) - QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt ]) / (float)(QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt +1] - QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt ]);
+			Debug.Log ("lvl as int: " + lvlAsInt);
+			Debug.Log ("xp: " + xpAsInt);
+			Debug.Log ("lvl threshold : " + QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt ]);
+			Debug.Log ("lvl threshold + 1 : " + QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt + 1]);
+			scoreBar.fillAmount = (float)(xpAsInt - QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt ]) / (float)(QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt+1] - QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt ]);
 		} else {
 			scoreBar.fillAmount = 1;
 			scoreBar.color = ColorConstants.GRAY; 
