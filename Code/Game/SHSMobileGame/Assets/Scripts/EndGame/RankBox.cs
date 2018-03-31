@@ -15,10 +15,10 @@ public class RankBox : MonoBehaviour {
 	private Action update;
 
 	private ColorConstants.TEAMS team = ColorConstants.TEAMS.ENAC;
-	private string score = "0";
+	private int score = 0;
 
 	private void getTeamAndScore() {
-		List<string> list = new List<string> (EndGameValues.SCORES.Keys);
+		List<int> list = new List<int> (EndGameValues.SCORES.Keys);
 		list.Sort();
 		list.Reverse ();
 		score = list [rankingPosition - 1];
@@ -53,7 +53,7 @@ public class RankBox : MonoBehaviour {
 
 		getTeamAndScore ();
 		teamText.text = ColorConstants.getTeamName(team);
-		scoreText.text = score;
+		scoreText.text = ""+score;
 		Color color = ColorConstants.getColor ((int)team);
 		color.a = 0.9f;
 		GetComponent<Image> ().color = color;

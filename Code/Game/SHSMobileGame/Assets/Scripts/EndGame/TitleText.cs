@@ -15,7 +15,7 @@ public class TitleText : MonoBehaviour {
 	private Action performParticleChoice;
 
 	private void getTeamAndScore() {
-		List<string> list = new List<string> (EndGameValues.SCORES.Keys);
+		List<int> list = new List<int> (EndGameValues.SCORES.Keys);
 		list.Sort();
 		team = FirebaseManager.userTeam;
 		hasWon = (int)EndGameValues.SCORES [list [list.Count - 1]] == team;

@@ -122,11 +122,11 @@ public class FirebaseManager
 		// Do something with snapshot...
 		if (snapshot != null) {
 
-			EndGameValues.SCORES = new Dictionary<string, ColorConstants.TEAMS> ();
-			EndGameValues.SCORES.Add (snapshot.Child ("1/score").Value.ToString (), ColorConstants.TEAMS.ENAC);
-			EndGameValues.SCORES.Add (snapshot.Child ("2/score").Value.ToString (), ColorConstants.TEAMS.STI);
-			EndGameValues.SCORES.Add (snapshot.Child ("3/score").Value.ToString (), ColorConstants.TEAMS.FSB);
-			EndGameValues.SCORES.Add (snapshot.Child ("4/score").Value.ToString (), ColorConstants.TEAMS.ICSV);
+			EndGameValues.SCORES = new Dictionary<int, ColorConstants.TEAMS> ();
+			EndGameValues.SCORES.Add (Int32.Parse(snapshot.Child ("1/score").Value.ToString ()), ColorConstants.TEAMS.ENAC);
+			EndGameValues.SCORES.Add (Int32.Parse(snapshot.Child ("2/score").Value.ToString ()), ColorConstants.TEAMS.STI);
+			EndGameValues.SCORES.Add (Int32.Parse(snapshot.Child ("3/score").Value.ToString ()), ColorConstants.TEAMS.FSB);
+			EndGameValues.SCORES.Add (Int32.Parse(snapshot.Child ("4/score").Value.ToString ()), ColorConstants.TEAMS.ICSV);
 
 			SceneManager.LoadScene(3);
 
