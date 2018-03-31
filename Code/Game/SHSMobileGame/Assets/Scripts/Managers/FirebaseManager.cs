@@ -99,7 +99,6 @@ public class FirebaseManager
 	private static void HandleGameChanged (object sender, ValueChangedEventArgs args)
 	{
 		if (args.DatabaseError != null) {
-			Debug.LogError (args.DatabaseError.Message);
 			return;
 		}
 		DataSnapshot snapshot = args.Snapshot;
