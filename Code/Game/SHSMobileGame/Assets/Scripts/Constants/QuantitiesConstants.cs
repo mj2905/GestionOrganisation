@@ -23,6 +23,8 @@ public static class QuantitiesConstants
 	public static readonly int[] TERMINAL_MAX_HEALTH_VALUES = new int[] {100, 200, 500, 1000, 5000};
 	public static readonly int[] TERMINAL_MAX_HEALTH_COST = new int[] {0, 3000, 4000, 6000, 10000, 20000};
 
+	public static readonly int[] PLAYER_XP_THRESHOLDS = new int[]{100,500,2000,7500,20000};
+
 	public const int STRENGTH_MAX = 20;
 	public static readonly int TERMINAL_LEVEL_MAX = TERMINAL_MAX_HEALTH_VALUES.Length - 1;
 	public static readonly int ZONE_LEVEL_MAX = ZONE_MAX_HEALTH_VALUES.Length - 1;

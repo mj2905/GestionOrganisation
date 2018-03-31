@@ -9,6 +9,8 @@ public static class ColorConstants
 	public static Color team3 = new Color(1,1,0,0.2f); // Yellow 
 	public static Color team4 = new Color(0,0,1,0.2f); // Blue
 
+	public static Color GRAY = new Color(167.0f/255.0f, 167.0f/255.0f, 167.0f/255.0f, 1.0f);
+
 	public static Color attack = new Color(0.12f,0.12f,0.12f,0.2f); // Black
 
 	public static string textTeam1 = "ENAC";

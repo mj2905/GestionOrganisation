@@ -53,7 +53,6 @@
   <ItemGroup>
      <Compile Include="Assets\FXAA\Scripts\FXAA.cs" />
      <Compile Include="Assets\FXAA\Scripts\FXAAPostEffectsBase.cs" />
-     <Compile Include="Assets\JMO Assets\Toony Colors\Demo 2.0\TCF_Demo.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
@@ -183,7 +182,6 @@
      <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.shader" />
      <None Include="Assets\Plugins\Android\firebase-common-11.4.2\AndroidManifest.xml" />
      <None Include="Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.shader" />
-     <None Include="Assets\JMO Assets\Toony Colors\!ToonyColors Readme.txt" />
      <None Include="Assets\PostProcessing\Resources\Bluenoise64\LICENSE.txt" />
      <None Include="Assets\Plugins\Android\firebase-app-unity-4.2.1\proguard.txt" />
      <None Include="Assets\Plugins\Android\firebase-common-license-11.4.2\AndroidManifest.xml" />
@@ -203,16 +201,13 @@
      <None Include="Assets\PostProcessing\Editor Resources\UI\Trackball.shader" />
      <None Include="Assets\Plugins\Android\firebase-auth-unity-4.2.1\proguard.txt" />
      <None Include="Assets\Firebase\Editor\FirebaseAuth_v4.2.1_manifest.txt" />
-     <None Include="Assets\JMO Assets\!JMO Assets Readme.txt" />
      <None Include="Assets\TSF\Shaders\TSF.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\Bloom.cginc" />
      <None Include="Assets\PostProcessing\Resources\Shaders\TAA.shader" />
      <None Include="Assets\Plugins\Android\firebase-common-license-11.4.2\third_party_licenses.txt" />
      <None Include="Assets\PostProcessing\Resources\Shaders\EyeHistogram.compute" />
      <None Include="Assets\Plugins\Android\firebase-analytics-impl-license-11.4.2\third_party_licenses.txt" />
-     <None Include="Assets\JMO Assets\Toony Colors\Shaders 2.0\Rim Outline.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\TAA.cginc" />
-     <None Include="Assets\JMO Assets\Toony Colors\Shaders 2.0\Rim Lighting.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\EyeAdaptation.cginc" />
      <None Include="Assets\Plugins\Android\firebase-analytics-license-11.4.2\AndroidManifest.xml" />
      <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-app-unity\maven-metadata.xml" />
@@ -220,7 +215,6 @@
      <None Include="Assets\Plugins\Android\firebase-app-unity-4.2.1\AndroidManifest.xml" />
      <None Include="Assets\PostProcessing\Resources\Shaders\FXAA.shader" />
      <None Include="Assets\FXAA\Shaders\Fxaa3_9.cginc" />
-     <None Include="Assets\JMO Assets\Toony Colors\Shaders 2.0\Regular.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\DiskKernels.cginc" />
      <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.cginc" />
      <None Include="Assets\PostProcessing\Resources\Shaders\ScreenSpaceRaytrace.cginc" />
@@ -236,7 +230,6 @@
      <None Include="Assets\Plugins\Android\Firebase\res\values\google-services.xml" />
      <None Include="Assets\Plugins\Android\firebase-app-unity-4.2.1\R.txt" />
      <None Include="Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
-     <None Include="Assets\JMO Assets\Toony Colors\Shaders 2.0\Rim Alpha.shader" />
      <None Include="Assets\Firebase\Editor\FirebaseDatabase_v4.2.1_manifest.txt" />
      <None Include="Assets\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
      <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver_v1.2.59.0.txt" />

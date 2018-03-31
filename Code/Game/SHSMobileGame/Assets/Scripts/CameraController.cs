@@ -78,7 +78,7 @@ public class CameraController : LocationListener {
 		// Reset fingerID if no more touches, otherwise if first touch, set it to 0.
 		if (Input.touchCount == 0) {
 			mainFingerId = -1;
-			Debug.Log ("Reset mainfingerID");
+			//Debug.Log ("Reset mainfingerID");
 		}
 
 		if (Input.touchCount >= 1) {
@@ -95,7 +95,7 @@ public class CameraController : LocationListener {
 			handleZoom ();
 		}
 
-		Debug.Log ("Current state: " + currentState);
+		//Debug.Log ("Current state: " + currentState);
 
 		updateState ();
 		recenterOutboundCamera ();
@@ -249,7 +249,7 @@ public class CameraController : LocationListener {
 				// Continue dragging if there are other fingers on screen
 				Vector3 currentWorldPos = camera.ScreenToWorldPoint (new Vector3 (touchDict [mainFingerId].position.x, touchDict [mainFingerId].position.y, camera.transform.position.y));
 				mainFingerId = (t0.fingerId != mainFingerId) ? t0.fingerId : t1.fingerId;
-				Debug.Log ("Main fingerID: " + mainFingerId);
+				//Debug.Log ("Main fingerID: " + mainFingerId);
 				Vector3 newWorldPos = camera.ScreenToWorldPoint (new Vector3 (touchDict [mainFingerId].position.x, touchDict [mainFingerId].position.y, camera.transform.position.y));
 				dragOrigin += newWorldPos - currentWorldPos;
 
@@ -258,7 +258,7 @@ public class CameraController : LocationListener {
 				Vector3 move = currentWorldPos - dragOrigin;
 
 				move.y = 0.0f;
-				Debug.Log ("x: " + move.x + " y: " + move.y + " z: " + move.z);
+				//Debug.Log ("x: " + move.x + " y: " + move.y + " z: " + move.z);
 				sceneRoot.gameObject.transform.position = previousSceneRootPos + move;
 			}
 		} else {
