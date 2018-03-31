@@ -96,7 +96,7 @@ public class LocationHandler : LocationListener {
 
 		fadingPlayer.SetCoordsInvisible (coords); //used to get its 3d vector, can be used here because only choices after are either a location deactivated => reset, or put again to same position.
 		Vector3 pos = fadingPlayer.transform.position;
-		print ("h:"+pos.x + " " + pos.y + " " + pos.z);
+		//print ("h:"+pos.x + " " + pos.y + " " + pos.z);
 
 		int colls = Physics.OverlapBoxNonAlloc(pos, new Vector3(1,1,1), colliders);
 		//print (colls);

@@ -341,7 +341,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Logout
+  m_Text: Credits
 --- !u!222 &28307861
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12267,7 +12267,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1241723991369120, guid: 4f9cae51245b1494ab5ca6849ae4478e, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1449386506502064, guid: 4f9cae51245b1494ab5ca6849ae4478e, type: 2}
       propertyPath: m_Layer
