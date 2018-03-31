@@ -88,7 +88,10 @@
      <Compile Include="Assets\PostProcessing\Editor\Utils\FxStyles.cs" />
      <Compile Include="Assets\PostProcessing\Editor\Utils\ReflectionUtils.cs" />
      <Compile Include="Assets\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
+     <None Include="Assets\Plugins\Android\play-services-basement-license-11.4.2\third_party_licenses.txt" />
      <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
+     <None Include="Assets\Plugins\Android\firebase-auth-license-11.4.2\third_party_licenses.txt" />
+     <None Include="Assets\Plugins\Android\firebase-auth-license-11.4.2\AndroidManifest.xml" />
      <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.cginc" />
      <None Include="Assets\PostProcessing\Resources\Shaders\Fog.shader" />
      <None Include="Assets\PostProcessing\Editor Resources\Monitors\ParadeRender.shader" />
@@ -101,6 +104,7 @@
      <None Include="Assets\Firebase\Plugins\link.xml" />
      <None Include="Assets\PostProcessing\Resources\Shaders\ScreenSpaceReflection.shader" />
      <None Include="Assets\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
+     <None Include="Assets\Plugins\Android\play-services-tasks-license-11.4.2\third_party_licenses.txt" />
      <None Include="Assets\PostProcessing\Resources\Shaders\ACES.cginc" />
      <None Include="Assets\Fonts\Changa\OFL.txt" />
      <None Include="Assets\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
@@ -109,6 +113,8 @@
      <None Include="Assets\Plugins\Android\Firebase\AndroidManifest.xml" />
      <None Include="Assets\PostProcessing\Resources\Shaders\Uber.shader" />
      <None Include="Assets\FXAA\Shaders\Fxaa3.shader" />
+     <None Include="Assets\Plugins\Android\firebase-common-11.4.2\AndroidManifest.xml" />
+     <None Include="Assets\Plugins\Android\firebase-common-license-11.4.2\third_party_licenses.txt" />
      <None Include="Assets\OutlineEffect\Readme.txt" />
      <None Include="Assets\PostProcessing\Resources\Shaders\Blit.shader" />
      <None Include="Assets\Firebase\Editor\AppDependencies.xml" />
@@ -117,9 +123,14 @@
      <None Include="Assets\PostProcessing\Resources\Shaders\FXAA3.cginc" />
      <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.shader" />
+     <None Include="Assets\Plugins\Android\firebase-auth-unity-4.2.1\R.txt" />
+     <None Include="Assets\Plugins\Android\firebase-app-unity-4.2.1\R.txt" />
      <None Include="Assets\JMO Assets\Toony Colors\!ToonyColors Readme.txt" />
+     <None Include="Assets\Plugins\Android\firebase-iid-license-11.4.2\AndroidManifest.xml" />
      <None Include="Assets\PostProcessing\Resources\Bluenoise64\LICENSE.txt" />
+     <None Include="Assets\Plugins\Android\firebase-iid-license-11.4.2\third_party_licenses.txt" />
      <None Include="Assets\PostProcessing\Resources\Shaders\BuiltinDebugViews.shader" />
+     <None Include="Assets\Plugins\Android\play-services-base-license-11.4.2\AndroidManifest.xml" />
      <None Include="Assets\TSF\Shaders\TSFOutline.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\Common.cginc" />
      <None Include="Assets\OutlinedDiffuse\OutlinedDiffuse.shader" />
@@ -130,32 +141,47 @@
      <None Include="Assets\JMO Assets\!JMO Assets Readme.txt" />
      <None Include="Assets\TSF\Shaders\TSF.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\Bloom.cginc" />
+     <None Include="Assets\Plugins\Android\firebase-core-11.4.2\AndroidManifest.xml" />
      <None Include="Assets\PostProcessing\Resources\Shaders\TAA.shader" />
+     <None Include="Assets\Plugins\Android\firebase-iid-11.4.2\AndroidManifest.xml" />
+     <None Include="Assets\Plugins\Android\firebase-analytics-impl-license-11.4.2\AndroidManifest.xml" />
+     <None Include="Assets\Plugins\Android\firebase-analytics-impl-license-11.4.2\third_party_licenses.txt" />
      <None Include="Assets\PostProcessing\Resources\Shaders\EyeHistogram.compute" />
      <None Include="Assets\JMO Assets\Toony Colors\Shaders 2.0\Rim Outline.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\TAA.cginc" />
+     <None Include="Assets\Plugins\Android\firebase-auth-unity-4.2.1\AndroidManifest.xml" />
      <None Include="Assets\JMO Assets\Toony Colors\Shaders 2.0\Rim Lighting.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\EyeAdaptation.cginc" />
+     <None Include="Assets\Plugins\Android\firebase-analytics-license-11.4.2\AndroidManifest.xml" />
      <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-app-unity\maven-metadata.xml" />
+     <None Include="Assets\Plugins\Android\firebase-app-unity-4.2.1\AndroidManifest.xml" />
      <None Include="Assets\PostProcessing\Resources\Shaders\GrainGen.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\FXAA.shader" />
      <None Include="Assets\FXAA\Shaders\Fxaa3_9.cginc" />
      <None Include="Assets\JMO Assets\Toony Colors\Shaders 2.0\Regular.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\DiskKernels.cginc" />
+     <None Include="Assets\Plugins\Android\play-services-basement-license-11.4.2\AndroidManifest.xml" />
      <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.cginc" />
+     <None Include="Assets\Plugins\Android\play-services-base-license-11.4.2\third_party_licenses.txt" />
      <None Include="Assets\PostProcessing\Resources\Shaders\ScreenSpaceRaytrace.cginc" />
      <None Include="Assets\PostProcessing\Resources\Shaders\Bloom.shader" />
+     <None Include="Assets\Plugins\Android\firebase-auth-unity-4.2.1\proguard.txt" />
+     <None Include="Assets\Plugins\Android\play-services-tasks-license-11.4.2\AndroidManifest.xml" />
      <None Include="Assets\Fonts\Londrina_Solid\OFL.txt" />
+     <None Include="Assets\Plugins\Android\firebase-common-license-11.4.2\AndroidManifest.xml" />
      <None Include="Assets\PostProcessing\Editor Resources\Monitors\VectorscopeRender.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\EyeAdaptation.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\ColorGrading.cginc" />
      <None Include="Assets\Firebase\Plugins\Http\link.xml" />
      <None Include="Assets\Plugins\Android\Firebase\res\values\google-services.xml" />
+     <None Include="Assets\Plugins\Android\firebase-analytics-license-11.4.2\third_party_licenses.txt" />
      <None Include="Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
      <None Include="Assets\JMO Assets\Toony Colors\Shaders 2.0\Rim Alpha.shader" />
      <None Include="Assets\Firebase\Editor\FirebaseDatabase_v4.2.1_manifest.txt" />
      <None Include="Assets\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
      <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver_v1.2.59.0.txt" />
+     <None Include="Assets\Plugins\Android\firebase-core-11.4.2\R.txt" />
+     <None Include="Assets\Plugins\Android\firebase-app-unity-4.2.1\proguard.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -215,6 +241,9 @@
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.Graphs.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.Android.Extensions">
+ <HintPath>/Applications/Unity/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions">
  <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll</HintPath>

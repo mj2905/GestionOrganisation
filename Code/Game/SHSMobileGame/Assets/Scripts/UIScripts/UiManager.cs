@@ -182,16 +182,6 @@ public class UiManager : LocationListener
 	void Update(){
 		turretButtonAnimator.SetBool ("isClicked", false);
 		turretButtonAnimator.SetBool ("isInside", isAttackMode && game.IsPlayerInsideZone());
-
-		//Debug purposes only
-		/*
-		debugtmp = (debugtmp + 1) % 60;
-
-		if (debugtmp == 0) {
-			UpdateScoreAndCredit ("0", tmpVal.ToString());
-			tmpVal -= 50;
-		}
-		*/
 	}
 
 	override public void CoordinateUpdate(XYCoordinate coords) {}

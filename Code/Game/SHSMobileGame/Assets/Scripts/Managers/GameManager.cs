@@ -43,6 +43,7 @@ public class GameManager : LocationListener {
 
 		}
 
+		FirebaseManager.SetListenerEnd ();
 		FirebaseManager.SetListenerCreditScore ();
 		FirebaseManager.SetListenerGame ();
 

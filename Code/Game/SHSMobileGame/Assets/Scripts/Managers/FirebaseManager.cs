@@ -57,6 +57,10 @@ public class FirebaseManager
 		reference.Child("Game").ValueChanged += HandleGameChanged;
 	}
 
+	public static void SetListenerEnd() {
+		reference.Child("End").ValueChanged += HandleEndChanged;
+	}
+
 
 	private static void HandleUserChanged (object sender, ValueChangedEventArgs args)
 	{
@@ -105,6 +109,27 @@ public class FirebaseManager
 			System.Object zonesObject = snapshot.Child ("Zones").Value;
 			System.Object teamsObject = snapshot.Child ("Teams").Value;
 			gameManager.ChangeGame (new Game (terminalsObject, zonesObject, teamsObject));
+		}
+	}
+
+	private static void HandleEndChanged (object sender, ValueChangedEventArgs args)
+	{
+		if (args.DatabaseError != null) {
+			Debug.LogError (args.DatabaseError.Message);
+			return;
+		}
+		DataSnapshot snapshot = args.Snapshot;
+		// Do something with snapshot...
+		if (snapshot != null) {
+
+			EndGameValues.SCORES = new Dictionary<string, ColorConstants.TEAMS> ();
+			EndGameValues.SCORES.Add (snapshot.Child ("1/score").Value.ToString (), ColorConstants.TEAMS.ENAC);
+			EndGameValues.SCORES.Add (snapshot.Child ("2/score").Value.ToString (), ColorConstants.TEAMS.STI);
+			EndGameValues.SCORES.Add (snapshot.Child ("3/score").Value.ToString (), ColorConstants.TEAMS.FSB);
+			EndGameValues.SCORES.Add (snapshot.Child ("4/score").Value.ToString (), ColorConstants.TEAMS.ICSV);
+
+			SceneManager.LoadScene(3);
+
 		}
 	}
 
