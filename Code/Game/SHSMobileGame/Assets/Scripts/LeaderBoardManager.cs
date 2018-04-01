@@ -40,30 +40,4 @@ public class LeaderBoardManager : MonoBehaviour {
 	public void ToggleMenu(){
 		leaderBoardPanel.gameObject.SetActive (!leaderBoardPanel.gameObject.activeSelf);
 	}
-
-	public void ChangeScore(string team , string scoreType, float amount) {
-		
-	}
-	/*
-	public string[] GetTeamNames(){
-		Init ();
-		return teamScores.Keys.ToArray();
-
-	}
-
-	public string[] GetTeamNames(string sortingScoreType){
-		Init ();
-
-		return teamScores.Keys.OrderByDescending (n => GetScore (n, sortingScoreType)).ToArray();
-	}
-
-	public void debug_add_kill(){
-
-		ChangeScore ("RED", "Points", 1);
-
-	}
-
-	public int GetChangeCounter(){
-		return changeCounter;
-	}*/
 }
