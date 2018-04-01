@@ -11,6 +11,7 @@ public class InteractionManager : LocationListener {
 	private Zone targetedZone;
 	private Terminal targetedTerminal;
 	private int credits;
+	private int level;
 
 	private Text popupZoneName;
 	private Text popupZoneHP;
@@ -104,9 +105,11 @@ public class InteractionManager : LocationListener {
 		}
 	}
 
-	public void updateCreditsInfo(string credits) {
+	public void updateUserInfo(string credits, string level) {
 		int creditAsInt = Int32.Parse (credits);
+		int levelAsInt = Int32.Parse (level);
 		this.credits = creditAsInt;
+		this.level = levelAsInt;
 		actionButton.setCredits (creditAsInt);
 		improveButton.setCredits (creditAsInt);
 	}
@@ -173,7 +176,7 @@ public class InteractionManager : LocationListener {
 	public void healZone(){
 		if (targetedZone != null) {
 			print ("Healing zone " + targetedZone.name);
-			FirebaseManager.HealZone (targetedZone.zoneId, QuantitiesConstants.ZONE_HEAL_AMOUNT, messagePopup);
+			FirebaseManager.HealZone (targetedZone.zoneId, QuantitiesConstants.ZONE_HEAL_AMOUNT, level, messagePopup);
 		}
 	}
 
@@ -215,14 +218,14 @@ public class InteractionManager : LocationListener {
 	private void buffTerminal(){
 		if(targetedTerminal != null){
 			print ("Buffing terminal ");
-			FirebaseManager.BuffTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_BUFF_AMOUNT, messagePopup);
+			FirebaseManager.BuffTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_BUFF_AMOUNT, level, messagePopup);
 		}
 	}
 
 	private void smashTerminal(){
 		if(targetedTerminal != null){
 			print ("Attacking terminal ");
-			FirebaseManager.HurtTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_SMASH_AMOUNT, messagePopup);
+			FirebaseManager.HurtTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_SMASH_AMOUNT, level, messagePopup);
 		}
 	}
 		

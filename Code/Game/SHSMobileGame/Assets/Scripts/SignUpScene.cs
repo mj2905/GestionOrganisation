@@ -8,6 +8,7 @@ public class SignUpScene : MonoBehaviour {
 
 	public InputField eMail;
 	public InputField password;
+	public InputField pseudo;
 	public PopupScript popup;
 
 	public Button[] teams;
@@ -15,12 +16,13 @@ public class SignUpScene : MonoBehaviour {
 	private Color[] normalColors;
 	private string eMailText = "";
 	private string passwordText = "";
+	private string pseudoText = "";
 	private int teamNumber = -1;
 
 	public Button signup;
 
 	private void SwitchSignInButtonActivation() {
-		signup.interactable = eMailText.Length > 0 && passwordText.Length > 0 && teamNumber != -1;
+		signup.interactable = eMailText.Length > 0 && passwordText.Length > 0 && pseudoText.Length > 0 && teamNumber != -1;
 	}
 
 	void Awake ()
@@ -48,6 +50,12 @@ public class SignUpScene : MonoBehaviour {
 	public void UpdatePassword ()
 	{
 		this.passwordText = password.text;
+		SwitchSignInButtonActivation ();
+	}
+
+	public void UpdatePseudo ()
+	{
+		this.pseudoText = pseudo.text;
 		SwitchSignInButtonActivation ();
 	}
 
@@ -90,9 +98,11 @@ public class SignUpScene : MonoBehaviour {
 			popup.SetText ("No team selected.");
 		} else if (passwordText.Length < 6) {
 			popup.SetText ("The password must be at least of length 6.");
-		} else {
+		} else if (pseudoText == string.Empty) {
+			popup.SetText ("The pseudo must be non empty.");
+		}else {
 			popup.SetText ("Signing up...");
-			FirebaseManager.SignUp (eMailText, Crypto.hash(eMailText, passwordText),teamNumber,popup);
+			FirebaseManager.SignUp (eMailText, Crypto.hash(eMailText, passwordText), pseudoText ,teamNumber,popup);
 		}
 	}
 }

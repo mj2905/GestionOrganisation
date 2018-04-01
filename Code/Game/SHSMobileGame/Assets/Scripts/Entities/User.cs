@@ -9,6 +9,7 @@ public class User
 	public int level;
 	public int xp;
 	public int team;
+	public string pseudo;
 		
 
 	public User ()
@@ -16,14 +17,16 @@ public class User
 		this.credits = 0;
 		this.level = 0;
 		this.xp = 0;
+		this.pseudo = "";
 		this.team = 0;
 	}
 
-	public User (int team)
+	public User (int team, string pseudo)
 	{
 		this.credits = 0;
 		this.level = 0;
 		this.xp = 0;
+		this.pseudo = pseudo;
 		this.team = team;
 	}
 }
