@@ -6,6 +6,8 @@ Code/Game/SHSMobileGame/Library/
 Code/Game/SHSMobileGame/build/
 ios/
 ios.app/
+*.apk
+
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #

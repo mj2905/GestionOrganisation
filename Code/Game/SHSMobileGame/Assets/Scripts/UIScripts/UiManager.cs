@@ -192,30 +192,20 @@ public class UiManager : LocationListener
 	void Update(){
 		turretButtonAnimator.SetBool ("isClicked", false);
 		turretButtonAnimator.SetBool ("isInside", isAttackMode && game.IsPlayerInsideZone());
-
-		//Debug purposes only
-		/*
-		debugtmp = (debugtmp + 1) % 60;
-
-		if (debugtmp == 0) {
-			UpdateScoreAndCredit ("0", tmpVal.ToString());
-			tmpVal -= 50;
-		}
-		*/
 	}
 
 	override public void CoordinateUpdate(XYCoordinate coords) {}
 
 	override public void StopLocationHandling() {
 		isAttackMode = false;
-		backgroundTop.color = ColorConstants.getColor(FirebaseManager.userTeam);
-		backgroundBottom.color = ColorConstants.getColor(FirebaseManager.userTeam);
+		//backgroundTop.color = ColorConstants.getColor(FirebaseManager.userTeam);
+		//backgroundBottom.color = ColorConstants.getColor(FirebaseManager.userTeam);
 	}
 
 	override public void FirstLocationSent() {
 		isAttackMode = true;
-		backgroundTop.color = ColorConstants.attack;
-		backgroundBottom.color = ColorConstants.attack;
+		//backgroundTop.color = ColorConstants.attack;
+		//backgroundBottom.color = ColorConstants.attack;
 	}
 
 	public void ToggleAchievementMenu(){

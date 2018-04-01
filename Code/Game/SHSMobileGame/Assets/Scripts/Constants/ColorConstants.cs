@@ -7,7 +7,7 @@ public static class ColorConstants
 	public static Color team1 = new Color(0,1,0,0.2f); // Green
 	public static Color team2 = new Color(1,0,0,0.2f); // Red
 	public static Color team3 = new Color(1,1,0,0.2f); // Yellow 
-	public static Color team4 = new Color(0,0,1,0.2f); // Blue
+	public static Color team4 = new Color(.04f,.486f,1,0.2f); // Blue
 
 	public static Color GRAY = new Color(167.0f/255.0f, 167.0f/255.0f, 167.0f/255.0f, 1.0f);
 
@@ -21,11 +21,30 @@ public static class ColorConstants
 	public static Color textColorTeam1 = new Color(50/255.0f, 255/255.0f, 50/255.0f, 1.0f); // Green
 	public static Color textColorTeam2 = new Color(255/255.0f, 81/255.0f, 81/255.0f, 1.0f); // Red
 	public static Color textColorTeam3 = new Color(255/255.0f, 255/255.0f, 0/255.0f, 1.0f); // Yellow
-	public static Color textColorTeam4 = new Color(94/255.0f, 182/255.0f, 255/255.0f, 1.0f); // Blue
+	public static Color textColorTeam4 = new Color(11/255.0f, 124/255.0f, 255/255.0f, 1.0f); // Blue
 	public static Color textColorDefault = new Color(1.0f,1.0f,1.0f, 1.0f); // Blue
 
 	public static Color colorNotificationAlly = new Color(50/255.0f, 50/255.0f, 220/255.0f, 0.8f); // Green
 	public static Color colorNotificationEnemy = new Color(220/255.0f, 50/255.0f, 50/255.0f, 0.8f); // Green
+
+	public static string getTeamName(TEAMS team) {
+		switch (team) {
+		case TEAMS.ENAC:
+			return textTeam1;
+		
+		case TEAMS.STI:
+			return textTeam2;
+
+		case TEAMS.FSB:
+			return textTeam3;
+
+		case TEAMS.ICSV:
+			return textTeam4;
+
+		default:
+			return "No team";
+		}
+	}
 
 	public static Color getColor(int teamNumber){
 		Color color;

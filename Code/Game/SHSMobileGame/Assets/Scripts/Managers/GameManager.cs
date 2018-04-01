@@ -42,9 +42,12 @@ public class GameManager : LocationListener {
 			Debug.Log ("failed to load leaderboard");
 
 		}
+			
 
+		FirebaseManager.SetListenerEnd ();
 		FirebaseManager.SetListenerCreditScore ();
 		FirebaseManager.SetListenerGame ();
+
 
 		previousGame = new Game ();
 		currentGame = new Game ();
@@ -52,12 +55,15 @@ public class GameManager : LocationListener {
 		for (int i = 0; i < zones.Length; i++) {
 			zoneDict[zones [i].zoneId] = zones [i];
 		}
+			
 
 		List<Team> teams = currentGame.teams;
+
 
 		for (int i = 0; i < teams.Count; i++) {
 			leaderboardManager.SetScore (ColorConstants.getColorAsString(teams[i].getTeamId()), "Points", teams [i].score);
 		}
+			
 
 		zoneIdClicked = "";
 	}
