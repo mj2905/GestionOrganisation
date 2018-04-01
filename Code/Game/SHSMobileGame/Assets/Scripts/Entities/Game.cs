@@ -140,5 +140,13 @@ public class Game
 	public Dictionary<string,Terminal> GetDeletedEnemyTerminals(Game pastGame){
 		return GetEnemyTerminalsAttackingAlly (GetDeletedTerminals(pastGame));
 	}
+
+	public List<int> GetScores(){
+		List<int> res = new List<int> ();
+		for (int i = 0; i < teams.Count; i++) {
+			res.Add (teams [i].score);
+		}
+		return res;
+	}
 }
 

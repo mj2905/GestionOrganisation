@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class TeamScoreList : MonoBehaviour {
-
+	/*
 	public GameObject playerScoreEntryPrefab;
 
 	LeaderBoardManager leaderBoardManager;
@@ -19,7 +19,7 @@ public class TeamScoreList : MonoBehaviour {
 	void Start () {
 
 		leaderBoardManager = GameObject.FindObjectOfType<LeaderBoardManager> ();
-		lastChangeCounter = leaderBoardManager.GetChangeCounter ();
+		//lastChangeCounter = leaderBoardManager.GetChangeCounter ();
 
 	}
 
@@ -92,7 +92,7 @@ public class TeamScoreList : MonoBehaviour {
 			break;
 		}
 		return color;
-	}
+	}*/
 	}
 
 

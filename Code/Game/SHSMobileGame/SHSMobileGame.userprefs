@@ -1,12 +1,18 @@
-<Properties StartupItem="Assembly-CSharp.csproj">
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CameraController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LeaderboardButton.cs">
     <Files>
-      <File FileName="Assets\Scripts\UIScripts\UiManager.cs" Line="73" Column="6" />
+      <File FileName="Assets\Scripts\UIScripts\UiManager.cs" Line="54" Column="2" />
       <File FileName="Assets\Scripts\Constants\QuantitiesConstants.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Constants\ColorConstants.cs" Line="9" Column="54" />
+      <File FileName="Assets\Scripts\Constants\ColorConstants.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\CameraController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Managers\GameManager.cs" Line="11" Column="23" />
+      <File FileName="Assets\Scripts\Managers\GameManager.cs" Line="53" Column="1" />
+      <File FileName="Assets\Scripts\Entities\Damages.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LeaderboardButton.cs" Line="39" Column="92" />
+      <File FileName="Assets\Scripts\LeaderBoardManager.cs" Line="18" Column="47" />
+      <File FileName="Assets\Scripts\LeaderBoardScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\TeamScoreList.cs" Line="95" Column="5" />
+      <File FileName="Assets\Scripts\Entities\Game.cs" Line="145" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
