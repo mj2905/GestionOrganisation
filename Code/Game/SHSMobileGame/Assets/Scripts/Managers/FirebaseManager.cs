@@ -474,6 +474,8 @@ public class FirebaseManager
 						if (innerTask.Exception != null) {
 							messagePopup.SetText ("This zone has been improved by someone else");
 							reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.ZONE_MAX_HEALTH_COST [level + 1]));
+						} else{
+							AddZoneImprovedStat();
 						}
 					});
 				} else {
@@ -496,6 +498,8 @@ public class FirebaseManager
 						if (innerTask.Exception != null) {
 							messagePopup.SetText ("This terminal has been improved by someone else");
 							reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.TERMINAL_MAX_HEALTH_COST [level + 1]));
+						}else{
+							AddTerminalImprovedStat();
 						}
 					});
 				} else {
@@ -533,10 +537,26 @@ public class FirebaseManager
 		});
 	}
 		
+	public static void AddTerminalImprovedStat(){
+		reference.Child ("Users/").RunTransaction (
+			AddEffectTransaction ("numberOfZoneImproved","numberOfZoneImproved",null,
+				"zoneHealedAchievement", null, EffectsConstants.terminalImprovedAchievement)
+		).ContinueWith (task => {
+		});
+	}
+
 	public static void AddZoneHealStat(){
 		reference.Child ("Users/").RunTransaction (
 			AddEffectTransaction ("numberOfZoneHealed","numberOfZoneHealed","zoneHealedMedal",
 				"zoneHealedAchievement", EffectsConstants.zoneHealedMedal, EffectsConstants.zoneHealedAchievement)
+		).ContinueWith (task => {
+		});
+	}
+
+	public static void AddZoneImprovedStat(){
+		reference.Child ("Users/").RunTransaction (
+			AddEffectTransaction ("numberOfZoneHealed","numberOfZoneHealed",null,
+				"zoneHealedAchievement", null, EffectsConstants.zoneImprovedAchievement)
 		).ContinueWith (task => {
 		});
 	}
@@ -558,10 +578,11 @@ public class FirebaseManager
 						mutableData.Child (FirebaseManager.user.UserId + "/effects/" + achievementName).Value = achievement.ToMap();
 					}
 				}
-
-				if((number + 1) % EffectObtentionConstants.medalNumberObtention[name] == 0){
-					if(mutableData.Child (FirebaseManager.user.UserId + "/effects/" + medalName).Value == null){
-						mutableData.Child (FirebaseManager.user.UserId + "/effects/" + medalName).Value = medal.ToMap();
+				if(medal != null && medalName != null){
+					if((number + 1) % EffectObtentionConstants.medalNumberObtention[name] == 0){
+						if(mutableData.Child (FirebaseManager.user.UserId + "/effects/" + medalName).Value == null){
+							mutableData.Child (FirebaseManager.user.UserId + "/effects/" + medalName).Value = medal.ToMap();
+						}
 					}
 				}
 			}

@@ -16,8 +16,9 @@ public class EffectsConstants
 	public static Achievement terminalPlacedAchievement = new Achievement("terminalPlacedAchievement",3);
 	public static Achievement terminalDamagedAchievement = new Achievement("terminalDamagedAchievement",3);	
 	public static Achievement terminalBuffedAchievement = new Achievement("terminalBuffedAchievement",3);	
-	public static Achievement zoneHealedAchievement = new Achievement("zoneHealedAchievement",3);	
-
+	public static Achievement terminalImprovedAchievement = new Achievement("terminalImprovedAchievement",3);	
+	public static Achievement zoneHealedAchievement = new Achievement("zoneHealedAchievement",3);
+	public static Achievement zoneImprovedAchievement = new Achievement("zoneImprovedAchievement",3);
 
 	public static Medal GetMedalByName(string name){
 		switch (name) {
