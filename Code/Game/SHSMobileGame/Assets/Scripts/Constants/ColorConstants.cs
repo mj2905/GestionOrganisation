@@ -46,6 +46,25 @@ public static class ColorConstants
 		}
 	}
 
+	public static string getTeamName(int teamNumber) {
+		switch (teamNumber) {
+		case 1:
+			return textTeam1;
+
+		case 2:
+			return textTeam2;
+
+		case 3:
+			return textTeam3;
+
+		case 4:
+			return textTeam4;
+
+		default:
+			return "No team";
+		}
+	}
+
 	public static Color getColor(int teamNumber){
 		Color color;
 		switch (teamNumber) {

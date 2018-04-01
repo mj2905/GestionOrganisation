@@ -8,7 +8,6 @@ public class LeaderboardButton : MonoBehaviour {
 
 	public List<RectTransform> lines;
 
-
 	private float maxWidth;
 	private List<int> scores;
 	private List<float> position = new List<float>();
@@ -35,7 +34,7 @@ public class LeaderboardButton : MonoBehaviour {
 	}
 
 	public void Update(){
-		for (int i = 0; i < lines.Count; i++) {
+		for (int i = 0; i < newOffset.Count; i++) {
 			lines [i].offsetMin = new Vector2 (Mathf.MoveTowards(lines [i].offsetMin.x,newOffset[i],10),lines[i].offsetMin.y);
 			lines [i].position = new Vector3 (lines [i].position.x,Mathf.MoveTowards(lines [i].position.y,newPosition[i],10),lines [i].position.z);
 		}
@@ -46,20 +45,17 @@ public class LeaderboardButton : MonoBehaviour {
 		newPosition = new List<float> ();
 
 		float maxScore = 0f;
-
 		for (int i = 0; i < scores.Count; i++) {
 			maxScore = Mathf.Max (maxScore, scores [i]);
 		}
-
 		var sorted = scores.Select((x, i) => new KeyValuePair<int, int>(x, i))
 			.OrderByDescending(x => x.Key)
 			.ToList();
 		List<int> idx = sorted.Select(x => x.Value).ToList();
 
-		for (int i = 0; i < lines.Count; i++) {
+		for (int i = 0; i < scores.Count; i++) {
 			newOffset.Add(maxWidth*(1 - (float)(scores[i]) / maxScore));
 			newPosition.Add(position[idx.IndexOf(i)]);
-
 		}
 	}
 }
