@@ -37,7 +37,7 @@ public class LeaderboardMenu : MonoBehaviour {
 	public void Update(){
 		if (manager.isActive()) {
 			for (int i = 0; i < teamEntries.Count; i++) {
-				teamEntries [i].position = new Vector3 (teamEntries [i].position.x, Mathf.MoveTowards (teamEntries [i].position.y, newPosition [i], 20), teamEntries [i].position.z);
+				teamEntries [i].position = new Vector3 (teamEntries [i].position.x, Mathf.MoveTowards (teamEntries [i].position.y, newPosition [i], 25), teamEntries [i].position.z);
 			}
 		}
 	}
