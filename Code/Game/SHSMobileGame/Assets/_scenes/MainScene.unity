@@ -11452,11 +11452,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a36b5e59cf78b43ae826e68923d22b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialMedalPosition: {fileID: 0}
-  initialNotificationPosition: {fileID: 0}
+  initialMedalPosition: {fileID: 875119329}
+  initialNotificationPosition: {fileID: 1521651719}
   MedalPrefab: {fileID: 114086410608849954, guid: 84e83d1549f9d5c41b3b7ac7357b5a90,
     type: 2}
-  NotificationPrefab: {fileID: 0}
+  NotificationPrefab: {fileID: 114042615570857420, guid: d0c19c722e2e0e446aa8e3468a72044c,
+    type: 2}
   creditText: {fileID: 1661139713}
   scoreBar: {fileID: 875373199}
   levelText: {fileID: 1798089263}
