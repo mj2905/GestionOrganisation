@@ -21,6 +21,8 @@ public class UiManager : LocationListener
 	public Image scoreBar;
 	public Text levelText;
 	public Text multiplierText;
+	public Image teamFlag;
+	public Text teamText;
 
 	public GameManager game;
 	public Animator turretButtonAnimator;
@@ -104,10 +106,9 @@ public class UiManager : LocationListener
 
 		previousEffects = effects;
 
-		/*Color color = ColorConstants.getColor (team);
-		color.a = 0.5f;
-		backgroundTop.color = color;
-		backgroundBottom.color = color;*/
+		teamFlag.color = ColorConstants.getTextColor (team);
+		teamText.text = ColorConstants.getColorAsString (team);
+		teamText.color = ColorConstants.getTextColor (team);
 	}
 
 	private void UpdateAchievement (Statistics statistics){
