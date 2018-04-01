@@ -759,10 +759,10 @@ RectTransform:
   m_Father: {fileID: 1420028623}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 240}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 477, y: -265}
+  m_SizeDelta: {x: 480, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &144415371
 MonoBehaviour:
@@ -3366,7 +3366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &476498473
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6198,26 +6198,26 @@ MonoBehaviour:
   player: {fileID: 1001960608}
   modeButton: {fileID: 352992037}
   zones:
+  - {fileID: 1524362355}
+  - {fileID: 494428773}
+  - {fileID: 374527038}
+  - {fileID: 1867926617}
+  - {fileID: 271465856}
+  - {fileID: 21345925}
+  - {fileID: 1298407053}
+  - {fileID: 1890372593}
+  - {fileID: 323870152}
+  - {fileID: 1772851780}
+  - {fileID: 1919766428}
+  - {fileID: 848213658}
+  - {fileID: 1133036035}
+  - {fileID: 410675411}
+  - {fileID: 1094296027}
+  - {fileID: 1550908228}
+  - {fileID: 1992686569}
+  - {fileID: 1467252266}
   - {fileID: 1798979554}
   - {fileID: 1133183768}
-  - {fileID: 410675411}
-  - {fileID: 1298407053}
-  - {fileID: 323870152}
-  - {fileID: 1867926617}
-  - {fileID: 1133036035}
-  - {fileID: 21345925}
-  - {fileID: 1772851780}
-  - {fileID: 1890372593}
-  - {fileID: 374527038}
-  - {fileID: 1094296027}
-  - {fileID: 1919766428}
-  - {fileID: 1467252266}
-  - {fileID: 1992686569}
-  - {fileID: 1550908228}
-  - {fileID: 0}
-  - {fileID: 494428773}
-  - {fileID: 271465856}
-  - {fileID: 848213658}
   messagePopup: {fileID: 1038846808}
   waitingScreen: {fileID: 264077717}
 --- !u!4 &818770028

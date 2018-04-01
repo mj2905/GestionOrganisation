@@ -101,8 +101,6 @@ public class FirebaseManager
 		if (args.DatabaseError != null) {
 			Debug.LogError (args.DatabaseError.Message);
 			return;
-		} else if (args == null) {
-			return;
 		}
 
 		DataSnapshot snapshot = args.Snapshot;
@@ -117,18 +115,24 @@ public class FirebaseManager
 
 	private static void HandleEndChanged (object sender, ValueChangedEventArgs args)
 	{
-		if (args.DatabaseError != null) {
+		if (args == null) {
+			return;
+		} else if (args.DatabaseError != null) {
 			Debug.LogError (args.DatabaseError.Message);
 			return;
 		}
 		DataSnapshot snapshot = args.Snapshot;
 		// Do something with snapshot...
-		if (snapshot != null) {
+		if (snapshot != null && snapshot.Value != null) {
 
 			EndGameValues.SCORES = new Dictionary<int, ColorConstants.TEAMS> ();
+
 			EndGameValues.SCORES.Add (Int32.Parse(snapshot.Child ("1/score").Value.ToString ()), ColorConstants.TEAMS.ENAC);
+
 			EndGameValues.SCORES.Add (Int32.Parse(snapshot.Child ("2/score").Value.ToString ()), ColorConstants.TEAMS.STI);
+
 			EndGameValues.SCORES.Add (Int32.Parse(snapshot.Child ("3/score").Value.ToString ()), ColorConstants.TEAMS.FSB);
+
 			EndGameValues.SCORES.Add (Int32.Parse(snapshot.Child ("4/score").Value.ToString ()), ColorConstants.TEAMS.ICSV);
 
 			SceneManager.LoadScene(3);
