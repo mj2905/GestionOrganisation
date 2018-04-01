@@ -37,7 +37,6 @@ public class Notification : MonoBehaviour
 
 		public void Start(){
 			this.camera = Camera.main.GetComponent<CameraController> ();
-			Debug.Log (position);
 			transform.position = initialPosition - new Vector3(-100,((1.2f*(position)))*GetComponent<RectTransform>().rect.height,0);
 		}
 
