@@ -8,9 +8,9 @@ public static class EffectObtentionConstants
 		{ "numberOfTerminalPlaced", 10},
 		{ "numberOfTerminalBuffed", 10},
 		{ "numberOfTerminalDamaged", 10},
-		{ "terminalImprovedAchievement", 10},
+		{ "numberOfTerminalImproved", 10},
 		{ "numberOfZoneHealed", 10},
-		{ "zoneImprovedAchievement", 10}
+		{ "numberOfZoneImproved", 10}
 		};
 
 	public static Dictionary<string,int> medalNumberObtention = new Dictionary<string,int>{

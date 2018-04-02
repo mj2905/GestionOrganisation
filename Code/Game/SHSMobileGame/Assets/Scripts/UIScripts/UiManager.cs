@@ -32,10 +32,8 @@ public class UiManager : LocationListener
 	public GameObject creditUpdateHandle;
 	//public GameObject scoreUpdateHandle;
 
-	public Text numberOfTerminalPlaced;
-	public Text numberOfTerminalBuffed;
-	public Text numberOfTerminalDamaged;
-	public Text numberOfZoneHealed;
+	public List<Text> achievementsText;
+	private Dictionary<string,Text> achievementsDict = new Dictionary<string,Text>();
 
 	private PopupScript popup;
 
@@ -59,6 +57,10 @@ public class UiManager : LocationListener
 		popup = clone.GetComponent<PopupScript>();		
 		popup.transform.SetParent (this.transform.parent,false);
 		popup.transform.SetAsLastSibling ();
+
+		for (int i = 0; i < achievementsText.Count; i++) {
+			achievementsDict.Add (achievementsText [i].name, achievementsText [i]);
+		}
 	}
 
 	public void UpdateUserStat(string xp, string credit, int team,string level,Effects effects,Statistics statistics){
@@ -109,28 +111,17 @@ public class UiManager : LocationListener
 		teamFlag.color = ColorConstants.getTextColor (team);
 		teamText.text = ColorConstants.getColorAsString (team);
 		teamText.color = ColorConstants.getTextColor (team);
+
 	}
 
 	private void UpdateAchievement (Statistics statistics){
 		foreach (KeyValuePair<string, int> entry in statistics.GetDict()) {
-			switch (entry.Key) {
-			case "numberOfTerminalPlaced":
-				CheckIfAchievementUnlocked (numberOfTerminalPlaced, "numberOfTerminalPlaced", entry.Value);
-				break;
-			case "numberOfTerminalBuffed":
-				CheckIfAchievementUnlocked (numberOfTerminalBuffed, "numberOfTerminalBuffed", entry.Value);
-				break;
-			case "numberOfTerminalDamaged":
-				CheckIfAchievementUnlocked (numberOfTerminalDamaged, "numberOfTerminalDamaged", entry.Value);
-				break;
-			case "numberOfZoneHealed":
-				CheckIfAchievementUnlocked (numberOfZoneHealed, "numberOfZoneHealed", entry.Value);
-				break;
-			}
+			CheckIfAchievementUnlocked (entry.Key, entry.Value);
 		}
 	}
 
-	private void CheckIfAchievementUnlocked(Text text,string name,int num){
+	private void CheckIfAchievementUnlocked(string name,int num){
+		Text text = achievementsDict [name];
 		int maxNum = EffectObtentionConstants.achievementMaxValue [name];
 		if (num >= maxNum) {
 			text.text = "DONE!";

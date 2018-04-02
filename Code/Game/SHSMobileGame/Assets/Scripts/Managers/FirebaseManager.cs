@@ -539,8 +539,8 @@ public class FirebaseManager
 		
 	public static void AddTerminalImprovedStat(){
 		reference.Child ("Users/").RunTransaction (
-			AddEffectTransaction ("numberOfZoneImproved","numberOfZoneImproved",null,
-				"zoneHealedAchievement", null, EffectsConstants.terminalImprovedAchievement)
+			AddEffectTransaction ("numberOfTerminalImproved","numberOfTerminalImproved",null,
+				"terminalImprovedAchievement", null, EffectsConstants.terminalImprovedAchievement)
 		).ContinueWith (task => {
 		});
 	}
@@ -555,8 +555,8 @@ public class FirebaseManager
 
 	public static void AddZoneImprovedStat(){
 		reference.Child ("Users/").RunTransaction (
-			AddEffectTransaction ("numberOfZoneHealed","numberOfZoneHealed",null,
-				"zoneHealedAchievement", null, EffectsConstants.zoneImprovedAchievement)
+			AddEffectTransaction ("numberOfZoneImproved","numberOfZoneImproved",null,
+				"zoneImprovedAchievement", null, EffectsConstants.zoneImprovedAchievement)
 		).ContinueWith (task => {
 		});
 	}
