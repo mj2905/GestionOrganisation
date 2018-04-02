@@ -184,7 +184,7 @@ public class FirebaseManager
 		});
 	}
 
-	public static void SignUp (string eMailText, string passwordText,int teamNumber, PopupScript popup)
+	public static void SignUp (string eMailText, string passwordText, string pseudoText,int teamNumber, PopupScript popup)
 	{
 		FirebaseManager.auth.CreateUserWithEmailAndPasswordAsync (eMailText, passwordText).ContinueWith (task => {
 			if (task.IsCanceled) {
@@ -203,7 +203,7 @@ public class FirebaseManager
 				newUser.DisplayName, newUser.UserId);
 			Persistency.Write(eMailText, passwordText);
 
-			CreateNewUser(newUser.UserId,teamNumber);
+			CreateNewUser(newUser.UserId,teamNumber, pseudoText);
 			SceneManager.LoadScene(0);
 			//sendVerificationMail (newUser);
 		});
@@ -213,8 +213,8 @@ public class FirebaseManager
 		FirebaseManager.auth.SignOut (); //always succeeds
 	}
 
-	private static void CreateNewUser(string userId,int teamNumber){
-		User user = new User(teamNumber);
+	private static void CreateNewUser(string userId,int teamNumber, string pseudo){
+		User user = new User(teamNumber, pseudo);
 		string json = JsonUtility.ToJson(user);
 		reference.Child("Users").Child(userId).SetRawJsonValueAsync(json);
 	}
@@ -273,7 +273,7 @@ public class FirebaseManager
 		};
 	}
 
-	private static Func<MutableData, TransactionResult> HurtTerminalTransaction(long amount) 
+	private static Func<MutableData, TransactionResult> HurtTerminalTransaction(long amount, int userLevel) 
 	{
 		return mutableData => {
 
@@ -281,11 +281,12 @@ public class FirebaseManager
 
 			if(health_obtained != null) {
 
+				long realAmount = amount + QuantitiesConstants.TERMINAL_SMASH_LEVEL_BONUS[userLevel - 1];
 				long health_value = (long)health_obtained;
 
 				if(health_value > 0) {
 
-					mutableData.Value = Math.Max(0, health_value - amount);
+					mutableData.Value = Math.Max(0, health_value - realAmount);
 					return TransactionResult.Success(mutableData);
 
 				}
@@ -295,7 +296,7 @@ public class FirebaseManager
 		};
 	}
 
-	private static Func<MutableData, TransactionResult> BuffTerminalTransaction(long amount) 
+	private static Func<MutableData, TransactionResult> BuffTerminalTransaction(long amount, int userLevel) 
 	{
 		return mutableData => {
 
@@ -303,11 +304,12 @@ public class FirebaseManager
 
 			if(strength_obtained != null) {
 
+				long realAmount = amount + QuantitiesConstants.TERMINAL_BUFF_LEVEL_BONUS[userLevel - 1];
 				long strength_value = (long)strength_obtained;
 
 				if(strength_value < QuantitiesConstants.STRENGTH_MAX) {
 
-					mutableData.Value = Math.Min(QuantitiesConstants.STRENGTH_MAX, strength_value + amount);
+					mutableData.Value = Math.Min(QuantitiesConstants.STRENGTH_MAX, strength_value + realAmount);
 					return TransactionResult.Success(mutableData);
 				}
 			}
@@ -316,7 +318,7 @@ public class FirebaseManager
 		};
 	}
 
-	private static Func<MutableData, TransactionResult> HealZoneTransaction(long amount) 
+	private static Func<MutableData, TransactionResult> HealZoneTransaction(long amount, int userLevel) 
 	{
 		return mutableData => {
 
@@ -325,14 +327,14 @@ public class FirebaseManager
 
 			if(health_obtained != null && level_obtained != null) {
 
-
+				long realAmount = amount + QuantitiesConstants.ZONE_HEAL_LEVEL_BONUS[userLevel - 1];
 				long health_value = (long)health_obtained;
 				long level_value = (long)level_obtained;
 
 				int max_health_value = QuantitiesConstants.ZONE_MAX_HEALTH_VALUES[level_value];
 
 				if(health_value < max_health_value) {
-					mutableData.Child("health").Value = Math.Min(max_health_value, health_value + amount);
+					mutableData.Child("health").Value = Math.Min(max_health_value, health_value + realAmount);
 
 					return TransactionResult.Success(mutableData);
 				}
@@ -402,13 +404,13 @@ public class FirebaseManager
 		});
 	}
 
-	public static void HurtTerminal(string terminalID, long amount, PopupScript messagePopup){
+	public static void HurtTerminal(string terminalID, long amount, int userLevel, PopupScript messagePopup){
 
 		reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.TERMINAL_SMASH_COST)).ContinueWith (task => {
 
 			if (task.Exception == null) {
 
-				reference.Child ("Game/Terminals/").Child(terminalID).Child("hp").RunTransaction (HurtTerminalTransaction (amount)).ContinueWith(innerTask => {
+				reference.Child ("Game/Terminals/").Child(terminalID).Child("hp").RunTransaction (HurtTerminalTransaction (amount, userLevel)).ContinueWith(innerTask => {
 
 					if (innerTask.Exception != null) {
 						messagePopup.SetText("This terminal is already dead");
@@ -425,11 +427,11 @@ public class FirebaseManager
 		});
 	}
 
-	public static void BuffTerminal(string terminalID, long amount, PopupScript messagePopup){
+	public static void BuffTerminal(string terminalID, long amount, int userLevel, PopupScript messagePopup){
 		reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.TERMINAL_BUFF_COST)).ContinueWith (task => {
 
 			if (task.Exception == null) {
-				reference.Child("Game/Terminals/").Child(terminalID).Child("strength").RunTransaction(BuffTerminalTransaction(amount)).ContinueWith(innerTask =>{
+				reference.Child("Game/Terminals/").Child(terminalID).Child("strength").RunTransaction(BuffTerminalTransaction(amount, userLevel)).ContinueWith(innerTask =>{
 					if (innerTask.Exception != null) {
 						reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.TERMINAL_BUFF_COST));
 						messagePopup.SetText("This terminal is already maximally buffed");
@@ -444,11 +446,11 @@ public class FirebaseManager
 		});
 	}
 
-	public static void HealZone(string zoneID, long amount, PopupScript messagePopup){
+	public static void HealZone(string zoneID, long amount, int userLevel, PopupScript messagePopup){
 		reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.ZONE_HEAL_COST)).ContinueWith (task => {
 
 			if (task.Exception == null) {
-				reference.Child ("Game/Zones/").Child (zoneID).RunTransaction (HealZoneTransaction (amount)).ContinueWith (innerTask => {
+				reference.Child ("Game/Zones/").Child (zoneID).RunTransaction (HealZoneTransaction (amount, userLevel)).ContinueWith (innerTask => {
 					
 					if (innerTask.Exception != null) {
 						reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.ZONE_HEAL_COST));
