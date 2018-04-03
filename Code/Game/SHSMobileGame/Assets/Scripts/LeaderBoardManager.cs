@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,12 +18,21 @@ public class LeaderBoardManager : MonoBehaviour {
 		List<Text> pointsText = new List<Text>();
 
 		List<float> positionUsers = new List<float>();
-		List<Text> usersText = new List<Text>();
+		List<Tuple<Text,Text>> usersText = new List<Tuple<Text,Text>>();
 
 		for (int i = 0; i < teamEntries.Count; i++) {
 			positionTeamLeaderboard.Add(teamEntries[i].position.y);
 			pointsText.Add (teamEntries [i].transform.Find ("Points").GetComponent<Text> ());
 		}
+
+		for (int i = 0; i < usersEntries.Count; i++) {
+			positionUsers.Add(usersEntries[i].position.y);
+			usersText.Add (new Tuple<Text,Text>(
+				usersEntries [i].transform.Find ("Team").GetComponent<Text> (),
+				usersEntries [i].transform.Find ("Points").GetComponent<Text> ())
+			);
+		}
+
 		menu.SetPositionAndPoints (pointsText, positionTeamLeaderboard,teamEntries);
 		menu.SetPositionAndBestUsers (usersText, positionUsers,usersEntries);
 	}

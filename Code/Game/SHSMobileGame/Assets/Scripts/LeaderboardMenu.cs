@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,7 +13,7 @@ public class LeaderboardMenu : MonoBehaviour {
 	private List<float> positionTeamLeaderboard = new List<float>();
 
 	private List<RectTransform> usersEntries;
-	private List<Text> usersText = new List<Text>();
+	private List<Tuple<Text,Text>> usersText = new List<Tuple<Text,Text>>();
 	private List<float> positionUsers = new List<float>();
 
 	private List<int> scores = new List<int>(){0,0,0,0};
@@ -35,7 +35,7 @@ public class LeaderboardMenu : MonoBehaviour {
 		this.teamEntries = teamEntries;
 	}
 
-	public void SetPositionAndBestUsers(List<Text> usersText,List<float> positionUsers,List<RectTransform> usersEntries){
+	public void SetPositionAndBestUsers(List<Tuple<Text,Text>> usersText,List<float> positionUsers,List<RectTransform> usersEntries){
 		this.usersText = usersText;
 		this.positionUsers = positionUsers;
 		this.usersEntries = usersEntries;
@@ -62,7 +62,8 @@ public class LeaderboardMenu : MonoBehaviour {
 
 	private void UpdateBestUsers(){
 		for (int i = 0; i < usersText.Count; i++) {
-			usersText [i].text = bestUsers [i].pseudo;
+			usersText [i].Item1.text = bestUsers [i].pseudo;
+			usersText [i].Item2.text = bestUsers [i].xp.ToString();
 		}
 	}
 

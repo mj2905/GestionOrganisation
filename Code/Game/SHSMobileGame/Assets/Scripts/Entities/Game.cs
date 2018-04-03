@@ -38,7 +38,11 @@ public class Game
 				User user = new User (entry.Key, (IDictionary<string,System.Object>)entry.Value);
 				bestUsers.Add (user);
 			}
-			bestUsers.Sort((a,b) => a.CompareTo(b));
+			bestUsers.Sort((a,b) => b.CompareTo(a));
+			Debug.Log ("here");
+			foreach (var user in bestUsers) {
+				Debug.Log (user.pseudo);
+			}
 		}
 		if (teamsObject != null) {
 			List<System.Object> teamsList = (List<System.Object>)teamsObject;

@@ -3876,7 +3876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &476498473
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12376,7 +12376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 438371756}
-  menu: {fileID: 0}
+  menu: {fileID: 476498477}
   leaderBoardPanel: {fileID: 476498472}
   teamEntries:
   - {fileID: 1240887418}
