@@ -109,7 +109,8 @@ public class FirebaseManager
 			System.Object terminalsObject = snapshot.Child ("Terminals").Value;
 			System.Object zonesObject = snapshot.Child ("Zones").Value;
 			System.Object teamsObject = snapshot.Child ("Teams").Value;
-			gameManager.ChangeGame (new Game (terminalsObject, zonesObject, teamsObject));
+			System.Object bestPlayersObject = snapshot.Child ("Best").Value;
+			gameManager.ChangeGame (new Game (terminalsObject, zonesObject, teamsObject,bestPlayersObject));
 		}
 	}
 
@@ -214,7 +215,7 @@ public class FirebaseManager
 	}
 
 	private static void CreateNewUser(string userId,int teamNumber, string pseudo){
-		User user = new User(teamNumber, pseudo);
+		User user = new User(teamNumber, pseudo,userId);
 		string json = JsonUtility.ToJson(user);
 		reference.Child("Users").Child(userId).SetRawJsonValueAsync(json);
 	}

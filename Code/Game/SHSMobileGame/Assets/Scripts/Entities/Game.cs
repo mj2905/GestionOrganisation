@@ -11,11 +11,12 @@ public class Game
 	public List<Terminal> terminals = new List<Terminal> ();
 	public List<Zone> zones = new List<Zone> ();
 	public List<Team> teams = new List<Team> ();
+	public List<User> bestUsers = new List<User> ();
 
 	public Game (){
 	}
 		
-	public Game (System.Object terminalsObject, System.Object zonesObject, System.Object teamsObject)
+	public Game (System.Object terminalsObject, System.Object zonesObject, System.Object teamsObject,System.Object bestPlayersObject)
 	{
 		if (terminalsObject != null) {
 			IDictionary<string,System.Object> terminalsList = (IDictionary<string,System.Object>)terminalsObject;
@@ -30,6 +31,14 @@ public class Game
 				Zone zone = new Zone (entry.Key, (IDictionary<string,System.Object>)entry.Value);
 				zones.Add (zone);
 			}
+		}
+		if (bestPlayersObject != null) {
+			IDictionary<string,System.Object> bestPlayersList = (IDictionary<string,System.Object>)bestPlayersObject;
+			foreach (KeyValuePair<string, System.Object> entry in bestPlayersList) {
+				User user = new User (entry.Key, (IDictionary<string,System.Object>)entry.Value);
+				bestUsers.Add (user);
+			}
+			bestUsers.Sort((a,b) => a.CompareTo(b));
 		}
 		if (teamsObject != null) {
 			List<System.Object> teamsList = (List<System.Object>)teamsObject;

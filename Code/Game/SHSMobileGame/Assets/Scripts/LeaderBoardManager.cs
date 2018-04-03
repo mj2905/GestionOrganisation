@@ -11,22 +11,28 @@ public class LeaderBoardManager : MonoBehaviour {
 	public LeaderboardMenu menu;
 	public GameObject leaderBoardPanel;
 	public List<RectTransform> teamEntries;
-
-	private List<float> position = new List<float>();
-	private List<Text> points = new List<Text>();
+	public List<RectTransform> usersEntries;
 
 	void Start(){
+		List<float> positionTeamLeaderboard = new List<float>();
+		List<Text> pointsText = new List<Text>();
+
+		List<float> positionUsers = new List<float>();
+		List<Text> usersText = new List<Text>();
+
 		for (int i = 0; i < teamEntries.Count; i++) {
-			position.Add(teamEntries[i].position.y);
-			points.Add (teamEntries [i].transform.Find ("Points").GetComponent<Text> ());
+			positionTeamLeaderboard.Add(teamEntries[i].position.y);
+			pointsText.Add (teamEntries [i].transform.Find ("Points").GetComponent<Text> ());
 		}
-		menu.SetPositionAndPoints (points, position);
+		menu.SetPositionAndPoints (pointsText, positionTeamLeaderboard,teamEntries);
+		menu.SetPositionAndBestUsers (usersText, positionUsers,usersEntries);
 	}
 
 	public void SetCurrentGame(Game currentGame){
 		this.currentGame = currentGame;
 		button.SetScores (currentGame.GetScores ());
 		menu.SetScores (currentGame.GetScores ());
+		menu.SetBestUsers (currentGame.bestUsers);
 	}
 
 	public bool isActive(){
