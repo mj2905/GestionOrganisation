@@ -37,6 +37,7 @@ public class LeaderBoardManager : MonoBehaviour {
 		menu.SetPositionAndBestUsers (usersText, positionUsers,usersEntries);
 	}
 
+
 	public void SetCurrentGame(Game currentGame){
 		this.currentGame = currentGame;
 		button.SetScores (currentGame.GetScores ());

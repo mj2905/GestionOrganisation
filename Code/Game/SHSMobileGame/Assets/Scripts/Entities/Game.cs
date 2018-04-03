@@ -39,10 +39,6 @@ public class Game
 				bestUsers.Add (user);
 			}
 			bestUsers.Sort((a,b) => b.CompareTo(a));
-			Debug.Log ("here");
-			foreach (var user in bestUsers) {
-				Debug.Log (user.pseudo);
-			}
 		}
 		if (teamsObject != null) {
 			List<System.Object> teamsList = (List<System.Object>)teamsObject;

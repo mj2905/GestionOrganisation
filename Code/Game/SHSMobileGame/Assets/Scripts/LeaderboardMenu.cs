@@ -6,7 +6,8 @@ using System.Linq;
 
 public class LeaderboardMenu : MonoBehaviour {
 
-	public LeaderBoardManager manager;
+	public GameObject teamLeaderboard;
+	public GameObject userLeaderboard;
 
 	private List<RectTransform> teamEntries;
 	private List<Text> pointsText = new List<Text>();
@@ -19,6 +20,9 @@ public class LeaderboardMenu : MonoBehaviour {
 	private List<int> scores = new List<int>(){0,0,0,0};
 	private List<User> bestUsers = new List<User> ();
 	private List<float> newPosition  = new List<float>();
+
+	private enum state{TEAM,USER}
+	private state currentState = state.USER;
 
 	// Use this for initialization
 	void Start () {
@@ -53,17 +57,22 @@ public class LeaderboardMenu : MonoBehaviour {
 	}
 
 	public void Update(){
-		if (manager.isActive() && false) {
+		if (teamLeaderboard.activeSelf) {
 			for (int i = 0; i < teamEntries.Count; i++) {
 				teamEntries [i].position = new Vector3 (teamEntries [i].position.x, Mathf.MoveTowards (teamEntries [i].position.y, newPosition [i], 25), teamEntries [i].position.z);
 			}
+		}
+		if (userLeaderboard.activeSelf) {
+			
 		}
 	}
 
 	private void UpdateBestUsers(){
 		for (int i = 0; i < usersText.Count; i++) {
 			usersText [i].Item1.text = bestUsers [i].pseudo;
+			usersText [i].Item1.color = ColorConstants.getTextColor(bestUsers [i].team);
 			usersText [i].Item2.text = bestUsers [i].xp.ToString();
+			usersText [i].Item2.color = ColorConstants.getTextColor(bestUsers [i].team);
 		}
 	}
 
@@ -83,6 +92,29 @@ public class LeaderboardMenu : MonoBehaviour {
 
 		for (int i = 0; i < scores.Count; i++) {
 			newPosition.Add(positionTeamLeaderboard[idx.IndexOf(i)]);
+		}
+	}
+
+
+	public void OpenUserTab(){
+		ChangeState (state.USER);
+	}
+
+	public void OpenTeamTab(){
+		ChangeState (state.TEAM);
+	}
+
+	private void ChangeState(state state){
+		currentState = state;
+		switch(currentState){
+		case state.TEAM:
+			userLeaderboard.SetActive (false);
+			teamLeaderboard.SetActive (true);
+			break;
+		case state.USER:
+			userLeaderboard.SetActive (true);
+			teamLeaderboard.SetActive (false);
+			break;
 		}
 	}
 }
