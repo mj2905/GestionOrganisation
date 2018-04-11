@@ -20,6 +20,7 @@ public class UiManager : LocationListener
 	public Text creditText;
 	public Image scoreBar;
 	public Text levelText;
+	public LevelTabHandler lth;
 	public Text multiplierText;
 	public Image teamFlag;
 	public Text teamText;
@@ -82,6 +83,7 @@ public class UiManager : LocationListener
 		}
 		creditText.text = credit;
 		levelText.text = level;
+		lth.setLevel (lvlAsInt);
 		multiplierText.text = "x" + 100 * effects.GetTotalMultiplier() + "%";
 
 		if (creditDiff < 0) {
