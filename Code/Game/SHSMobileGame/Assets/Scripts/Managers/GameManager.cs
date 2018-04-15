@@ -79,12 +79,12 @@ public class GameManager : LocationListener {
 		for (int i = 0; i < newTerminals.Count; i++) {
 			Terminal t = (Terminal)Instantiate (
 				terminalPrefab,
-				new Vector3(newTerminals[i].x,2,newTerminals[i].z),
+				new Vector3(newTerminals[i].x,0.2f,newTerminals[i].z),
 				new Quaternion (),
 				sceneRoot.gameObject.transform);
 			
 			t.Copy (newTerminals [i]);
-			t.gameObject.transform.localPosition = new Vector3(newTerminals [i].x,2,newTerminals [i].z);
+			t.gameObject.transform.localPosition = new Vector3(newTerminals [i].x,0.2f,newTerminals [i].z);
 			t.SetTarget(GameObject.Find(newTerminals[i].zoneId+"_volume"));
 			t.Init ();
 			terminalDict.Add (t.GetTerminalId (), t);

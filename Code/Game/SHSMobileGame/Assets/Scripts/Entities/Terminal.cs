@@ -32,6 +32,7 @@ public class Terminal : MonoBehaviour
 	}
 
 	public void Init(){
+		Debug.Log ("pepe");
 		healthBar = GameObject.Find (terminalId+"/TowerStatsCanvas/HealthBG/HealthBar").GetComponent<Image>();
 		levelBar = GameObject.Find (terminalId+"/TowerStatsCanvas/LevelBG/LevelBar").GetComponent<Image>();
 		powerBar = GameObject.Find (terminalId+"/TowerStatsCanvas/PowerBG/PowerBar").GetComponent<Image>();
@@ -70,8 +71,23 @@ public class Terminal : MonoBehaviour
 				gameObject.transform.position + new Vector3(0,2,0),
 				Quaternion.LookRotation(targetPos - gameObject.transform.position),
 				gameObject.transform);
-			 
-			print ("Instantiated prefab");
+		}
+	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		Debug.Log ("touch");
+		if(other.gameObject.tag == "Zone")
+		{
+			Debug.Log (other.gameObject.name);
+			BoxCollider box = (BoxCollider)other.GetComponent<BoxCollider>();
+			GameObject obj = other.gameObject;
+			float y = obj.transform.position.y + box.bounds.size.y/2f;
+			Debug.Log (y);
+			Debug.Log (obj.transform.position.y);
+			Debug.Log (box.bounds.size.y/2f);
+
+			this.transform.position = new Vector3 (this.transform.position.x,y-0.2f,this.transform.position.z);
 		}
 	}
 		
