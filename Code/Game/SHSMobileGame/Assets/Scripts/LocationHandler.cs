@@ -14,6 +14,9 @@ public class LocationHandler : LocationListener {
 	public FadingPlayer fadingPlayer;
 	public Text locationTextTmp;
 
+	public Image GPSImage;
+	public Text GPSText;
+
 	private MapCoordinate coords = MapCoordinate.ZERO();
 
 	private bool started = false;
@@ -30,6 +33,7 @@ public class LocationHandler : LocationListener {
 		if (locationWasEnabled && !started) {
 			Input.location.Start (1.0f, 0);
 			started = true;
+			setGPSUIState (true);
 		}
 	}
 
@@ -38,6 +42,7 @@ public class LocationHandler : LocationListener {
 			Input.location.Stop ();
 			started = false;
 			coords = MapCoordinate.ZERO();
+			setGPSUIState (false);
 		}
 	}
 
@@ -166,6 +171,24 @@ public class LocationHandler : LocationListener {
 		if (locationWasEnabled && Input.location.status == LocationServiceStatus.Running) {
 			HandleCoordinates ();
 		}
+	}
+
+	private void setGPSUIState(bool state) {
+		float alpha;
+		if (state) {
+			alpha = 0.9f;
+
+		} else {
+			alpha = 0.1f;
+		}
+
+		Color im = GPSImage.color;
+		im.a = alpha;
+		GPSImage.color = im;
+
+		Color te = GPSText.color;
+		te.a = alpha;
+		GPSText.color = te;
 	}
 
 	override public void CoordinateUpdate(XYCoordinate coords) {}
