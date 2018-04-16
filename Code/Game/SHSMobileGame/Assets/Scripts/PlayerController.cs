@@ -86,8 +86,8 @@ public class PlayerController : LocationListener
 		}
 	}
 
-	public bool isInsideZone(){
-		return currentZone != null;
+	public bool isInsideAttackableZone(){
+		return currentZone != null && currentZone.GetComponent<Zone>().team != FirebaseManager.userTeam;
 	}
 
 	public string GetCurrentZoneName(){

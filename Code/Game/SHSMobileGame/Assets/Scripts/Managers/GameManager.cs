@@ -146,7 +146,7 @@ public class GameManager : LocationListener {
 	}
 
 	public bool IsPlayerInsideZone(){
-		return player.isInsideZone ();
+		return player.isInsideAttackableZone ();
 	}
 		
 
