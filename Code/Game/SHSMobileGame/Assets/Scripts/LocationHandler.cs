@@ -20,6 +20,7 @@ public class LocationHandler : LocationListener {
 	private bool isAttackMode = false; 
 
 	public LocationSmoother locationSmoother;
+	public LocationSmoother locationSmootherFade;
 	private Collider[] colliders = new Collider[10];
 
 	private bool locationWasEnabled = false; //by app, when someone clicks on attack button for example
@@ -71,9 +72,9 @@ public class LocationHandler : LocationListener {
 		}
 	}
 
-	public void ActivateLocationIfPossible(bool additionalCondition = true) {
+	public void ActivateLocationIfPossible(bool additionalCondition = true, bool write = true) {
 		locationWasEnabled = additionalCondition && (Input.location.status != LocationServiceStatus.Failed); //Only thing that can block it is if it's not allowed to be used
-		PlayerPrefs.SetInt (USERPREF_ATTACK_KEY, locationWasEnabled ? ATTACK : DEFENSE);
+		if(write) {PlayerPrefs.SetInt (USERPREF_ATTACK_KEY, locationWasEnabled ? ATTACK : DEFENSE);}
 		BeginLocation ();
 	}
 
@@ -85,12 +86,21 @@ public class LocationHandler : LocationListener {
 		locationSmoother.StopLocationHandling ();
 	}
 
+	private MapCoordinate GetCoordinateTest() {
+		float time = Mathf.Repeat(Time.time, 10);
+		if (time < 5.0f) {
+			return CoordinateConstants.ROLEX_MAP;
+		} else {
+			return CoordinateConstants.IN_MAP;
+		}
+	}
+
 	private void HandleCoordinates() {
 
 		MapCoordinate oldCoords = coords;
 		coords = CoordinateConstants.DEBUG == CoordinateConstants.DEBUG_STATE.WALKING_PATH ? 
-			CoordinateConstants.WALKING_PATH.next() :
-			new MapCoordinate (Input.location.lastData.longitude, Input.location.lastData.latitude);
+			CoordinateConstants.WALKING_PATH.next () :
+			new MapCoordinate (Input.location.lastData.longitude, Input.location.lastData.latitude);//GetCoordinateTest ();
 
 		locationTextTmp.text = string.Format("lon:{0} / lat:{1}", coords.Item1, coords.Item2);
 
@@ -118,13 +128,15 @@ public class LocationHandler : LocationListener {
 		} else if(!isInSafeZone && !isAttackMode) {
 
 			DeactivateLocation ();
+			ActivateLocationIfPossible (true, false);
 
 			fadingPlayer.SetCoordsVisible (coords);
 
-			popup.SetText ("You have to be in a safe zone to switch to attack mode");
+			//popup.SetText ("You have to be in a safe zone to switch to attack mode");
 
 		} else if (coords != oldCoords) {
 
+			ActivateLocationIfPossible ();
 			locationSmoother.CoordinateUpdate (coords);
 
 			Input.location.Stop ();

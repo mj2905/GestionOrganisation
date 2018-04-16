@@ -52,7 +52,7 @@ public class CameraController : LocationListener {
 
 	Dictionary<int, Touch> touchDict;
 
-	enum state {Idle,Clicking,Dragging,Focusing,Focused,Unfocusing,FixedOnPlayer, FixedOnFadingPlayer,MovingToPlayer, MovingToFadingPlayer,MovingToInitialPos,MovingToPosition};
+	enum state {Idle,Clicking,Dragging,Focusing,Focused,Unfocusing,FixedOnPlayer, FixedOnFadingPlayer,MovingToPlayer, MovingToFadingPlayer,MovingToInitialPos, MovingToInitialPosFromFading,MovingToPosition};
 	private state currentState = state.Idle;
 
 	// Use this for initialization
@@ -127,6 +127,12 @@ public class CameraController : LocationListener {
 		case state.MovingToInitialPos:
 			transform.rotation = Quaternion.RotateTowards (transform.rotation, this.rotationBeforeFocus, SPEED_ZOOM);
 			transform.position = Vector3.MoveTowards (transform.position, initialPosition, SPEED_SWITCH_MODE);
+			if (transform.position == initialPosition) {
+				currentState = state.Idle;
+			}
+			break;
+		case state.MovingToInitialPosFromFading:
+			transform.rotation = Quaternion.RotateTowards (transform.rotation, this.rotationBeforeFocus, SPEED_ZOOM);
 			if (transform.position == initialPosition) {
 				currentState = state.Idle;
 			}
@@ -342,7 +348,7 @@ public class CameraController : LocationListener {
 
 	public void LeaveFadingPlayer() {
 		if (!isAttackMode) {
-			currentState = state.MovingToInitialPos;
+			currentState = state.MovingToInitialPosFromFading;
 			changeModeButton.interactable = true;
 		}
 	}

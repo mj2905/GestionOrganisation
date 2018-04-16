@@ -5,7 +5,7 @@ public static class CoordinateConstants {
 
 	//No debug : real scenario at epfl. Test location : can test from location test_loc_map, without being at epfl. Walking path : can test using the walking path WALKING_PATH
 	public enum DEBUG_STATE {NO_DEBUG, TEST_LOCATION, WALKING_PATH};
-	public const DEBUG_STATE DEBUG = DEBUG_STATE.NO_DEBUG;
+	public const DEBUG_STATE DEBUG = DEBUG_STATE.TEST_LOCATION;
 
 	public static readonly MapCoordinate TEST_LOC_MAP = new MapCoordinate(6.699792, 46.55598);
 	public static readonly MapCoordinate ROLEX_MAP = new MapCoordinate(6.5683, 46.5189);
@@ -114,6 +114,10 @@ public class MapCoordinate : Tuple<double, double> {
 
 	public static MapCoordinate operator+ (MapCoordinate a, MapCoordinate b) {
 		return new MapCoordinate(a.lon () + b.lon (), a.lat () + b.lat ());
+	}
+
+	public static MapCoordinate operator- (MapCoordinate a, MapCoordinate b) {
+		return new MapCoordinate(a.lon () - b.lon (), a.lat () - b.lat ());
 	}
 
 	public static bool operator< (MapCoordinate a, MapCoordinate b) {
