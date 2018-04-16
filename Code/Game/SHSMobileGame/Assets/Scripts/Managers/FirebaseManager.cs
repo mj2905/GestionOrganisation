@@ -416,6 +416,8 @@ public class FirebaseManager
 					if (innerTask.Exception != null) {
 						messagePopup.SetText("This terminal is already dead");
 
+						MonoBehaviour.print ("Exception thrown in hurt terminal transaction: " + innerTask.Exception.Message);
+
 						reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.TERMINAL_SMASH_COST));
 					}else{
 						AddTerminalDamagedStat();

@@ -37,7 +37,7 @@ public class Terminal : MonoBehaviour
 		levelBar = GameObject.Find (terminalId+"/TowerStatsCanvas/LevelBG/LevelBar").GetComponent<Image>();
 		powerBar = GameObject.Find (terminalId+"/TowerStatsCanvas/PowerBG/PowerBar").GetComponent<Image>();
 
-		Color teamColor = ColorConstants.getColor (team);
+		Color teamColor = ColorConstants.getTextColor (team);
 		healthBar.color = teamColor;
 		levelBar.color = teamColor;
 		powerBar.color = teamColor;

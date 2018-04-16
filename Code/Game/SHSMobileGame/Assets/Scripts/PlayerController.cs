@@ -48,7 +48,7 @@ public class PlayerController : LocationListener
 
 	void OnTriggerEnter(Collider other) 
 	{
-		if (other is CapsuleCollider) {
+		if (other.tag == "SafeZone") {
 			print ("Safe zone entered: " + other.gameObject.name);
 		}
 		else {
@@ -68,7 +68,7 @@ public class PlayerController : LocationListener
 
 	void OnTriggerExit(Collider other)
 	{
-		if (other is CapsuleCollider) {
+		if (other.tag == "SafeZone") {
 			print ("Safe zone exited: " + other.gameObject.name);
 		} else {
 			print ("Exited: " + other.gameObject.name);
