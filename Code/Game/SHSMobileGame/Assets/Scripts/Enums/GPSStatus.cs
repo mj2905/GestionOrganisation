@@ -1,0 +1,1 @@
+﻿public enum GPSStatus{ENABLED, DISABLED};

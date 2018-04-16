@@ -121,6 +121,7 @@
      <Compile Include="Assets\Scripts\Entities\Terminal.cs" />
      <Compile Include="Assets\Scripts\Entities\User.cs" />
      <Compile Include="Assets\Scripts\Entities\Zone.cs" />
+     <Compile Include="Assets\Scripts\Enums\GPSStatus.cs" />
      <Compile Include="Assets\Scripts\FadingPlayer.cs" />
      <Compile Include="Assets\Scripts\ImproveButtonHandler.cs" />
      <Compile Include="Assets\Scripts\InitialScene.cs" />
