@@ -5,7 +5,7 @@ public static class CoordinateConstants {
 
 	//No debug : real scenario at epfl. Test location : can test from location test_loc_map, without being at epfl. Walking path : can test using the walking path WALKING_PATH
 	public enum DEBUG_STATE {NO_DEBUG, TEST_LOCATION, WALKING_PATH};
-	public const DEBUG_STATE DEBUG = DEBUG_STATE.TEST_LOCATION;
+	public const DEBUG_STATE DEBUG = DEBUG_STATE.NO_DEBUG;
 
 	public static readonly MapCoordinate TEST_LOC_MAP = new MapCoordinate(6.699792, 46.55598);
 	public static readonly MapCoordinate ROLEX_MAP = new MapCoordinate(6.5683, 46.5189);

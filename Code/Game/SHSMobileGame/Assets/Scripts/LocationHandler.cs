@@ -64,9 +64,8 @@ public class LocationHandler : LocationListener {
 
 	// Use this for initialization
 	void Start () {
-		locationWasEnabled = PlayerPrefs.GetInt (USERPREF_ATTACK_KEY, DEFENSE) == ATTACK;
-		ActivateLocationIfPossible (locationWasEnabled); //should not run location at first, will be useful when app has quit
-		isAttackMode = false;
+		isAttackMode = PlayerPrefs.GetInt (USERPREF_ATTACK_KEY, DEFENSE) == ATTACK;
+		ActivateLocationIfPossible (isAttackMode); //should not run location at first, will be useful when app has quit
 	}
 
 	public void SwitchMode() {
@@ -81,7 +80,9 @@ public class LocationHandler : LocationListener {
 
 	public void ActivateLocationIfPossible(bool additionalCondition = true, bool write = true) {
 		locationWasEnabled = additionalCondition && (Input.location.status != LocationServiceStatus.Failed); //Only thing that can block it is if it's not allowed to be used
-		if(write) {PlayerPrefs.SetInt (USERPREF_ATTACK_KEY, locationWasEnabled ? ATTACK : DEFENSE);}
+		if(write) {
+			PlayerPrefs.SetInt (USERPREF_ATTACK_KEY, locationWasEnabled ? ATTACK : DEFENSE);
+		}
 		BeginLocation ();
 	}
 
