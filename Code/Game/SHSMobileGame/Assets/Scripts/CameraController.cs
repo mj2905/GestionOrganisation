@@ -133,6 +133,7 @@ public class CameraController : LocationListener {
 			break;
 		case state.MovingToInitialPosFromFading:
 			transform.rotation = Quaternion.RotateTowards (transform.rotation, this.rotationBeforeFocus, SPEED_ZOOM);
+			transform.position = Vector3.MoveTowards (transform.position, initialPosition, SPEED_SWITCH_MODE);
 			if (transform.position == initialPosition) {
 				currentState = state.Idle;
 			}
@@ -342,20 +343,19 @@ public class CameraController : LocationListener {
 	public void GoToFadingPlayer() {
 		if (!isAttackMode) {
 			currentState = state.MovingToFadingPlayer;
-			changeModeButton.interactable = false;
 		}
 	}
 
 	public void LeaveFadingPlayer() {
 		if (!isAttackMode) {
 			currentState = state.MovingToInitialPosFromFading;
-			changeModeButton.interactable = true;
 		}
 	}
 
 	override public void CoordinateUpdate(XYCoordinate coords) {}
 
 	override public void StopLocationHandling() {
+		print ("Loc finished on camera");
 		currentState = state.MovingToInitialPos;
 		isAttackMode = false;
 	}

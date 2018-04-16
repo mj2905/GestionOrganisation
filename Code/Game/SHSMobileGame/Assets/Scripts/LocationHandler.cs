@@ -65,8 +65,10 @@ public class LocationHandler : LocationListener {
 	}
 
 	public void SwitchMode() {
+		print ("Switch");
 		if (started) {
 			DeactivateLocation ();
+			locationSmootherFade.StopLocationHandling ();
 		} else {
 			ActivateLocationIfPossible ();
 		}
@@ -104,39 +106,45 @@ public class LocationHandler : LocationListener {
 
 		locationTextTmp.text = string.Format("lon:{0} / lat:{1}", coords.Item1, coords.Item2);
 
-		fadingPlayer.SetCoordsInvisible (coords); //used to get its 3d vector, can be used here because only choices after are either a location deactivated => reset, or put again to same position.
-		Vector3 pos = fadingPlayer.transform.position;
-		//print ("h:"+pos.x + " " + pos.y + " " + pos.z);
-
-		int colls = Physics.OverlapBoxNonAlloc(pos, new Vector3(1,1,1), colliders);
-		//print (colls);
-
-		bool isInSafeZone = false;
-		for (int i = 0; i < colls; ++i) {
-			//print (colliders [i].gameObject.name);
-			if (colliders[i].tag == "SafeZone") {
-				isInSafeZone = true;
-				break;
-			}
-		}
 
 		if (CoordinateConstants.DEBUG == CoordinateConstants.DEBUG_STATE.NO_DEBUG && (coords > CoordinateConstants.EPFL_TOP_RIGHT_MAP || coords < CoordinateConstants.EPFL_BOT_LEFT_MAP)) {
 
+			print ("Not in campus");
 			DeactivateLocation ();
+			locationSmootherFade.StopLocationHandling ();
 			popup.SetText ("You have to be on the EPFL campus to switch to attack mode");
 
-		} else if(!isInSafeZone && !isAttackMode) {
+		} else if(!isAttackMode) {
 
-			DeactivateLocation ();
-			ActivateLocationIfPossible (true, false);
+			print ("Not in attack mode");
+			locationSmootherFade.CoordinateUpdate (coords); 
+			fadingPlayer.setVisible (false);
+			bool isInSafeZone = fadingPlayer.isInsideSafeZone();
 
-			fadingPlayer.SetCoordsVisible (coords);
+			if (!isInSafeZone) {
 
+				print ("Not in safe zone");
+				PlayerPrefs.SetInt (USERPREF_ATTACK_KEY, DEFENSE);
+
+				Input.location.Stop ();
+				Input.location.Start (1.0f, 1);
+
+				fadingPlayer.setVisible (true);
+
+			} else {
+				print ("In safe zone");
+				locationSmootherFade.StopLocationHandling ();
+				locationSmoother.CoordinateUpdate (coords);
+				PlayerPrefs.SetInt (USERPREF_ATTACK_KEY, ATTACK);
+
+				Input.location.Stop ();
+				Input.location.Start (1.0f, 1);
+			}
 			//popup.SetText ("You have to be in a safe zone to switch to attack mode");
 
 		} else if (coords != oldCoords) {
 
-			ActivateLocationIfPossible ();
+			print ("In attack mode");
 			locationSmoother.CoordinateUpdate (coords);
 
 			Input.location.Stop ();
@@ -163,10 +171,12 @@ public class LocationHandler : LocationListener {
 	override public void CoordinateUpdate(XYCoordinate coords) {}
 
 	override public void StopLocationHandling() {
+		print ("Stop attacking");
 		isAttackMode = false;
 	}
 
 	override public void FirstLocationSent() {
+		print ("Going to attack");
 		isAttackMode = true;
 	}
 }
