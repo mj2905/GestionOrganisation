@@ -35,7 +35,7 @@ public static class CoordinateConstants {
 	public static readonly double EPFL_VERTICAL_DISTANCE = EPFL_TOP_LEFT_XY.y() - EPFL_BOT_LEFT_XY.y();
 
 	public static readonly XYCoordinate EPFL_CENTER_DIF = CoordinateConstants.DEBUG == CoordinateConstants.DEBUG_STATE.TEST_LOCATION ? 
-		CoordinateConstants.EPFL_CENTER_XY - CoordinateConstants.TEST_LOC_XY : XYCoordinate.ZERO ();
+		CoordinateConstants.ROLEX_XY - CoordinateConstants.TEST_LOC_XY : XYCoordinate.ZERO ();
 
 	public const double H_FACTOR = 2*77.15; //(1/l, 1/2h)/(l, h) = (1/2, 1/2). Need to multiply by 2 to get (1,1) and by the factors to reach the position in editor
 	public const double V_FACTOR = 2*50.0;
@@ -114,6 +114,10 @@ public class MapCoordinate : Tuple<double, double> {
 
 	public static MapCoordinate operator+ (MapCoordinate a, MapCoordinate b) {
 		return new MapCoordinate(a.lon () + b.lon (), a.lat () + b.lat ());
+	}
+
+	public static MapCoordinate operator- (MapCoordinate a, MapCoordinate b) {
+		return new MapCoordinate(a.lon () - b.lon (), a.lat () - b.lat ());
 	}
 
 	public static bool operator< (MapCoordinate a, MapCoordinate b) {

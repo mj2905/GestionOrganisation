@@ -55,14 +55,19 @@ public class PlayerController : LocationListener
 			currentZone = other.gameObject;
 			print ("Entered: " + currentZone.name);
 
-			Transform p = currentZone.transform;
+			Transform p = other.transform;
 
-			while (!p.parent.name.EndsWith ("_building")) {
+			while (p != null && !p.name.EndsWith ("_building", System.StringComparison.CurrentCultureIgnoreCase)) {
 				p = p.parent;
 			}
 
-			currentZone.transform.position += new Vector3 (0, 1, 0);
-			p.parent.position -= new Vector3 (0, 1, 0);
+			if (p != null) {
+				Color color = p.GetComponent<MeshRenderer> ().material.color;
+				color.a = 0.2f;
+				p.GetComponent<MeshRenderer> ().material.color = color;
+			} else {
+				print ("No such parent");
+			}
 		}
 	}
 
@@ -73,15 +78,19 @@ public class PlayerController : LocationListener
 		} else {
 			print ("Exited: " + other.gameObject.name);
 
-			Transform p = other.gameObject.transform;
+			Transform p = other.transform;
 
-			while (!p.parent.name.EndsWith ("_building")) {
+			while (p != null && !p.name.EndsWith ("_building", System.StringComparison.CurrentCultureIgnoreCase)) {
 				p = p.parent;
 			}
 
-			p.parent.position += new Vector3 (0, 1, 0);
-			currentZone.transform.position -= new Vector3 (0, 1, 0);
-
+			if (p != null) {
+				Color color = p.GetComponent<MeshRenderer> ().material.color;
+				color.a = 1;
+				p.GetComponent<MeshRenderer> ().material.color = color;
+			} else {
+				print ("No such parent");
+			}
 			currentZone = null;
 		}
 	}
@@ -111,11 +120,12 @@ public class PlayerController : LocationListener
 		moveHorizontal = (posXY.x() - CoordinateConstants.EPFL_TOP_LEFT_XY.x())*CoordinateConstants.H_FACTOR/CoordinateConstants.EPFL_HORIZONTAL_DISTANCE;
 		moveVertical = (posXY.y() - CoordinateConstants.EPFL_TOP_LEFT_XY.y())*CoordinateConstants.V_FACTOR/CoordinateConstants.EPFL_VERTICAL_DISTANCE;
 
+		/*
 		if (CoordinateConstants.DEBUG != CoordinateConstants.DEBUG_STATE.NO_DEBUG) {
 			if (moveHorizontal != lastMovH || moveVertical != lastMovV) {
 				print ("mh:" + moveHorizontal + " | mv:" + moveVertical);
 			}
-		}
+		}*/
 
 	}
 
