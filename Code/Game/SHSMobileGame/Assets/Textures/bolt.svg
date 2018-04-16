@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="bolt.svg"
+   width="512"
+   height="512"
+   inkscape:export-filename="D:\Code\GestionOrganisation\Code\Game\SHSMobileGame\Assets\Textures\bolt.png"
+   inkscape:export-xdpi="24"
+   inkscape:export-ydpi="24"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2477"
+     inkscape:window-height="1411"
+     id="namedview6"
+     showgrid="false"
+     inkscape:zoom="0.921875"
+     inkscape:cx="-73.005933"
+     inkscape:cy="212.1126"
+     inkscape:window-x="74"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <path
+     d="m 413.12554,160 h -115.401 l 34.618,-129.816 C 336.40254,14.956 324.90854,0 309.15254,0 h -136 c -12.029,0 -22.2,8.905 -23.789,20.828 l -31.996,240 c -1.919,14.389 9.289,27.172 23.789,27.172 h 118.701 l -46.059,194.466 c -3.596,15.183 8.013,29.534 23.346,29.534 8.35,0 16.376,-4.374 20.778,-11.978 l 175.973,-303.997 c 9.244,-15.967 -2.288,-36.025 -20.77,-36.025 z"
+     id="path2"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:#ffffff"
+     d="m 304.49043,25.507812 c -43.17452,2.031541 -86.4808,-1.525663 -129.57617,1.591797 -3.22926,11.480302 -1.71777,23.904525 -4.72901,35.571366 -8.51196,66.502935 -19.52332,132.675045 -25.38427,199.436445 10.31836,1.06246 20.67086,-1.40435 31.00195,-0.10742 38.86849,0 77.73698,0 116.60547,0 -14.97822,70.26924 -34.38227,139.52396 -48.68164,209.91406 53.21284,-91.60201 107.30674,-182.8579 159.0211,-275.35751 1.26905,-4.11023 10.40484,-12.93031 0.96355,-10.67434 -46.38792,0.41732 -92.77772,-0.0763 -139.16629,0.13537 11.73071,-53.93479 30.27358,-106.641395 40.76953,-160.531252 z"
+     id="path2-4"
+     inkscape:connector-curvature="0" />
+</svg>
