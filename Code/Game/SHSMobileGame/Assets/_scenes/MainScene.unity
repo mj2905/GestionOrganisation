@@ -11425,8 +11425,8 @@ MonoBehaviour:
   popup: {fileID: 1038846808}
   fadingPlayer: {fileID: 776412945}
   locationTextTmp: {fileID: 1205224477}
-  GPSImage: {fileID: 0}
-  GPSText: {fileID: 0}
+  GPSImage: {fileID: 139506377}
+  GPSText: {fileID: 852735434}
   locationSmoother: {fileID: 2037839007}
   locationSmootherFade: {fileID: 1562119452}
 --- !u!4 &1145270404
