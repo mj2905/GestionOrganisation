@@ -136,7 +136,7 @@ public class GameManager : LocationListener {
 			}
 		}
 
-		Terminal terminal = new Terminal (FirebaseManager.userTeam.ToString() + "-"+(maxIndex+1).ToString(),zoneId,0,100,100,FirebaseManager.userTeam,x,z);
+		Terminal terminal = new Terminal (FirebaseManager.userTeam.ToString() + "-"+(maxIndex+1).ToString(),zoneId,0,20,100,FirebaseManager.userTeam,x,z);
 		//uiManager.SetPopUpText (zoneId);
 		FirebaseManager.AddTerminal (terminal, messagePopup);
 	}
@@ -146,7 +146,7 @@ public class GameManager : LocationListener {
 	}
 
 	public bool IsPlayerInsideZone(){
-		return player.isInsideZone ();
+		return player.isInsideAttackableZone ();
 	}
 		
 

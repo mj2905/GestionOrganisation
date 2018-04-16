@@ -114,7 +114,7 @@ public class LocationHandler : LocationListener {
 		bool isInSafeZone = false;
 		for (int i = 0; i < colls; ++i) {
 			//print (colliders [i].gameObject.name);
-			if (colliders[i] is CapsuleCollider) {
+			if (colliders[i].tag == "SafeZone") {
 				isInSafeZone = true;
 				break;
 			}

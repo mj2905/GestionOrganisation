@@ -120,6 +120,10 @@ public class Zone : MonoBehaviour {
 		}
 
 		if (totalDamages <= 0.01) {
+			dmgENAC.fillAmount = 0;
+			dmgSTI.fillAmount = 0;
+			dmgFSB.fillAmount = 0;
+			dmgICSV.fillAmount = 0;
 			return;
 		}
 

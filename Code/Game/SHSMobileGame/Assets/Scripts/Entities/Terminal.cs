@@ -37,7 +37,7 @@ public class Terminal : MonoBehaviour
 		levelBar = GameObject.Find (terminalId+"/TowerStatsCanvas/LevelBG/LevelBar").GetComponent<Image>();
 		powerBar = GameObject.Find (terminalId+"/TowerStatsCanvas/PowerBG/PowerBar").GetComponent<Image>();
 
-		Color teamColor = ColorConstants.getColor (team);
+		Color teamColor = ColorConstants.getTextColor (team);
 		healthBar.color = teamColor;
 		levelBar.color = teamColor;
 		powerBar.color = teamColor;
@@ -68,7 +68,7 @@ public class Terminal : MonoBehaviour
 
 			Instantiate (
 				Resources.Load("Effects/Prefabs/"+color+"LaserEffect"),
-				gameObject.transform.position + new Vector3(0,2,0),
+				gameObject.transform.position + new Vector3(0,0.5f,0),
 				Quaternion.LookRotation(targetPos - gameObject.transform.position),
 				gameObject.transform);
 		}
@@ -79,14 +79,9 @@ public class Terminal : MonoBehaviour
 		Debug.Log ("touch");
 		if(other.gameObject.tag == "Zone")
 		{
-			Debug.Log (other.gameObject.name);
 			BoxCollider box = (BoxCollider)other.GetComponent<BoxCollider>();
 			GameObject obj = other.gameObject;
 			float y = obj.transform.position.y + box.bounds.size.y/2f;
-			Debug.Log (y);
-			Debug.Log (obj.transform.position.y);
-			Debug.Log (box.bounds.size.y/2f);
-
 			this.transform.position = new Vector3 (this.transform.position.x,y-0.2f,this.transform.position.z);
 		}
 	}

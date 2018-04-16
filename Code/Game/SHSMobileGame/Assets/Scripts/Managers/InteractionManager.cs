@@ -224,7 +224,7 @@ public class InteractionManager : LocationListener {
 
 	private void smashTerminal(){
 		if(targetedTerminal != null){
-			print ("Attacking terminal ");
+			print ("Attacking terminal with ID " + targetedTerminal.GetTerminalId());
 			FirebaseManager.HurtTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_SMASH_AMOUNT, level, messagePopup);
 		}
 	}
