@@ -20,8 +20,8 @@ public class Terminal : MonoBehaviour
 	public int[] damages;
 
 	private Image healthBar;
-	private Image levelBar;
 	private Image powerBar;
+	private Text levelText;
 
 	public Action callbackWhenDestroyed;
 
@@ -34,12 +34,11 @@ public class Terminal : MonoBehaviour
 	public void Init(){
 		Debug.Log ("pepe");
 		healthBar = GameObject.Find (terminalId+"/TowerStatsCanvas/HealthBG/HealthBar").GetComponent<Image>();
-		levelBar = GameObject.Find (terminalId+"/TowerStatsCanvas/LevelBG/LevelBar").GetComponent<Image>();
 		powerBar = GameObject.Find (terminalId+"/TowerStatsCanvas/PowerBG/PowerBar").GetComponent<Image>();
+		levelText = GameObject.Find (terminalId+"/TowerStatsCanvas/LevelBG/LevelLabel").GetComponent<Text>();
 
 		Color teamColor = ColorConstants.getTextColor (team);
 		healthBar.color = teamColor;
-		levelBar.color = teamColor;
 		powerBar.color = teamColor;
 
 		if (target != null) {
@@ -88,8 +87,8 @@ public class Terminal : MonoBehaviour
 		
 	void Update(){
 		healthBar.fillAmount = (float)(hp) / QuantitiesConstants.TERMINAL_MAX_HEALTH_VALUES[level];
-		levelBar.fillAmount =  (float)(level) / QuantitiesConstants.TERMINAL_LEVEL_MAX;
 		powerBar.fillAmount = (float)(strength) / POWER_MAX;
+		levelText.text = level.ToString();
 	}
 
 	public Terminal(){
