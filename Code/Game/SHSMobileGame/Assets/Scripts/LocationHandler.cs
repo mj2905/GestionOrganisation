@@ -166,7 +166,7 @@ public class LocationHandler : LocationListener {
 			if (locationWasEnabled) {
 				DeactivateLocation ();
 			}
-			popup.SetText ("You have to enable the geolocation to be able to be in attack mode. To do so, go to Settings, SHSGameTest and choose to allow location access");
+			popup.SetText ("You have to enable the geolocation to be able to be in attack mode. To do so, go to Settings, and choose to allow location access");
 		}
 
 		if (locationWasEnabled && Input.location.status == LocationServiceStatus.Running) {

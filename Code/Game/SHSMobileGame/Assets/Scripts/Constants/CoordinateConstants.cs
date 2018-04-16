@@ -9,7 +9,7 @@ public static class CoordinateConstants {
 
 	public static readonly MapCoordinate TEST_LOC_MAP = new MapCoordinate(6.699792, 46.55598);
 	public static readonly MapCoordinate ROLEX_MAP = new MapCoordinate(6.5683, 46.5189);
-	public static readonly MapCoordinate IN_MAP = new MapCoordinate(6.56378, 46.51852);
+	public static readonly MapCoordinate IN_MAP = new MapCoordinate(6.56305, 46.51854);
 	public static readonly MapCoordinate SWISS_TECH = new MapCoordinate(6.56452, 46.52244);
 	public static readonly MapCoordinate BM = new MapCoordinate(6.56506, 46.52172);
 	public static readonly MapCoordinate EPFL_CENTER_ZONE = new MapCoordinate(6.566, 46.52004);
@@ -23,6 +23,7 @@ public static class CoordinateConstants {
 	public static readonly WalkingPath WALKING_PATH = new WalkingPath(ROLEX_MAP, EPFL_CENTER_ZONE);
 
 	public static readonly XYCoordinate TEST_LOC_XY = TEST_LOC_MAP.toXYMercator();
+	public static readonly XYCoordinate IN_XY = IN_MAP.toXYMercator();
 	public static readonly XYCoordinate ROLEX_XY = ROLEX_MAP.toXYMercator();
 	public static readonly XYCoordinate EPFL_CENTER_XY = EPFL_CENTER_MAP.toXYMercator();
 
@@ -35,7 +36,7 @@ public static class CoordinateConstants {
 	public static readonly double EPFL_VERTICAL_DISTANCE = EPFL_TOP_LEFT_XY.y() - EPFL_BOT_LEFT_XY.y();
 
 	public static readonly XYCoordinate EPFL_CENTER_DIF = CoordinateConstants.DEBUG == CoordinateConstants.DEBUG_STATE.TEST_LOCATION ? 
-		CoordinateConstants.ROLEX_XY - CoordinateConstants.TEST_LOC_XY : XYCoordinate.ZERO ();
+ 		CoordinateConstants.IN_XY - CoordinateConstants.TEST_LOC_XY : XYCoordinate.ZERO ();
 
 	public const double H_FACTOR = 2*77.15; //(1/l, 1/2h)/(l, h) = (1/2, 1/2). Need to multiply by 2 to get (1,1) and by the factors to reach the position in editor
 	public const double V_FACTOR = 2*50.0;
