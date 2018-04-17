@@ -531,7 +531,7 @@ public class FirebaseManager
 		if (level >= 0 && level + 1 < QuantitiesConstants.TERMINAL_MAX_HEALTH_VALUES.Length) {
 			reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.TERMINAL_MAX_HEALTH_COST [level + 1])).ContinueWith (task3 => {
 				if (task3.Exception == null) {
-					reference.Child ("Game/Zones/").Child (zoneID).RunTransaction (ImproveZoneTransaction (level)).ContinueWith (innerTask => {
+					reference.Child ("Game/Terminals/").Child (zoneID).RunTransaction (ImproveTerminalTransaction (level)).ContinueWith (innerTask => {
 						if (innerTask.Exception != null) {
 							messagePopup.SetText ("This terminal has been improved by someone else");
 							reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.TERMINAL_MAX_HEALTH_COST [level + 1]));
