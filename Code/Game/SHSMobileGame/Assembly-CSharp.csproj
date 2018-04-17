@@ -113,6 +113,7 @@
      <Compile Include="Assets\Scripts\Entities\Effects\Achievement.cs" />
      <Compile Include="Assets\Scripts\Entities\Effects\Effects.cs" />
      <Compile Include="Assets\Scripts\Entities\Effects\Medal.cs" />
+     <Compile Include="Assets\Scripts\Entities\Effects\MedalInfo.cs" />
      <Compile Include="Assets\Scripts\Entities\Game.cs" />
      <Compile Include="Assets\Scripts\Entities\Notification.cs" />
      <Compile Include="Assets\Scripts\Entities\Statistics.cs" />

@@ -89,7 +89,7 @@ public class UiManager : LocationListener
 		creditText.text = credit;
 		levelText.text = level;
 		lth.setLevel (lvlAsInt);
-		multiplierText.text = "x" + 100 * effects.GetTotalMultiplier() + "%";
+		multiplierText.text = "x" + effects.GetTotalMultiplier();
 
 		if (creditDiff < 0) {
 			TextUpdate textUpdate = (TextUpdate)Instantiate (negativeUpdate, creditUpdateHandle.transform);
