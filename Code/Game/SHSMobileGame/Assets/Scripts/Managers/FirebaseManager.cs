@@ -99,7 +99,7 @@ public class FirebaseManager
 		// Do something with snapshot...
 		if (snapshot != null) {
 			object credit = snapshot.Child("credits").Value;
-			FirebaseManager.userTeam = Int32.Parse(snapshot.Child("team").Value.ToString());
+			//FirebaseManager.userTeam = Int32.Parse(snapshot.Child("team").Value.ToString());
 			object xp = snapshot.Child("xp").Value;
 			object level = snapshot.Child("level").Value;
 			Effects effects;
@@ -614,9 +614,12 @@ public class FirebaseManager
 				}
 
 				if(medal != null && medalName != null){
+					System.Random rnd = new System.Random();
+					String randomName = rnd.Next(1, 100000).ToString();
+
 					if(((int)(number + 1) % EffectObtentionConstants.medalNumberObtention[name]) == 0){
-						if(mutableData.Child (FirebaseManager.user.UserId + "/effects/" + medalName).Value == null){
-							mutableData.Child (FirebaseManager.user.UserId + "/effects/" + medalName).Value = medal.ToMap();
+						if(mutableData.Child (FirebaseManager.user.UserId + "/effects/" + medalName + randomName).Value == null){
+							mutableData.Child (FirebaseManager.user.UserId + "/effects/" + medalName + randomName).Value = medal.ToMap();
 						}
 					}
 				}
