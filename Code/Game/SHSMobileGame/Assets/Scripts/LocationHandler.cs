@@ -133,8 +133,8 @@ public class LocationHandler : LocationListener {
 				print ("Not in safe zone");
 				PlayerPrefs.SetInt (USERPREF_ATTACK_KEY, DEFENSE);
 
-				Input.location.Stop ();
-				Input.location.Start (1.0f, 1);
+				//Input.location.Stop ();
+				//Input.location.Start (1.0f, 1);
 
 				fadingPlayer.setVisible (true);
 
@@ -144,8 +144,8 @@ public class LocationHandler : LocationListener {
 				locationSmoother.CoordinateUpdate (coords);
 				PlayerPrefs.SetInt (USERPREF_ATTACK_KEY, ATTACK);
 
-				Input.location.Stop ();
-				Input.location.Start (1.0f, 1);
+				//Input.location.Stop ();
+				//Input.location.Start (1.0f, 1);
 			}
 			//popup.SetText ("You have to be in a safe zone to switch to attack mode");
 
@@ -154,8 +154,8 @@ public class LocationHandler : LocationListener {
 			print ("In attack mode");
 			locationSmoother.CoordinateUpdate (coords);
 
-			Input.location.Stop ();
-			Input.location.Start (1.0f, 1);
+			//Input.location.Stop ();
+			//Input.location.Start (1.0f, 1);
 
 		}
 	}
