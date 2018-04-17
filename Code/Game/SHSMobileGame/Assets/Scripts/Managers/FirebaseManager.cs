@@ -324,7 +324,7 @@ public class FirebaseManager
 
 			if(health_obtained != null) {
 
-				long realAmount = amount + QuantitiesConstants.TERMINAL_SMASH_LEVEL_BONUS[userLevel - 1];
+				long realAmount = amount + QuantitiesConstants.TERMINAL_SMASH_LEVEL_BONUS[userLevel];
 				long health_value = (long)health_obtained;
 
 				if(health_value > 0) {
@@ -347,7 +347,7 @@ public class FirebaseManager
 
 			if(strength_obtained != null) {
 
-				long realAmount = amount + QuantitiesConstants.TERMINAL_BUFF_LEVEL_BONUS[userLevel - 1];
+				long realAmount = amount + QuantitiesConstants.TERMINAL_BUFF_LEVEL_BONUS[userLevel];
 				long strength_value = (long)strength_obtained;
 
 				if(strength_value < QuantitiesConstants.STRENGTH_MAX) {
@@ -370,7 +370,7 @@ public class FirebaseManager
 
 			if(health_obtained != null && level_obtained != null) {
 
-				long realAmount = amount + QuantitiesConstants.ZONE_HEAL_LEVEL_BONUS[userLevel - 1];
+				long realAmount = amount + QuantitiesConstants.ZONE_HEAL_LEVEL_BONUS[userLevel];
 				long health_value = (long)health_obtained;
 				long level_value = (long)level_obtained;
 
