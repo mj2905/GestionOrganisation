@@ -35,10 +35,6 @@ public class Terminal : MonoBehaviour
 		healthBar.fillAmount = (float)(hp) / QuantitiesConstants.TERMINAL_MAX_HEALTH_VALUES[level];
 		powerBar.fillAmount = (float)(strength) / POWER_MAX;
 		levelText.text = level.ToString();
-
-		print ("Level text: " + levelText.text);
-		print ("powerbar: " + powerBar.fillAmount);
-		print ("health: " + healthBar.fillMethod);
 	}
 
 	public void Init(){
