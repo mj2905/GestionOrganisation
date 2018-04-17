@@ -462,13 +462,13 @@ public class FirebaseManager
 		});
 	}
 
-	public static void BuffTerminal(string terminalID, long amount, int userLevel, PopupScript messagePopup){
-		reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.TERMINAL_BUFF_COST)).ContinueWith (task => {
+	public static void BuffTerminal(string terminalID, long amount, int terminalLevel, int userLevel, PopupScript messagePopup){
+		reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.TERMINAL_BUFF_COST[terminalLevel])).ContinueWith (task => {
 
 			if (task.Exception == null) {
 				reference.Child("Game/Terminals/").Child(terminalID).Child("strength").RunTransaction(BuffTerminalTransaction(amount, userLevel)).ContinueWith(innerTask =>{
 					if (innerTask.Exception != null) {
-						reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.TERMINAL_BUFF_COST));
+						reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.TERMINAL_BUFF_COST[terminalLevel]));
 						messagePopup.SetText("This terminal is already maximally buffed");
 					}else{
 						AddTerminalBuffedStat();
