@@ -3,15 +3,15 @@
 
 public class EffectsConstants
 {
-	public static Medal medal101 = new Medal("101",5,10);	
-	public static Medal medal202 = new Medal("202",1,10);	
-	public static Medal medal404 = new Medal("404",2,15);	
-	public static Medal medal505 = new Medal("505",4,5);	
+	public static MedalInfo medal101 = new MedalInfo("101",5,10);	
+	public static MedalInfo medal202 = new MedalInfo("202",1,10);	
+	public static MedalInfo medal404 = new MedalInfo("404",2,15);	
+	public static MedalInfo medal505 = new MedalInfo("505",4,5);	
 
-	public static Medal terminalPlacedMedal = new Medal("terminalPlacedMedal",3,5);
-	public static Medal terminalDamagedMedal = new Medal("terminalDamagedMedal",3,5);	
-	public static Medal terminalBuffedMedal = new Medal("terminalBuffedMedal",3,5);	
-	public static Medal zoneHealedMedal = new Medal("zoneHealedMedal",3,5);
+	public static MedalInfo terminalPlacedMedal = new MedalInfo("terminalPlacedMedal",3,5);
+	public static MedalInfo terminalDamagedMedal = new MedalInfo("terminalDamagedMedal",3,5);	
+	public static MedalInfo terminalBuffedMedal = new MedalInfo("terminalBuffedMedal",3,5);	
+	public static MedalInfo zoneHealedMedal = new MedalInfo("zoneHealedMedal",3,5);
 
 	public static Achievement terminalPlacedAchievement = new Achievement("terminalPlacedAchievement",3);
 	public static Achievement terminalDamagedAchievement = new Achievement("terminalDamagedAchievement",3);	
@@ -20,7 +20,7 @@ public class EffectsConstants
 	public static Achievement zoneHealedAchievement = new Achievement("zoneHealedAchievement",3);
 	public static Achievement zoneImprovedAchievement = new Achievement("zoneImprovedAchievement",3);
 
-	public static Medal GetMedalByName(string name){
+	public static MedalInfo GetMedalByName(string name){
 		switch (name) {
 		case "101":
 			return medal101;

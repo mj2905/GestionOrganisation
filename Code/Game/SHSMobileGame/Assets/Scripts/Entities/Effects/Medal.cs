@@ -1,16 +1,14 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 public class Medal : MonoBehaviour{
 
 	public Image imageTime;
 	public Text textMult;
 
-	private int ttl;
-	private int multiplier;
-	private string name;
+	private MedalInfo medalInfo;
+
 	private float height;
 	private RectTransform rectTransform;
 	private Vector2 offsetMax;
@@ -21,29 +19,16 @@ public class Medal : MonoBehaviour{
 	private Vector3 initialPosition;
 	private int position;
 
-	public Medal (string name, int multiplier,int ttl)
-	{
-		this.name = name;
-		this.ttl = ttl;
-		this.multiplier = multiplier;
-	}	
-
-	public string GetName(){
-		return name;
-	}
-
-	public int GetTtl(){
-		return ttl;
-	}
-
-	public int GetMultiplier(){
-		return multiplier;
+	public MedalInfo GetMedalInfo(){
+		return medalInfo;
 	}
 
 	public void Copy(Medal medal){
-		ttl = medal.GetTtl ();
-		multiplier = medal.GetMultiplier ();
-		name = medal.GetName ();
+		this.medalInfo = medal.GetMedalInfo ();
+	}
+
+	public void Copy(MedalInfo medal){
+		this.medalInfo = medal;
 	}
 
 	public void SetInitialPosition(Vector3 initialPosition){
@@ -59,7 +44,7 @@ public class Medal : MonoBehaviour{
 		height = rectTransform.rect.height;
 		offsetMax = rectTransform.offsetMax;
 
-		textMult.text = "x " + multiplier;
+		textMult.text = "x " + medalInfo.GetMultiplier();
 
 		transform.position = initialPosition - new Vector3(100,((1.2f*(position)))*GetComponent<RectTransform>().rect.height,0);
 	}
@@ -68,7 +53,7 @@ public class Medal : MonoBehaviour{
 		if (!destroyed) {
 			if (!destroy) {
 				transform.position = Vector3.MoveTowards (transform.position, initialPosition - new Vector3 (0, ((1.2f * (position))) * GetComponent<RectTransform> ().rect.height, 0), 12);
-				rectTransform.offsetMax = new Vector2 (0, (-1 + (float)(this.GetTtl ()) / (float)(EffectsConstants.GetMedalByName (this.GetName ()).GetTtl ())) * height);
+				rectTransform.offsetMax = new Vector2 (0, (-1 + (float)(this.GetMedalInfo().GetTtl ()) / (float)(EffectsConstants.GetMedalByName (this.GetMedalInfo().GetName ()).GetTtl ())) * height);
 			} else {
 				transform.localScale = Vector3.MoveTowards (transform.localScale, new Vector3 (0, 0, 0), 0.1f);
 			}
@@ -83,33 +68,5 @@ public class Medal : MonoBehaviour{
 	public void DestroyMedal(){
 		destroy = true;
 	}
-
-	public override bool Equals (object obj)
-	{
-		if (obj == null)
-			return false;
-		if (ReferenceEquals (this, obj))
-			return true;
-		if (obj.GetType () != typeof(Medal))
-			return false;
-		Medal other = (Medal)obj;
-		return name == other.name;
-	}
-	
-
-	public override int GetHashCode ()
-	{
-		unchecked {
-			return (name != null ? name.GetHashCode () : 0);
-		}
-	}
-
-	public Dictionary<string, object> ToMap() {
-		Dictionary<string, object> fields = new Dictionary<string, object>();
-		fields.Add ("multiplier",multiplier);
-		fields.Add ("ttl",ttl);
-		return fields;
-	}
-	
 }
 

@@ -252,7 +252,7 @@ public class FirebaseManager
 		reference.Child("Users").Child(userId).SetRawJsonValueAsync(json);
 	}
 
-	private static Func<MutableData, TransactionResult> AddMedalTransaction(Medal m) 
+	private static Func<MutableData, TransactionResult> AddMedalTransaction(MedalInfo m) 
 	{
 		return mutableData => {
 				mutableData.Child (FirebaseManager.user.UserId + "/effects/").Value = m.ToMap();
@@ -260,7 +260,7 @@ public class FirebaseManager
 		};
 	}
 
-	public static void AddMedal(Medal medal){
+	public static void AddMedal(MedalInfo medal){
 		reference.Child ("Users/").RunTransaction (AddMedalTransaction (medal)).ContinueWith (task => {
 		});
 	}
@@ -598,25 +598,23 @@ public class FirebaseManager
 		});
 	}
 
-	private static Func<MutableData, TransactionResult> AddEffectTransaction(String name,String statName,String medalName,string achievementName,Medal medal,Achievement achievement) 
+	private static Func<MutableData, TransactionResult> AddEffectTransaction(String name,String statName,String medalName,String achievementName,MedalInfo medal,Achievement achievement) 
 	{
 		return mutableData => {
-
 			object numberOfTerminal = mutableData.Child (FirebaseManager.user.UserId + "/stat/" + statName).Value;
-
 			if(numberOfTerminal == null){
 				mutableData.Child (FirebaseManager.user.UserId + "/stat/" + statName).Value = 1;
 			} else{
 				long number = (long)numberOfTerminal;
 				mutableData.Child (FirebaseManager.user.UserId + "/stat/" + statName).Value = number + 1;
-
 				if((number + 1) >= EffectObtentionConstants.achievementMaxValue[name]){
 					if( mutableData.Child (FirebaseManager.user.UserId + "/effects/" + achievementName).Value == null){
 						mutableData.Child (FirebaseManager.user.UserId + "/effects/" + achievementName).Value = achievement.ToMap();
 					}
 				}
+
 				if(medal != null && medalName != null){
-					if((number + 1) % EffectObtentionConstants.medalNumberObtention[name] == 0){
+					if(((int)(number + 1) % EffectObtentionConstants.medalNumberObtention[name]) == 0){
 						if(mutableData.Child (FirebaseManager.user.UserId + "/effects/" + medalName).Value == null){
 							mutableData.Child (FirebaseManager.user.UserId + "/effects/" + medalName).Value = medal.ToMap();
 						}
