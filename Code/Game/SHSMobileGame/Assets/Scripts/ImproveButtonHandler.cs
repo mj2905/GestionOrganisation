@@ -38,7 +38,7 @@ public class ImproveButtonHandler : LocationListener {
 				if (terminalHealth <= QuantitiesConstants.TERMINAL_MIN_HEALTH) {
 					improveButtonText.text = "Improve ✝";
 					improveButton.interactable = false;
-				} else if (terminalLevel == QuantitiesConstants.TERMINAL_MAX_HEALTH_VALUES.Length) {
+				} else if (terminalLevel == QuantitiesConstants.TERMINAL_MAX_HEALTH_VALUES.Length - 1) {
 					improveButtonText.text = "Improve ✓";
 					improveButton.interactable = false;
 				} else if (credits < QuantitiesConstants.TERMINAL_MAX_HEALTH_COST[terminalLevel + 1]) {

@@ -99,7 +99,7 @@ public class FirebaseManager
 		// Do something with snapshot...
 		if (snapshot != null) {
 			object credit = snapshot.Child("credits").Value;
-			FirebaseManager.userTeam = Int32.Parse(snapshot.Child("team").Value.ToString());
+			//FirebaseManager.userTeam = Int32.Parse(snapshot.Child("team").Value.ToString());
 			object xp = snapshot.Child("xp").Value;
 			object level = snapshot.Child("level").Value;
 			Effects effects;
@@ -462,13 +462,13 @@ public class FirebaseManager
 		});
 	}
 
-	public static void BuffTerminal(string terminalID, long amount, int terminalLevel, int userLevel, PopupScript messagePopup){
-		reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.TERMINAL_BUFF_COST[terminalLevel])).ContinueWith (task => {
+	public static void BuffTerminal(string terminalID, long amount, int terminalStrength, int userLevel, PopupScript messagePopup){
+		reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.getTerminalBuffCost(terminalStrength))).ContinueWith (task => {
 
 			if (task.Exception == null) {
 				reference.Child("Game/Terminals/").Child(terminalID).Child("strength").RunTransaction(BuffTerminalTransaction(amount, userLevel)).ContinueWith(innerTask =>{
 					if (innerTask.Exception != null) {
-						reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.TERMINAL_BUFF_COST[terminalLevel]));
+						reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.getTerminalBuffCost(terminalStrength)));
 						messagePopup.SetText("This terminal is already maximally buffed");
 					}else{
 						AddTerminalBuffedStat();
@@ -614,9 +614,12 @@ public class FirebaseManager
 				}
 
 				if(medal != null && medalName != null){
+					System.Random rnd = new System.Random();
+					String randomName = rnd.Next(1, 100000).ToString();
+
 					if(((int)(number + 1) % EffectObtentionConstants.medalNumberObtention[name]) == 0){
-						if(mutableData.Child (FirebaseManager.user.UserId + "/effects/" + medalName).Value == null){
-							mutableData.Child (FirebaseManager.user.UserId + "/effects/" + medalName).Value = medal.ToMap();
+						if(mutableData.Child (FirebaseManager.user.UserId + "/effects/" + medalName + randomName).Value == null){
+							mutableData.Child (FirebaseManager.user.UserId + "/effects/" + medalName + randomName).Value = medal.ToMap();
 						}
 					}
 				}

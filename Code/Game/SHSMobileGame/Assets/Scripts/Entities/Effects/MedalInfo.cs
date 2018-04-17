@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 public class MedalInfo{
 
@@ -15,6 +16,10 @@ public class MedalInfo{
 
 	public string GetName(){
 		return name;
+	}
+
+	public string GetNormalisedName(){
+		return Regex.Replace(name, @"[\d-]", string.Empty);
 	}
 
 	public int GetTtl(){

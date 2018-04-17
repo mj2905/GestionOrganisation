@@ -40,22 +40,19 @@ public class Medal : MonoBehaviour{
 	}
 
 	public void Start(){
-		rectTransform = imageTime.GetComponent<RectTransform> ();
-		height = rectTransform.rect.height;
-		offsetMax = rectTransform.offsetMax;
-
 		textMult.text = "x " + medalInfo.GetMultiplier();
 
-		transform.position = initialPosition - new Vector3(100,((1.2f*(position)))*GetComponent<RectTransform>().rect.height,0);
+		transform.position = initialPosition - new Vector3(100,((1.2f*(position)))*imageTime.GetComponent<RectTransform>().rect.height,0);
 	}
 		
 	public void Update(){
 		if (!destroyed) {
 			if (!destroy) {
-				transform.position = Vector3.MoveTowards (transform.position, initialPosition - new Vector3 (0, ((1.2f * (position))) * GetComponent<RectTransform> ().rect.height, 0), 12);
-				rectTransform.offsetMax = new Vector2 (0, (-1 + (float)(this.GetMedalInfo().GetTtl ()) / (float)(EffectsConstants.GetMedalByName (this.GetMedalInfo().GetName ()).GetTtl ())) * height);
+				transform.position = Vector3.MoveTowards (transform.position, initialPosition - new Vector3 (0, ((1.2f * (position))) * imageTime.GetComponent<RectTransform> ().rect.height, 0), 12);
+				imageTime.fillAmount = Mathf.MoveTowards (imageTime.fillAmount, (float)(this.GetMedalInfo().GetTtl ()) / (float)(EffectsConstants.GetMedalByName (this.GetMedalInfo().GetNormalisedName ()).GetTtl ()),0.01f);
 			} else {
 				transform.localScale = Vector3.MoveTowards (transform.localScale, new Vector3 (0, 0, 0), 0.1f);
+				imageTime.fillAmount = Mathf.MoveTowards (imageTime.fillAmount, (float)(this.GetMedalInfo().GetTtl ()) / (float)(EffectsConstants.GetMedalByName (this.GetMedalInfo().GetNormalisedName ()).GetTtl ()),0.01f);
 			}
 
 			if (transform.localScale == new Vector3 (0, 0, 0)) {
