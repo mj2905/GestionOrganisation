@@ -144,7 +144,7 @@ public class UiManager : LocationListener
 	}
 
 	public void DeleteEffects(Effects effects){
-		foreach (Medal medal in effects.medals) {
+		foreach (MedalInfo medal in effects.medals) {
 			foreach (var medalUnity in medalList) {
 				if (medalUnity.Item1 == medal.GetName ()) {
 					medalUnity.Item2.DestroyMedal ();
@@ -161,12 +161,12 @@ public class UiManager : LocationListener
 			m.SetPosition(medalList.Count);
 			m.transform.SetParent (initialMedalPosition.gameObject.transform);
 			m.Copy (effects.medals[i]);
-			medalList.Add (new Tuple<string,Medal>(m.GetName(),m));
+			medalList.Add (new Tuple<string,Medal>(m.GetMedalInfo().GetName(),m));
 		}
 	}
 
 	public void ModifyEffects(Effects effects){
-		foreach (Medal medal in effects.medals) {
+		foreach (MedalInfo medal in effects.medals) {
 			foreach (var medalUnity in medalList) {
 				if (medalUnity.Item1 == medal.GetName ()) {
 					medalUnity.Item2.Copy (medal);

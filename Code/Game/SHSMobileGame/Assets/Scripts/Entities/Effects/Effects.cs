@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Effects{
 	public List<Achievement> achievements = new List<Achievement> ();
-	public List<Medal> medals = new List<Medal> ();
+	public List<MedalInfo> medals = new List<MedalInfo> ();
 
 	public Effects (){
 	}
 
-	public Effects (List<Achievement> achievements,List<Medal> medals){
+	public Effects (List<Achievement> achievements,List<MedalInfo> medals){
 		this.medals = medals;
 		this.achievements = achievements;
 	}
@@ -27,21 +27,21 @@ public class Effects{
 				if (ttl == QuantitiesConstants.TTL_ACHIEVEMENT) {
 					achievements.Add (new Achievement (entry.Key,multiplier));
 				} else {
-					medals.Add (new Medal (entry.Key,multiplier,ttl));
+					medals.Add (new MedalInfo (entry.Key,multiplier,ttl));
 				}
 			}
 		}
 	}
 
-	public List<Medal> SortMedalsByTtl(){
-		medals.Sort((Medal x, Medal y) => x.GetTtl().CompareTo(x.GetTtl()));
+	public List<MedalInfo> SortMedalsByTtl(){
+		medals.Sort((MedalInfo x, MedalInfo y) => x.GetTtl().CompareTo(x.GetTtl()));
 		return medals;
 	}
 
 	public int GetTotalMultiplier(){
 		int res = 1;
 
-		foreach (Medal medal in medals) {
+		foreach (MedalInfo medal in medals) {
 			res *= medal.GetMultiplier ();
 		}
 		foreach (Achievement achievement in achievements) {
@@ -51,8 +51,8 @@ public class Effects{
 	}
 
 	private Effects GetDifferenceEffects(Effects previousEffects){
-		HashSet<Medal> medalsHash = new HashSet<Medal> (this.medals);
-		HashSet<Medal> previousMedalsHash = new HashSet<Medal> (previousEffects.medals);
+		HashSet<MedalInfo> medalsHash = new HashSet<MedalInfo> (this.medals);
+		HashSet<MedalInfo> previousMedalsHash = new HashSet<MedalInfo> (previousEffects.medals);
 
 		medalsHash.ExceptWith (previousMedalsHash);
 
@@ -61,7 +61,7 @@ public class Effects{
 
 		achievementsHash.ExceptWith (previousAchievementsHash);
 
-		return new Effects (new List<Achievement>(achievementsHash), new List<Medal>(medalsHash));
+		return new Effects (new List<Achievement>(achievementsHash), new List<MedalInfo>(medalsHash));
 	}
 
 	public Effects GetNewEffects(Effects previousEffects){
@@ -74,8 +74,8 @@ public class Effects{
 	}
 
 	public Effects GetModifiedEffects(Effects previousEffects){
-		HashSet<Medal> medalsHash = new HashSet<Medal> (this.medals);
-		HashSet<Medal> previousMedalsHash = new HashSet<Medal> (previousEffects.medals);
+		HashSet<MedalInfo> medalsHash = new HashSet<MedalInfo> (this.medals);
+		HashSet<MedalInfo> previousMedalsHash = new HashSet<MedalInfo> (previousEffects.medals);
 				
 		medalsHash.IntersectWith (previousMedalsHash);
 
@@ -84,7 +84,7 @@ public class Effects{
 
 		achievementsHash.IntersectWith (previousAchievementsHash);
 
-		return new Effects (new List<Achievement>(achievementsHash), new List<Medal>(medalsHash));
+		return new Effects (new List<Achievement>(achievementsHash), new List<MedalInfo>(medalsHash));
 	}
 		
 }
