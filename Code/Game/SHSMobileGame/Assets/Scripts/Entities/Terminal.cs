@@ -31,11 +31,26 @@ public class Terminal : MonoBehaviour
 		}
 	}
 
+	void Update(){
+		healthBar.fillAmount = (float)(hp) / QuantitiesConstants.TERMINAL_MAX_HEALTH_VALUES[level];
+		powerBar.fillAmount = (float)(strength) / POWER_MAX;
+		levelText.text = level.ToString();
+
+		print ("Level text: " + levelText.text);
+		print ("powerbar: " + powerBar.fillAmount);
+		print ("health: " + healthBar.fillMethod);
+	}
+
 	public void Init(){
 		Debug.Log ("pepe");
 		healthBar = GameObject.Find (terminalId+"/TowerStatsCanvas/HealthBG/HealthBar").GetComponent<Image>();
+
+		print ("1");
 		powerBar = GameObject.Find (terminalId+"/TowerStatsCanvas/PowerBG/PowerBar").GetComponent<Image>();
-		levelText = GameObject.Find (terminalId+"/TowerStatsCanvas/LevelBG/LevelBar").GetComponent<Text>();
+		print ("2");
+		levelText = GameObject.Find (terminalId+"/TowerStatsCanvas/LevelLabel").GetComponent<Text>();
+
+		print ("Level text: " + levelText.text);
 
 		Color teamColor = ColorConstants.getTextColor (team);
 		healthBar.color = teamColor;
@@ -83,12 +98,6 @@ public class Terminal : MonoBehaviour
 			float y = obj.transform.position.y + box.bounds.size.y/2f;
 			this.transform.position = new Vector3 (this.transform.position.x,y-0.2f,this.transform.position.z);
 		}
-	}
-		
-	void Update(){
-		healthBar.fillAmount = (float)(hp) / QuantitiesConstants.TERMINAL_MAX_HEALTH_VALUES[level];
-		powerBar.fillAmount = (float)(strength) / POWER_MAX;
-		levelText.text = level.ToString();
 	}
 
 	public Terminal(){
