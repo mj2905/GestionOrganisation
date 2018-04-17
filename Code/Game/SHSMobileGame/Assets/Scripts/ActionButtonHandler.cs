@@ -16,6 +16,7 @@ public class ActionButtonHandler : LocationListener {
 
 	private int terminalHealth;
 	private int terminalLevel;
+	private int terminalStrength;
 	private int zoneHealth;
 	private int zoneLevel;
 
@@ -33,18 +34,14 @@ public class ActionButtonHandler : LocationListener {
 			actionButton.interactable = false;
 		} else if(targeting == TARGET.TERMINAL) {
 			if (sameTeam) {
-				
-				if (terminalHealth >= QuantitiesConstants.TERMINAL_MAX_HEALTH_VALUES[terminalLevel]) {
+				if (terminalStrength >= QuantitiesConstants.STRENGTH_MAX) {
 					actionButtonText.text = "Buff ✓";
 					actionButton.interactable = false;
-				} else if (terminalHealth <= QuantitiesConstants.TERMINAL_MIN_HEALTH) {
-					actionButtonText.text = "Buff ✝";
-					actionButton.interactable = false;
-				} else if (credits < -QuantitiesConstants.TERMINAL_BUFF_COST) {
-					actionButtonText.text = "Buff "+ (-QuantitiesConstants.TERMINAL_BUFF_COST) +"$";
+				} else if (credits < QuantitiesConstants.TERMINAL_BUFF_COST[terminalLevel+1]) {
+					actionButtonText.text = "Buff "+ (QuantitiesConstants.TERMINAL_BUFF_COST[terminalLevel+1]) +"$";
 					actionButton.interactable = false;
 				} else {
-					actionButtonText.text = "Buff "+ (-QuantitiesConstants.TERMINAL_BUFF_COST) +"$";
+					actionButtonText.text = "Buff "+ (QuantitiesConstants.TERMINAL_BUFF_COST[terminalLevel+1]) +"$";
 					actionButton.interactable = true;
 				}
 			} else {
@@ -89,9 +86,9 @@ public class ActionButtonHandler : LocationListener {
 		targeting = TARGET.ZONE;
 	}
 
-	public void targetingTerminal(bool sameTeam, int terminalHealth, int level, int credits) {
+	public void targetingTerminal(bool sameTeam, int terminalHealth, int level, int credits, int strength) {
 		Assert.IsTrue (!attackMode);
-		setTargetTerminalHealth (terminalHealth, level);
+		setTargetTerminalHealth (terminalHealth, level, strength);
 		setCredits (credits);
 		this.sameTeam = sameTeam;
 		targeting = TARGET.TERMINAL;
@@ -106,9 +103,10 @@ public class ActionButtonHandler : LocationListener {
 		this.credits = credits;
 	}
 
-	public void setTargetTerminalHealth(int terminalHealth, int level) {
+	public void setTargetTerminalHealth(int terminalHealth, int level, int strength) {
 		this.terminalHealth = terminalHealth;
 		this.terminalLevel = level;
+		this.terminalStrength = strength;
 	}
 
 	public void setTargetZoneHealth(int zoneHealth, int level) {

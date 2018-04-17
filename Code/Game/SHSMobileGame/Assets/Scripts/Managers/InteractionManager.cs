@@ -95,7 +95,7 @@ public class InteractionManager : LocationListener {
 		}
 
 		if (targetedTerminal != null) {
-			actionButton.setTargetTerminalHealth (targetedTerminal.hp, targetedTerminal.level);
+			actionButton.setTargetTerminalHealth (targetedTerminal.hp, targetedTerminal.level, targetedTerminal.strength);
 			improveButton.setTargetTerminalHealth (targetedTerminal.hp, targetedTerminal.level);
 			popupTerminalHP.text = "HP: " + targetedTerminal.hp;
 			popupTerminalLevel.text = "Level: " + targetedTerminal.level;
@@ -167,7 +167,7 @@ public class InteractionManager : LocationListener {
 			zonePopup.SetActive (false);
 			terminalPopup.SetActive (true);//.transform.localScale = new Vector3 (1, 1, 1);
 
-			actionButton.targetingTerminal (FirebaseManager.userTeam == targetedTerminal.team, targetedTerminal.hp, targetedTerminal.level, credits);
+			actionButton.targetingTerminal (FirebaseManager.userTeam == targetedTerminal.team, targetedTerminal.hp, targetedTerminal.level, credits, targetedTerminal.strength);
 			improveButton.targetingTerminal (FirebaseManager.userTeam == targetedTerminal.team, targetedTerminal.hp, targetedTerminal.level, credits);
 
 		}
@@ -218,7 +218,7 @@ public class InteractionManager : LocationListener {
 	private void buffTerminal(){
 		if(targetedTerminal != null){
 			print ("Buffing terminal ");
-			FirebaseManager.BuffTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_BUFF_AMOUNT, level, messagePopup);
+			FirebaseManager.BuffTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_BUFF_AMOUNT, targetedTerminal.level, level, messagePopup);
 		}
 	}
 
