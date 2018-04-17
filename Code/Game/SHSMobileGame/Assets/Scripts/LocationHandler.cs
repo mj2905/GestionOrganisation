@@ -69,11 +69,12 @@ public class LocationHandler : LocationListener {
 	}
 
 	public void SwitchMode() {
-		print ("Switch");
 		if (started) {
+			print ("Deactivate location");
 			DeactivateLocation ();
 			locationSmootherFade.StopLocationHandling ();
 		} else {
+			print ("Attempting to activate location");
 			ActivateLocationIfPossible ();
 		}
 	}
