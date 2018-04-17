@@ -35,7 +35,7 @@ public class Terminal : MonoBehaviour
 		Debug.Log ("pepe");
 		healthBar = GameObject.Find (terminalId+"/TowerStatsCanvas/HealthBG/HealthBar").GetComponent<Image>();
 		powerBar = GameObject.Find (terminalId+"/TowerStatsCanvas/PowerBG/PowerBar").GetComponent<Image>();
-		levelText = GameObject.Find (terminalId+"/TowerStatsCanvas/LevelBG/LevelBar").GetComponent<Text>();
+		levelText = GameObject.Find (terminalId+"/TowerStatsCanvas/LevelBG/LevelLabel").GetComponent<Text>();
 
 		Color teamColor = ColorConstants.getTextColor (team);
 		healthBar.color = teamColor;

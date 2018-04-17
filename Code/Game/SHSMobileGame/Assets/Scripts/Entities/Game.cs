@@ -50,7 +50,17 @@ public class Game
 				}
 			}
 		}		
-	}  
+	} 
+
+	public int GetToken(int teamId) {
+		int token = 0;
+		foreach (Team team in teams) {
+			if (team.getTeamId () == teamId) {
+				token = team.token;
+			}
+		}
+		return token;
+	}
 
 	public List<string> GetTerminalsName(){
 		List<string> res = new List<string> ();

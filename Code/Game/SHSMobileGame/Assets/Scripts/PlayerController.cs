@@ -43,7 +43,7 @@ public class PlayerController : LocationListener
 
 	void FixedUpdate()
     {
-		transform.localPosition = initialPosition + GetPosition();
+		//transform.localPosition = initialPosition + GetPosition();
     }
 
 	void OnTriggerEnter(Collider other) 

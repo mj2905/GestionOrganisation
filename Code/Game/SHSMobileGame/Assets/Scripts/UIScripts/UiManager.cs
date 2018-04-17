@@ -20,6 +20,7 @@ public class UiManager : LocationListener
 	public Text creditText;
 	public Image scoreBar;
 	public Text levelText;
+	public Text tokenText;
 	public LevelTabHandler lth;
 	public Text multiplierText;
 	public Image teamFlag;
@@ -62,6 +63,10 @@ public class UiManager : LocationListener
 		for (int i = 0; i < achievementsText.Count; i++) {
 			achievementsDict.Add (achievementsText [i].name, achievementsText [i]);
 		}
+	}
+
+	public void UpdateTokens(int tokens) {
+		tokenText.text = "Tokens: " + tokens;
 	}
 
 	public void UpdateUserStat(string xp, string credit, int team,string level,Effects effects,Statistics statistics){

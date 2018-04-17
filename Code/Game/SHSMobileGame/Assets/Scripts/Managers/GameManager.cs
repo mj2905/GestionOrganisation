@@ -119,8 +119,11 @@ public class GameManager : LocationListener {
 	}
 
 	public void UpdateUserStat(string xp, string credit, int team,string level,Effects effects,Statistics statistics){
+		int tokens = currentGame.GetToken (team);
+
 		interactionManager.updateUserInfo (credit, level);
 		uiManager.UpdateUserStat (xp, credit, team,level,effects,statistics);
+		uiManager.UpdateTokens (tokens);
 	}
 
 	public void AddTerminal(string zoneId,float x, float z){
