@@ -17,6 +17,10 @@ public class FirebaseManager
 
 	private static GameManager gameManager;
 
+	private static bool creditsScoreListener = false;
+	private static bool gameListener = false;
+	private static bool endListener = false;
+
 	public static void InitializeFirebase(object sender) {
 		Debug.Log("Setting up Firebase Auth");
 		FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://shsorga.firebaseio.com/");
@@ -40,25 +44,48 @@ public class FirebaseManager
 		}
 	}
 
-	void OnDestroy() {
+	private static void delete() {
+
+		if (creditsScoreListener) {
+			reference.Child ("Users").Child (FirebaseManager.user.UserId).ValueChanged -= HandleUserChanged;
+			creditsScoreListener = false;
+		}
+
+		if (gameListener) {
+			reference.Child ("Game").ValueChanged -= HandleGameChanged;
+			gameListener = false;
+		}
+
+		if (endListener) {
+			reference.Child ("End").ValueChanged -= HandleEndChanged;
+			endListener = false;
+		}
+			
 		auth.StateChanged -= AuthStateChanged;
 		auth = null;
+	}
+
+	void OnDestroy() {
+		delete ();
 	}
 
 	public static void SetMainGameRef(GameManager gameManager){
 		FirebaseManager.gameManager = gameManager;
 	}
-
+		
 	public static void SetListenerCreditScore(){
 		reference.Child("Users").Child (FirebaseManager.user.UserId).ValueChanged += HandleUserChanged;
+		creditsScoreListener = true;
 	}
 
 	public static void SetListenerGame(){
 		reference.Child("Game").ValueChanged += HandleGameChanged;
+		gameListener = true;
 	}
 
 	public static void SetListenerEnd() {
 		reference.Child("End").ValueChanged += HandleEndChanged;
+		endListener = true;
 	}
 
 
@@ -93,8 +120,12 @@ public class FirebaseManager
 			if (credit != null && xp != null && level != null) {
 				gameManager.UpdateUserStat (xp.ToString (), credit.ToString (), FirebaseManager.userTeam, level.ToString (), effects,statistics);
 			}
+
+
+
 		}
 	}
+
 
 	private static void HandleGameChanged (object sender, ValueChangedEventArgs args)
 	{
@@ -212,6 +243,7 @@ public class FirebaseManager
 
 	public static void Logout() {
 		FirebaseManager.auth.SignOut (); //always succeeds
+		delete();
 	}
 
 	private static void CreateNewUser(string userId,int teamNumber, string pseudo){
