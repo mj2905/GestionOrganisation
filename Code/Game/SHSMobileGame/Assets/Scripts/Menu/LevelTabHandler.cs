@@ -20,18 +20,18 @@ public class LevelTabHandler : MonoBehaviour {
 		"Notice me, se-se-sempai. You can repair terminals faster and your zones (+10 damages for all terminals, +10 HP per terminal heal, +35 HP per zone heal)."
 	};
 
-	public int level = 1;
+	public int level = 0;
 
 	public void setLevel(int level) {
 		this.level = level;
-		if (this.level >= jobs.Length) {
-			this.level = jobs.Length;
+		if (this.level >= jobs.Length - 1) {
+			this.level = jobs.Length - 1;
 		}
 	}
 
 	void Update() {
-		jobText.text = jobs [level - 1];
-		bonusText.text = texts [level - 1];
+		jobText.text = jobs [level];
+		bonusText.text = texts [level];
 	}
 
 	public void OpenLevelTabHandler() {
