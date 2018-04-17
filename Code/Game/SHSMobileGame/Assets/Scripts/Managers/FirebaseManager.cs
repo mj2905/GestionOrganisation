@@ -16,6 +16,7 @@ public class FirebaseManager
 	public static int userTeam = -1;
 
 	private static GameManager gameManager;
+	private static Barrier barrier = new Barrier();
 
 	private static bool creditsScoreListener = false;
 	private static bool gameListener = false;
@@ -46,6 +47,8 @@ public class FirebaseManager
 
 	private static void delete() {
 
+		barrier.close ();
+
 		if (creditsScoreListener) {
 			reference.Child ("Users").Child (FirebaseManager.user.UserId).ValueChanged -= HandleUserChanged;
 			creditsScoreListener = false;
@@ -63,6 +66,7 @@ public class FirebaseManager
 			
 		auth.StateChanged -= AuthStateChanged;
 		auth = null;
+
 	}
 
 	void OnDestroy() {
@@ -91,84 +95,90 @@ public class FirebaseManager
 
 	private static void HandleUserChanged (object sender, ValueChangedEventArgs args)
 	{
-		if (args.DatabaseError != null) {
-			Debug.LogError (args.DatabaseError.Message);
-			return;
-		}
-		DataSnapshot snapshot = args.Snapshot;
-		// Do something with snapshot...
-		if (snapshot != null) {
-			object credit = snapshot.Child("credits").Value;
-			//FirebaseManager.userTeam = Int32.Parse(snapshot.Child("team").Value.ToString());
-			object xp = snapshot.Child("xp").Value;
-			object level = snapshot.Child("level").Value;
-			Effects effects;
-			Statistics statistics;
-
-			if (snapshot.HasChild ("effects")) {
-				effects = new Effects (snapshot.Child ("effects").Value);
-			} else {
-				effects = new Effects (null);
+		if (!barrier.barrier ()) {
+			if (args.DatabaseError != null) {
+				Debug.LogError (args.DatabaseError.Message);
+				return;
 			}
+			DataSnapshot snapshot = args.Snapshot;
+			// Do something with snapshot...
+			if (snapshot != null) {
+				object credit = snapshot.Child ("credits").Value;
+				//FirebaseManager.userTeam = Int32.Parse(snapshot.Child("team").Value.ToString());
+				object xp = snapshot.Child ("xp").Value;
+				object level = snapshot.Child ("level").Value;
+				Effects effects;
+				Statistics statistics;
 
-			if (snapshot.HasChild ("stat")) {
-				statistics = new Statistics (snapshot.Child ("stat").Value);
-			} else {
-				statistics = new Statistics (null);
+				if (snapshot.HasChild ("effects")) {
+					effects = new Effects (snapshot.Child ("effects").Value);
+				} else {
+					effects = new Effects (null);
+				}
+
+				if (snapshot.HasChild ("stat")) {
+					statistics = new Statistics (snapshot.Child ("stat").Value);
+				} else {
+					statistics = new Statistics (null);
+				}
+
+				if (credit != null && xp != null && level != null) {
+					gameManager.UpdateUserStat (xp.ToString (), credit.ToString (), FirebaseManager.userTeam, level.ToString (), effects, statistics);
+				}
+
+
+
 			}
-
-			if (credit != null && xp != null && level != null) {
-				gameManager.UpdateUserStat (xp.ToString (), credit.ToString (), FirebaseManager.userTeam, level.ToString (), effects,statistics);
-			}
-
-
-
 		}
 	}
 
 
 	private static void HandleGameChanged (object sender, ValueChangedEventArgs args)
 	{
-		if (args.DatabaseError != null) {
-			Debug.LogError (args.DatabaseError.Message);
-			return;
-		}
+		if (!barrier.barrier ()) {
+			if (args.DatabaseError != null) {
+				Debug.LogError (args.DatabaseError.Message);
+				return;
+			}
 
-		DataSnapshot snapshot = args.Snapshot;
-		// Do something with snapshot...
-		if (snapshot != null) {
-			System.Object terminalsObject = snapshot.Child ("Terminals").Value;
-			System.Object zonesObject = snapshot.Child ("Zones").Value;
-			System.Object teamsObject = snapshot.Child ("Teams").Value;
-			System.Object bestPlayersObject = snapshot.Child ("Best").Value;
-			gameManager.ChangeGame (new Game (terminalsObject, zonesObject, teamsObject,bestPlayersObject));
+			DataSnapshot snapshot = args.Snapshot;
+			// Do something with snapshot...
+			if (snapshot != null) {
+				System.Object terminalsObject = snapshot.Child ("Terminals").Value;
+				System.Object zonesObject = snapshot.Child ("Zones").Value;
+				System.Object teamsObject = snapshot.Child ("Teams").Value;
+				System.Object bestPlayersObject = snapshot.Child ("Best").Value;
+				gameManager.ChangeGame (new Game (terminalsObject, zonesObject, teamsObject, bestPlayersObject));
+			}
 		}
 	}
 
 	private static void HandleEndChanged (object sender, ValueChangedEventArgs args)
 	{
-		if (args == null) {
-			return;
-		} else if (args.DatabaseError != null) {
-			Debug.LogError (args.DatabaseError.Message);
-			return;
-		}
-		DataSnapshot snapshot = args.Snapshot;
-		// Do something with snapshot...
-		if (snapshot != null && snapshot.Value != null) {
+		if (!barrier.barrier ()) {
+			if (args == null) {
+				return;
+			} else if (args.DatabaseError != null) {
+				Debug.LogError (args.DatabaseError.Message);
+				return;
+			}
+			DataSnapshot snapshot = args.Snapshot;
+			// Do something with snapshot...
+			if (snapshot != null && snapshot.Value != null) {
 
-			EndGameValues.SCORES = new Dictionary<int, ColorConstants.TEAMS> ();
+				EndGameValues.SCORES = new Dictionary<int, ColorConstants.TEAMS> ();
 
-			EndGameValues.SCORES.Add (Int32.Parse(snapshot.Child ("1/score").Value.ToString ()), ColorConstants.TEAMS.ENAC);
+				EndGameValues.SCORES.Add (Int32.Parse (snapshot.Child ("1/score").Value.ToString ()), ColorConstants.TEAMS.ENAC);
 
-			EndGameValues.SCORES.Add (Int32.Parse(snapshot.Child ("2/score").Value.ToString ()), ColorConstants.TEAMS.STI);
+				EndGameValues.SCORES.Add (Int32.Parse (snapshot.Child ("2/score").Value.ToString ()), ColorConstants.TEAMS.STI);
 
-			EndGameValues.SCORES.Add (Int32.Parse(snapshot.Child ("3/score").Value.ToString ()), ColorConstants.TEAMS.FSB);
+				EndGameValues.SCORES.Add (Int32.Parse (snapshot.Child ("3/score").Value.ToString ()), ColorConstants.TEAMS.FSB);
 
-			EndGameValues.SCORES.Add (Int32.Parse(snapshot.Child ("4/score").Value.ToString ()), ColorConstants.TEAMS.ICSV);
+				EndGameValues.SCORES.Add (Int32.Parse (snapshot.Child ("4/score").Value.ToString ()), ColorConstants.TEAMS.ICSV);
 
-			SceneManager.LoadScene(3);
+				SceneManager.LoadScene (3);
 
+			}
 		}
 	}
 
@@ -626,6 +636,26 @@ public class FirebaseManager
 			}
 			return TransactionResult.Success(mutableData);
 		};
+	}
+
+	public static void BeginListening() {
+		barrier.open ();
+	}
+
+	private class Barrier {
+		private bool state;
+		public Barrier() {
+			state = false;
+		}
+		public bool barrier() {
+			return state;
+		}
+		public void open() {
+			this.state = false;
+		}
+		public void close() {
+			this.state = true;
+		}
 	}
 
 }
