@@ -37,11 +37,11 @@ public class ActionButtonHandler : LocationListener {
 				if (terminalStrength >= QuantitiesConstants.STRENGTH_MAX) {
 					actionButtonText.text = "Buff ✓";
 					actionButton.interactable = false;
-				} else if (credits < QuantitiesConstants.TERMINAL_BUFF_COST[terminalLevel+1]) {
-					actionButtonText.text = "Buff "+ (QuantitiesConstants.TERMINAL_BUFF_COST[terminalLevel+1]) +"$";
+				} else if (credits < QuantitiesConstants.TERMINAL_BUFF_COST[terminalLevel]) {
+					actionButtonText.text = "Buff "+ (QuantitiesConstants.TERMINAL_BUFF_COST[terminalLevel]) +"$";
 					actionButton.interactable = false;
 				} else {
-					actionButtonText.text = "Buff "+ (QuantitiesConstants.TERMINAL_BUFF_COST[terminalLevel+1]) +"$";
+					actionButtonText.text = "Buff "+ (QuantitiesConstants.TERMINAL_BUFF_COST[terminalLevel]) +"$";
 					actionButton.interactable = true;
 				}
 			} else {
