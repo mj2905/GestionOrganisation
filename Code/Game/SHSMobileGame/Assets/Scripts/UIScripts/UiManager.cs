@@ -37,6 +37,8 @@ public class UiManager : LocationListener
 	public List<Text> achievementsText;
 	private Dictionary<string,Text> achievementsDict = new Dictionary<string,Text>();
 
+	public Shop shop;
+
 	private PopupScript popup;
 
 	private bool isAttackMode = false;
@@ -69,7 +71,7 @@ public class UiManager : LocationListener
 		tokenText.text = "Tokens: " + tokens;
 	}
 
-	public void UpdateUserStat(string xp, string credit, int team,string level,Effects effects,Statistics statistics){
+	public void UpdateUserStat(string xp, string credit, int team,string level,Effects effects,Statistics statistics,SkinsInfo skins){
 
 		int creditAsInt = Int32.Parse (credit);
 		int creditDiff = creditAsInt - previousCredit;
@@ -118,7 +120,8 @@ public class UiManager : LocationListener
 		teamFlag.color = ColorConstants.getTextColor (team);
 		teamText.text = ColorConstants.getColorAsString (team);
 		teamText.color = ColorConstants.getTextColor (team);
-
+	
+		shop.SetSkinsInfo (skins);
 	}
 
 	private void UpdateAchievement (Statistics statistics){

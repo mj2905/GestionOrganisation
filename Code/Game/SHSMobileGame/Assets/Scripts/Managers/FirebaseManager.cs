@@ -109,6 +109,7 @@ public class FirebaseManager
 				object level = snapshot.Child ("level").Value;
 				Effects effects;
 				Statistics statistics;
+				SkinsInfo skins;
 
 				if (snapshot.HasChild ("effects")) {
 					effects = new Effects (snapshot.Child ("effects").Value);
@@ -122,12 +123,15 @@ public class FirebaseManager
 					statistics = new Statistics (null);
 				}
 
-				if (credit != null && xp != null && level != null) {
-					gameManager.UpdateUserStat (xp.ToString (), credit.ToString (), FirebaseManager.userTeam, level.ToString (), effects, statistics);
+				if (snapshot.HasChild ("skins")) {
+					skins = new SkinsInfo (snapshot.Child ("skins").Value);
+				} else {
+					skins = new SkinsInfo (null);
 				}
 
-
-
+				if (credit != null && xp != null && level != null) {
+					gameManager.UpdateUserStat (xp.ToString (), credit.ToString (), FirebaseManager.userTeam, level.ToString (), effects, statistics,skins);
+				}
 			}
 		}
 	}
