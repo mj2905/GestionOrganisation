@@ -7,6 +7,7 @@ public class Shop : MonoBehaviour {
 	private SkinsInfo skins;
 
 	public PlayerShop playerShop;
+	public PopupScript popup;
 
 	// Use this for initialization
 	void Start () {
@@ -20,5 +21,9 @@ public class Shop : MonoBehaviour {
 
 	public void SetSkinsInfo(SkinsInfo skins){
 		this.skins = skins;
+	}
+
+	public void BuyNewItem(int price,int number){
+		FirebaseManager.BuyPlayerSkin (price,number,popup);
 	}
 }

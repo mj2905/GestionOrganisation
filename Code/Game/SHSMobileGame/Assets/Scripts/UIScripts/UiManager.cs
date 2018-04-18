@@ -51,6 +51,9 @@ public class UiManager : LocationListener
 	private bool showAchievementMenu = false;
 	public Canvas achievementMenu;
 
+	private bool showShopMenu = false;
+	public GameObject shopMenu;
+
 	public Image backgroundTop;
 	public Image backgroundBottom;
 
@@ -78,12 +81,16 @@ public class UiManager : LocationListener
 		previousCredit = creditAsInt;
 		int lvlAsInt = Int32.Parse (level);
 		int xpAsInt = Int32.Parse (xp);
-		if(lvlAsInt < QuantitiesConstants.PLAYER_XP_THRESHOLDS.Length - 1){
+		Debug.Log("HEREEE1");
+
+		if(lvlAsInt <= QuantitiesConstants.PLAYER_XP_THRESHOLDS.Length - 1){
 			//Debug.Log ("lvl as int: " + lvlAsInt);
 			//Debug.Log ("xp: " + xpAsInt);
 			//Debug.Log ("lvl threshold : " + QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt ]);
 			//Debug.Log ("lvl threshold + 1 : " + QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt + 1]);
-			scoreBar.fillAmount = (float)(xpAsInt - QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt ]) / (float)(QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt+1] - QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt ]);
+			Debug.Log("HEREEE");
+			Debug.Log((float)(xpAsInt - QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt]) / (float)(QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt+1] - QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt]));
+			scoreBar.fillAmount = (float)(xpAsInt - QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt]) / (float)(QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt+1] - QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt]);
 		} else {
 			scoreBar.fillAmount = 1;
 			scoreBar.color = ColorConstants.GRAY; 
@@ -212,9 +219,14 @@ public class UiManager : LocationListener
 
 	public void ToggleAchievementMenu(){
 		showAchievementMenu = !showAchievementMenu;
-		Debug.Log (achievementMenu.enabled);
 		achievementMenu.gameObject.SetActive(showAchievementMenu);
 	}
+
+	public void ToggleShopMenu(){
+		showShopMenu = !showShopMenu;
+		shopMenu.gameObject.SetActive(showShopMenu);
+	}
+
 
 	public void SetCurrentTerminals(Game previousGame,Game newGame,Dictionary<string, Zone> zoneDict){
 		foreach (Terminal terminal in newGame.GetDeletedTerminals(previousGame)) {

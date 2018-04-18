@@ -441,6 +441,40 @@ public class FirebaseManager
 		};
 	}
 
+	private static Func<MutableData, TransactionResult> BuyPlayerSkinTransaction(int price, int number) 
+	{
+		return mutableData => {
+
+			object credits_obtained = mutableData.Child("credits").Value;
+
+			if(credits_obtained != null) {
+
+				long credit_value = (long)credits_obtained - (long)price;
+
+				if(User.MIN_CREDITS <= credit_value){
+
+					object playerSkins = mutableData.Child("skins/boughtPlayers").Value;
+
+					if(playerSkins == null){
+						mutableData.Child("skins/boughtPlayers").Value = number.ToString();
+					} else{
+						string playerString = mutableData.Child("skins/boughtPlayers").Value.ToString();
+						if(!playerString.Contains(number.ToString())){
+							playerString += number.ToString();
+							mutableData.Child("skins/boughtPlayers").Value = playerString;
+						}
+					}
+
+					mutableData.Child("credits").Value = credit_value;
+					return TransactionResult.Success(mutableData);
+				}
+			}
+
+			return TransactionResult.Abort();
+		};
+	}
+
+
 	public static void AddTerminal(Terminal terminal, PopupScript messagePopup){
 		reference.Child ("Game").RunTransaction (AddTerminalTransaction (terminal)).ContinueWith(task => {
 			if (task.Exception != null) {
@@ -450,6 +484,18 @@ public class FirebaseManager
 			}
 		});
 	}
+
+	public static void BuyPlayerSkin(int price, int number, PopupScript messagePopup){
+
+		reference.Child ("Users/").Child (user.UserId).RunTransaction (BuyPlayerSkinTransaction(price,number)).ContinueWith (task => {
+
+			if (task.Exception != null) {
+				Debug.Log("Could not deduct enough credit to smash the terminal");
+				messagePopup.SetText("You don't have enough credits to smash the terminal");
+			}
+		});
+	}
+
 
 	public static void HurtTerminal(string terminalID, long amount, int userLevel, PopupScript messagePopup){
 
