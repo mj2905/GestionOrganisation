@@ -24,7 +24,7 @@ public class PlayerSkin : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!isBought) {
-			text.text = price + "  Credits";
+			text.text = price + " Credits";
 			mask.SetActive (true);
 		} else {
 			text.text = nameSkin;

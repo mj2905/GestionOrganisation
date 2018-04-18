@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -8,7 +8,7 @@ public static class Persistency {
 
 	private static string fileNameUser = Path.Combine( Application.persistentDataPath, "1.shs" );
 	private static string fileNamePass = Path.Combine( Application.persistentDataPath, "2.shs" );
-	private static string fileNameAttack = Path.Combine( Application.persistentDataPath, "3.shs" );
+	private static string fileNamePlayerSelection = Path.Combine( Application.persistentDataPath, "3.shs" );
 
 	public static void Write(string username, string password) {
 		Session session = new Session (username, password);
@@ -26,9 +26,20 @@ public static class Persistency {
 	public static void Erase() {
 		File.Delete (fileNameUser);
 		File.Delete (fileNamePass);
-		File.Delete (fileNameAttack);
+		File.Delete (fileNamePlayerSelection);
 	}
 
+	public static void WritePlayerSelection(int selection){
+		File.WriteAllText (fileNamePlayerSelection, selection.ToString ());
+	}
+
+	public static bool ExistsPlayerSelection() {
+		return File.Exists (fileNamePlayerSelection);
+	}
+
+	public static int ReadPlayerSelection() {
+		return Int32.Parse(File.ReadAllText (fileNamePlayerSelection));
+	}
 
 
 	public class Session {

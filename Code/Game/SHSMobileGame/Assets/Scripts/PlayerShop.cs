@@ -13,7 +13,11 @@ public class PlayerShop : MonoBehaviour {
 	void Start () {
 		playerSkin [0].SetIsBought (true);
 		playerSkin [0].SetIsSelected (true);
-		selected = 0;
+		if (Persistency.ExistsPlayerSelection ()) {
+			selected = Persistency.ReadPlayerSelection ();
+		} else {
+			selected = 0;
+		}
 	}
 
 	public void setBoughtSkins(List<int> boughtSkins){
@@ -43,6 +47,7 @@ public class PlayerShop : MonoBehaviour {
 	public void selection(int number){
 		if (boughtSkins.Contains (number)) {
 			selected = number;
+			Persistency.WritePlayerSelection (number);
 		} else {
 			shop.BuyNewItem (playerSkin[number].price,number);
 		}
