@@ -83,7 +83,7 @@ public class UiManager : LocationListener
 		int xpAsInt = Int32.Parse (xp);
 		Debug.Log("HEREEE1");
 
-		if(lvlAsInt <= QuantitiesConstants.PLAYER_XP_THRESHOLDS.Length - 1){
+		if(lvlAsInt < QuantitiesConstants.PLAYER_XP_THRESHOLDS.Length - 1){
 			//Debug.Log ("lvl as int: " + lvlAsInt);
 			//Debug.Log ("xp: " + xpAsInt);
 			//Debug.Log ("lvl threshold : " + QuantitiesConstants.PLAYER_XP_THRESHOLDS[lvlAsInt ]);
