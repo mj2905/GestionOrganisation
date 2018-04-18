@@ -8094,6 +8094,12 @@ MonoBehaviour:
   zonesRoot: {fileID: 1675804248}
   terminalPrefab: {fileID: 114140774469156708, guid: 791e108d0e7b6a64483ef0c278bffbd0,
     type: 2}
+  terminalPrefabs:
+  - {fileID: 114140774469156708, guid: 791e108d0e7b6a64483ef0c278bffbd0, type: 2}
+  - {fileID: 114564129374607078, guid: c17d43518f9ef4d879d6059b2f95c234, type: 2}
+  - {fileID: 114083850586575232, guid: 38a17c7742d274f2392e0697d89001c6, type: 2}
+  - {fileID: 114514549694420942, guid: eecdcd655281346728cdf75b8bb655ff, type: 2}
+  - {fileID: 114963898590367728, guid: d3d3f30a701b843018f363ff872fe6d3, type: 2}
   player: {fileID: 1001960608}
   modeButton: {fileID: 352992037}
   zones:
@@ -21241,7 +21247,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 171.1, y: -5.899994}
+  m_AnchoredPosition: {x: 171.1, y: -5.9000244}
   m_SizeDelta: {x: 48.35, y: 42.061}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1959234026
