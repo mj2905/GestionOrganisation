@@ -1,0 +1,331 @@
+fileFormatVersion: 2
+guid: 25f203f33da624b7fb60630fe15946b7
+timeCreated: 1524051993
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: robotic_arm_Baza_chwytaka
+    100004: robotic_arm_cable_Walec
+    100006: robotic_arm_cable_Walec_1
+    100008: robotic_arm_cable_Walec_2
+    100010: robotic_arm_Podstawa_nieruchoma
+    100012: robotic_arm_Podstawa_nieruchoma_MeshPart0
+    100014: robotic_arm_Podstawa_nieruchoma_MeshPart1
+    100016: robotic_arm_Podstawa_ruchoma
+    100018: robotic_arm_Podstawa_ruchoma_MeshPart0
+    100020: robotic_arm_Podstawa_ruchoma_MeshPart1
+    100022: robotic_arm_Podstawa_ruchoma_MeshPart2
+    100024: robotic_arm_Podstawa_ruchoma_MeshPart3
+    100026: robotic_arm_Rami__chwytaka_L
+    100028: robotic_arm_Rami__chwytaka_R
+    100030: robotic_arm_Ramiona_dolne_Rami__DL1
+    100032: robotic_arm_Ramiona_dolne_Rami__DR1
+    100034: robotic_arm_Ramiona_G_rne_Rami__DL
+    100036: robotic_arm_Ramiona_G_rne_Rami__DR
+    100038: robotic_arm_Silnik1
+    100040: robotic_arm_Silnik1_1
+    100042: robotic_arm_Silnik2
+    100044: robotic_arm_Silnik2_1
+    100046: robotic_arm_Silnik3
+    100048: robotic_arm_Sze_cian
+    100050: robotic_arm_Sze_cian1
+    100052: robotic_arm_Sze_cian_1
+    100054: robotic_arm_Wa__ramion_DG
+    100056: robotic_arm_Wa__ramion_G
+    400000: //RootNode
+    400002: robotic_arm_Baza_chwytaka
+    400004: robotic_arm_cable_Walec
+    400006: robotic_arm_cable_Walec_1
+    400008: robotic_arm_cable_Walec_2
+    400010: robotic_arm_Podstawa_nieruchoma
+    400012: robotic_arm_Podstawa_nieruchoma_MeshPart0
+    400014: robotic_arm_Podstawa_nieruchoma_MeshPart1
+    400016: robotic_arm_Podstawa_ruchoma
+    400018: robotic_arm_Podstawa_ruchoma_MeshPart0
+    400020: robotic_arm_Podstawa_ruchoma_MeshPart1
+    400022: robotic_arm_Podstawa_ruchoma_MeshPart2
+    400024: robotic_arm_Podstawa_ruchoma_MeshPart3
+    400026: robotic_arm_Rami__chwytaka_L
+    400028: robotic_arm_Rami__chwytaka_R
+    400030: robotic_arm_Ramiona_dolne_Rami__DL1
+    400032: robotic_arm_Ramiona_dolne_Rami__DR1
+    400034: robotic_arm_Ramiona_G_rne_Rami__DL
+    400036: robotic_arm_Ramiona_G_rne_Rami__DR
+    400038: robotic_arm_Silnik1
+    400040: robotic_arm_Silnik1_1
+    400042: robotic_arm_Silnik2
+    400044: robotic_arm_Silnik2_1
+    400046: robotic_arm_Silnik3
+    400048: robotic_arm_Sze_cian
+    400050: robotic_arm_Sze_cian1
+    400052: robotic_arm_Sze_cian_1
+    400054: robotic_arm_Wa__ramion_DG
+    400056: robotic_arm_Wa__ramion_G
+    2300000: robotic_arm_Baza_chwytaka
+    2300002: robotic_arm_cable_Walec
+    2300004: robotic_arm_cable_Walec_1
+    2300006: robotic_arm_cable_Walec_2
+    2300008: robotic_arm_Podstawa_nieruchoma_MeshPart0
+    2300010: robotic_arm_Podstawa_nieruchoma_MeshPart1
+    2300012: robotic_arm_Podstawa_ruchoma_MeshPart0
+    2300014: robotic_arm_Podstawa_ruchoma_MeshPart1
+    2300016: robotic_arm_Podstawa_ruchoma_MeshPart2
+    2300018: robotic_arm_Podstawa_ruchoma_MeshPart3
+    2300020: robotic_arm_Rami__chwytaka_L
+    2300022: robotic_arm_Rami__chwytaka_R
+    2300024: robotic_arm_Ramiona_dolne_Rami__DL1
+    2300026: robotic_arm_Ramiona_dolne_Rami__DR1
+    2300028: robotic_arm_Ramiona_G_rne_Rami__DL
+    2300030: robotic_arm_Ramiona_G_rne_Rami__DR
+    2300032: robotic_arm_Silnik1
+    2300034: robotic_arm_Silnik1_1
+    2300036: robotic_arm_Silnik2
+    2300038: robotic_arm_Silnik2_1
+    2300040: robotic_arm_Silnik3
+    2300042: robotic_arm_Sze_cian
+    2300044: robotic_arm_Sze_cian1
+    2300046: robotic_arm_Sze_cian_1
+    2300048: robotic_arm_Wa__ramion_DG
+    2300050: robotic_arm_Wa__ramion_G
+    3300000: robotic_arm_Baza_chwytaka
+    3300002: robotic_arm_cable_Walec
+    3300004: robotic_arm_cable_Walec_1
+    3300006: robotic_arm_cable_Walec_2
+    3300008: robotic_arm_Podstawa_nieruchoma_MeshPart0
+    3300010: robotic_arm_Podstawa_nieruchoma_MeshPart1
+    3300012: robotic_arm_Podstawa_ruchoma_MeshPart0
+    3300014: robotic_arm_Podstawa_ruchoma_MeshPart1
+    3300016: robotic_arm_Podstawa_ruchoma_MeshPart2
+    3300018: robotic_arm_Podstawa_ruchoma_MeshPart3
+    3300020: robotic_arm_Rami__chwytaka_L
+    3300022: robotic_arm_Rami__chwytaka_R
+    3300024: robotic_arm_Ramiona_dolne_Rami__DL1
+    3300026: robotic_arm_Ramiona_dolne_Rami__DR1
+    3300028: robotic_arm_Ramiona_G_rne_Rami__DL
+    3300030: robotic_arm_Ramiona_G_rne_Rami__DR
+    3300032: robotic_arm_Silnik1
+    3300034: robotic_arm_Silnik1_1
+    3300036: robotic_arm_Silnik2
+    3300038: robotic_arm_Silnik2_1
+    3300040: robotic_arm_Silnik3
+    3300042: robotic_arm_Sze_cian
+    3300044: robotic_arm_Sze_cian1
+    3300046: robotic_arm_Sze_cian_1
+    3300048: robotic_arm_Wa__ramion_DG
+    3300050: robotic_arm_Wa__ramion_G
+    4300000: robotic_arm_Baza_chwytaka
+    4300002: robotic_arm_cable_Walec
+    4300004: robotic_arm_cable_Walec_1
+    4300006: robotic_arm_cable_Walec_2
+    4300008: robotic_arm_Podstawa_nieruchoma_MeshPart0
+    4300010: robotic_arm_Podstawa_nieruchoma_MeshPart1
+    4300012: robotic_arm_Podstawa_ruchoma_MeshPart0
+    4300014: robotic_arm_Podstawa_ruchoma_MeshPart1
+    4300016: robotic_arm_Podstawa_ruchoma_MeshPart2
+    4300018: robotic_arm_Podstawa_ruchoma_MeshPart3
+    4300020: robotic_arm_Rami__chwytaka_L
+    4300022: robotic_arm_Rami__chwytaka_R
+    4300024: robotic_arm_Ramiona_dolne_Rami__DL1
+    4300026: robotic_arm_Ramiona_dolne_Rami__DR1
+    4300028: robotic_arm_Ramiona_G_rne_Rami__DL
+    4300030: robotic_arm_Ramiona_G_rne_Rami__DR
+    4300032: robotic_arm_Silnik1
+    4300034: robotic_arm_Silnik1_1
+    4300036: robotic_arm_Silnik2
+    4300038: robotic_arm_Silnik2_1
+    4300040: robotic_arm_Silnik3
+    4300042: robotic_arm_Sze_cian
+    4300044: robotic_arm_Sze_cian1
+    4300046: robotic_arm_Sze_cian_1
+    4300048: robotic_arm_Wa__ramion_DG
+    4300050: robotic_arm_Wa__ramion_G
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_Baza_chwytakaMat
+    second: {fileID: 2100000, guid: c239cfa44201c4c66bc81dc53036d9c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_Podstawa_nieruchomaMat
+    second: {fileID: 2100000, guid: d325a2b872b74400dbc577a13b6b3b4b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_Podstawa_ruchomaMat
+    second: {fileID: 2100000, guid: 14d1d8564232646088c0b362d70c0597, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_Rami__chwytaka_LMat
+    second: {fileID: 2100000, guid: 53c385b96bfd949cfa1c765993d7b8e8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_Rami__chwytaka_RMat
+    second: {fileID: 2100000, guid: cf875510f49544f97bfb24f9793f7383, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_Ramiona_G_rne_Rami__DLMat
+    second: {fileID: 2100000, guid: 86169cb426b64464ba58b4e383073d3a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_Ramiona_G_rne_Rami__DRMat
+    second: {fileID: 2100000, guid: d39304e714d334c2a8417fd1b0f167a8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_Ramiona_dolne_Rami__DL1Mat
+    second: {fileID: 2100000, guid: 9cf20efb253cd40b99932bbef1b929b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_Ramiona_dolne_Rami__DR1Mat
+    second: {fileID: 2100000, guid: f0456578cd7e54259b4d439cf606ac69, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_Silnik1Mat
+    second: {fileID: 2100000, guid: 6b67598f76986403cb10b843b723bbbf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_Silnik1_1Mat
+    second: {fileID: 2100000, guid: b1646cca5acd640a78c88bf36b0ffa13, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_Silnik2Mat
+    second: {fileID: 2100000, guid: c4ddc2e4e288a450caba6c56b775afc8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_Silnik2_1Mat
+    second: {fileID: 2100000, guid: b09cf0992c36c484f91324ad975bdd8f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_Silnik3Mat
+    second: {fileID: 2100000, guid: 046d7818aa75b471bbc58190ed0435aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_Sze_cian1Mat
+    second: {fileID: 2100000, guid: 932b0593567c2425aa948319d503aaf7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_Sze_cianMat
+    second: {fileID: 2100000, guid: 41b2b1156744444b5995fda96c94d22d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_Sze_cian_1Mat
+    second: {fileID: 2100000, guid: 0e45a7b01cce1438395df3997fa3accc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_Wa__ramion_DGMat
+    second: {fileID: 2100000, guid: 775d6d29259a74d06836e0b3cf6bb949, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_Wa__ramion_GMat
+    second: {fileID: 2100000, guid: 4976914acf77c44f6a9995b958198bd0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_cable_WalecMat
+    second: {fileID: 2100000, guid: 6665d7466baa941648338ffcd2a66321, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_cable_Walec_1Mat
+    second: {fileID: 2100000, guid: b95ac6c0677204ba7ae966177d817c81, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: robotic_arm_cable_Walec_2Mat
+    second: {fileID: 2100000, guid: e818fa7e756b94b2dba5e528930d13aa, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0015
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
