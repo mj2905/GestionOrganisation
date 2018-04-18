@@ -86,7 +86,7 @@ public class GameManager : LocationListener {
 		List<Terminal> modifiedTerminals =  currentGame.GetModifiedTerminals (previousGame);
 		for (int i = 0; i < newTerminals.Count; i++) {
 			Terminal t = (Terminal)Instantiate (
-				terminalPrefabs[newTerminals [i].team],
+				terminalPrefab,//s[newTerminals [i].team],
 				new Vector3(newTerminals[i].x,0.2f,newTerminals[i].z),
 				new Quaternion (),
 				sceneRoot.gameObject.transform);
