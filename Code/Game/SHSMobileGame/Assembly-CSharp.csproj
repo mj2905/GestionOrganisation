@@ -104,6 +104,7 @@
      <Compile Include="Assets\Scripts\Constants\CoordinateConstants.cs" />
      <Compile Include="Assets\Scripts\Constants\EffectObtentionConstants.cs" />
      <Compile Include="Assets\Scripts\Constants\EffectsConstants.cs" />
+     <Compile Include="Assets\Scripts\Constants\OpenLinks.cs" />
      <Compile Include="Assets\Scripts\Constants\QuantitiesConstants.cs" />
      <Compile Include="Assets\Scripts\Crypto.cs" />
      <Compile Include="Assets\Scripts\EndGame\EndGameValues.cs" />
@@ -116,6 +117,7 @@
      <Compile Include="Assets\Scripts\Entities\Effects\MedalInfo.cs" />
      <Compile Include="Assets\Scripts\Entities\Game.cs" />
      <Compile Include="Assets\Scripts\Entities\Notification.cs" />
+     <Compile Include="Assets\Scripts\Entities\SkinsInfo.cs" />
      <Compile Include="Assets\Scripts\Entities\Statistics.cs" />
      <Compile Include="Assets\Scripts\Entities\Team.cs" />
      <Compile Include="Assets\Scripts\Entities\Terminal.cs" />
@@ -139,7 +141,10 @@
      <Compile Include="Assets\Scripts\MercatorProjection.cs" />
      <Compile Include="Assets\Scripts\Persistency.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\PlayerShop.cs" />
+     <Compile Include="Assets\Scripts\PlayerSkin.cs" />
      <Compile Include="Assets\Scripts\Prefab Scipts\PopupScript.cs" />
+     <Compile Include="Assets\Scripts\Shop.cs" />
      <Compile Include="Assets\Scripts\SignUpScene.cs" />
      <Compile Include="Assets\Scripts\SpinningWheel.cs" />
      <Compile Include="Assets\Scripts\TextDissolve.cs" />
