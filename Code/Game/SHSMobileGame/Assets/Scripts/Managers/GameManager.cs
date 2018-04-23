@@ -15,6 +15,7 @@ public class GameManager : LocationListener {
 	public List<Terminal> terminalPrefabs;
 
 	public PlayerController player;
+
 	public Button modeButton;
 	public Zone[] zones;
 	private Dictionary<string, Zone> zoneDict = new Dictionary<string, Zone>();

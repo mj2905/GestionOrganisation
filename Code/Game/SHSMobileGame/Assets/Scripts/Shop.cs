@@ -9,6 +9,9 @@ public class Shop : MonoBehaviour {
 	public PlayerShop playerShop;
 	public PopupScript popup;
 
+	public PlayerController player;
+	public FadingPlayer playerFading;
+
 	// Use this for initialization
 	void Start () {
 		this.skins = new SkinsInfo(null);
@@ -25,5 +28,10 @@ public class Shop : MonoBehaviour {
 
 	public void BuyNewItem(int price,int number){
 		FirebaseManager.BuyPlayerSkin (price,number,popup);
+	}
+
+	public void ChangePlayerSkin(int number){
+		player.ChangeSkin (number);
+		playerFading.ChangeSkin (number);
 	}
 }

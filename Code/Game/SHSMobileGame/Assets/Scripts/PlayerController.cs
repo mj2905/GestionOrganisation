@@ -11,6 +11,7 @@ public class PlayerController : LocationListener
 	private double moveVertical;
 	private double moveHorizontal;
 
+	public Renderer rend;
 	//Obtained by computing the unity size of the map
 	/*
 	 * (77.15) x (50)
@@ -35,6 +36,8 @@ public class PlayerController : LocationListener
 		moveHorizontal = 0;
 		 
 		currentZone = null;
+
+		rend = gameObject.GetComponent<Renderer>();
     }
 
 	Vector3 GetPosition() {
@@ -139,4 +142,7 @@ public class PlayerController : LocationListener
 		gameObject.GetComponent<Renderer>().enabled = true;
 	}
 
+	public void ChangeSkin(int number){
+		rend.material.SetTexture("_MainTex", Resources.Load ("Players/player_" + number) as Texture);
+	}
 }

@@ -15,6 +15,8 @@ public class FadingPlayer : LocationListener
 	private double moveVertical;
 	private double moveHorizontal;
 
+	public Renderer rend;
+
 	//Obtained by computing the unity size of the map
 	/*
 	 * (77.15) x (50)
@@ -39,6 +41,8 @@ public class FadingPlayer : LocationListener
 		moveHorizontal = 0;
 
 		currentZone = null;
+	
+		rend = this.GetComponent<Renderer>();
 	}
 
 	Vector3 GetPosition() {
@@ -138,6 +142,9 @@ public class FadingPlayer : LocationListener
 		modeButton.GetComponentInChildren<Text>().text = "Go to a safe Zone ! (Click to cancel)";
 	}
 
+	public void ChangeSkin(int number){
+		rend.material.mainTexture = Resources.Load ("Players/player_" + number) as Texture;
+	}
 }
 
 

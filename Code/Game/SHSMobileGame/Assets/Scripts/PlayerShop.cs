@@ -14,9 +14,9 @@ public class PlayerShop : MonoBehaviour {
 		playerSkin [0].SetIsBought (true);
 		playerSkin [0].SetIsSelected (true);
 		if (Persistency.ExistsPlayerSelection ()) {
-			selected = Persistency.ReadPlayerSelection ();
+			SetSelected(Persistency.ReadPlayerSelection ());
 		} else {
-			selected = 0;
+			SetSelected(0);
 		}
 	}
 
@@ -46,10 +46,15 @@ public class PlayerShop : MonoBehaviour {
 
 	public void selection(int number){
 		if (boughtSkins.Contains (number)) {
-			selected = number;
+			SetSelected(number);
 			Persistency.WritePlayerSelection (number);
 		} else {
 			shop.BuyNewItem (playerSkin[number].price,number);
 		}
+	}
+
+	public void SetSelected(int selected){
+		this.selected = selected;
+		shop.ChangePlayerSkin (selected);
 	}
 }
