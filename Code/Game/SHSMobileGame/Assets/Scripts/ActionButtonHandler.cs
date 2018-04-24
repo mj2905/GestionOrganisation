@@ -11,7 +11,8 @@ public class ActionButtonHandler : LocationListener {
 	private bool attackMode = false;
 	public enum TARGET {NO_TARGET, TERMINAL, ZONE};
 	private TARGET targeting;
-	private bool sameTeam;
+	private bool isSameTerminalTeam;
+	private bool isSameZoneTeam;
 	private int credits;
 
 	private int terminalHealth;
@@ -24,7 +25,8 @@ public class ActionButtonHandler : LocationListener {
 		actionButton = GetComponent<Button> ();
 		actionButtonText = actionButton.transform.Find ("Text").GetComponent<Text> ();
 		targeting = TARGET.NO_TARGET;
-		sameTeam = false;
+		isSameTerminalTeam = false;
+		isSameZoneTeam = false;
 		credits = 0;
 	}
 
@@ -33,31 +35,36 @@ public class ActionButtonHandler : LocationListener {
 			actionButtonText.text = "No action";
 			actionButton.interactable = false;
 		} else if(targeting == TARGET.TERMINAL) {
-			if (sameTeam) {
+			if (isSameTerminalTeam) {
 				if (terminalStrength >= QuantitiesConstants.STRENGTH_MAX) {
 					actionButtonText.text = "Buff ✓";
 					actionButton.interactable = false;
-				} else if (credits < QuantitiesConstants.getTerminalBuffCost(terminalStrength)) {
-					actionButtonText.text = "Buff "+ (QuantitiesConstants.getTerminalBuffCost(terminalStrength)) +"$";
+				} else if (credits < QuantitiesConstants.getTerminalBuffCost (terminalStrength)) {
+					actionButtonText.text = "Buff " + (QuantitiesConstants.getTerminalBuffCost (terminalStrength)) + "$";
 					actionButton.interactable = false;
 				} else {
-					actionButtonText.text = "Buff "+ (QuantitiesConstants.getTerminalBuffCost(terminalStrength)) +"$";
+					actionButtonText.text = "Buff " + (QuantitiesConstants.getTerminalBuffCost (terminalStrength)) + "$";
 					actionButton.interactable = true;
 				}
 			} else {
-				if (terminalHealth <= QuantitiesConstants.TERMINAL_MIN_HEALTH) {
-					actionButtonText.text = "Smash ✝";
-					actionButton.interactable = false;
-				} else if (credits < -QuantitiesConstants.TERMINAL_SMASH_COST) {
-					actionButtonText.text = "Smash " + (-QuantitiesConstants.TERMINAL_SMASH_COST) + "$";
-					actionButton.interactable = false;
+				if (isSameZoneTeam) {
+					if (terminalHealth <= QuantitiesConstants.TERMINAL_MIN_HEALTH) {
+						actionButtonText.text = "Smash ✝";
+						actionButton.interactable = false;
+					} else if (credits < -QuantitiesConstants.TERMINAL_SMASH_COST) {
+						actionButtonText.text = "Smash " + (-QuantitiesConstants.TERMINAL_SMASH_COST) + "$";
+						actionButton.interactable = false;
+					} else {
+						actionButtonText.text = "Smash " + (-QuantitiesConstants.TERMINAL_SMASH_COST) + "$";
+						actionButton.interactable = true;
+					}
 				} else {
-					actionButtonText.text = "Smash " + (-QuantitiesConstants.TERMINAL_SMASH_COST) + "$";
-					actionButton.interactable = true;
+					actionButtonText.text = "No action";
+					actionButton.interactable = false;
 				}
 			}
 		} else if(targeting == TARGET.ZONE) {
-			if (sameTeam) {
+			if (isSameZoneTeam) {
 				if (zoneHealth >= QuantitiesConstants.ZONE_MAX_HEALTH_VALUES[zoneLevel]) {
 					actionButtonText.text = "Heal ✓";
 					actionButton.interactable = false;
@@ -78,19 +85,19 @@ public class ActionButtonHandler : LocationListener {
 		}
 	}
 
-	public void targetingZone(bool sameTeam, int zoneHealth, int level, int credits) {
+	public void targetingZone(bool isSameZoneTeam, int zoneHealth, int level, int credits) {
 		Assert.IsTrue (!attackMode);
 		setTargetZoneHealth (zoneHealth, level);
 		setCredits (credits);
-		this.sameTeam = sameTeam;
+		this.isSameZoneTeam = isSameZoneTeam;
 		targeting = TARGET.ZONE;
 	}
 
-	public void targetingTerminal(bool sameTeam, int terminalHealth, int level, int credits, int strength) {
+	public void targetingTerminal(bool isSameTerminalTeam, int terminalHealth, int level, int credits, int strength) {
 		Assert.IsTrue (!attackMode);
 		setTargetTerminalHealth (terminalHealth, level, strength);
 		setCredits (credits);
-		this.sameTeam = sameTeam;
+		this.isSameTerminalTeam = isSameTerminalTeam;
 		targeting = TARGET.TERMINAL;
 	}
 
