@@ -275,6 +275,14 @@ public class CameraController : LocationListener {
 		}
 	}
 
+	private void Dezoom(){
+		currentState = state.Unfocusing;
+		print ("CameraController: remove popups");
+		interactionManager.updateTargetedZone (null);
+		interactionManager.updateTargetedTerminal (null);
+		gameManager.DrawTerminalsUI ("");
+	}
+
 	private void handleFocusedState(){
 		if (Input.touchCount > 0) {
 			Ray ray2 = Camera.main.ScreenPointToRay (touchDict[mainFingerId].position);
@@ -282,18 +290,18 @@ public class CameraController : LocationListener {
 
 			if (!IsPointerOverUIObject () && touchDict[mainFingerId].phase == TouchPhase.Ended) {
 				if (Physics.Raycast (ray2, out hit2, 1000000)) {
-					if (hit2.transform.gameObject.tag == "Zone" || hit2.transform.gameObject.tag == "Ground") {
+					if (hit2.transform.gameObject.tag == "Zone" || hit2.transform.gameObject.tag == "Ground" || hit2.transform.gameObject.tag == "SafeZone") {
 						if (focusedBuilding != null) {
 							if (hit2.transform.gameObject.name != focusedBuilding.name) {
-								currentState = state.Unfocusing;
-								print ("CameraController: remove popups");
-								interactionManager.updateTargetedZone (null);
-								interactionManager.updateTargetedTerminal (null);
-								gameManager.DrawTerminalsUI ("");
+								Dezoom ();
 							} else {
-								Zone targetZone = hit2.transform.gameObject.GetComponent<Zone> ();
-								interactionManager.updateTargetedZone (targetZone);
-								print ("CameraController: back to zone");
+								if (interactionManager.isTerminalSelected ()) {
+									Zone targetZone = hit2.transform.gameObject.GetComponent<Zone> ();
+									interactionManager.updateTargetedZone (targetZone);
+									print ("CameraController: back to zone");
+								} else {
+									Dezoom ();
+								}
 							}
 						}
 					} else {

@@ -173,6 +173,10 @@ public class InteractionManager : LocationListener {
 		}
 	}
 
+	public bool isTerminalSelected(){
+		return targetedTerminal != null;
+	}
+
 	public void healZone(){
 		if (targetedZone != null) {
 			print ("Healing zone " + targetedZone.name);
