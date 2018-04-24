@@ -21,9 +21,14 @@ public class ActionButtonHandler : LocationListener {
 	private int zoneHealth;
 	private int zoneLevel;
 
+	private Image cooldownImage;
+	private float healTimer,buffTimer,smashTimer;
+
 	void Start() {
 		actionButton = GetComponent<Button> ();
 		actionButtonText = actionButton.transform.Find ("Text").GetComponent<Text> ();
+		cooldownImage = actionButton.transform.Find ("CooldownImage").GetComponent<Image> ();
+
 		targeting = TARGET.NO_TARGET;
 		isSameTerminalTeam = false;
 		isSameZoneTeam = false;
@@ -31,9 +36,18 @@ public class ActionButtonHandler : LocationListener {
 	}
 
 	void Update() {
+		buffTimer -= Time.deltaTime;
+		healTimer -= Time.deltaTime;
+		smashTimer -= Time.deltaTime;
+
+		buffTimer = Mathf.Max (buffTimer, 0);
+		healTimer = Mathf.Max (healTimer, 0);
+		smashTimer = Mathf.Max (smashTimer, 0);
+
 		if (attackMode || targeting == TARGET.NO_TARGET) {
 			actionButtonText.text = "No action";
 			actionButton.interactable = false;
+			cooldownImage.fillAmount = 0f;
 		} else if(targeting == TARGET.TERMINAL) {
 			if (isSameTerminalTeam) {
 				if (terminalStrength >= QuantitiesConstants.STRENGTH_MAX) {
@@ -45,6 +59,12 @@ public class ActionButtonHandler : LocationListener {
 				} else {
 					actionButtonText.text = "Buff " + (QuantitiesConstants.getTerminalBuffCost (terminalStrength)) + "$";
 					actionButton.interactable = true;
+				}
+				if (buffTimer != 0) {
+					actionButton.interactable = false;
+					cooldownImage.fillAmount = buffTimer / QuantitiesConstants.BUFF_COOLDOWN;
+				} else {
+					cooldownImage.fillAmount = 0f;
 				}
 			} else {
 				if (isSameZoneTeam) {
@@ -58,9 +78,16 @@ public class ActionButtonHandler : LocationListener {
 						actionButtonText.text = "Smash " + (-QuantitiesConstants.TERMINAL_SMASH_COST) + "$";
 						actionButton.interactable = true;
 					}
+					if (smashTimer != 0) {
+						actionButton.interactable = false;
+						cooldownImage.fillAmount = smashTimer / QuantitiesConstants.SMASH_COOLDOWN;
+					} else {
+						cooldownImage.fillAmount = 0f;
+					}
 				} else {
 					actionButtonText.text = "No action";
 					actionButton.interactable = false;
+					cooldownImage.fillAmount = 0f;
 				}
 			}
 		} else if(targeting == TARGET.ZONE) {
@@ -78,11 +105,28 @@ public class ActionButtonHandler : LocationListener {
 					actionButtonText.text = "Heal "+ (-QuantitiesConstants.ZONE_HEAL_COST) +"$";
 					actionButton.interactable = true;
 				}
+				if (healTimer != 0) {
+					actionButton.interactable = false;
+					cooldownImage.fillAmount = healTimer / QuantitiesConstants.HEAL_COOLDOWN;
+				} else {
+					cooldownImage.fillAmount = 0f;
+				}
 			} else {
 				actionButtonText.text = "No action";
 				actionButton.interactable = false;
+				cooldownImage.fillAmount = 0f;
 			}
 		}
+	}
+
+	public void SetBuffTimer(){
+		buffTimer =  QuantitiesConstants.BUFF_COOLDOWN;
+	}
+	public void SetHealTimer(){
+		healTimer =  QuantitiesConstants.HEAL_COOLDOWN;
+	}
+	public void SetSmashTimer(){
+		smashTimer =  QuantitiesConstants.SMASH_COOLDOWN;
 	}
 
 	public void targetingZone(bool isSameZoneTeam, int zoneHealth, int level, int credits) {

@@ -54,6 +54,13 @@ public static class QuantitiesConstants
 	public static readonly int TERMINAL_LEVEL_MAX = TERMINAL_MAX_HEALTH_VALUES.Length - 1;
 	public static readonly int ZONE_LEVEL_MAX = ZONE_MAX_HEALTH_VALUES.Length - 1;
 	public const int TTL_ACHIEVEMENT = -100;
+
+	public static float BUFF_COOLDOWN = 2f;
+	public static float SMASH_COOLDOWN = 2f;
+	public static float HEAL_COOLDOWN = 2f;
+
+	public static float ZONE_IMPROVE_COOLDOWN = 2f;
+	public static float TERMINAL_IMPROVE_COOLDOWN = 2f;
 }
 
 

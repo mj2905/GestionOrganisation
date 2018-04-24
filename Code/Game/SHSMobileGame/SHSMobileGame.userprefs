@@ -1,18 +1,25 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerSkin.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Managers\InteractionManager.cs">
     <Files>
       <File FileName="Assets\Scripts\LocationHandler.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\FadingPlayer.cs" Line="146" Column="48" />
+      <File FileName="Assets\Scripts\FadingPlayer.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\CameraController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Constants\CoordinateConstants.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Managers\FirebaseManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="146" Column="1" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Entities\User.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Shop.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerShop.cs" Line="58" Column="36" />
+      <File FileName="Assets\Scripts\PlayerShop.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Managers\GameManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PlayerSkin.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Constants\QuantitiesConstants.cs" Line="63" Column="30" />
+      <File FileName="Assets\Scripts\Constants\EffectsConstants.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\InteractionManager.cs" Line="191" Column="30" />
+      <File FileName="Assets\Scripts\ActionButtonHandler.cs" Line="113" Column="6" />
+      <File FileName="Assets\Scripts\ImproveButtonHandler.cs" Line="66" Column="6" />
+      <File FileName="Assets\Scripts\UIScripts\UiManager.cs" Line="86" Column="13" />
+      <File FileName="Assets\Scripts\Entities\Terminal.cs" Line="20" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -180,6 +180,7 @@ public class InteractionManager : LocationListener {
 	public void healZone(){
 		if (targetedZone != null) {
 			print ("Healing zone " + targetedZone.name);
+			actionButton.SetHealTimer ();
 			FirebaseManager.HealZone (targetedZone.zoneId, QuantitiesConstants.ZONE_HEAL_AMOUNT, level, messagePopup);
 		}
 	}
@@ -187,6 +188,7 @@ public class InteractionManager : LocationListener {
 	public void improveZone(){
 		if (targetedZone != null) {
 			print ("Improving zone " + targetedZone.name);
+			improveButton.SetZoneTimer ();
 			FirebaseManager.ImproveZone (targetedZone.zoneId, targetedZone.level, messagePopup);
 		}
 	}
@@ -222,6 +224,7 @@ public class InteractionManager : LocationListener {
 	private void buffTerminal(){
 		if(targetedTerminal != null){
 			print ("Buffing terminal ");
+			actionButton.SetBuffTimer ();
 			FirebaseManager.BuffTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_BUFF_AMOUNT, targetedTerminal.strength, level, messagePopup);
 		}
 	}
@@ -229,6 +232,7 @@ public class InteractionManager : LocationListener {
 	private void smashTerminal(){
 		if(targetedTerminal != null){
 			print ("Attacking terminal with ID " + targetedTerminal.GetTerminalId());
+			actionButton.SetSmashTimer ();
 			FirebaseManager.HurtTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_SMASH_AMOUNT, level, messagePopup);
 		}
 	}
@@ -236,6 +240,7 @@ public class InteractionManager : LocationListener {
 	private void improveTerminal(){
 		if(targetedTerminal != null){
 			print ("Improving terminal ");
+			improveButton.SetTerminalTimer ();
 			FirebaseManager.ImproveTerminal (targetedTerminal.GetTerminalId (), targetedTerminal.level, messagePopup);
 		}
 	}
