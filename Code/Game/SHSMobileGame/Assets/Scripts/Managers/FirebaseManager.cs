@@ -611,65 +611,76 @@ public class FirebaseManager
 		
 
 	public static void AddTerminalPlacedStat(){
-		reference.Child ("Users/").RunTransaction (
+		reference.Child ("Users/").Child (user.UserId).RunTransaction (
 			AddEffectTransaction ("numberOfTerminalPlaced","numberOfTerminalPlaced","terminalPlacedMedal",
-				"terminalPlacedAchievement", EffectsConstants.terminalPlacedMedal, EffectsConstants.terminalPlacedAchievement)
+				"terminalPlacedAchievement", EffectsConstants.terminalPlacedMedal, EffectsConstants.terminalPlacedAchievement,
+				EffectsConstants.terminalPlacedXp)
 		).ContinueWith (task => {
 		});
 	}
 		
 	public static void AddTerminalBuffedStat(){
-		reference.Child ("Users/").RunTransaction (
+		reference.Child ("Users/").Child (user.UserId).RunTransaction (
 			AddEffectTransaction ("numberOfTerminalBuffed","numberOfTerminalBuffed","terminalBuffedMedal",
-				"terminalBuffedAchievement", EffectsConstants.terminalBuffedMedal, EffectsConstants.terminalBuffedAchievement)
+				"terminalBuffedAchievement", EffectsConstants.terminalBuffedMedal, EffectsConstants.terminalBuffedAchievement,
+				EffectsConstants.terminalBuffedXp)
 		).ContinueWith (task => {
 		});
 	}
 		
 	public static void AddTerminalDamagedStat(){
-		reference.Child ("Users/").RunTransaction (
+		reference.Child ("Users/").Child (user.UserId).RunTransaction (
 			AddEffectTransaction ("numberOfTerminalDamaged","numberOfTerminalDamaged","terminalDamagedMedal",
-				"terminalDamagedAchievement", EffectsConstants.terminalDamagedMedal, EffectsConstants.terminalDamagedAchievement)
+				"terminalDamagedAchievement", EffectsConstants.terminalDamagedMedal, EffectsConstants.terminalDamagedAchievement,
+				EffectsConstants.terminalDamagedXp)
 		).ContinueWith (task => {
 		});
 	}
 		
 	public static void AddTerminalImprovedStat(){
-		reference.Child ("Users/").RunTransaction (
+		reference.Child ("Users/").Child (user.UserId).RunTransaction (
 			AddEffectTransaction ("numberOfTerminalImproved","numberOfTerminalImproved",null,
-				"terminalImprovedAchievement", null, EffectsConstants.terminalImprovedAchievement)
+				"terminalImprovedAchievement", null, EffectsConstants.terminalImprovedAchievement,
+				EffectsConstants.terminalImprovedXp)
 		).ContinueWith (task => {
 		});
 	}
 
 	public static void AddZoneHealStat(){
-		reference.Child ("Users/").RunTransaction (
+		reference.Child ("Users/").Child (user.UserId).RunTransaction (
 			AddEffectTransaction ("numberOfZoneHealed","numberOfZoneHealed","zoneHealedMedal",
-				"zoneHealedAchievement", EffectsConstants.zoneHealedMedal, EffectsConstants.zoneHealedAchievement)
+				"zoneHealedAchievement", EffectsConstants.zoneHealedMedal, EffectsConstants.zoneHealedAchievement,
+				EffectsConstants.zoneHealedXp)
 		).ContinueWith (task => {
 		});
 	}
 
 	public static void AddZoneImprovedStat(){
-		reference.Child ("Users/").RunTransaction (
+		reference.Child ("Users/").Child (user.UserId).RunTransaction (
 			AddEffectTransaction ("numberOfZoneImproved","numberOfZoneImproved",null,
-				"zoneImprovedAchievement", null, EffectsConstants.zoneImprovedAchievement)
+				"zoneImprovedAchievement", null, EffectsConstants.zoneImprovedAchievement,
+				EffectsConstants.terminalImprovedXp)
 		).ContinueWith (task => {
 		});
 	}
 
-	private static Func<MutableData, TransactionResult> AddEffectTransaction(String name,String statName,String medalName,String achievementName,MedalInfo medal,Achievement achievement) 
+	private static Func<MutableData, TransactionResult> AddEffectTransaction(String name,String statName,String medalName,String achievementName,MedalInfo medal,Achievement achievement,int xpAdded) 
 	{
 		return mutableData => {
-			object numberOfTerminal = mutableData.Child (FirebaseManager.user.UserId + "/stat/" + statName).Value;
+			object xp = mutableData.Child("xp").Value;
+			if(xp != null){
+				mutableData.Child("xp").Value = (long)xp + (long)xpAdded;
+			}
+
+			object numberOfTerminal = mutableData.Child ("stat/" + statName).Value;
 			if(numberOfTerminal == null){
-				mutableData.Child (FirebaseManager.user.UserId + "/stat/" + statName).Value = 1;
+				mutableData.Child ("stat/" + statName).Value = 1;
 			} else{
 				long number = (long)numberOfTerminal;
-				mutableData.Child (FirebaseManager.user.UserId + "/stat/" + statName).Value = number + 1;
+				mutableData.Child ("stat/" + statName).Value = number + 1;
 				if((number + 1) >= EffectObtentionConstants.achievementMaxValue[name]){
-					if( mutableData.Child (FirebaseManager.user.UserId + "/effects/" + achievementName).Value == null){
-						mutableData.Child (FirebaseManager.user.UserId + "/effects/" + achievementName).Value = achievement.ToMap();
+					if( mutableData.Child ("effects/" + achievementName).Value == null){
+						mutableData.Child ("effects/" + achievementName).Value = achievement.ToMap();
 					}
 				}
 
@@ -678,8 +689,8 @@ public class FirebaseManager
 					String randomName = rnd.Next(1, 100000).ToString();
 
 					if(((int)(number + 1) % EffectObtentionConstants.medalNumberObtention[name]) == 0){
-						if(mutableData.Child (FirebaseManager.user.UserId + "/effects/" + medalName + randomName).Value == null){
-							mutableData.Child (FirebaseManager.user.UserId + "/effects/" + medalName + randomName).Value = medal.ToMap();
+						if(mutableData.Child ("effects/" + medalName + randomName).Value == null){
+							mutableData.Child ("effects/" + medalName + randomName).Value = medal.ToMap();
 						}
 					}
 				}

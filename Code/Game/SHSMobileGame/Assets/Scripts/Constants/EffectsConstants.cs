@@ -20,6 +20,13 @@ public class EffectsConstants
 	public static Achievement zoneHealedAchievement = new Achievement("zoneHealedAchievement",3);
 	public static Achievement zoneImprovedAchievement = new Achievement("zoneImprovedAchievement",3);
 
+	public static int terminalPlacedXp = 10;
+	public static int terminalDamagedXp = 10;	
+	public static int terminalBuffedXp = 10;	
+	public static int terminalImprovedXp = 10;	
+	public static int zoneHealedXp = 10;
+	public static int zoneImprovedXp = 10;
+
 	public static MedalInfo GetMedalByName(string name){
 		switch (name) {
 		case "101":
