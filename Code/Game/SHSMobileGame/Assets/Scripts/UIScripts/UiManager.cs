@@ -60,6 +60,7 @@ public class UiManager : LocationListener
 	// Use this for initialization
 	void Awake ()
 	{
+
 		GameObject clone = (GameObject)Instantiate(Resources.Load("Popup"));
 		popup = clone.GetComponent<PopupScript>();		
 		popup.transform.SetParent (this.transform.parent,false);

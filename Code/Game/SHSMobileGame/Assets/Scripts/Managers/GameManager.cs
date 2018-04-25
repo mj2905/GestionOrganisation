@@ -33,12 +33,15 @@ public class GameManager : LocationListener {
 
 	public GameObject waitingScreen;
 
+	public AchievementUnlocked achievement;
+
 	void Awake(){
 		FirebaseManager.SetMainGameRef (this);
 	}
 
 	// Use this for initialization
 	void Start () {
+		achievement.setAchievement("zoneImprovedAchievement");
 
         waitingScreen.SetActive (true);		
 
@@ -173,5 +176,9 @@ public class GameManager : LocationListener {
 
 	public void addTransaction(){
 		FirebaseManager.AddTerminalDamagedStat ();
+	}
+
+	public void setAchievement(string text) {
+		achievement.setAchievement(text);
 	}
 }

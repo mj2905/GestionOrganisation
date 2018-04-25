@@ -42,10 +42,10 @@ public class Effects{
 		int res = 1;
 
 		foreach (MedalInfo medal in medals) {
-			res *= medal.GetMultiplier ();
+			res += medal.GetMultiplier ();
 		}
 		foreach (Achievement achievement in achievements) {
-			res *= achievement.GetMultiplier ();
+			res += achievement.GetMultiplier ();
 		}
 		return res;
 	}

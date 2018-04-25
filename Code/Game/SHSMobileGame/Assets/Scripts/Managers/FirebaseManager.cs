@@ -681,6 +681,7 @@ public class FirebaseManager
 				if((number + 1) >= EffectObtentionConstants.achievementMaxValue[name]){
 					if( mutableData.Child ("effects/" + achievementName).Value == null){
 						mutableData.Child ("effects/" + achievementName).Value = achievement.ToMap();
+						gameManager.setAchievement(achievementName);
 					}
 				}
 
