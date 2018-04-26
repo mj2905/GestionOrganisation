@@ -1,4 +1,5 @@
-﻿
+﻿using System.Collections.Generic;
+
 public static class QuantitiesConstants
 {
 	public const int TERMINAL_MAX_HEALTH = 100;
@@ -61,6 +62,15 @@ public static class QuantitiesConstants
 
 	public static float ZONE_IMPROVE_COOLDOWN = 2f;
 	public static float TERMINAL_IMPROVE_COOLDOWN = 2f;
+
+	public static Dictionary<string, string> nameAchievementDisplay = new Dictionary<string, string>() {
+		{ "zoneImprovedAchievement", "The wall just got ten feet higher" },
+		{ "zoneHealedAchievement", "Meeedic"},
+		{ "terminalImprovedAchievement", "Harder better faster stronger"},
+		{ "terminalDamagedAchievement", "Not in my zone"},
+		{ "terminalBuffedAchievement", "King of pew pew"},
+		{ "terminalPlacedAchievement", "U kno da wae"}
+	};
 }
 
 
