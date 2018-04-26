@@ -14,8 +14,8 @@ public static class EffectObtentionConstants
 		};
 
 	public static Dictionary<string,int> achievementSkinsMaxValue = new Dictionary<string,int>{
-		{ "4Skins", 4},
-		{ "AllSkins", 7}
+		{ "4SkinAchievement", 4},
+		{ "allSkinAchievement", 7}
 	};
 
 	public static Dictionary<string,int> medalNumberObtention = new Dictionary<string,int>{

@@ -51,7 +51,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AchievementMenu.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
@@ -97,6 +96,7 @@
      <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
      <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
+     <Compile Include="Assets\Scripts\AchievementMenu.cs" />
      <Compile Include="Assets\Scripts\ActionButtonHandler.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\ClearAlpha.cs" />
@@ -151,6 +151,7 @@
      <Compile Include="Assets\Scripts\TextDissolve.cs" />
      <Compile Include="Assets\Scripts\ToggleMenu.cs" />
      <Compile Include="Assets\Scripts\TowerSpawner.cs" />
+     <Compile Include="Assets\Scripts\UIScripts\AchievementUnlocked.cs" />
      <Compile Include="Assets\Scripts\UIScripts\CameraFacingBillboard.cs" />
      <Compile Include="Assets\Scripts\UIScripts\ReplaceCreditUpdateHandle.cs" />
      <Compile Include="Assets\Scripts\UIScripts\TextUpdate.cs" />

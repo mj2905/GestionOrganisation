@@ -3148,7 +3148,7 @@ GameObject:
   - component: {fileID: 213928417}
   - component: {fileID: 213928416}
   m_Layer: 5
-  m_Name: 4Skins
+  m_Name: 4SkinAchievement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7564,7 +7564,7 @@ GameObject:
   - component: {fileID: 546109292}
   - component: {fileID: 546109291}
   m_Layer: 5
-  m_Name: AllSkins
+  m_Name: allSkinAchievement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8776,6 +8776,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c45a07d3f1cc54f428fba74397000d7d, type: 3}
   - {fileID: 21300000, guid: 51fe2c127e86a4b3ea0dbeeff5ddf4f6, type: 3}
   - {fileID: 21300000, guid: 030d140a8b650413ebbccc1223c600cd, type: 3}
+  - {fileID: 21300000, guid: 4010399181355784184bac9f0b53f284, type: 3}
+  - {fileID: 21300000, guid: e9c6fc07eff79da488ca79487f09e4c5, type: 3}
+  - {fileID: 21300000, guid: f17fa3b4f147969488a40cb89f37f65c, type: 3}
+  - {fileID: 21300000, guid: 274807eefd35c3c43991b1240393e0e2, type: 3}
+  - {fileID: 21300000, guid: bbad1d48e5e714b48ad84bc3c0229b17, type: 3}
 --- !u!114 &652718034
 MonoBehaviour:
   m_ObjectHideFlags: 0

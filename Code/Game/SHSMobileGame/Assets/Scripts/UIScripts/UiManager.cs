@@ -41,7 +41,6 @@ public class UiManager : LocationListener
 
 	private bool isAttackMode = false;
 	private int previousCredit = 0;
-	private int previousScore = 0;
 
 	public GameObject leaderBoardMenu;
 	public GameObject achievementMenu;

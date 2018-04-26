@@ -42,8 +42,6 @@ public class GameManager : LocationListener {
 
 	// Use this for initialization
 	void Start () {
-		achievement.setAchievement("zoneImprovedAchievement");
-
         waitingScreen.SetActive (true);		
 
 		FirebaseManager.SetListenerEnd ();

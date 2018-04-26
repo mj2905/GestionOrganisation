@@ -304,6 +304,7 @@ public class FirebaseManager
 			}
 			if(bestPlayer == null){
 				mutableData.Child ("bestPlayerAchievement").Value = EffectsConstants.bestPlayerAchievement.ToMap();
+				gameManager.setAchievement("bestPlayerAchievement");
 			}
 			return TransactionResult.Success(mutableData);
 		};
@@ -315,6 +316,7 @@ public class FirebaseManager
 
 			if(top5Player == null){
 				mutableData.Child ("top5PlayerAchievement").Value = EffectsConstants.top5PlayerAchievement.ToMap();
+				gameManager.setAchievement("top5PlayerAchievement");
 			}
 			return TransactionResult.Success(mutableData);
 		};
@@ -326,6 +328,7 @@ public class FirebaseManager
 
 			if(allAchievement == null){
 				mutableData.Child ("allAchievement").Value = EffectsConstants.allAchievement.ToMap();
+				gameManager.setAchievement("allAchievement");
 			}
 			return TransactionResult.Success(mutableData);
 		};
@@ -518,11 +521,13 @@ public class FirebaseManager
 							if(playerString.Length == 4){
 								if( mutableData.Child ("effects/4SkinAchievement").Value == null){
 									mutableData.Child ("effects/4SkinAchievement").Value = EffectsConstants.fourSkinAchievement.ToMap();
+									gameManager.setAchievement("4SkinAchievement");
 								}
 							}
 							if(playerString.Length == 7){
 								if( mutableData.Child ("effects/allSkinAchievement").Value == null){
 									mutableData.Child ("effects/allSkinAchievement").Value = EffectsConstants.allSkinAchievement.ToMap();
+									gameManager.setAchievement("allSkinAchievement");
 								}
 							}
 						}

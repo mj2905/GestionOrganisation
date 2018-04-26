@@ -69,7 +69,12 @@ public static class QuantitiesConstants
 		{ "terminalImprovedAchievement", "Harder better faster stronger"},
 		{ "terminalDamagedAchievement", "Not in my zone"},
 		{ "terminalBuffedAchievement", "King of pew pew"},
-		{ "terminalPlacedAchievement", "U kno da wae"}
+		{ "terminalPlacedAchievement", "U kno da wae"},
+		{ "4SkinAchievement", "Ready for Winter"},
+		{ "allSkinAchievement", "Skin Changer"},
+		{ "top5PlayerAchievement", "Not bad"},
+		{ "bestPlayerAchievement","You're the best"},
+		{ "allAchievement","GG WP"}
 	};
 }
 

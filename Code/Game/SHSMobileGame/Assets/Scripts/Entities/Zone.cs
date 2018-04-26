@@ -28,9 +28,6 @@ public class Zone : MonoBehaviour {
 	public float dmg3;
 	public float dmg4;
 
-	private bool isSwitching = true;
-	private bool isTimerIncreasing = true;
-
 	private Color colorSwitching;
 
 	private const float SPEED_OF_TRANSITION = 2f;
