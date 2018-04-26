@@ -22,6 +22,7 @@ public class GameManager : LocationListener {
 	private Dictionary<string, Terminal> terminalDict = new Dictionary<string, Terminal>();
 
 	private int team = -1;
+	private Effects currentEffects = new Effects();
 
 	private Game previousGame;
 	private Game currentGame;
@@ -72,6 +73,33 @@ public class GameManager : LocationListener {
 		uiManager.SetCurrentTerminals (previousGame,currentGame,zoneDict);
 
 		uiManager.UpdateTokens (currentGame.GetToken (team));
+
+		AddRankAchivements (game);
+		CheckIfGotAllAchievement ();
+	}
+
+	private void CheckIfGotAllAchievement(){
+		if (currentEffects.achievements.Count == 10 && !currentEffects.achievements.Contains (EffectsConstants.allAchievement)) {
+			FirebaseManager.AddAllAchivement ();
+		}
+	}
+
+	private void AddRankAchivements(Game game){
+		bool addBest = false;
+		for (int i = 0; i < game.bestUsers.Count; i++) {
+			if (game.bestUsers[i].GetId () == FirebaseManager.user.UserId) {
+				if (i == 0) {
+					if(!currentEffects.achievements.Contains(EffectsConstants.bestPlayerAchievement)){
+						FirebaseManager.AddBestPlayerAchivement ();
+						addBest = true;
+					}
+				} else {
+					if(!addBest && !currentEffects.achievements.Contains(EffectsConstants.top5PlayerAchievement)){
+						FirebaseManager.AddTop5PlayerAchivement ();
+					}
+				}
+			}
+		}
 	}
 
 	public void DrawTerminalsUI(string zoneId) {
@@ -132,6 +160,7 @@ public class GameManager : LocationListener {
 		this.team = team;
 		interactionManager.updateUserInfo (credit, level);
 		uiManager.UpdateUserStat (xp, credit, team,level,effects,statistics,skins);
+		currentEffects = effects;
 	}
 
 	public void AddTerminal(string zoneId,float x, float z){

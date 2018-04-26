@@ -36,6 +36,10 @@ public class Achievement{
 		}
 	}
 
+	public string GetName(){
+		return name;
+	}
+
 	public Dictionary<string, object> ToMap() {
 		Dictionary<string, object> fields = new Dictionary<string, object>();
 		fields.Add ("multiplier",multiplier);

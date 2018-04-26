@@ -21,7 +21,7 @@ public class Statistics{
 	}
 
 	private void InitStat(){
-		foreach (KeyValuePair<string, int> entry in EffectObtentionConstants.achievementMaxValue) {
+		foreach (KeyValuePair<string, int> entry in EffectObtentionConstants.achievementStatMaxValue) {
 			statisticsDict [entry.Key] = 0;
 		}
 	}

@@ -19,6 +19,11 @@ public class EffectsConstants
 	public static Achievement terminalImprovedAchievement = new Achievement("terminalImprovedAchievement",3);	
 	public static Achievement zoneHealedAchievement = new Achievement("zoneHealedAchievement",3);
 	public static Achievement zoneImprovedAchievement = new Achievement("zoneImprovedAchievement",3);
+	public static Achievement fourSkinAchievement = new Achievement("4SkinAchievement",3);
+	public static Achievement allSkinAchievement = new Achievement("allSkinAchievement",3);	
+	public static Achievement top5PlayerAchievement = new Achievement("top5PlayerAchievement",3);
+	public static Achievement bestPlayerAchievement = new Achievement("bestPlayerAchievement",3);
+	public static Achievement allAchievement = new Achievement("allAchievement",3);
 
 	public static int terminalPlacedXp = 10;
 	public static int terminalDamagedXp = 10;	

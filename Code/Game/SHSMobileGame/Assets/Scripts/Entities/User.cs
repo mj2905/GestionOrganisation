@@ -15,7 +15,6 @@ public class User
 
 	private string userId; 
 		
-
 	public User ()
 	{
 		this.credits = 0;
@@ -43,6 +42,10 @@ public class User
 		this.pseudo = pseudo;
 		this.team = team;
 		this.userId = userId;
+	}
+
+	public string GetId(){
+		return userId;
 	}
 
 	public int CompareTo(User other){

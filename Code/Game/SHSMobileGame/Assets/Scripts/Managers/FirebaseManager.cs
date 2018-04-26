@@ -278,6 +278,58 @@ public class FirebaseManager
 		reference.Child ("Users/").RunTransaction (AddMedalTransaction (medal)).ContinueWith (task => {
 		});
 	}
+		
+	public static void AddBestPlayerAchivement(){
+		reference.Child ("Users/").Child (user.UserId+"/effects").RunTransaction (AddBestPlayerTransation ()).ContinueWith (task => {
+		});
+	}
+
+	public static void AddTop5PlayerAchivement(){
+		reference.Child ("Users/").Child (user.UserId+"/effects").RunTransaction (AddTop5PlayerTransation ()).ContinueWith (task => {
+		});
+	}
+
+	public static void AddAllAchivement(){
+		reference.Child ("Users/").Child (user.UserId+"/effects").RunTransaction (AddAllTransation ()).ContinueWith (task => {
+		});
+	}
+
+	private static Func<MutableData, TransactionResult> AddBestPlayerTransation(){
+		return mutableData => {
+			object top5Player = mutableData.Child ("top5PlayerAchievement").Value;
+			object bestPlayer = mutableData.Child ("bestPlayerAchievement").Value;
+
+			if(top5Player == null){
+				mutableData.Child ("top5PlayerAchievement").Value = EffectsConstants.top5PlayerAchievement.ToMap();
+			}
+			if(bestPlayer == null){
+				mutableData.Child ("bestPlayerAchievement").Value = EffectsConstants.bestPlayerAchievement.ToMap();
+			}
+			return TransactionResult.Success(mutableData);
+		};
+	}
+
+	private static Func<MutableData, TransactionResult> AddTop5PlayerTransation(){
+		return mutableData => {
+			object top5Player = mutableData.Child ("top5PlayerAchievement").Value;
+
+			if(top5Player == null){
+				mutableData.Child ("top5PlayerAchievement").Value = EffectsConstants.top5PlayerAchievement.ToMap();
+			}
+			return TransactionResult.Success(mutableData);
+		};
+	}
+
+	private static Func<MutableData, TransactionResult> AddAllTransation(){
+		return mutableData => {
+			object allAchievement = mutableData.Child ("allAchievement").Value;
+
+			if(allAchievement == null){
+				mutableData.Child ("allAchievement").Value = EffectsConstants.allAchievement.ToMap();
+			}
+			return TransactionResult.Success(mutableData);
+		};
+	}
 
 	public static Func<MutableData, TransactionResult> AddTerminalTransaction(Terminal t) 
 	{
@@ -462,6 +514,17 @@ public class FirebaseManager
 						if(!playerString.Contains(number.ToString())){
 							playerString += number.ToString();
 							mutableData.Child("skins/boughtPlayers").Value = playerString;
+
+							if(playerString.Length == 4){
+								if( mutableData.Child ("effects/4SkinAchievement").Value == null){
+									mutableData.Child ("effects/4SkinAchievement").Value = EffectsConstants.fourSkinAchievement.ToMap();
+								}
+							}
+							if(playerString.Length == 7){
+								if( mutableData.Child ("effects/allSkinAchievement").Value == null){
+									mutableData.Child ("effects/allSkinAchievement").Value = EffectsConstants.allSkinAchievement.ToMap();
+								}
+							}
 						}
 					}
 
@@ -490,9 +553,9 @@ public class FirebaseManager
 		reference.Child ("Users/").Child (user.UserId).RunTransaction (BuyPlayerSkinTransaction(price,number)).ContinueWith (task => {
 
 			if (task.Exception != null) {
-				Debug.Log("Could not deduct enough credit to smash the terminal");
-				messagePopup.SetText("You don't have enough credits to smash the terminal");
-			}
+				Debug.Log("Could not deduct enough credit to buy the skin");
+				messagePopup.SetText("You don't have enough credits to buy the skin");
+			} 
 		});
 	}
 
@@ -678,7 +741,7 @@ public class FirebaseManager
 			} else{
 				long number = (long)numberOfTerminal;
 				mutableData.Child ("stat/" + statName).Value = number + 1;
-				if((number + 1) >= EffectObtentionConstants.achievementMaxValue[name]){
+				if((number + 1) >= EffectObtentionConstants.achievementStatMaxValue[name]){
 					if( mutableData.Child ("effects/" + achievementName).Value == null){
 						mutableData.Child ("effects/" + achievementName).Value = achievement.ToMap();
 					}

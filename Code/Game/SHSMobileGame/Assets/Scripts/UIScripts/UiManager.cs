@@ -34,9 +34,7 @@ public class UiManager : LocationListener
 	public GameObject creditUpdateHandle;
 	//public GameObject scoreUpdateHandle;
 
-	public List<Text> achievementsText;
-	private Dictionary<string,Text> achievementsDict = new Dictionary<string,Text>();
-
+	public AchievementMenu achievement;
 	public Shop shop;
 
 	private PopupScript popup;
@@ -49,7 +47,7 @@ public class UiManager : LocationListener
 	private int tmpVal = 1000;
 
 	private bool showAchievementMenu = false;
-	public Canvas achievementMenu;
+	public GameObject achievementMenu;
 
 	private bool showShopMenu = false;
 	public GameObject shopMenu;
@@ -64,10 +62,6 @@ public class UiManager : LocationListener
 		popup = clone.GetComponent<PopupScript>();		
 		popup.transform.SetParent (this.transform.parent,false);
 		popup.transform.SetAsLastSibling ();
-
-		for (int i = 0; i < achievementsText.Count; i++) {
-			achievementsDict.Add (achievementsText [i].name, achievementsText [i]);
-		}
 	}
 
 	public void UpdateTokens(int tokens) {
@@ -102,9 +96,7 @@ public class UiManager : LocationListener
 			textUpdate.transform.position = creditUpdateHandle.transform.position;
 			textUpdate.setText ('+'+creditDiff.ToString ());
 		}
-
-		UpdateAchievement (statistics);
-
+			
 		Effects newEffects = effects.GetNewEffects (previousEffects);
 		Effects modifiedEffects = effects.GetModifiedEffects (previousEffects);
 		Effects deletedEffects = effects.GetDeletedEffects (previousEffects);
@@ -122,22 +114,7 @@ public class UiManager : LocationListener
 		teamText.color = ColorConstants.getTextColor (team);
 	
 		shop.SetSkinsInfo (skins);
-	}
-
-	private void UpdateAchievement (Statistics statistics){
-		foreach (KeyValuePair<string, int> entry in statistics.GetDict()) {
-			CheckIfAchievementUnlocked (entry.Key, entry.Value);
-		}
-	}
-
-	private void CheckIfAchievementUnlocked(string name,int num){
-		Text text = achievementsDict [name];
-		int maxNum = EffectObtentionConstants.achievementMaxValue [name];
-		if (num >= maxNum) {
-			text.text = "DONE!";
-		} else {
-			text.text = num.ToString() + "/" + maxNum.ToString ();
-		}
+		achievement.UpdateAchivement (statistics,skins,effects);
 	}
 
 	public void	UpdateCurrentMedalPosition (){
