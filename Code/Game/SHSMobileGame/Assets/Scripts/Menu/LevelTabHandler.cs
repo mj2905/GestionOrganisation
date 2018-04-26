@@ -33,12 +33,4 @@ public class LevelTabHandler : MonoBehaviour {
 		jobText.text = jobs [level];
 		bonusText.text = texts [level];
 	}
-
-	public void OpenLevelTabHandler() {
-		levelTab.SetActive (true);
-	}
-
-	public void CloseLevelTabHandler() {
-		levelTab.SetActive (false);
-	}
 }

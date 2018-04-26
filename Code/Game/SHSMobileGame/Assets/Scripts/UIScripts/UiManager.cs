@@ -43,26 +43,25 @@ public class UiManager : LocationListener
 	private int previousCredit = 0;
 	private int previousScore = 0;
 
-	private int debugtmp = 0;
-	private int tmpVal = 1000;
-
-	private bool showAchievementMenu = false;
+	public GameObject leaderBoardMenu;
 	public GameObject achievementMenu;
-
-	private bool showShopMenu = false;
 	public GameObject shopMenu;
+	public GameObject levelTab;
 
 	public Image backgroundTop;
 	public Image backgroundBottom;
 
+	private List<GameObject> menues;
+
 	// Use this for initialization
 	void Awake ()
 	{
-
 		GameObject clone = (GameObject)Instantiate(Resources.Load("Popup"));
 		popup = clone.GetComponent<PopupScript>();		
 		popup.transform.SetParent (this.transform.parent,false);
 		popup.transform.SetAsLastSibling ();
+
+		menues = new List<GameObject> (){ shopMenu,achievementMenu,leaderBoardMenu,levelTab };
 	}
 
 	public void UpdateTokens(int tokens) {
@@ -189,13 +188,32 @@ public class UiManager : LocationListener
 	}
 
 	public void ToggleAchievementMenu(){
-		showAchievementMenu = !showAchievementMenu;
-		achievementMenu.gameObject.SetActive(showAchievementMenu);
+		CloseAllMenues (achievementMenu);
+		achievementMenu.gameObject.SetActive(!achievementMenu.gameObject.activeSelf);
 	}
 
 	public void ToggleShopMenu(){
-		showShopMenu = !showShopMenu;
-		shopMenu.gameObject.SetActive(showShopMenu);
+		CloseAllMenues (shopMenu);
+		shopMenu.gameObject.SetActive(!shopMenu.gameObject.activeSelf);
+	}
+		
+	public void ToggleLeaderBoardMenu(){
+		CloseAllMenues (leaderBoardMenu);
+		leaderBoardMenu.gameObject.SetActive(!leaderBoardMenu.gameObject.activeSelf);
+	}
+
+	public void ToggleLevelTabMenu(){
+		CloseAllMenues (levelTab);
+		levelTab.gameObject.SetActive(!levelTab.gameObject.activeSelf);
+	}
+
+
+	private void CloseAllMenues(GameObject objectDontTouch){
+		foreach (var item in menues) {
+			if (item.name != objectDontTouch.name) {
+				item.gameObject.SetActive (false);
+			}
+		}
 	}
 
 

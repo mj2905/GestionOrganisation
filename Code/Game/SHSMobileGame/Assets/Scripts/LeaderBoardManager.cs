@@ -52,8 +52,4 @@ public class LeaderBoardManager : MonoBehaviour {
 	public List<int> GetScore(){
 		return currentGame.GetScores ();
 	}
-
-	public void ToggleMenu(){
-		leaderBoardPanel.gameObject.SetActive (!leaderBoardPanel.gameObject.activeSelf);
-	}
 }
