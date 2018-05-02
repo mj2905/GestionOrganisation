@@ -64,13 +64,16 @@ public class DialogueManager : MonoBehaviour {
 
 
 	GameObject continueButton;
+	GameObject continueButton2;
 
 
 	// Use this for initialization
 	void Start () {
 
 		continueButton = GameObject.Find ("continue");
+		continueButton2 = GameObject.Find ("ClickAlsoWorking");
 		continueButton.SetActive (false);
+		continueButton2.SetActive (false);
 
 		actionButton = GameObject.Find ("ActionButton").GetComponent<Button>();
 		improveButton = GameObject.Find ("ImproveButton").GetComponent<Button> ();
@@ -146,6 +149,7 @@ public class DialogueManager : MonoBehaviour {
 		GameObject skipButton = GameObject.Find ("SkipTutorialButton");
 
 		continueButton.SetActive (true);
+		continueButton2.SetActive (true);
 
 
 		skipButton.SetActive (false);
@@ -283,7 +287,8 @@ public class DialogueManager : MonoBehaviour {
 			break;
 
 		case 14:
-
+			
+			continueButton2.SetActive (false);
 			Button button = continueButton.GetComponent<Button> ();
 
 			button.transform.Find ("Text").GetComponent<Text> ().text = "Start Game";
@@ -599,6 +604,7 @@ public class DialogueManager : MonoBehaviour {
 
 	IEnumerator TypeSentence(string sentence){
 
+		continueButton2.SetActive (false);
 		continueButton.SetActive (false);
 
 		dialogueText.text = "";
@@ -611,6 +617,7 @@ public class DialogueManager : MonoBehaviour {
 		slide++;
 
 		continueButton.SetActive (true);
+		continueButton2.SetActive (true);
 
 	}
 
