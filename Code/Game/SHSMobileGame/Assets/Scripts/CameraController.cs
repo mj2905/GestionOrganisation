@@ -29,6 +29,7 @@ public class CameraController : LocationListener {
 	private Vector3 touchPosWorld;
 	private Vector3 positionBeforeFocus;
 	private Quaternion rotationBeforeFocus;
+	private float zoomBeforeFocus;
 	private GameObject focusedBuilding;
 	private Vector3 offset;
 	private bool onScreenBot = false;
@@ -62,6 +63,7 @@ public class CameraController : LocationListener {
 		this.sceneRoot = gameManager.sceneRoot;
 		this.positionBeforeFocus = transform.position;
 		this.rotationBeforeFocus = transform.rotation;
+		this.zoomBeforeFocus = camera.fieldOfView;
 
 		offset = new Vector3 (0, 65.9f, -8.1f);
 		groundSize = GameObject.Find ("SceneRoot/Ground").GetComponent<Renderer> ().bounds.size;
@@ -127,6 +129,7 @@ public class CameraController : LocationListener {
 			return;
 		case state.MovingToInitialPos:
 			transform.rotation = Quaternion.RotateTowards (transform.rotation, this.rotationBeforeFocus, SPEED_ZOOM);
+			camera.fieldOfView = Mathf.MoveTowards (camera.fieldOfView, this.zoomBeforeFocus, SPEED_ZOOM);
 			transform.position = Vector3.MoveTowards (transform.position, initialPosition, SPEED_SWITCH_MODE);
 			if (transform.position == initialPosition) {
 				currentState = state.Idle;
@@ -134,6 +137,7 @@ public class CameraController : LocationListener {
 			break;
 		case state.MovingToInitialPosFromFading:
 			transform.rotation = Quaternion.RotateTowards (transform.rotation, this.rotationBeforeFocus, SPEED_ZOOM);
+			camera.fieldOfView = Mathf.MoveTowards (camera.fieldOfView, this.zoomBeforeFocus, SPEED_ZOOM);
 			transform.position = Vector3.MoveTowards (transform.position, initialPosition, SPEED_SWITCH_MODE);
 			if (transform.position == initialPosition) {
 				currentState = state.Idle;
@@ -141,6 +145,7 @@ public class CameraController : LocationListener {
 			break;
 		case state.MovingToPlayer:
 			transform.rotation = Quaternion.RotateTowards (transform.rotation, this.rotationBeforeFocus, SPEED_ZOOM);
+			camera.fieldOfView = Mathf.MoveTowards (camera.fieldOfView, this.zoomBeforeFocus, SPEED_ZOOM);
 			transform.position = Vector3.MoveTowards (transform.position, player.transform.position + offset, SPEED_SWITCH_MODE);
 			if (transform.position == player.transform.position + offset) {
 				currentState = state.FixedOnPlayer;
@@ -148,6 +153,7 @@ public class CameraController : LocationListener {
 			break;
 		case state.MovingToFadingPlayer:
 			transform.rotation = Quaternion.RotateTowards (transform.rotation, this.rotationBeforeFocus, SPEED_ZOOM);
+			camera.fieldOfView = Mathf.MoveTowards (camera.fieldOfView, this.zoomBeforeFocus, SPEED_ZOOM);
 			transform.position = Vector3.MoveTowards (transform.position, fadingplayer.transform.position + offset, SPEED_SWITCH_MODE);
 			if (transform.position == fadingplayer.transform.position + offset) {
 				currentState = state.FixedOnFadingPlayer;
@@ -160,6 +166,7 @@ public class CameraController : LocationListener {
 			if (focusedBuilding != null) {
 				transform.position = Vector3.MoveTowards (transform.position, this.positionBeforeFocus, SPEED_ZOOM);
 				transform.rotation = Quaternion.RotateTowards (transform.rotation, this.rotationBeforeFocus, SPEED_ZOOM);
+				camera.fieldOfView = Mathf.MoveTowards (camera.fieldOfView, this.zoomBeforeFocus, SPEED_ZOOM);
 			}
 			if (transform.position == positionBeforeFocus) {
 				currentState = state.Idle;
@@ -173,6 +180,7 @@ public class CameraController : LocationListener {
 			if (focusedBuilding != null) {
 				transform.position = Vector3.MoveTowards (transform.position, focusedBuilding.transform.position + new Vector3 (0, 30, -30), SPEED_ZOOM);
 				transform.rotation = Quaternion.RotateTowards (transform.rotation,  Quaternion.Euler(45,0,0), SPEED_ZOOM);
+				camera.fieldOfView = Mathf.MoveTowards (camera.fieldOfView, 60, SPEED_ZOOM);
 				if(transform.position == focusedBuilding.transform.position + new Vector3 (0, 30, -30)){
 					currentState = state.Focused;
 				}
@@ -235,6 +243,8 @@ public class CameraController : LocationListener {
 				if (has_hit) {
 					positionBeforeFocus = transform.position;
 					rotationBeforeFocus = transform.rotation;
+					zoomBeforeFocus = camera.fieldOfView;
+
 					focusedBuilding = hits [hitOne].transform.gameObject;
 					currentState = state.Focusing;
 
