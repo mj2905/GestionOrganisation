@@ -9975,14 +9975,12 @@ MonoBehaviour:
     m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
-    m_AlignByGeometry: 1
+    m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Start Tutorial
-
-'
+  m_Text: Start Tutorial
 --- !u!222 &735108299
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12654,7 +12652,7 @@ RectTransform:
   m_GameObject: {fileID: 989759424}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2011359, y: 1.201136, z: 1.201136}
+  m_LocalScale: {x: 1.177157, y: 1.177157, z: 1.177157}
   m_Children:
   - {fileID: 1686463339}
   m_Father: {fileID: 1342705399}
@@ -12663,7 +12661,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 92, y: 126}
-  m_SizeDelta: {x: 157.43, y: 25.504}
+  m_SizeDelta: {x: 164.95, y: 26.893}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &989759426
 MonoBehaviour:
@@ -12703,7 +12701,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 989759427}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1749315254}
+        m_MethodName: skipButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &989759427
@@ -23057,14 +23066,12 @@ MonoBehaviour:
     m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
-    m_AlignByGeometry: 1
+    m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Skip Tutorial
-
-'
+  m_Text: Skip Tutorial
 --- !u!222 &1686463341
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24207,7 +24214,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -101, y: 126.17}
+  m_AnchoredPosition: {x: -101, y: 126}
   m_SizeDelta: {x: 164.95, y: 26.893}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1778507840
