@@ -8,6 +8,7 @@ TagManager:
   - Zone
   - Ground
   - SafeZone
+  - StartButton
   layers:
   - Default
   - TransparentFX
