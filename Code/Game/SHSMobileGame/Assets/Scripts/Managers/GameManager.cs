@@ -12,8 +12,6 @@ public class GameManager : LocationListener {
 	public GameObject zonesRoot;
 	public Terminal terminalPrefab;
 
-	public List<Terminal> terminalPrefabs;
-
 	public PlayerController player;
 
 	public Button modeButton;
@@ -116,7 +114,7 @@ public class GameManager : LocationListener {
 		List<Terminal> modifiedTerminals =  currentGame.GetModifiedTerminals (previousGame);
 		for (int i = 0; i < newTerminals.Count; i++) {
 			Terminal t = (Terminal)Instantiate (
-				terminalPrefab,//s[newTerminals [i].team],
+				terminalPrefab,
 				new Vector3(newTerminals[i].x,0.2f,newTerminals[i].z),
 				new Quaternion (),
 				sceneRoot.gameObject.transform);
