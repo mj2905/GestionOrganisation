@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Firebase.Database;
 using UnityEngine;
+using System.Linq;
 
 
 public class Game
@@ -120,44 +121,54 @@ public class Game
 		return this.zones.AsReadOnly();
 	}
 
-	public Dictionary<string,Terminal> GetEnemyTerminalsAttackingAlly(List<Terminal> terminals){
-		Dictionary<string,Terminal> res = new Dictionary<string,Terminal>();
+	public List<Zone> GetEnemyAttackingAllyZone(List<Terminal> terminals){
+		HashSet<Zone> res = new HashSet<Zone>();
 		foreach (Terminal terminal in terminals) {
 			if (terminal.team != FirebaseManager.userTeam) {
 				foreach (Zone zone in zones) {
 					if (zone.zoneId == terminal.zoneId && zone.team == FirebaseManager.userTeam) {
-						res.Add (terminal.GetTerminalId (), terminal);
+						res.Add(zone);
 					}
 				}
 			}
 		}
-		return res;
+		return res.ToList();
 	}
 
-	public Dictionary<string,Terminal> GetAllyTerminals(List<Terminal> terminals){
-		Dictionary<string,Terminal> res = new Dictionary<string,Terminal>();
+	public List<Zone> GetAllyAttackingEnemyZone(List<Terminal> terminals){
+		HashSet<Zone> res = new HashSet<Zone>();
+		HashSet<string> zoneIds = new HashSet<string> ();
+
 		foreach (Terminal terminal in terminals) {
 			if (terminal.team == FirebaseManager.userTeam) {
-				res.Add (terminal.GetTerminalId (), terminal);
+				zoneIds.Add (terminal.zoneId);
 			}
 		}
-		return res;
+		foreach (String id in zoneIds) {
+			foreach (Zone zone in zones) {
+				if (zone.zoneId == id) {
+					res.Add(zone);
+				}
+			}
+		}
+
+		return res.ToList();
 	}
 
-	public Dictionary<string,Terminal> GetNewAllyTerminals(Game pastGame){
-		return GetAllyTerminals (GetNewTerminals(pastGame));
+	public List<Zone> GetNewAllyTerminals(Game pastGame){
+		return GetAllyAttackingEnemyZone (GetNewTerminals(pastGame));
 	}
 
-	public Dictionary<string,Terminal> GetDeletedAllyTerminals(Game pastGame){
-		return GetAllyTerminals (GetDeletedTerminals(pastGame));
+	public List<Zone> GetDeletedAllyTerminals(Game pastGame){
+		return GetAllyAttackingEnemyZone (GetDeletedTerminals(pastGame));
 	}
 
-	public Dictionary<string,Terminal> GetNewEnemyTerminals(Game pastGame){
-		return GetEnemyTerminalsAttackingAlly (GetNewTerminals(pastGame));
+	public List<Zone> GetNewEnemyTerminals(Game pastGame){
+		return GetEnemyAttackingAllyZone (GetNewTerminals(pastGame));
 	}
 
-	public Dictionary<string,Terminal> GetDeletedEnemyTerminals(Game pastGame){
-		return GetEnemyTerminalsAttackingAlly (GetDeletedTerminals(pastGame));
+	public List<Zone> GetDeletedEnemyTerminals(Game pastGame){
+		return GetEnemyAttackingAllyZone (GetDeletedTerminals(pastGame));
 	}
 
 	public List<int> GetScores(){

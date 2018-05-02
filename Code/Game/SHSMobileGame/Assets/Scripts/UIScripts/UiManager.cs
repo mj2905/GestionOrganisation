@@ -228,28 +228,28 @@ public class UiManager : LocationListener
 			removeNotification (name);
 		}
 
-		foreach(var terminal in newGame.GetNewAllyTerminals(previousGame)) {
+		foreach(var zone in newGame.GetNewAllyTerminals(previousGame)) {
 			Notification n = (Notification)Instantiate (NotificationPrefab);
 			n.SetPosition(notificationList.Count);
 			n.SetInitialPosition (initialNotificationPosition.transform.position);
 			n.SetType (Notification.Type.AllyTerminal);
 			n.SetUi (this);
-			n.SetText (zoneDict[terminal.Value.zoneId].name);
-			n.SetName (terminal.Value.GetTerminalId () + "_ally");
-			n.SetTargetPosition (zoneDict[terminal.Value.zoneId]);
+			n.SetText (zoneDict[zone.zoneId].name);
+			n.SetName (zoneDict[zone.zoneId].name + "_ally");
+			n.SetTargetPosition (zoneDict[zone.zoneId]);
 			n.transform.SetParent (initialNotificationPosition.gameObject.transform);
 			notificationList.Add (new Tuple<string,Notification>(n.GetName(),n));
 		}
 
-		foreach(var terminal in newGame.GetNewEnemyTerminals(previousGame)) {
+		foreach(var zone in newGame.GetNewEnemyTerminals(previousGame)) {
 			Notification n = (Notification)Instantiate (NotificationPrefab);
 			n.SetPosition(notificationList.Count);
 			n.SetInitialPosition (initialNotificationPosition.transform.position);
 			n.SetType (Notification.Type.EnemyTerminal);
 			n.SetUi (this);
-			n.SetText (zoneDict[terminal.Value.zoneId].name);
-			n.SetName (terminal.Value.GetTerminalId()+"_enemy");
-			n.SetTargetPosition (zoneDict[terminal.Value.zoneId]);
+			n.SetText (zoneDict[zone.zoneId].name);
+			n.SetName (zoneDict[zone.zoneId].name+"_enemy");
+			n.SetTargetPosition (zoneDict[zone.zoneId]);
 			n.transform.SetParent (initialNotificationPosition.gameObject.transform);
 			notificationList.Add (new Tuple<string,Notification>(n.GetName(),n));
 		}
