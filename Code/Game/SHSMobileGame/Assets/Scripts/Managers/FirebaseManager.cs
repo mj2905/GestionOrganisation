@@ -14,6 +14,7 @@ public class FirebaseManager
 	public static Firebase.Database.DatabaseReference reference;
 	public static Firebase.Auth.FirebaseUser user;
 	public static int userTeam = -1;
+	public static string userPseudo;
 
 	private static GameManager gameManager;
 	private static Barrier barrier = new Barrier();
@@ -226,6 +227,8 @@ public class FirebaseManager
 						DataSnapshot snapshot = task2.Result;
 						if(snapshot != null){
 							FirebaseManager.userTeam = Int32.Parse(snapshot.Child("team").Value.ToString());
+							FirebaseManager.userPseudo = snapshot.Child("pseudo").Value.ToString();
+
 							SceneManager.LoadScene(2);
 						}
 						else {

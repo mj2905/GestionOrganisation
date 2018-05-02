@@ -12,6 +12,7 @@ public class LeaderBoardManager : MonoBehaviour {
 	public GameObject leaderBoardPanel;
 	public List<RectTransform> teamEntries;
 	public List<RectTransform> usersEntries;
+	public GameObject lastUser;
 
 	void Start(){
 		List<float> positionTeamLeaderboard = new List<float>();
@@ -35,14 +36,17 @@ public class LeaderBoardManager : MonoBehaviour {
 
 		menu.SetPositionAndPoints (pointsText, positionTeamLeaderboard,teamEntries);
 		menu.SetPositionAndBestUsers (usersText, positionUsers,usersEntries);
+		menu.SetLastUser (lastUser,new Tuple<Text,Text>(
+			lastUser.transform.Find ("Team").GetComponent<Text> (),
+			lastUser.transform.Find ("Points").GetComponent<Text> ()));
 	}
 
 
-	public void SetCurrentGame(Game currentGame){
+	public void SetCurrentGame(Game currentGame,string xp){
 		this.currentGame = currentGame;
 		button.SetScores (currentGame.GetScores ());
 		menu.SetScores (currentGame.GetScores ());
-		menu.SetBestUsers (currentGame.bestUsers);
+		menu.SetBestUsers (currentGame.bestUsers,xp);
 	}
 
 	public bool isActive(){

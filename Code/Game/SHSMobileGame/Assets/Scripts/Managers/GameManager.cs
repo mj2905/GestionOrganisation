@@ -21,6 +21,7 @@ public class GameManager : LocationListener {
 
 	private int team = -1;
 	private Effects currentEffects = new Effects();
+	private string currentXp;
 
 	private Game previousGame;
 	private Game currentGame;
@@ -68,7 +69,7 @@ public class GameManager : LocationListener {
 		DrawTerminals ();
 		DrawZones ();
 
-		leaderboardManager.SetCurrentGame (currentGame);			
+		leaderboardManager.SetCurrentGame (currentGame,currentXp);			
 		uiManager.SetCurrentTerminals (previousGame,currentGame,zoneDict);
 
 		uiManager.UpdateTokens (currentGame.GetToken (team));
@@ -160,6 +161,7 @@ public class GameManager : LocationListener {
 		interactionManager.updateUserInfo (credit, level);
 		uiManager.UpdateUserStat (xp, credit, team,level,effects,statistics,skins);
 		currentEffects = effects;
+		currentXp = xp;
 	}
 
 	public void AddTerminal(string zoneId,float x, float z){

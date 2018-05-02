@@ -17,12 +17,17 @@ public class LeaderboardMenu : MonoBehaviour {
 	private List<Tuple<Text,Text>> usersText = new List<Tuple<Text,Text>>();
 	private List<float> positionUsers = new List<float>();
 
+	private GameObject lastUser;
+	private Tuple<Text,Text> pointTextLastUser;
+
 	private List<int> scores = new List<int>(){0,0,0,0};
 	private List<User> bestUsers = new List<User> ();
 	private List<float> newPosition  = new List<float>();
 
 	private enum state{TEAM,USER}
 	private state currentState = state.USER;
+
+	private string currentXp;
 
 	// Use this for initialization
 	void Start () {
@@ -31,6 +36,11 @@ public class LeaderboardMenu : MonoBehaviour {
 			teamEntries[i].transform.Find ("Team").GetComponent<Text> ().text = ColorConstants.getTeamName (i+1);
 			teamEntries[i].transform.Find ("Points").GetComponent<Text> ().color = ColorConstants.getTextColor (i+1);
 		}
+	}
+
+	public void SetLastUser(GameObject lastUser, Tuple<Text,Text> pointTextLastUser){
+		this.lastUser = lastUser;
+		this.pointTextLastUser = pointTextLastUser;
 	}
 
 	public void SetPositionAndPoints(List<Text> pointsText,List<float> positionTeamLeaderboard,List<RectTransform> teamEntries){
@@ -51,8 +61,9 @@ public class LeaderboardMenu : MonoBehaviour {
 		UpdatePoints ();
 	}
 
-	public void SetBestUsers(List<User> bestUsers){
+	public void SetBestUsers(List<User> bestUsers,string xp){
 		this.bestUsers = bestUsers;
+		this.currentXp = xp;
 		UpdateBestUsers ();
 	}
 
@@ -68,11 +79,28 @@ public class LeaderboardMenu : MonoBehaviour {
 	}
 
 	private void UpdateBestUsers(){
-		for (int i = 0; i < usersText.Count; i++) {
-			usersText [i].Item1.text = bestUsers [i].pseudo;
+		bool isUserTopPlayer = false;
+
+		for (int i = 0; i < Mathf.Min(usersText.Count,bestUsers.Count); i++) {
+			if (bestUsers [i].GetId () == FirebaseManager.user.UserId) {
+				isUserTopPlayer = true;
+				usersText [i].Item1.text = bestUsers [i].pseudo + " (YOU)";
+			} else {
+				usersText [i].Item1.text = bestUsers [i].pseudo;
+			}
 			usersText [i].Item1.color = ColorConstants.getTextColor(bestUsers [i].team);
 			usersText [i].Item2.text = bestUsers [i].xp.ToString();
 			usersText [i].Item2.color = ColorConstants.getTextColor(bestUsers [i].team);
+		}
+
+		if (isUserTopPlayer) {
+			lastUser.SetActive (false);
+		} else {
+			lastUser.SetActive (true);
+			pointTextLastUser.Item1.text = FirebaseManager.userPseudo + " (YOU)";
+			pointTextLastUser.Item1.color = ColorConstants.getTextColor(FirebaseManager.userTeam);
+			pointTextLastUser.Item2.text = currentXp;
+			pointTextLastUser.Item2.color = ColorConstants.getTextColor(FirebaseManager.userTeam);
 		}
 	}
 
