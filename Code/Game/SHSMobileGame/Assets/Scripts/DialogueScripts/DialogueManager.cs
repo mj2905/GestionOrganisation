@@ -622,7 +622,7 @@ public class DialogueManager : MonoBehaviour {
 	}
 
 	void EndDialogue(){
-		SceneManager.LoadScene ("MainScene");
+		SceneManager.LoadScene ("InitialScene");
 	}
 
 

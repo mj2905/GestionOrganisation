@@ -9,10 +9,19 @@ public static class Persistency {
 	private static string fileNameUser = Path.Combine( Application.persistentDataPath, "1.shs" );
 	private static string fileNamePass = Path.Combine( Application.persistentDataPath, "2.shs" );
 	private static string fileNamePlayerSelection = Path.Combine( Application.persistentDataPath, "3.shs" );
+	private static string fileTutorialPassed = Path.Combine( Application.persistentDataPath, "tuto.shs" );
 
 	public static void Write(string username, string password) {
 		Session session = new Session (username, password);
 		session.Write(fileNameUser, fileNamePass);
+	}
+
+	public static bool IsTutorialPassed() {
+		return File.Exists (fileTutorialPassed);
+	}
+
+	public static void TutorialPassed(){
+		File.WriteAllText (fileTutorialPassed, "1");
 	}
 
 	public static bool Exists() {
@@ -40,7 +49,7 @@ public static class Persistency {
 	public static int ReadPlayerSelection() {
 		return Int32.Parse(File.ReadAllText (fileNamePlayerSelection));
 	}
-
+		
 
 	public class Session {
 		public string username { get; set; }

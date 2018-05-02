@@ -37,6 +37,12 @@ public class InitialScene : MonoBehaviour
 
 	void Awake ()
 	{
+		if (!Persistency.IsTutorialPassed ()) {
+			Persistency.TutorialPassed ();
+			SceneManager.LoadScene("TutorialScene");
+		}
+
+
 		showElements (true);
 		SwitchSignInButtonActivation ();
 
