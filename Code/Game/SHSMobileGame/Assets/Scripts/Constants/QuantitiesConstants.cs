@@ -3,12 +3,12 @@ using System;
 
 public static class QuantitiesConstants
 {
-	public const int TERMINAL_MAX_HEALTH = 100;
+	//public const int TERMINAL_MAX_HEALTH = 100;
 	public const int TERMINAL_MIN_HEALTH = 0;
 
 	public const int ZONE_MIN_HEALTH = 0;
 
-	public const int TERMINAL_IMPROVE_COST = -100;
+	//public const int TERMINAL_IMPROVE_COST = -100;
 
 	public const int TERMINAL_SMASH_AMOUNT = 20;
 	public const int TERMINAL_SMASH_COST = -TERMINAL_SMASH_AMOUNT;
