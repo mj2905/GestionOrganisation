@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 
 public static class QuantitiesConstants
 {
@@ -12,11 +13,9 @@ public static class QuantitiesConstants
 	public const int TERMINAL_SMASH_AMOUNT = 20;
 	public const int TERMINAL_SMASH_COST = -TERMINAL_SMASH_AMOUNT;
 
-	public static readonly int[] TERMINAL_SMASH_LEVEL_BONUS = new int[] {0, 5, 5, 10, 10, 20};
-	public static readonly int[] TERMINAL_BUFF_LEVEL_BONUS = new int[] {0, 0, 5, 5, 10, 10};
+	public static readonly int[] TERMINAL_SMASH_LEVEL_BONUS = new int[] {0, 5, 10, 15, 20, 25};
 	public static readonly int[] ZONE_HEAL_LEVEL_BONUS = new int[] {0, 10, 20, 30, 35, 40};
 
-	public const int TERMINAL_BUFF_AMOUNT = 15;
 	public const int ZONE_HEAL_AMOUNT = 30;
 	public const int ZONE_HEAL_COST = -15;
 	public const int MINIMUM_HEALTH_SWITCH_COLOR = 201;
@@ -24,34 +23,25 @@ public static class QuantitiesConstants
 	public static readonly int[] ZONE_MAX_HEALTH_VALUES = new int[] {1000, 1500, 2000, 3000, 5000, 10000};
 	public static readonly int[] ZONE_MAX_HEALTH_COST = new int[] {0, 3000, 4000, 6000, 10000, 20000};
 
-	private static readonly int[] TERMINAL_BUFF_COST = new int[] {100, 500, 2500, 5000, 7500, 10000};
+	private static readonly int[] TERMINAL_BUFF_COST = new int[] {0, 100, 150, 200, 250, 350};
+	private static readonly int[] TERMINAL_BUFF_VALUE = new int[] {30, 50, 65, 80, 95, 120};
 
 	public static int getTerminalBuffCost(int actualStrength) {
-		int k = -1;
-
-		if (actualStrength < 30) {
-			k = 0;
-		} else if (actualStrength < 50) {
-			k = 1;
-		} else if (actualStrength < 65) {
-			k = 2;
-		} else if (actualStrength < 80) {
-			k = 3;
-		} else if (actualStrength < 95) {
-			k = 4;
-		} else {
-			k = 5;
-		}
-
-		return TERMINAL_BUFF_COST [k];
+		int k = Array.IndexOf(TERMINAL_BUFF_VALUE, actualStrength);
+		return TERMINAL_BUFF_COST [k+1];
 	}
 
-	public static readonly int[] TERMINAL_MAX_HEALTH_VALUES = new int[] {100, 200, 500, 1000, 5000};
-	public static readonly int[] TERMINAL_MAX_HEALTH_COST = new int[] {0, 3000, 4000, 6000, 10000, 20000};
+	public static int getTerminalBuffNext(int actualStrength) {
+		int k = Array.IndexOf(TERMINAL_BUFF_VALUE, actualStrength);
+		return TERMINAL_BUFF_VALUE [k+1];
+	}
+
+	public static readonly int[] TERMINAL_MAX_HEALTH_VALUES = new int[] {100, 150, 200, 250, 350};
+	public static readonly int[] TERMINAL_MAX_HEALTH_COST = new int[] {0, 100, 150, 200, 250, 350};
 
 	public static readonly int[] PLAYER_XP_THRESHOLDS = new int[]{0,100,500,2000,7500,20000};
 
-	public const int STRENGTH_MAX = 140;
+	public static readonly int STRENGTH_MAX = TERMINAL_BUFF_VALUE[TERMINAL_BUFF_VALUE.Length - 2];
 	public static readonly int TERMINAL_LEVEL_MAX = TERMINAL_MAX_HEALTH_VALUES.Length - 1;
 	public static readonly int ZONE_LEVEL_MAX = ZONE_MAX_HEALTH_VALUES.Length - 1;
 	public const int TTL_ACHIEVEMENT = -100;

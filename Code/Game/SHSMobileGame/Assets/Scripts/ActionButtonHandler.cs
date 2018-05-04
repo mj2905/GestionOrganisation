@@ -51,13 +51,13 @@ public class ActionButtonHandler : LocationListener {
 		} else if(targeting == TARGET.TERMINAL) {
 			if (isSameTerminalTeam) {
 				if (terminalStrength >= QuantitiesConstants.STRENGTH_MAX) {
-					actionButtonText.text = "Buff ✓";
+					actionButtonText.text = "Attack ✓";
 					actionButton.interactable = false;
 				} else if (credits < QuantitiesConstants.getTerminalBuffCost (terminalStrength)) {
-					actionButtonText.text = "Buff " + (QuantitiesConstants.getTerminalBuffCost (terminalStrength)) + "$";
+					actionButtonText.text = "Attack+ " + (QuantitiesConstants.getTerminalBuffCost (terminalStrength)) + "$";
 					actionButton.interactable = false;
 				} else {
-					actionButtonText.text = "Buff " + (QuantitiesConstants.getTerminalBuffCost (terminalStrength)) + "$";
+					actionButtonText.text = "Attack+ " + (QuantitiesConstants.getTerminalBuffCost (terminalStrength)) + "$";
 					actionButton.interactable = true;
 				}
 				if (buffTimer != 0) {

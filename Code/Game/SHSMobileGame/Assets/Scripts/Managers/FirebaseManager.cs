@@ -409,7 +409,7 @@ public class FirebaseManager
 		};
 	}
 
-	private static Func<MutableData, TransactionResult> BuffTerminalTransaction(long amount, int userLevel) 
+	private static Func<MutableData, TransactionResult> BuffTerminalTransaction() 
 	{
 		return mutableData => {
 
@@ -417,12 +417,12 @@ public class FirebaseManager
 
 			if(strength_obtained != null) {
 
-				long realAmount = amount + QuantitiesConstants.TERMINAL_BUFF_LEVEL_BONUS[userLevel];
-				long strength_value = (long)strength_obtained;
+				int strength_value = (int)strength_obtained;
+				int realAmount = QuantitiesConstants.getTerminalBuffNext (strength_value);
 
 				if(strength_value < QuantitiesConstants.STRENGTH_MAX) {
 
-					mutableData.Value = Math.Min(QuantitiesConstants.STRENGTH_MAX, strength_value + realAmount);
+					mutableData.Value = Math.Min(QuantitiesConstants.STRENGTH_MAX, realAmount);
 					return TransactionResult.Success(mutableData);
 				}
 			}
@@ -601,11 +601,11 @@ public class FirebaseManager
 		});
 	}
 
-	public static void BuffTerminal(string terminalID, long amount, int terminalStrength, int userLevel, PopupScript messagePopup){
+	public static void BuffTerminal(string terminalID, int terminalStrength, PopupScript messagePopup){
 		reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.getTerminalBuffCost(terminalStrength))).ContinueWith (task => {
 
 			if (task.Exception == null) {
-				reference.Child("Game/Terminals/").Child(terminalID).Child("strength").RunTransaction(BuffTerminalTransaction(amount, userLevel)).ContinueWith(innerTask =>{
+				reference.Child("Game/Terminals/").Child(terminalID).Child("strength").RunTransaction(BuffTerminalTransaction()).ContinueWith(innerTask =>{
 					if (innerTask.Exception != null) {
 						reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.getTerminalBuffCost(terminalStrength)));
 						messagePopup.SetText("This terminal is already maximally buffed");

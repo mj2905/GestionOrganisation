@@ -46,16 +46,16 @@ public class ImproveButtonHandler : LocationListener {
 		} else if(targeting == TARGET.TERMINAL) {
 			if (sameTeam) {
 				if (terminalHealth <= QuantitiesConstants.TERMINAL_MIN_HEALTH) {
-					improveButtonText.text = "Improve ✝";
+					improveButtonText.text = "Dead ✝";
 					improveButton.interactable = false;
 				} else if (terminalLevel == QuantitiesConstants.TERMINAL_MAX_HEALTH_VALUES.Length - 1) {
-					improveButtonText.text = "Improve ✓";
+					improveButtonText.text = "Heal ✓";
 					improveButton.interactable = false;
 				} else if (credits < QuantitiesConstants.TERMINAL_MAX_HEALTH_COST[terminalLevel + 1]) {
-					improveButtonText.text = "Improve "+ QuantitiesConstants.TERMINAL_MAX_HEALTH_COST [terminalLevel + 1] +"₡";
+					improveButtonText.text = "Heal+ "+ QuantitiesConstants.TERMINAL_MAX_HEALTH_COST [terminalLevel + 1] +"$";
 					improveButton.interactable = false;
 				} else {
-					improveButtonText.text = "Improve "+ QuantitiesConstants.TERMINAL_MAX_HEALTH_COST [terminalLevel + 1] +"₡";
+					improveButtonText.text = "Heal+ "+ QuantitiesConstants.TERMINAL_MAX_HEALTH_COST [terminalLevel + 1] +"$";
 					improveButton.interactable = true;
 				}
 				if (terminalTimer != 0f) {

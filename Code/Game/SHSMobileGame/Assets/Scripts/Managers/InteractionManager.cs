@@ -225,7 +225,7 @@ public class InteractionManager : LocationListener {
 		if(targetedTerminal != null){
 			print ("Buffing terminal ");
 			actionButton.SetBuffTimer ();
-			FirebaseManager.BuffTerminal (targetedTerminal.GetTerminalId (), QuantitiesConstants.TERMINAL_BUFF_AMOUNT, targetedTerminal.strength, level, messagePopup);
+			FirebaseManager.BuffTerminal (targetedTerminal.GetTerminalId (), targetedTerminal.strength, messagePopup);
 		}
 	}
 
