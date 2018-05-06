@@ -3154,6 +3154,16 @@ Prefab:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114052391401795048, guid: 7c84544adab4a714ebd8edb5bd1b6327,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114180911980544140, guid: 7c84544adab4a714ebd8edb5bd1b6327,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c84544adab4a714ebd8edb5bd1b6327, type: 2}
   m_IsPrefabParent: 0
@@ -10993,7 +11003,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: b8ba7b5d9f702c046a5eb3ea8bc57c2e, type: 3}
     m_FontSize: 32
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
@@ -14190,6 +14200,11 @@ Prefab:
         type: 2}
       propertyPath: m_RaycastTarget
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114180911980544140, guid: 7c84544adab4a714ebd8edb5bd1b6327,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c84544adab4a714ebd8edb5bd1b6327, type: 2}

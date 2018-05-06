@@ -30,6 +30,7 @@ public class CameraController : LocationListener {
 	private Vector3 positionBeforeFocus;
 	private Quaternion rotationBeforeFocus;
 	private float zoomBeforeFocus;
+	private Zone focusedZone;
 	private GameObject focusedBuilding;
 	private Vector3 offset;
 	private bool onScreenBot = false;
@@ -251,6 +252,8 @@ public class CameraController : LocationListener {
 					if (!isAttackMode) {
 						//Notify the interaction manager that the user focused on a zone
 						Zone targetZone = hits [hitOne].transform.gameObject.GetComponent<Zone> ();
+						focusedZone = targetZone;
+						focusedZone.hideChart (true);
 						interactionManager.updateTargetedZone (targetZone);
 						gameManager.DrawTerminalsUI (targetZone.zoneId);
 					}
@@ -288,6 +291,10 @@ public class CameraController : LocationListener {
 	private void Dezoom(){
 		currentState = state.Unfocusing;
 		print ("CameraController: remove popups");
+		if (focusedZone != null) {
+			focusedZone.hideChart (false);
+			focusedZone = null;
+		}
 		interactionManager.updateTargetedZone (null);
 		interactionManager.updateTargetedTerminal (null);
 		gameManager.DrawTerminalsUI ("");
