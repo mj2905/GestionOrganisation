@@ -16,9 +16,6 @@ public class PopupScript : MonoBehaviour {
 
 	void Start () {
 		button = GetComponent<Image>();
-
-		print ("Starting popup script");
-		print ("Components in children: " + GetComponentsInChildren<Text> ().Length);
 		opacity = 0;
 		counter = 0;
 		state = States.IDLE;
@@ -34,7 +31,6 @@ public class PopupScript : MonoBehaviour {
 	void Update () {
 		switch (state) {
 		case States.Poping:
-			print ("poping");
 			if (opacity > 0.9) {
 				state = States.Displaying;
 				counter = 0;
