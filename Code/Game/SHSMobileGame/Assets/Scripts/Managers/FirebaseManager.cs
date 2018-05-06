@@ -17,11 +17,8 @@ public class FirebaseManager
 	public static string userPseudo;
 
 	private static GameManager gameManager;
-	private static Barrier barrier = new Barrier();
+	private static List<Barrier> glob_barrier = new List<Barrier>();
 
-	private static bool creditsScoreListener = false;
-	private static bool gameListener = false;
-	private static bool endListener = false;
 
 	public static void InitializeFirebase(object sender) {
 		Debug.Log("Setting up Firebase Auth");
@@ -29,7 +26,8 @@ public class FirebaseManager
 		reference = FirebaseDatabase.DefaultInstance.RootReference;
 		auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
 
-		Action<object, System.EventArgs> authStateChanged = AuthStateChanged(barrier);
+		glob_barrier.Add(new Barrier ());
+		Action<object, System.EventArgs> authStateChanged = AuthStateChanged(glob_barrier.Count - 1);
 
 		auth.StateChanged += (obj, args) => {
 			authStateChanged (obj, args);
@@ -38,10 +36,11 @@ public class FirebaseManager
 	}
 
 	// Track state changes of the auth object.
-	private static Action<object, System.EventArgs> AuthStateChanged (Barrier barrier)
+	private static Action<object, System.EventArgs> AuthStateChanged (int c)
 	{
 		return (object sender, System.EventArgs eventArgs) => {
-			if (!barrier.barrier ()) {
+			if (!glob_barrier[c].barrier ()) {
+				Debug.Log("auth state changed");
 				if (auth.CurrentUser != user) {
 					bool signedIn = user != auth.CurrentUser && auth.CurrentUser != null;
 					if (!signedIn && user != null) {
@@ -57,12 +56,11 @@ public class FirebaseManager
 	}
 
 	private static void delete() {
+		Debug.Log("Delete");
 
-		barrier.close ();
+		glob_barrier[glob_barrier.Count - 1].close ();
 
 		auth = null;
-
-		barrier = new Barrier ();
 	}
 
 	void OnDestroy() {
@@ -74,32 +72,31 @@ public class FirebaseManager
 	}
 		
 	public static void SetListenerCreditScore(){
-		reference.Child ("Users").Child (FirebaseManager.user.UserId).ValueChanged += 
-			((obj, args) => {
-				HandleUserChanged (barrier) (obj, args);
-			});
-
-		creditsScoreListener = true;
+		int c = glob_barrier.Count - 1;
+		reference.Child ("Users").Child (FirebaseManager.user.UserId).ValueChanged += ((obj, args) => {
+			HandleUserChanged (c) (obj, args);
+		});
 	}
 
 	public static void SetListenerGame(){
+		int c = glob_barrier.Count - 1;
 		reference.Child ("Game").ValueChanged += ((obj, args) => {
-			HandleGameChanged (barrier) (obj, args);
+			HandleGameChanged (c) (obj, args);
 		});
-		gameListener = true;
 	}
 
 	public static void SetListenerEnd() {
+		int c = glob_barrier.Count - 1;
 		reference.Child("End").ValueChanged += ((obj, args) => {
-			HandleEndChanged(barrier)(obj, args);
+			HandleEndChanged(c)(obj, args);
 		});
-		endListener = true;
 	}
 
-	private static Action<object, ValueChangedEventArgs> HandleUserChanged (Barrier barrier)
+	private static Action<object, ValueChangedEventArgs> HandleUserChanged (int c)
 	{
 		return (object sender, ValueChangedEventArgs args) => {
-			if (!barrier.barrier ()) {
+			if (!glob_barrier[c].barrier ()) {
+				Debug.Log("user changed");
 				if (args.DatabaseError != null) {
 					Debug.LogError (args.DatabaseError.Message);
 					return;
@@ -142,10 +139,11 @@ public class FirebaseManager
 	}
 
 
-	private static Action<object, ValueChangedEventArgs> HandleGameChanged (Barrier barrier)
+	private static Action<object, ValueChangedEventArgs> HandleGameChanged (int c)
 	{
 		return (object sender, ValueChangedEventArgs args) => {
-			if (!barrier.barrier ()) {
+			if (!glob_barrier[c].barrier ()) {
+				Debug.Log("game changed");
 				if (args.DatabaseError != null) {
 					Debug.LogError (args.DatabaseError.Message);
 					return;
@@ -164,10 +162,11 @@ public class FirebaseManager
 		};
 	}
 
-	private static Action<object, ValueChangedEventArgs> HandleEndChanged (Barrier barrier)
+	private static Action<object, ValueChangedEventArgs> HandleEndChanged (int c)
 	{
 		return (object sender, ValueChangedEventArgs args) => {
-			if (!barrier.barrier ()) {
+			if (!glob_barrier[c].barrier ()) {
+				Debug.Log("end changed");
 				if (args == null) {
 					return;
 				} else if (args.DatabaseError != null) {
@@ -777,23 +776,20 @@ public class FirebaseManager
 		};
 	}
 
-	public static void BeginListening() {
-		barrier.open ();
-	}
-
 	private class Barrier {
+		private static int id = 0;
 		private bool state;
 		public Barrier() {
+			id += 1;
 			state = false;
 		}
 		public bool barrier() {
+			Debug.Log (id + "AAAAAAAAAAAAAAAA" + state);
 			return state;
-		}
-		public void open() {
-			this.state = false;
 		}
 		public void close() {
 			this.state = true;
+			Debug.Log (id + "BBBBBBBBBBBBBBBBB");
 		}
 	}
 

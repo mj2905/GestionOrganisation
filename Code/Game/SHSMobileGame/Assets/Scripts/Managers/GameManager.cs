@@ -47,7 +47,6 @@ public class GameManager : LocationListener {
 		FirebaseManager.SetListenerEnd ();
 		FirebaseManager.SetListenerCreditScore ();
 		FirebaseManager.SetListenerGame ();
-		FirebaseManager.BeginListening ();
 
 		previousGame = new Game ();
 		currentGame = new Game ();
