@@ -27,10 +27,10 @@ public class LevelTabHandler : MonoBehaviour {
 	};
 
 	private string[] texts = new string[]{
-		"Nothing special, no bonus for you.", "Your incredible mental capacities allow your terminals to pew pew more, and to better heal your zones (+5 damages for all terminals, +10 HP per zone heal).",
-		"You are the elite of the elite. You can repair terminals and your zones faster (+5 damages for all terminals, +5 HP per terminal heal, +20 HP per zone heal).",
-		"Nobody understands what you are doing, great! Punch harder the zones with terminals, and better heal your zones (+10 damages for all terminals, +5 HP per terminal heal, +30 HP per zone heal).",
-		"Notice me, se-se-sempai. You can repair terminals faster and your zones (+10 damages for all terminals, +10 HP per terminal heal, +35 HP per zone heal)."
+		"Nothing special, no bonus for you, you have to work.", "Your incredible mental capacities allow your terminals to pew pew more, and your zones to heal faster (+5 damages for your terminals, +10 HP per zone heal).",
+		"You are the elite of the elite, and learnt how to master lasers to kill'n'heal (+10 damages for your terminals, +20 HP per zone heal).",
+		"Nobody understands what you are doing, great! Quantum lasers and subatomic nanorobots have no secrets for you (+15 damages for your terminals, +30 HP per zone heal).",
+		"Notice me, se-se-sempai. Your team can be proud of you (+20 damages for your terminals, +35 HP per zone heal)."
 	};
 
 	public int level = 0;
