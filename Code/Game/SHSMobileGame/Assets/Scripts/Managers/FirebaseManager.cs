@@ -766,13 +766,10 @@ public class FirebaseManager
 				}
 
 				if(medal != null && medalName != null){
-					System.Random rnd = new System.Random();
-					String randomName = rnd.Next(1, 100000).ToString();
-
 					if(((int)(number + 1) % EffectObtentionConstants.medalNumberObtention[name]) == 0){
-						if(mutableData.Child ("effects/" + medalName + randomName).Value == null){
-							mutableData.Child ("effects/" + medalName + randomName).Value = medal.ToMap();
-						}
+						//if(mutableData.Child ("effects/" + medalName).Value == null){
+							mutableData.Child ("effects/" + medalName).Value = medal.ToMap();
+						//}
 					}
 				}
 			}

@@ -9,6 +9,19 @@ public class LevelTabHandler : MonoBehaviour {
 	public Text jobText;
 	public Text bonusText;
 
+	public Text maxText;
+	public Text minText;
+	public Text currentText;
+	public Image fill;
+	public Image background;
+
+	private float width;
+
+	public void Start(){
+		width = background.rectTransform.rect.width;
+	}
+
+
 	private string[] jobs = new string[] {
 		"MANnish", "Almost student", "Lab slave", "PhDesperate", "Professor-sama"
 	};
@@ -21,16 +34,30 @@ public class LevelTabHandler : MonoBehaviour {
 	};
 
 	public int level = 0;
+	public int xp = 0;
 
-	public void setLevel(int level) {
+	public void setLevel(int level,int xp) {
 		this.level = level;
+		this.xp = xp;
 		if (this.level >= jobs.Length - 1) {
 			this.level = jobs.Length - 1;
 		}
 	}
 
 	void Update() {
+		if(level < QuantitiesConstants.PLAYER_XP_THRESHOLDS.Length - 1){
+			fill.fillAmount = (float)(xp - QuantitiesConstants.PLAYER_XP_THRESHOLDS[level]) / (float)(QuantitiesConstants.PLAYER_XP_THRESHOLDS[level+1] - QuantitiesConstants.PLAYER_XP_THRESHOLDS[level]);
+		} else {
+			fill.fillAmount = 1;
+			fill.color = ColorConstants.GRAY; 
+		}
+
 		jobText.text = jobs [level];
 		bonusText.text = texts [level];
+		minText.text = QuantitiesConstants.PLAYER_XP_THRESHOLDS [level].ToString();
+		maxText.text = QuantitiesConstants.PLAYER_XP_THRESHOLDS [level+1].ToString();
+		currentText.text = xp.ToString();
+
+		currentText.transform.localPosition = new Vector2(width * fill.fillAmount - width*0.5f,currentText.transform.localPosition.y);
 	}
 }

@@ -1,0 +1,10 @@
+gains:
+
+MULTIPLIERS
+- terminal placed
+- terminal damaged
+- terminal improved
+- zone heal
+- zone improved
+
+
