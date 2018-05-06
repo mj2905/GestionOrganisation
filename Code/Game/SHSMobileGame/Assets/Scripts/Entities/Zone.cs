@@ -15,10 +15,15 @@ public class Zone : MonoBehaviour {
 	public Damages damages;
 
 	private Image flag;
+	private Image donutBackground;
 	private Image dmgENAC;
 	private Image dmgSTI;
 	private Image dmgFSB;
 	private Image dmgICSV;
+
+	private float alphaVal;
+	private Color alphaReset;
+	private Color alphaComp;
 
 	private const bool ZONE_DEBUG = false;
 
@@ -42,12 +47,19 @@ public class Zone : MonoBehaviour {
 			damages = new Damages();
 		}
 
+		alphaVal = 1.0f;
+		alphaReset = new Color (1.0f, 1.0f, 1.0f, 0.0f);
+		alphaComp = new Color (0, 0, 0, 1);
+
 		levelText = statsChart.transform.Find ("Level").GetComponent<Text> ();
+
 		flag = statsChart.transform.Find ("Flag").GetComponent<Image> ();
-		dmgENAC = statsChart.transform.Find("Fills").transform.Find ("FillENAC").GetComponent<Image> ();
-		dmgSTI = statsChart.transform.Find("Fills").transform.Find ("FillSTI").GetComponent<Image> ();
-		dmgFSB = statsChart.transform.Find("Fills").transform.Find ("FillFSB").GetComponent<Image> ();
-		dmgICSV = statsChart.transform.Find("Fills").transform.Find ("FillICSV").GetComponent<Image> ();
+		Transform fillRoot = statsChart.transform.Find ("Fills");
+		donutBackground = fillRoot.GetComponent<Image>();
+		dmgENAC = fillRoot.transform.Find ("FillENAC").GetComponent<Image> ();
+		dmgSTI = fillRoot.transform.Find ("FillSTI").GetComponent<Image> ();
+		dmgFSB = fillRoot.transform.Find ("FillFSB").GetComponent<Image> ();
+		dmgICSV = fillRoot.transform.Find ("FillICSV").GetComponent<Image> ();
 
 		dmgENAC.color = ColorConstants.getTextColor ((int)ColorConstants.TEAMS.ENAC);
 		dmgSTI.color = ColorConstants.getTextColor ((int)ColorConstants.TEAMS.STI);
@@ -106,7 +118,7 @@ public class Zone : MonoBehaviour {
 
 		float hpProp = 1.0f - (float)(health) / (float) QuantitiesConstants.ZONE_MAX_HEALTH_VALUES[level];
 
-		flag.color = ColorConstants.getTextColor ((int)team);
+		flag.color = ColorConstants.getTextColor ((int)team) * alphaReset + alphaComp;
 
 		float totalDamages = 0;
 
@@ -175,6 +187,18 @@ public class Zone : MonoBehaviour {
 		this.level = other.level;
 		this.team = other.team;
 		this.damages = other.damages;
+	}
+
+	public void hideChart(bool hide){
+
+		alphaVal = hide ? 0.15f : 1.0f;
+		alphaComp = new Color (0, 0, 0, alphaVal);
+
+		donutBackground.color = (donutBackground.color * alphaReset) + alphaComp;
+		dmgENAC.color = (dmgENAC.color * alphaReset) + alphaComp;
+		dmgSTI.color = (dmgSTI.color * alphaReset) + alphaComp;
+		dmgFSB.color = (dmgFSB.color * alphaReset) + alphaComp;
+		dmgICSV.color = (dmgICSV.color * alphaReset) + alphaComp;
 	}
 }
 
