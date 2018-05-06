@@ -15,8 +15,6 @@ public class AchievementUnlocked : MonoBehaviour {
 	public Sprite[] sprites;
 
 	public void setAchievement(string text) {
-		gameObject.SetActive (true);
-
 		string outV;
 		achievement = "Achievement unlocked:\n" + (QuantitiesConstants.nameAchievementDisplay.TryGetValue(text, out outV) ? outV : "");
 		int spriteId = Array.FindIndex (sprites, x => x.name.Equals(text));

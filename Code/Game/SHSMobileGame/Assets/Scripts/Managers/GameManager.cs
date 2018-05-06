@@ -34,6 +34,7 @@ public class GameManager : LocationListener {
 	public GameObject waitingScreen;
 
 	public AchievementUnlocked achievement;
+	private Action achievementFunction = () => {};
 
 	void Awake(){
 		FirebaseManager.SetMainGameRef (this);
@@ -205,7 +206,18 @@ public class GameManager : LocationListener {
 		FirebaseManager.AddTerminalDamagedStat ();
 	}
 
+	void Update() {
+		achievementFunction ();
+	}
+
 	public void setAchievement(string text) {
-		achievement.setAchievement(text);
+
+		achievementFunction = () => {
+			achievement.gameObject.SetActive (true);
+			achievement.setAchievement (text);
+			achievementFunction = () => {
+			};
+		};
+
 	}
 }

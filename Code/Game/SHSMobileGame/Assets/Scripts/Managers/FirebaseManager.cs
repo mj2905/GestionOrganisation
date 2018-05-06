@@ -417,7 +417,7 @@ public class FirebaseManager
 
 			if(strength_obtained != null) {
 
-				int strength_value = (int)strength_obtained;
+				int strength_value = (int)((long)strength_obtained);
 				int realAmount = QuantitiesConstants.getTerminalBuffNext (strength_value);
 
 				if(strength_value < QuantitiesConstants.STRENGTH_MAX) {
@@ -605,6 +605,7 @@ public class FirebaseManager
 		reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.getTerminalBuffCost(terminalStrength))).ContinueWith (task => {
 
 			if (task.Exception == null) {
+
 				reference.Child("Game/Terminals/").Child(terminalID).Child("strength").RunTransaction(BuffTerminalTransaction()).ContinueWith(innerTask =>{
 					if (innerTask.Exception != null) {
 						reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.getTerminalBuffCost(terminalStrength)));
