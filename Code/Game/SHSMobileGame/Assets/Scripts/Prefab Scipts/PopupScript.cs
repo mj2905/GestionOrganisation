@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 
 public class PopupScript : MonoBehaviour {
+	public Text text;
 	private Image button;
-	private Text text;
 	private float opacity;
 	private float counter;
 	private float displayingTime = 3f;
@@ -16,8 +16,9 @@ public class PopupScript : MonoBehaviour {
 
 	void Start () {
 		button = GetComponent<Image>();
-		text = GetComponentsInChildren<Text>()[0];
 
+		print ("Starting popup script");
+		print ("Components in children: " + GetComponentsInChildren<Text> ().Length);
 		opacity = 0;
 		counter = 0;
 		state = States.IDLE;
@@ -27,11 +28,13 @@ public class PopupScript : MonoBehaviour {
 	public void SetText(string textPopUp){
 		text.text = textPopUp;
 		state = States.Poping;
+		gameObject.SetActive (true);
 	}
 		
 	void Update () {
 		switch (state) {
 		case States.Poping:
+			print ("poping");
 			if (opacity > 0.9) {
 				state = States.Displaying;
 				counter = 0;
@@ -52,6 +55,7 @@ public class PopupScript : MonoBehaviour {
 			}
 			break;
 		case States.IDLE:
+			gameObject.SetActive (false);
 			break;
 		default:
 			break;

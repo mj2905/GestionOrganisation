@@ -2247,7 +2247,7 @@ Prefab:
     - target: {fileID: 224326309959845752, guid: 4f9cae51245b1494ab5ca6849ae4478e,
         type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224326309959845752, guid: 4f9cae51245b1494ab5ca6849ae4478e,
         type: 2}
@@ -21024,22 +21024,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1420028622}
---- !u!1 &1424993194 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1241723991369120, guid: 4f9cae51245b1494ab5ca6849ae4478e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1569579349}
---- !u!225 &1424993195
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1424993194}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
-  m_IgnoreParentGroups: 0
 --- !u!1 &1428696543
 GameObject:
   m_ObjectHideFlags: 0
@@ -23011,39 +22995,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 224326309959845752, guid: 4f9cae51245b1494ab5ca6849ae4478e,
-        type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.96000004
-      objectReference: {fileID: 0}
-    - target: {fileID: 224326309959845752, guid: 4f9cae51245b1494ab5ca6849ae4478e,
-        type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.96000004
-      objectReference: {fileID: 0}
-    - target: {fileID: 224326309959845752, guid: 4f9cae51245b1494ab5ca6849ae4478e,
-        type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.96000004
-      objectReference: {fileID: 0}
-    - target: {fileID: 1241723991369120, guid: 4f9cae51245b1494ab5ca6849ae4478e, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1449386506502064, guid: 4f9cae51245b1494ab5ca6849ae4478e, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1241723991369120, guid: 4f9cae51245b1494ab5ca6849ae4478e, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114712691132104690, guid: 4f9cae51245b1494ab5ca6849ae4478e,
-        type: 2}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: b8ba7b5d9f702c046a5eb3ea8bc57c2e,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4f9cae51245b1494ab5ca6849ae4478e, type: 2}
   m_IsPrefabParent: 0
