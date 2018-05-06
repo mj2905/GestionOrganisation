@@ -81,9 +81,10 @@ public class UiManager : LocationListener
 			scoreBar.fillAmount = 1;
 			scoreBar.color = ColorConstants.GRAY; 
 		}
+
 		creditText.text = credit;
 		levelText.text = level;
-		lth.setLevel (lvlAsInt);
+		lth.setLevel (lvlAsInt,xpAsInt);
 		multiplierText.text = "x" + effects.GetTotalMultiplier();
 
 		if (creditDiff < 0) {
