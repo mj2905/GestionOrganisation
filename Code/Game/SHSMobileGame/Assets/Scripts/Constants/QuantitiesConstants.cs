@@ -20,7 +20,7 @@ public static class QuantitiesConstants
 	public const int ZONE_HEAL_COST = -15;
 	public const int MINIMUM_HEALTH_SWITCH_COLOR = 201;
 
-	public static readonly int[] ZONE_MAX_HEALTH_VALUES = new int[] {1000, 1500, 2000, 3000, 5000, 10000};
+	public static readonly int[] ZONE_MAX_HEALTH_VALUES = new int[] {1000, 1500, 2000, 3000, 5000, 6500};
 	public static readonly int[] ZONE_MAX_HEALTH_COST = new int[] {0, 3000, 4000, 6000, 10000, 20000};
 
 	private static readonly int[] TERMINAL_BUFF_COST = new int[] {0, 100, 150, 200, 250, 350};
