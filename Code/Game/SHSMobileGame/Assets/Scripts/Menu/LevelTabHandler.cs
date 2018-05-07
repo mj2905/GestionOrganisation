@@ -23,14 +23,15 @@ public class LevelTabHandler : MonoBehaviour {
 
 
 	private string[] jobs = new string[] {
-		"MANnish", "Almost student", "Lab slave", "PhDesperate", "Professor-sama"
+		"MANnish", "Almost student", "Lab slave", "PhDesperate", "Professor-sama", "V for Vett.. Vendetta"
 	};
 
 	private string[] texts = new string[]{
 		"Nothing special, no bonus for you, you have to work.", "Your incredible mental capacities allow your terminals to pew pew more, and your zones to heal faster (+5 damages for your terminals, +10 HP per zone heal).",
 		"You are the elite of the elite, and learnt how to master lasers to kill'n'heal (+10 damages for your terminals, +20 HP per zone heal).",
 		"Nobody understands what you are doing, great! Quantum lasers and subatomic nanorobots have no secrets for you (+15 damages for your terminals, +30 HP per zone heal).",
-		"Notice me, se-se-sempai. Your team can be proud of you (+20 damages for your terminals, +35 HP per zone heal)."
+		"Notice me, se-se-sempai. Your team can be proud of you (+20 damages for your terminals, +35 HP per zone heal).",
+		"What a honor to meet you. Please, don't break the game too much with your incredible stats (+25 damages for your terminals, +40 HP per zone heal)."
 	};
 
 	public int level = 0;

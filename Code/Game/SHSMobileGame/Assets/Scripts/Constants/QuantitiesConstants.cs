@@ -64,7 +64,8 @@ public static class QuantitiesConstants
 		{ "allSkinAchievement", "Skin Changer"},
 		{ "top5PlayerAchievement", "Not bad"},
 		{ "bestPlayerAchievement","You're the best"},
-		{ "allAchievement","GG WP"}
+		{ "allAchievement","GG WP"},
+		{ "1SkinAchievement", "Magnifaik"}
 	};
 }
 
