@@ -76,11 +76,11 @@ public class ImproveButtonHandler : LocationListener {
 					improveButton.interactable = false;
 				} else if (zoneLevel < QuantitiesConstants.ZONE_MAX_HEALTH_VALUES.Length - 1) {
 					if(credits >= QuantitiesConstants.ZONE_MAX_HEALTH_COST [zoneLevel + 1]) {
-						improveButtonText.text = "Improve "+ QuantitiesConstants.ZONE_MAX_HEALTH_COST [zoneLevel + 1] +"₡";
+						improveButtonText.text = "Improve "+ QuantitiesConstants.ZONE_MAX_HEALTH_COST [zoneLevel + 1] +"$";
 						improveButton.interactable = true;
 					}
 					else {
-						improveButtonText.text = "Improve "+ QuantitiesConstants.ZONE_MAX_HEALTH_COST [zoneLevel + 1] +"₡";
+						improveButtonText.text = "Improve "+ QuantitiesConstants.ZONE_MAX_HEALTH_COST [zoneLevel + 1] +"$";
 						improveButton.interactable = false;
 					}
 				} else {
