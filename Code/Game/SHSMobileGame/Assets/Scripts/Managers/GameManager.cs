@@ -177,7 +177,7 @@ public class GameManager : LocationListener {
 			}
 		}
 
-		Terminal terminal = new Terminal (FirebaseManager.userTeam.ToString() + "-"+(maxIndex+1).ToString(),zoneId,0,30,100,FirebaseManager.userTeam,x,z);
+		Terminal terminal = new Terminal (FirebaseManager.userTeam.ToString() + "-"+(maxIndex+1).ToString(),zoneId,0,QuantitiesConstants.TERMINAL_BUFF_VALUE[0],QuantitiesConstants.TERMINAL_MAX_HEALTH_VALUES[0],FirebaseManager.userTeam,x,z);
 		//uiManager.SetPopUpText (zoneId);
 		FirebaseManager.AddTerminal (terminal, messagePopup);
 	}

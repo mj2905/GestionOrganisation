@@ -21,10 +21,10 @@ public static class QuantitiesConstants
 	public const int MINIMUM_HEALTH_SWITCH_COLOR = 201;
 
 	public static readonly int[] ZONE_MAX_HEALTH_VALUES = new int[] {1000, 1500, 2000, 3000, 5000, 6500};
-	public static readonly int[] ZONE_MAX_HEALTH_COST = new int[] {0, 3000, 4000, 6000, 10000, 20000};
+	public static readonly int[] ZONE_MAX_HEALTH_COST = new int[] {0, 1000, 2000, 3000, 5000, 10000};
 
 	private static readonly int[] TERMINAL_BUFF_COST = new int[] {0, 100, 150, 200, 250, 350};
-	private static readonly int[] TERMINAL_BUFF_VALUE = new int[] {30, 50, 65, 80, 95, 120};
+	public static readonly int[] TERMINAL_BUFF_VALUE = new int[] {30, 50, 65, 80, 95, 120};
 
 	public static int getTerminalBuffCost(int actualStrength) {
 		int k = Array.IndexOf(TERMINAL_BUFF_VALUE, actualStrength);
@@ -36,7 +36,7 @@ public static class QuantitiesConstants
 		return TERMINAL_BUFF_VALUE [k+1];
 	}
 
-	public static readonly int[] TERMINAL_MAX_HEALTH_VALUES = new int[] {100, 150, 200, 250, 350};
+	public static readonly int[] TERMINAL_MAX_HEALTH_VALUES = new int[] {200, 300, 400, 500, 700};
 	public static readonly int[] TERMINAL_MAX_HEALTH_COST = new int[] {0, 100, 150, 200, 250, 350};
 
 	public static readonly int[] PLAYER_XP_THRESHOLDS = new int[]{0,100,500,2000,7500,20000};
