@@ -1043,7 +1043,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: ba0f778a166e7544887ff7c165f96ae9, type: 3}
       propertyPath: m_TagString
-      value: Zone
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: ba0f778a166e7544887ff7c165f96ae9, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -28362,7 +28362,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 174, y: -8.299988}
+  m_AnchoredPosition: {x: 174, y: -8.300049}
   m_SizeDelta: {x: 48.35, y: 74.517}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1959234026
