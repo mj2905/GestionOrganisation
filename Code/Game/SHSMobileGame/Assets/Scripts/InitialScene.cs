@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class InitialScene : MonoBehaviour
 {
@@ -16,8 +17,10 @@ public class InitialScene : MonoBehaviour
 	public Text noAccountText;
 	public Button signIn;
 
-	string eMailText = "";
-	string passwordText = "";
+	private string eMailText = "";
+	private string passwordText = "";
+
+	private readonly bool countdownEnabled = false;
 
 	private void SwitchSignInButtonActivation() {
 		signIn.interactable = eMailText.Length > 0 && passwordText.Length > 0;
@@ -40,6 +43,10 @@ public class InitialScene : MonoBehaviour
 		if (!Persistency.IsTutorialPassed ()) {
 			Persistency.TutorialPassed ();
 			SceneManager.LoadScene("TutorialScene");
+		}
+
+		if (countdownEnabled && (Countdown.start - DateTime.UtcNow).TotalSeconds >= 0) {
+			SceneManager.LoadScene("FinalCountdown");
 		}
 
 
