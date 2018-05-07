@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class CameraController : LocationListener {
-    
+
 	public GameObject player;
 	public GameObject fadingplayer;
 	public InteractionManager interactionManager;
@@ -23,8 +23,8 @@ public class CameraController : LocationListener {
 	private const float SPEED_SWITCH_MODE = 5f;
 	private const float MAX_DIST_DRAG = 4.0f;
 
-    private Vector3 dragOrigin;
-    private Vector3 previousSceneRootPos;
+	private Vector3 dragOrigin;
+	private Vector3 previousSceneRootPos;
 	private GameObject sceneRoot;
 	private Vector3 touchPosWorld;
 	private Vector3 positionBeforeFocus;
@@ -40,6 +40,7 @@ public class CameraController : LocationListener {
 	private Vector3 groundSize;
 	private Vector3 initialPosition;
 	private bool isAttackMode = false;
+	private bool adjustingFocusZoom = false;
 
 	private Vector3 startPosition;
 	private Vector3 currentPosition;
@@ -60,11 +61,13 @@ public class CameraController : LocationListener {
 
 	// Use this for initialization
 	void Start () {
-        dragOrigin = new Vector3(0.0f, 0.0f, 0.0f);
+		dragOrigin = new Vector3(0.0f, 0.0f, 0.0f);
 		this.sceneRoot = gameManager.sceneRoot;
 		this.positionBeforeFocus = transform.position;
 		this.rotationBeforeFocus = transform.rotation;
 		this.zoomBeforeFocus = camera.fieldOfView;
+
+		this.adjustingFocusZoom = false;
 
 		offset = new Vector3 (0, 65.9f, -8.1f);
 		groundSize = GameObject.Find ("SceneRoot/Ground").GetComponent<Renderer> ().bounds.size;
@@ -104,7 +107,7 @@ public class CameraController : LocationListener {
 		updateState ();
 		recenterOutboundCamera ();
 
-    }
+	}
 
 	private void updateState(){
 		switch (currentState) {
@@ -301,12 +304,17 @@ public class CameraController : LocationListener {
 	}
 
 	private void handleFocusedState(){
-		if (Input.touchCount > 0) {
+		if (Input.touchCount > 1) {
+			adjustingFocusZoom = true;
+		} else if (Input.touchCount == 1) {
 			Ray ray2 = Camera.main.ScreenPointToRay (touchDict[mainFingerId].position);
 			RaycastHit hit2;
 
 			if (!IsPointerOverUIObject () && touchDict[mainFingerId].phase == TouchPhase.Ended) {
-				if (Physics.Raycast (ray2, out hit2, 1000000)) {
+
+				if (adjustingFocusZoom) {
+					adjustingFocusZoom = false;
+				} else if (Physics.Raycast (ray2, out hit2, 1000000)) {
 					if (hit2.transform.gameObject.tag == "Zone" || hit2.transform.gameObject.tag == "Ground" || hit2.transform.gameObject.tag == "SafeZone") {
 						if (focusedBuilding != null) {
 							if (hit2.transform.gameObject.name != focusedBuilding.name) {
@@ -332,7 +340,7 @@ public class CameraController : LocationListener {
 			}
 		}
 	}
-		
+
 	private void recenterOutboundCamera(){
 		onScreenBot = GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes (camera),bottom.bounds);
 		onScreenTop = GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes (camera),top.bounds);
