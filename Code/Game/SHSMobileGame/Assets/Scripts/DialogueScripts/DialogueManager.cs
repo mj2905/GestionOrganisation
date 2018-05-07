@@ -18,8 +18,16 @@ public class DialogueManager : MonoBehaviour {
 	bool inside = true;
 
 	Button menuButton;
-	Button achievementButton;
-	Button leaderBoardButton;
+
+	Color defaultAchieve;
+	Color defaultleader;
+
+
+	Image dmgICSV;
+
+	bool captured  = false;
+
+
 	Color defaultColour;
 	Color highlightColor = Color.red;
 	//int n = 2;
@@ -52,6 +60,8 @@ public class DialogueManager : MonoBehaviour {
 
 	private UPDATEMODE updateMode = UPDATEMODE.DEFAULT;
 
+	Image flagMed;
+
 
 	Color switchButtonColor;
 	Button switchButton;
@@ -63,17 +73,29 @@ public class DialogueManager : MonoBehaviour {
 	float deltaX = 0.1f;
 
 
+	Image teamTextBackground;
+
 	GameObject continueButton;
 	GameObject continueButton2;
 
+	Button leaderBoardButton;
+	Button achievementButton;
+
+	Color defaultTeamTextBackground;
 
 	// Use this for initialization
 	void Start () {
+
+		teamTextBackground = GameObject.Find ("TeamTextBackground").GetComponent<Image> ();
+
+		defaultTeamTextBackground = teamTextBackground.color;
 
 		continueButton = GameObject.Find ("continue");
 		continueButton2 = GameObject.Find ("ClickAlsoWorking");
 		continueButton.SetActive (false);
 		continueButton2.SetActive (false);
+
+		flagMed = GameObject.FindGameObjectWithTag ("FlagMed").GetComponent<Image> ();
 
 		actionButton = GameObject.Find ("ActionButton").GetComponent<Button>();
 		improveButton = GameObject.Find ("ImproveButton").GetComponent<Button> ();
@@ -81,6 +103,13 @@ public class DialogueManager : MonoBehaviour {
 		switchButton = GameObject.Find ("ModeButton").GetComponent<Button>();
 		switchButtonColor = switchButton.GetComponent<Image> ().color;
 
+		leaderBoardButton = GameObject.Find ("LeaderboardButton").GetComponent<Button> ();
+		achievementButton = GameObject.Find ("AchievementButton").GetComponent<Button> ();
+
+		defaultAchieve = achievementButton.GetComponent<Image> ().color;
+		defaultleader =  leaderBoardButton.GetComponent<Image> ().color;
+
+		dmgICSV = GameObject.FindGameObjectWithTag ("fillMed").GetComponent<Image> ();;
 		defaultButtonColor = switchButtonColor;
 
 
@@ -92,8 +121,8 @@ public class DialogueManager : MonoBehaviour {
 		turretButton.SetActive (false);
 
 		menuButton = GameObject.Find ("MenuButton").GetComponent<Button> ();
-		achievementButton = GameObject.Find ("AchievementButton").GetComponent<Button> ();
-		leaderBoardButton = GameObject.Find ("LeaderboardButton").GetComponent<Button> ();
+		//achievementButton = GameObject.Find ("AchievementButton").GetComponent<Button> ();
+		//leaderBoardButton = GameObject.Find ("LeaderboardButton").GetComponent<Button> ();
 
 		safeZones = GameObject.FindGameObjectsWithTag ("SafeZone");
 
@@ -105,6 +134,8 @@ public class DialogueManager : MonoBehaviour {
 
 
 		player = GameObject.Find ("PlayerNotSafeZone");
+
+		player.SetActive (false);
 		mainCamera = GameObject.FindWithTag ("MainCamera");
 
 		list [0] = achievementButton;	
@@ -173,6 +204,11 @@ public class DialogueManager : MonoBehaviour {
 		actionButton.GetComponent<Image> ().color = switchButtonColor;
 		improveButton.GetComponent<Image> ().color = switchButtonColor;
 
+		leaderBoardButton.GetComponent<Image> ().color = defaultleader;
+		achievementButton.GetComponent<Image> ().color = defaultAchieve;
+
+		teamTextBackground.color = defaultTeamTextBackground;
+
 	}
 
 	public void DisplayNextSentence(){
@@ -180,10 +216,7 @@ public class DialogueManager : MonoBehaviour {
 		if (sentences.Count == 0) {
 			StopAllCoroutines ();
 			EndDialogue();
-
-
-
-
+	
 			return;
 		}
 
@@ -199,25 +232,29 @@ public class DialogueManager : MonoBehaviour {
 		StartCoroutine (TypeSentence (sentence));
 
 		switch (slide) {
-		case 4:
+		case 5:
+			
+
 			triggerZoomOutForSafeZones ();	
 			StartCoroutine (BlinkAllZones ());
 			break;
 
-		case 5:
+		case 6:
 			updateMode = UPDATEMODE.IN;
 			StartCoroutine (BlinkButton(switchButton));
 			break;
 
-		case 6: 
+		case 7: 
 			updateMode = UPDATEMODE.PLAYER_IN;
 			break;
 
-		case 7: 
+		case 8: 
 			updateMode = UPDATEMODE.MED;
+
+			StartCoroutine (BlinkBackground (teamTextBackground, defaultTeamTextBackground));
 			break;
 
-		case 8:
+		case 9:
 
 			turretButton.SetActive (true);
 
@@ -226,7 +263,7 @@ public class DialogueManager : MonoBehaviour {
 			StartCoroutine (BlinkButton (turret));
 			break;
 
-		case 9:
+		case 10:
 
 			turretButton.SetActive (false);
 
@@ -253,6 +290,9 @@ public class DialogueManager : MonoBehaviour {
 			Text improveButtonText = improveButton.transform.Find ("Text").GetComponent<Text> ();
 			improveButtonText.text = "Improve ✓";
 
+
+
+
 			StartCoroutine (BlinkButton (actionButton));
 			StartCoroutine (BlinkButton (improveButton));
 
@@ -261,7 +301,7 @@ public class DialogueManager : MonoBehaviour {
 			break;
 
 
-		case 10:
+		case 13:
 
 			actionButtonText = actionButton.transform.Find ("Text").GetComponent<Text> ();
 			actionButtonText.text = "Smash";
@@ -270,37 +310,43 @@ public class DialogueManager : MonoBehaviour {
 			improveButtonText.text = "No Action";
 
 			StartCoroutine (BlinkButton (actionButton));
+
 			break;
 
 
-		case 12:
+		case 11:
 
 			actionButtonText = actionButton.transform.Find ("Text").GetComponent<Text> ();
-			actionButtonText.text = "Heal";
+			actionButtonText.text = "Attack + 100$";
 
 			improveButtonText = improveButton.transform.Find ("Text").GetComponent<Text> ();
-			improveButtonText.text = "Improve";
+			improveButtonText.text = "Heal + 150$";
 
 			StartCoroutine (BlinkButton (actionButton));
 			StartCoroutine (BlinkButton (improveButton));
 
 			break;
 
-		case 14:
+		case 15:
+
+			StartCoroutine (BlinkButton_(leaderBoardButton,defaultleader));
+			StartCoroutine (BlinkButton_(achievementButton,defaultAchieve));
+
+			break;
+
+		case 17:
 			
 			continueButton2.SetActive (false);
 			Button button = continueButton.GetComponent<Button> ();
 
 			button.transform.Find ("Text").GetComponent<Text> ().text = "Start Game";
 
-
-
 			break;
 		}
 
-
-
 	}
+
+
 
 	private void triggerZoomOutForSafeZones(){
 		Debug.Log ("hello");
@@ -364,6 +410,36 @@ public class DialogueManager : MonoBehaviour {
 	}
 
 
+	public IEnumerator BlinkBackground(Image button,Color defaultButtonColor){
+		while (true) {
+
+			button.color = highlightColor;
+			yield return new WaitForSeconds (.5f);
+
+			button.color = defaultButtonColor;
+			yield return new WaitForSeconds (.5f);
+
+
+		}
+
+	}
+
+
+	public IEnumerator BlinkButton_(Button button,Color defaultButtonColor){
+		while (true) {
+
+			button.GetComponent<Image> ().color = highlightColor;
+			yield return new WaitForSeconds (.5f);
+
+			button.GetComponent<Image> ().color = defaultButtonColor;
+			yield return new WaitForSeconds (.5f);
+
+
+		}
+
+	}
+
+
 	void Update(){
 		//TODO 
 
@@ -372,7 +448,7 @@ public class DialogueManager : MonoBehaviour {
 		case UPDATEMODE.OUT:
 			float i = mainCamera.transform.position.y;
 
-			if (i < 250) {
+			if (i < 185) {
 
 				Vector3 newPos = mainCamera.transform.position;
 				i = i + 2;
@@ -423,6 +499,8 @@ public class DialogueManager : MonoBehaviour {
 
 				}
 
+				player.SetActive (true);
+
 			}
 
 			//}
@@ -443,7 +521,10 @@ public class DialogueManager : MonoBehaviour {
 				player.transform.position = n;
 
 			} else {
-				//player.GetComponent<Material> ().color = Color.green;
+				Renderer rend = player.GetComponent<Renderer> ();
+
+				rend.material.shader = Shader.Find("Standard");
+				rend.material.SetColor("_Color", Color.green);
 			}
 			break;
 
@@ -503,6 +584,17 @@ public class DialogueManager : MonoBehaviour {
 
 		case UPDATEMODE.TURRET:
 
+
+			if (dmgICSV.fillAmount < 1.0 && !captured) {
+				dmgICSV.fillAmount += 0.0001f;
+			} /*else {
+
+				captured = true;
+				flagMed.color = ColorConstants.getColor (4);
+				dmgICSV.fillAmount = 0.0f;
+			}
+			*/
+
 			x = mainCamera.transform.position.x;
 			y = mainCamera.transform.position.y;
 			float z_ = mainCamera.transform.position.z;
@@ -555,8 +647,6 @@ public class DialogueManager : MonoBehaviour {
 		}
 
 
-
-
 	}
 
 
@@ -581,31 +671,12 @@ public class DialogueManager : MonoBehaviour {
 		}
 	}
 
-	public IEnumerator BlinkButton(Button menuButton,Color prev){
-		//blink it forever. You can set a terminating condition depending upon your requirement
-
-		list [counterPrev].GetComponent<Image> ().color = prev;
-
-		counterPrev = counterCurrent;
-		counterCurrent++;
-
-		Color color = menuButton.GetComponent<Image> ().color;
-		defaultColour = color;
-
-		while(true){
-
-			menuButton.GetComponent<Image> ().color = defaultColour;
-			yield return new WaitForSeconds(.5f);
-
-			menuButton.GetComponent<Image> ().color = highlightColor;
-			yield return new WaitForSeconds(.5f);
-		}
-	}
 
 	IEnumerator TypeSentence(string sentence){
 
 		continueButton2.SetActive (false);
 		continueButton.SetActive (false);
+
 
 		dialogueText.text = "";
 		foreach (char letter in sentence.ToCharArray()) {
@@ -615,6 +686,8 @@ public class DialogueManager : MonoBehaviour {
 		}
 
 		slide++;
+
+	
 
 		continueButton.SetActive (true);
 		continueButton2.SetActive (true);
