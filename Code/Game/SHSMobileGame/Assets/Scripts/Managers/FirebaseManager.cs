@@ -56,7 +56,6 @@ public class FirebaseManager
 	}
 
 	private static void delete() {
-		Debug.Log("Delete");
 
 		glob_barrier[glob_barrier.Count - 1].close ();
 
@@ -96,7 +95,6 @@ public class FirebaseManager
 	{
 		return (object sender, ValueChangedEventArgs args) => {
 			if (!glob_barrier[c].barrier ()) {
-				Debug.Log("user changed");
 				if (args.DatabaseError != null) {
 					Debug.LogError (args.DatabaseError.Message);
 					return;
@@ -143,7 +141,6 @@ public class FirebaseManager
 	{
 		return (object sender, ValueChangedEventArgs args) => {
 			if (!glob_barrier[c].barrier ()) {
-				Debug.Log("game changed");
 				if (args.DatabaseError != null) {
 					Debug.LogError (args.DatabaseError.Message);
 					return;
@@ -166,7 +163,6 @@ public class FirebaseManager
 	{
 		return (object sender, ValueChangedEventArgs args) => {
 			if (!glob_barrier[c].barrier ()) {
-				Debug.Log("end changed");
 				if (args == null) {
 					return;
 				} else if (args.DatabaseError != null) {
@@ -784,12 +780,10 @@ public class FirebaseManager
 			state = false;
 		}
 		public bool barrier() {
-			Debug.Log (id + "AAAAAAAAAAAAAAAA" + state);
 			return state;
 		}
 		public void close() {
 			this.state = true;
-			Debug.Log (id + "BBBBBBBBBBBBBBBBB");
 		}
 	}
 
