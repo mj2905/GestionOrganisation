@@ -11,4 +11,9 @@ public class Logout : MonoBehaviour {
 		FirebaseManager.Logout ();
 		SceneManager.LoadScene(0);
 	}
+
+	public void PlayTutorial() {
+		FirebaseManager.Logout ();
+		SceneManager.LoadScene("TutorialScene");
+	}
 }

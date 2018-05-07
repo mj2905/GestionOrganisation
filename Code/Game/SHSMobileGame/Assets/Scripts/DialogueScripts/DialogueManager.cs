@@ -135,7 +135,7 @@ public class DialogueManager : MonoBehaviour {
 
 	public void skipButton(){
 
-		SceneManager.LoadScene("MainScene");
+		SceneManager.LoadScene("InitialScene");
 
 	}
 
