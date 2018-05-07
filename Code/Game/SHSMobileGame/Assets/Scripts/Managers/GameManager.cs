@@ -166,6 +166,7 @@ public class GameManager : LocationListener {
 
 	public void AddTerminal(string zoneId,float x, float z){
 
+		/*
 		List<string> names = currentGame.GetTerminalsName ();
 		int maxIndex = 0;
 		for (int i = 0; i < names.Count; i++) {
@@ -176,8 +177,11 @@ public class GameManager : LocationListener {
 				}
 			}
 		}
+		*/
 
-		Terminal terminal = new Terminal (FirebaseManager.userTeam.ToString() + "-"+(maxIndex+1).ToString(),zoneId,0,QuantitiesConstants.TERMINAL_BUFF_VALUE[0],QuantitiesConstants.TERMINAL_MAX_HEALTH_VALUES[0],FirebaseManager.userTeam,x,z);
+		Guid id = Guid.NewGuid();
+		Terminal terminal = new Terminal (id.ToString(),zoneId,0,QuantitiesConstants.TERMINAL_BUFF_VALUE[0],QuantitiesConstants.TERMINAL_MAX_HEALTH_VALUES[0],
+											FirebaseManager.userTeam,x,z);
 		//uiManager.SetPopUpText (zoneId);
 		FirebaseManager.AddTerminal (terminal, messagePopup);
 	}

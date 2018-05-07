@@ -48,17 +48,22 @@ public class LevelTabHandler : MonoBehaviour {
 	void Update() {
 		if(level < QuantitiesConstants.PLAYER_XP_THRESHOLDS.Length - 1){
 			fill.fillAmount = (float)(xp - QuantitiesConstants.PLAYER_XP_THRESHOLDS[level]) / (float)(QuantitiesConstants.PLAYER_XP_THRESHOLDS[level+1] - QuantitiesConstants.PLAYER_XP_THRESHOLDS[level]);
+			minText.text = QuantitiesConstants.PLAYER_XP_THRESHOLDS [level].ToString();
+			maxText.text = QuantitiesConstants.PLAYER_XP_THRESHOLDS [level+1].ToString();
+			currentText.text = xp.ToString();
+
+			currentText.transform.localPosition = new Vector2(width * fill.fillAmount - width*0.5f,currentText.transform.localPosition.y);
+		
 		} else {
 			fill.fillAmount = 1;
 			fill.color = ColorConstants.GRAY; 
+
+			minText.text = "";
+			maxText.text = "";
+			currentText.text = "";
 		}
 
 		jobText.text = jobs [level];
 		bonusText.text = texts [level];
-		minText.text = QuantitiesConstants.PLAYER_XP_THRESHOLDS [level].ToString();
-		maxText.text = QuantitiesConstants.PLAYER_XP_THRESHOLDS [level+1].ToString();
-		currentText.text = xp.ToString();
-
-		currentText.transform.localPosition = new Vector2(width * fill.fillAmount - width*0.5f,currentText.transform.localPosition.y);
 	}
 }
