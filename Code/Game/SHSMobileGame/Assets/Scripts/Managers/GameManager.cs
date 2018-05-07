@@ -42,7 +42,7 @@ public class GameManager : LocationListener {
 
 	// Use this for initialization
 	void Start () {
-        //waitingScreen.SetActive (true);		
+        waitingScreen.SetActive (true);		
 
 		FirebaseManager.SetListenerEnd ();
 		FirebaseManager.SetListenerCreditScore ();

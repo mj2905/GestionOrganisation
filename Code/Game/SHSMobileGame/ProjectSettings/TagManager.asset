@@ -11,6 +11,7 @@ TagManager:
   - StartButton
   - FlagMed
   - fillMed
+  - ShopButton
   layers:
   - Default
   - TransparentFX

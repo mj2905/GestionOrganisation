@@ -6895,7 +6895,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 476498472}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8dcf1030244f34948a3b38ce8bc554f9, type: 3}
   m_Name: 
@@ -18482,7 +18482,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1255977006}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a55d468bfb2446b28ec4e35ef95e0f8, type: 3}
   m_Name: 
@@ -21823,7 +21823,7 @@ GameObject:
   - component: {fileID: 1569418803}
   m_Layer: 5
   m_Name: Shop Button
-  m_TagString: Untagged
+  m_TagString: ShopButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25219,8 +25219,8 @@ MonoBehaviour:
     - 'This button will appear indicating that you can now place a turret. '
     - Once a turret is placed, the turret will begin attacking the opposing teams
       zone.
-    - Upon clicking on your teams turret, you can either heal or improve the attack
-      of the turret
+    - Upon clicking on your teams turret, you can either improve the attack of the
+      turret or heal it
     - On DEFENSE , you must protect your zone from the opposing teams attacks. Remember,
       you have to switch modes in order to defend.
     - Afterwards, you have to smash the opposing teams turret by first clicking on

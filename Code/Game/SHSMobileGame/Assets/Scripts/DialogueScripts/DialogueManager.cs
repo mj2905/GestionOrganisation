@@ -40,6 +40,8 @@ public class DialogueManager : MonoBehaviour {
 
 	GameObject[] safeZones;
 
+	Button shopButton;
+
 	int slide = 0;
 	int counterCurrent = 0;
 	int counterPrev;
@@ -83,9 +85,20 @@ public class DialogueManager : MonoBehaviour {
 
 	Color defaultTeamTextBackground;
 
+	Color highlightShop;
+
+	Color defaultShop;
+
 	// Use this for initialization
 	void Start () {
 
+		highlightShop = highlightColor;
+
+		defaultShop = highlightColor;
+		defaultShop.a = 0.0f;
+
+
+		shopButton = GameObject.FindGameObjectWithTag ("ShopButton").GetComponent<Button>();
 		teamTextBackground = GameObject.Find ("TeamTextBackground").GetComponent<Image> ();
 
 		defaultTeamTextBackground = teamTextBackground.color;
@@ -209,6 +222,13 @@ public class DialogueManager : MonoBehaviour {
 
 		teamTextBackground.color = defaultTeamTextBackground;
 
+		Color r = Color.red;
+		r.a = 0.0f;
+
+		shopButton.GetComponent<Image> ().color = r;
+
+
+		
 	}
 
 	public void DisplayNextSentence(){
@@ -284,32 +304,8 @@ public class DialogueManager : MonoBehaviour {
 
 
 			Text actionButtonText = actionButton.transform.Find ("Text").GetComponent<Text> ();
-			actionButtonText.text = "Buff ✓";
-
-
 			Text improveButtonText = improveButton.transform.Find ("Text").GetComponent<Text> ();
-			improveButtonText.text = "Improve ✓";
-
-
-
-
-			StartCoroutine (BlinkButton (actionButton));
-			StartCoroutine (BlinkButton (improveButton));
-
-			//actionButtonText.text = "Buff "+ (-QuantitiesConstants.TERMINAL_BUFF_COST) +"$";
-			//improveButtonText.text = "Improve "+ QuantitiesConstants.TERMINAL_MAX_HEALTH_COST [terminalLevel + 1] +"₡";
-			break;
-
-
-		case 13:
-
-			actionButtonText = actionButton.transform.Find ("Text").GetComponent<Text> ();
-			actionButtonText.text = "Smash";
-
-			improveButtonText = improveButton.transform.Find ("Text").GetComponent<Text> ();
-			improveButtonText.text = "No Action";
-
-			StartCoroutine (BlinkButton (actionButton));
+		
 
 			break;
 
@@ -327,10 +323,31 @@ public class DialogueManager : MonoBehaviour {
 
 			break;
 
+
+		case 13:
+
+			actionButtonText = actionButton.transform.Find ("Text").GetComponent<Text> ();
+			actionButtonText.text = "Smash";
+
+			improveButtonText = improveButton.transform.Find ("Text").GetComponent<Text> ();
+			improveButtonText.text = "No Action";
+
+			StartCoroutine (BlinkButton (actionButton));
+
+			break;
+
+
+
+
 		case 15:
 
 			StartCoroutine (BlinkButton_(leaderBoardButton,defaultleader));
 			StartCoroutine (BlinkButton_(achievementButton,defaultAchieve));
+
+			break;
+
+		case 16:
+			StartCoroutine (BlinkShop (shopButton));
 
 			break;
 
@@ -345,6 +362,29 @@ public class DialogueManager : MonoBehaviour {
 		}
 
 	}
+
+
+	public IEnumerator BlinkShop(Button button){
+		while (true) {
+
+	
+			button.GetComponent<Image> ().color = highlightShop;
+
+	
+			
+			yield return new WaitForSeconds (.5f);
+
+
+			button.GetComponent<Image> ().color = defaultShop;
+			yield return new WaitForSeconds (.5f);
+
+
+		}
+
+	}
+
+
+
 
 
 
