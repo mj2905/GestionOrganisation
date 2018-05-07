@@ -58,6 +58,10 @@ public class PlayerController : LocationListener
 			currentZone = other.gameObject;
 			print ("Entered: " + currentZone.name);
 
+			Color thisC = new Color (50/255.0f, 255/255.0f, 50/255.0f, 255/255.0f);
+			gameObject.GetComponent<MeshRenderer> ().material.SetColor("_Color", thisC);
+
+
 			Transform p = other.transform;
 
 			while (p != null && !p.name.EndsWith ("_building", System.StringComparison.CurrentCultureIgnoreCase)) {
@@ -80,6 +84,9 @@ public class PlayerController : LocationListener
 			print ("Safe zone exited: " + other.gameObject.name);
 		} else {
 			print ("Exited: " + other.gameObject.name);
+
+			Color thisC = new Color (255/255.0f, 173/255.0f, 51/255.0f, 255/255.0f);
+			gameObject.GetComponent<MeshRenderer> ().material.SetColor("_Color", thisC);
 
 			Transform p = other.transform;
 

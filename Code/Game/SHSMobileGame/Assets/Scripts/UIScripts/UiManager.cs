@@ -218,10 +218,21 @@ public class UiManager : LocationListener
 
 
 	public void SetCurrentTerminals(Game previousGame,Game newGame,Dictionary<string, Zone> zoneDict){
-		foreach (Terminal terminal in newGame.GetDeletedTerminals(previousGame)) {
+		foreach (Zone zone in newGame.GetDeletedAllyTerminals(previousGame)) {
 			string name = "";
 			foreach (var notification in notificationList) {
-				if (notification.Item1.Contains(terminal.GetTerminalId ())) {
+				if (notification.Item1.Contains(zone.zoneId)) {
+					name = notification.Item2.GetName ();
+					notification.Item2.DestroyNotification ();
+				}
+			}
+			removeNotification (name);
+		}
+
+		foreach (Zone zone in newGame.GetDeletedEnemyTerminals(previousGame)) {
+			string name = "";
+			foreach (var notification in notificationList) {
+				if (notification.Item1.Contains(zone.zoneId)) {
 					name = notification.Item2.GetName ();
 					notification.Item2.DestroyNotification ();
 				}
@@ -236,7 +247,7 @@ public class UiManager : LocationListener
 			n.SetType (Notification.Type.AllyTerminal);
 			n.SetUi (this);
 			n.SetText (zoneDict[zone.zoneId].name);
-			n.SetName (zoneDict[zone.zoneId].name + "_ally");
+			n.SetName (zone.zoneId + "_ally");
 			n.SetTargetPosition (zoneDict[zone.zoneId]);
 			n.transform.SetParent (initialNotificationPosition.gameObject.transform);
 			notificationList.Add (new Tuple<string,Notification>(n.GetName(),n));
@@ -249,7 +260,7 @@ public class UiManager : LocationListener
 			n.SetType (Notification.Type.EnemyTerminal);
 			n.SetUi (this);
 			n.SetText (zoneDict[zone.zoneId].name);
-			n.SetName (zoneDict[zone.zoneId].name+"_enemy");
+			n.SetName (zone.zoneId + "_enemy");
 			n.SetTargetPosition (zoneDict[zone.zoneId]);
 			n.transform.SetParent (initialNotificationPosition.gameObject.transform);
 			notificationList.Add (new Tuple<string,Notification>(n.GetName(),n));
