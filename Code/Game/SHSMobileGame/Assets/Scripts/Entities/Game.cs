@@ -120,55 +120,90 @@ public class Game
 	public IList<Zone> GetZones(){
 		return this.zones.AsReadOnly();
 	}
+		
+	public List<Zone> GetDifferenceEnnemyAttackingZone(Game pastGame){
+		List<Zone> res = new List<Zone> ();
+		HashSet<string> zoneIdsPast = new HashSet<string> ();
+		HashSet<string> zoneIdsNew = new HashSet<string> ();
 
-	public List<Zone> GetEnemyAttackingAllyZone(List<Terminal> terminals){
-		HashSet<Zone> res = new HashSet<Zone>();
-		foreach (Terminal terminal in terminals) {
+		foreach (var terminal in pastGame.terminals) {
 			if (terminal.team != FirebaseManager.userTeam) {
 				foreach (Zone zone in zones) {
 					if (zone.zoneId == terminal.zoneId && zone.team == FirebaseManager.userTeam) {
-						res.Add(zone);
+						zoneIdsPast.Add(zone.zoneId);
 					}
 				}
 			}
 		}
-		return res.ToList();
-	}
 
-	public List<Zone> GetAllyAttackingEnemyZone(List<Terminal> terminals){
-		HashSet<Zone> res = new HashSet<Zone>();
-		HashSet<string> zoneIds = new HashSet<string> ();
-
-		foreach (Terminal terminal in terminals) {
-			if (terminal.team == FirebaseManager.userTeam) {
-				zoneIds.Add (terminal.zoneId);
-			}
-		}
-		foreach (String id in zoneIds) {
-			foreach (Zone zone in zones) {
-				if (zone.zoneId == id) {
-					res.Add(zone);
+		foreach (var terminal in this.terminals) {
+			if (terminal.team != FirebaseManager.userTeam) {
+				foreach (Zone zone in zones) {
+					if (zone.zoneId == terminal.zoneId && zone.team == FirebaseManager.userTeam) {
+						zoneIdsNew.Add(zone.zoneId);
+					}
 				}
 			}
 		}
 
-		return res.ToList();
+		zoneIdsNew.ExceptWith (zoneIdsPast);
+
+		foreach (var id in zoneIdsNew) {
+			foreach (var zone in this.zones) {
+				if (zone.zoneId == id) {
+					res.Add (zone);
+				}
+			}
+		}
+
+		return res;
+	}
+		
+
+	public List<Zone> GetDifferenceAllyAttackingZone(Game pastGame){
+		List<Zone> res = new List<Zone> ();
+		HashSet<string> zoneIdsPast = new HashSet<string> ();
+		HashSet<string> zoneIdsNew = new HashSet<string> ();
+
+		foreach (var terminal in pastGame.terminals) {
+			if (terminal.team == FirebaseManager.userTeam) {
+				zoneIdsPast.Add (terminal.zoneId);
+			}
+		}
+
+		foreach (var terminal in this.terminals) {
+			if (terminal.team == FirebaseManager.userTeam) {
+				zoneIdsNew.Add (terminal.zoneId);
+			}
+		}
+
+		zoneIdsNew.ExceptWith (zoneIdsPast);
+
+		foreach (var id in zoneIdsNew) {
+			foreach (var zone in this.zones) {
+				if (zone.zoneId == id) {
+					res.Add (zone);
+				}
+			}
+		}
+
+		return res;
 	}
 
 	public List<Zone> GetNewAllyTerminals(Game pastGame){
-		return GetAllyAttackingEnemyZone (GetNewTerminals(pastGame));
+		return this.GetDifferenceAllyAttackingZone (pastGame);
 	}
 
 	public List<Zone> GetDeletedAllyTerminals(Game pastGame){
-		return GetAllyAttackingEnemyZone (GetDeletedTerminals(pastGame));
+		return pastGame.GetDifferenceAllyAttackingZone (this);
 	}
 
 	public List<Zone> GetNewEnemyTerminals(Game pastGame){
-		return GetEnemyAttackingAllyZone (GetNewTerminals(pastGame));
+		return this.GetDifferenceEnnemyAttackingZone (pastGame);
 	}
 
 	public List<Zone> GetDeletedEnemyTerminals(Game pastGame){
-		return GetEnemyAttackingAllyZone (GetDeletedTerminals(pastGame));
+		return pastGame.GetDifferenceEnnemyAttackingZone (this);
 	}
 
 	public List<int> GetScores(){
