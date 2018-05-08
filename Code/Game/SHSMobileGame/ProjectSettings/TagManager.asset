@@ -9,6 +9,9 @@ TagManager:
   - Ground
   - SafeZone
   - StartButton
+  - FlagMed
+  - fillMed
+  - ShopButton
   layers:
   - Default
   - TransparentFX
