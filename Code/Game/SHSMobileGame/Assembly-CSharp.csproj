@@ -163,6 +163,7 @@
      <Compile Include="Assets\Scripts\UIScripts\UiManager.cs" />
      <Compile Include="Assets\Scripts\WalkingPath.cs" />
      <Compile Include="Assets\Scripts\Wireframe.cs" />
+     <Compile Include="Assets\TerminalUI.cs" />
      <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
      <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
      <None Include="Assets\Plugins\Android\play-services-tasks-license-11.4.2\AndroidManifest.xml" />
