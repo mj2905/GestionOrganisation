@@ -313,10 +313,10 @@ public class DialogueManager : MonoBehaviour {
 		case 11:
 
 			actionButtonText = actionButton.transform.Find ("Text").GetComponent<Text> ();
-			actionButtonText.text = "Attack + 100$";
+			actionButtonText.text = "Attack+ 100$";
 
 			improveButtonText = improveButton.transform.Find ("Text").GetComponent<Text> ();
-			improveButtonText.text = "Heal + 150$";
+			improveButtonText.text = "Health+ 150$";
 
 			StartCoroutine (BlinkButton (actionButton));
 			StartCoroutine (BlinkButton (improveButton));
@@ -327,10 +327,10 @@ public class DialogueManager : MonoBehaviour {
 		case 13:
 
 			actionButtonText = actionButton.transform.Find ("Text").GetComponent<Text> ();
-			actionButtonText.text = "Smash";
+			actionButtonText.text = "Smash 20$";
 
 			improveButtonText = improveButton.transform.Find ("Text").GetComponent<Text> ();
-			improveButtonText.text = "No Action";
+			improveButtonText.text = "✕";
 
 			StartCoroutine (BlinkButton (actionButton));
 
