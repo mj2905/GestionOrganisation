@@ -1315,7 +1315,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -30}
-  m_SizeDelta: {x: 600, y: 100}
+  m_SizeDelta: {x: 700, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &110012284
 MonoBehaviour:
@@ -2756,8 +2756,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 60}
-  m_SizeDelta: {x: 750, y: 150}
+  m_AnchoredPosition: {x: 0, y: 70}
+  m_SizeDelta: {x: 750, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &193224680
 MonoBehaviour:
@@ -2792,7 +2792,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 0.7
   m_Text: "Thanks for playing,\nLeandro Kieliger, Marc Joll\xE8s, Quentin Bacuet,
-    S\xE9bastien Rosat, Francis Damachi, Benjamin Fuhrer, Morgan Binggeli"
+    S\xE9bastien Rosat, Francis Damachi, Benjamin Fuhrer, Morgan Binggeli\nLogo: https://gom-industries.blogspot.com/"
 --- !u!222 &193224681
 CanvasRenderer:
   m_ObjectHideFlags: 0
