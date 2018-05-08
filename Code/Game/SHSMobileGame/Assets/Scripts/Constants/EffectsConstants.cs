@@ -3,12 +3,12 @@
 
 public class EffectsConstants
 {
-	public static MedalInfo terminalPlacedMedal = new MedalInfo("terminalPlacedMedal",10,1);
-	public static MedalInfo terminalDamagedMedal = new MedalInfo("terminalDamagedMedal",2,3);	
-	public static MedalInfo terminalBuffedMedal = new MedalInfo("terminalBuffedMedal",4,2);	
-	public static MedalInfo terminalImprovedMedal = new MedalInfo("terminalImprovedMedal",4,2);	
-	public static MedalInfo zoneHealedMedal = new MedalInfo("zoneHealedMedal",2,3);
-	public static MedalInfo zoneImprovedMedal = new MedalInfo("zoneImprovedMedal",10,1);
+	public static MedalInfo terminalPlacedMedal = new MedalInfo("terminalPlacedMedal",10,60);
+	public static MedalInfo terminalDamagedMedal = new MedalInfo("terminalDamagedMedal",2,6);	
+	public static MedalInfo terminalBuffedMedal = new MedalInfo("terminalBuffedMedal",4,18);	
+	public static MedalInfo terminalImprovedMedal = new MedalInfo("terminalImprovedMedal",4,18);	
+	public static MedalInfo zoneHealedMedal = new MedalInfo("zoneHealedMedal",2,6);
+	public static MedalInfo zoneImprovedMedal = new MedalInfo("zoneImprovedMedal",10,60);
 
 
 	public static Achievement terminalPlacedAchievement = new Achievement("terminalPlacedAchievement",3);
@@ -17,6 +17,7 @@ public class EffectsConstants
 	public static Achievement terminalImprovedAchievement = new Achievement("terminalImprovedAchievement",3);	
 	public static Achievement zoneHealedAchievement = new Achievement("zoneHealedAchievement",3);
 	public static Achievement zoneImprovedAchievement = new Achievement("zoneImprovedAchievement",3);
+	public static Achievement oneSkinAchievement = new Achievement("1SkinAchievement",1);
 	public static Achievement fourSkinAchievement = new Achievement("4SkinAchievement",3);
 	public static Achievement allSkinAchievement = new Achievement("allSkinAchievement",3);	
 	public static Achievement top5PlayerAchievement = new Achievement("top5PlayerAchievement",3);
@@ -36,6 +37,7 @@ public class EffectsConstants
 	public static int terminalImprovedAchievementXp = 200;	
 	public static int zoneHealedAchievementXp = 200;
 	public static int zoneImprovedAchievementXp = 200;
+	public static int oneSkinAchievementXp = 100;
 	public static int fourSkinAchievementXp = 200;
 	public static int allSkinAchievementXp = 400;	
 	public static int top5PlayerAchievementXp = 200;
