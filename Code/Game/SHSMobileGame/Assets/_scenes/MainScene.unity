@@ -22101,7 +22101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listeners:
   - {fileID: 776412945}
-  speed: 4
+  speed: 2
 --- !u!4 &1562119453
 Transform:
   m_ObjectHideFlags: 0
@@ -29695,7 +29695,7 @@ MonoBehaviour:
   - {fileID: 1145270403}
   - {fileID: 1539511915}
   - {fileID: 1103135032}
-  speed: 4
+  speed: 2
 --- !u!4 &2037839008
 Transform:
   m_ObjectHideFlags: 0
