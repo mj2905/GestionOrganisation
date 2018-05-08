@@ -58,6 +58,7 @@ public class PlayerController : LocationListener
 			currentZone = other.gameObject;
 			print ("Entered: " + currentZone.name);
 
+
 			Color thisC = new Color (50/255.0f, 255/255.0f, 50/255.0f, 255/255.0f);
 			gameObject.GetComponent<MeshRenderer> ().material.SetColor("_Color", thisC);
 
