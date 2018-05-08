@@ -9,7 +9,6 @@ public class CameraController : LocationListener {
 	public GameObject fadingplayer;
 	public InteractionManager interactionManager;
 	public Camera camera;
-	public Camera secondCamera;
 	public GameManager gameManager;
 
 	public BoxCollider bottom;
@@ -213,7 +212,6 @@ public class CameraController : LocationListener {
 
 			// Clamp the field of view to make sure it's between 0 and 180.
 			camera.fieldOfView = Mathf.Clamp (camera.fieldOfView, 20.0f, 120.0f);
-			secondCamera.fieldOfView = camera.fieldOfView;
 		}
 	}
 
