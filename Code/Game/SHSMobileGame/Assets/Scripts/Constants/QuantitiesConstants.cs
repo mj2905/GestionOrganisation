@@ -39,7 +39,7 @@ public static class QuantitiesConstants
 	public static readonly int[] TERMINAL_MAX_HEALTH_VALUES = new int[] {200, 300, 400, 500, 700};
 	public static readonly int[] TERMINAL_MAX_HEALTH_COST = new int[] {0, 100, 150, 200, 250, 350};
 
-	public static readonly int[] PLAYER_XP_THRESHOLDS = new int[]{0,100,500,2000,7500,20000};
+	public static readonly int[] PLAYER_XP_THRESHOLDS = new int[]{0,200,500,1500,3000,4500};
 
 	public static readonly int STRENGTH_MAX = TERMINAL_BUFF_VALUE[TERMINAL_BUFF_VALUE.Length - 2];
 	public static readonly int TERMINAL_LEVEL_MAX = TERMINAL_MAX_HEALTH_VALUES.Length - 1;
