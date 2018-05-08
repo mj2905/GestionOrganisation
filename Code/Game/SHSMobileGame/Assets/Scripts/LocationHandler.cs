@@ -17,6 +17,8 @@ public class LocationHandler : LocationListener {
 	public Image GPSImage;
 	public Text GPSText;
 
+	private bool activate = false;
+
 	private MapCoordinate coords = MapCoordinate.ZERO();
 
 	private bool started = false;
@@ -133,6 +135,13 @@ public class LocationHandler : LocationListener {
 				print ("Not in safe zone");
 				PlayerPrefs.SetInt (USERPREF_ATTACK_KEY, DEFENSE);
 
+				if (activate && Time.time % 30 < 25) {
+					activate = false;
+					Input.location.Stop ();
+					Input.location.Start (1.0f, 0);
+				} else if (Time.time % 30 > 25) {
+					activate = true;
+				}
 				//Input.location.Stop ();
 				//Input.location.Start (1.0f, 1);
 
@@ -144,6 +153,13 @@ public class LocationHandler : LocationListener {
 				locationSmoother.CoordinateUpdate (coords);
 				PlayerPrefs.SetInt (USERPREF_ATTACK_KEY, ATTACK);
 
+				if (activate && Time.time % 30 < 25) {
+					activate = false;
+					Input.location.Stop ();
+					Input.location.Start (1.0f, 0);
+				} else if (Time.time % 30 > 25) {
+					activate = true;
+				}
 				//Input.location.Stop ();
 				//Input.location.Start (1.0f, 1);
 			}
