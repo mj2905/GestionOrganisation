@@ -14,18 +14,22 @@ public static class EffectObtentionConstants
 		};
 
 	public static Dictionary<string,int> achievementSkinsMaxValue = new Dictionary<string,int>{
+		{ "1SkinAchievement", 1},
 		{ "4SkinAchievement", 4},
 		{ "allSkinAchievement", 7}
 	};
 
 	public static Dictionary<string,int> medalNumberObtention = new Dictionary<string,int>{
-		{ "numberOfTerminalPlaced", 2},
-		{ "numberOfTerminalBuffed", 2},
+		{ "numberOfTerminalPlaced", 1},
+		{ "numberOfTerminalBuffed", 3},
 		{ "numberOfTerminalDamaged", 2},
 		{ "numberOfTerminalImproved", 2},
-		{ "numberOfZoneHealed", 2},
+		{ "numberOfZoneHealed", 3},
 		{ "numberOfZoneImproved", 2}
 	};
+
+	public static int numberOfAllAchivement = 11;
+		
 	}
 
 

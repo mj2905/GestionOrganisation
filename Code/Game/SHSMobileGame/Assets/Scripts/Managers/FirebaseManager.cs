@@ -354,7 +354,7 @@ public class FirebaseManager
 
 				object xp = mutableData.Child("xp").Value;
 				if(xp != null){
-					mutableData.Child("xp").Value = (long)xp + (long)EffectsConstants.allSkinAchievementXp;
+					mutableData.Child("xp").Value = (long)xp + (long)EffectsConstants.allAchievementXp;
 				}
 
 				gameManager.setAchievement("allAchievement");
@@ -541,12 +541,24 @@ public class FirebaseManager
 
 					if(playerSkins == null){
 						mutableData.Child("skins/boughtPlayers").Value = number.ToString();
+
+							if( mutableData.Child ("effects/1SkinAchievement").Value == null){
+								mutableData.Child ("effects/1SkinAchievement").Value = EffectsConstants.oneSkinAchievement.ToMap();
+
+								object xp = mutableData.Child("xp").Value;
+								if(xp != null){
+									mutableData.Child("xp").Value = (long)xp + (long)EffectsConstants.oneSkinAchievementXp;
+								}
+
+								gameManager.setAchievement("1SkinAchievement");
+							}
+
 					} else{
 						string playerString = mutableData.Child("skins/boughtPlayers").Value.ToString();
 						if(!playerString.Contains(number.ToString())){
 							playerString += number.ToString();
 							mutableData.Child("skins/boughtPlayers").Value = playerString;
-
+						
 							if(playerString.Length == 4){
 								if( mutableData.Child ("effects/4SkinAchievement").Value == null){
 									mutableData.Child ("effects/4SkinAchievement").Value = EffectsConstants.fourSkinAchievement.ToMap();

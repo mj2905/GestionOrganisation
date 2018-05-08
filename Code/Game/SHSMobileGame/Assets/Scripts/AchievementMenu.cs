@@ -65,7 +65,7 @@ public class AchievementMenu : MonoBehaviour {
 	}
 
 	private void UpdateAllAchivement(Effects effects){
-		allAchievement.text = effects.achievements.Count +"/10";
+		allAchievement.text = effects.achievements.Count +"/" + EffectObtentionConstants.numberOfAllAchivement;
 		foreach (var achievement in effects.achievements) {
 			if (achievement.GetName () == EffectsConstants.allAchievement.GetName()) {
 				allAchievement.text = "DONE!";

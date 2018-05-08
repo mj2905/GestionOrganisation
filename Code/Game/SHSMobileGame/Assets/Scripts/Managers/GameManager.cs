@@ -79,7 +79,7 @@ public class GameManager : LocationListener {
 	}
 
 	private void CheckIfGotAllAchievement(){
-		if (currentEffects.achievements.Count == 10 && !currentEffects.achievements.Contains (EffectsConstants.allAchievement)) {
+		if (currentEffects.achievements.Count == EffectObtentionConstants.numberOfAllAchivement && !currentEffects.achievements.Contains (EffectsConstants.allAchievement)) {
 			FirebaseManager.AddAllAchivement ();
 		}
 	}
