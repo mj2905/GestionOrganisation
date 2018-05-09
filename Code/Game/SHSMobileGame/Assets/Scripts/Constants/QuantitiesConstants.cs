@@ -24,7 +24,7 @@ public static class QuantitiesConstants
 	public static readonly int[] ZONE_MAX_HEALTH_COST = new int[] {0, 1000, 2000, 3000, 5000, 10000};
 
 	private static readonly int[] TERMINAL_BUFF_COST = new int[] {0, 100, 150, 200, 250, 350};
-	public static readonly int[] TERMINAL_BUFF_VALUE = new int[] {30, 50, 65, 80, 95, 120};
+	public static readonly int[] TERMINAL_BUFF_VALUE = new int[] {50, 80, 100, 120, 150, 180};
 
 	public static int getTerminalBuffCost(int actualStrength) {
 		int k = Array.IndexOf(TERMINAL_BUFF_VALUE, actualStrength);
@@ -61,7 +61,7 @@ public static class QuantitiesConstants
 		{ "terminalBuffedAchievement", "King of pew pew"},
 		{ "terminalPlacedAchievement", "U kno da wae"},
 		{ "4SkinAchievement", "Ready for Winter"},
-		{ "allSkinAchievement", "Skin Changer"},
+		{ "allSkinAchievement", "Skin Change"},
 		{ "top5PlayerAchievement", "Not bad"},
 		{ "bestPlayerAchievement","You're the best"},
 		{ "allAchievement","GG WP"},
