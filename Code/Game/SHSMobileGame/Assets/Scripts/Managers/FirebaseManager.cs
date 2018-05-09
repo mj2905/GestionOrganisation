@@ -35,6 +35,15 @@ public class FirebaseManager
 		authStateChanged(sender, null);
 	}
 
+	public static void GetServerTime() {
+		Dictionary<String, object> dic = (Dictionary<String, object>)Firebase.Database.ServerValue.Timestamp;
+		foreach(KeyValuePair<string, object> entry in dic)
+		{
+			Debug.Log(entry.Key + " " + entry.Value.ToString());
+		}
+		Debug.Log(dic.Count);
+	}
+
 	// Track state changes of the auth object.
 	private static Action<object, System.EventArgs> AuthStateChanged (int c)
 	{
@@ -256,8 +265,8 @@ public class FirebaseManager
 			Persistency.Write(eMailText, passwordText);
 
 			CreateNewUser(newUser.UserId,teamNumber, pseudoText);
+			newUser.SendEmailVerificationAsync();
 			SceneManager.LoadScene(0);
-			//sendVerificationMail (newUser);
 		});
 	}
 

@@ -35,10 +35,10 @@ public class SignUpScene : MonoBehaviour {
 			normalColors[i] = cb.normalColor;
 		}
 
-		GameObject clone = (GameObject)Instantiate(Resources.Load("Popup"));
-		popup = clone.GetComponent<PopupScript>();		
-		popup.transform.SetParent (this.transform.parent,false);
-		popup.transform.SetAsLastSibling ();
+		//GameObject clone = (GameObject)Instantiate(Resources.Load("Popup"));
+		//popup = clone.GetComponent<PopupScript>();		
+		//popup.transform.SetParent (this.transform.parent,false);
+		//popup.transform.SetAsLastSibling ();
 	}
 
 	public void UpdateMail ()
@@ -90,14 +90,16 @@ public class SignUpScene : MonoBehaviour {
 
 	public void SignUp()
 	{
-		if (eMailText == string.Empty) {
+		if (eMailText == null || eMailText == string.Empty) {
 			popup.SetText ("No e-mail entered.");
+		} else if (!eMailText.EndsWith("@epfl.ch") && !eMailText.EndsWith("@unil.ch")) {
+			popup.SetText ("E-mail not valid, please enter a valid student e-mail address.");
 		} else if (passwordText == string.Empty) {
 			popup.SetText ("No password entered.");
-		} else if (teamNumber == -1) {
-			popup.SetText ("No team selected.");
 		} else if (passwordText.Length < 6) {
 			popup.SetText ("The password must be at least of length 6.");
+		} else if (teamNumber == -1) {
+			popup.SetText ("No team selected.");
 		} else if (pseudoText == string.Empty) {
 			popup.SetText ("The pseudo must be non empty.");
 		}else {

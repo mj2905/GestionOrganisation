@@ -45,6 +45,9 @@ public class InitialScene : MonoBehaviour
 			SceneManager.LoadScene("TutorialScene");
 		}
 
+		FirebaseManager.InitializeFirebase (this);
+		FirebaseManager.GetServerTime ();
+
 		if (countdownEnabled && (Countdown.start - DateTime.UtcNow).TotalSeconds >= 0) {
 			SceneManager.LoadScene("FinalCountdown");
 		}
@@ -53,7 +56,6 @@ public class InitialScene : MonoBehaviour
 		showElements (true);
 		SwitchSignInButtonActivation ();
 
-		FirebaseManager.InitializeFirebase (this);
 		if (Persistency.Exists ()) {
 			showElements (false);
 
