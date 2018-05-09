@@ -49,61 +49,28 @@ public class PlayerController : LocationListener
 		transform.localPosition = initialPosition + GetPosition();
     }
 
-	void OnTriggerEnter(Collider other) 
+	void OnTriggerStay(Collider other) 
 	{
-		if (other.tag == "SafeZone") {
-			print ("Safe zone entered: " + other.gameObject.name);
-		}
-		else {
+		if (other.tag == "Zone") {
 			currentZone = other.gameObject;
-			print ("Entered: " + currentZone.name);
+			//print ("Entered: " + currentZone.name);
 
 			if (currentZone.GetComponent<Zone> () != null && currentZone.GetComponent<Zone> ().team != FirebaseManager.userTeam) {
 				Color thisC = new Color (50 / 255.0f, 255 / 255.0f, 50 / 255.0f, 255 / 255.0f);
 				gameObject.GetComponent<MeshRenderer> ().material.SetColor ("_Color", thisC);
 			}
-
-
-			Transform p = other.transform;
-
-			while (p != null && !p.name.EndsWith ("_building", System.StringComparison.CurrentCultureIgnoreCase)) {
-				p = p.parent;
-			}
-
-			if (p != null) {
-				Color color = p.GetComponent<MeshRenderer> ().material.color;
-				color.a = 0.2f;
-				p.GetComponent<MeshRenderer> ().material.color = color;
-			} else {
-				print ("No such parent");
-			}
+				
 		}
 	}
 
 	void OnTriggerExit(Collider other)
 	{
-		if (other.tag == "SafeZone") {
-			print ("Safe zone exited: " + other.gameObject.name);
-		} else {
+		if (other.tag == "Zone") {
 			print ("Exited: " + other.gameObject.name);
 
 			Color thisC = new Color (255/255.0f, 173/255.0f, 51/255.0f, 255/255.0f);
 			gameObject.GetComponent<MeshRenderer> ().material.SetColor("_Color", thisC);
 
-			Transform p = other.transform;
-
-			while (p != null && !p.name.EndsWith ("_building", System.StringComparison.CurrentCultureIgnoreCase)) {
-				p = p.parent;
-			}
-
-			if (p != null) {
-				Color color = p.GetComponent<MeshRenderer> ().material.color;
-				color.a = 1;
-				p.GetComponent<MeshRenderer> ().material.color = color;
-			} else {
-				print ("No such parent");
-			}
-			currentZone = null;
 		}
 	}
 

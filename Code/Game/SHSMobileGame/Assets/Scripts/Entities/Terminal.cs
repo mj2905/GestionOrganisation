@@ -38,12 +38,8 @@ public class Terminal : MonoBehaviour
 	}
 
 	public void Init(){
-		Debug.Log ("pepe");
 		healthBar = GameObject.Find (terminalId+"/TowerStatsCanvas/HealthBG/HealthBar").GetComponent<Image>();
-
-		print ("1");
 		powerBar = GameObject.Find (terminalId+"/TowerStatsCanvas/PowerBG/PowerBar").GetComponent<Image>();
-		print ("2");
 		levelText = GameObject.Find (terminalId+"/TowerStatsCanvas/LevelLabel").GetComponent<Text>();
 
 		print ("Level text: " + levelText.text);
@@ -78,7 +74,7 @@ public class Terminal : MonoBehaviour
 
 			Instantiate (
 				Resources.Load("Effects/Prefabs/"+color+"LaserEffect"),
-				gameObject.transform.position + new Vector3(0,0.5f,0),
+				gameObject.transform.position + new Vector3(0,1.5f,0),
 				Quaternion.LookRotation(targetPos - gameObject.transform.position),
 				gameObject.transform);
 		}

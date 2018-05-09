@@ -58,45 +58,13 @@ public class FadingPlayer : LocationListener
 	{
 		if (other.tag == "SafeZone") {
 			currentZone = other.gameObject;
-		} else {
-			print ("Enter: " + other.gameObject.name);
-
-			Transform p = other.transform;
-
-			while (p != null && !p.name.EndsWith ("_building", System.StringComparison.CurrentCultureIgnoreCase)) {
-				p = p.parent;
-			}
-
-			if (p != null) {
-				Color color = p.GetComponent<MeshRenderer> ().material.color;
-				color.a = 0.2f;
-				p.GetComponent<MeshRenderer> ().material.color = color;
-			} else {
-				print ("No such parent");
-			}
-		}
+		} 
 	}
 
 	void OnTriggerExit(Collider other)
 	{
 		if (other.tag == "SafeZone") {
 			currentZone = null;
-		} else {
-
-			print ("Exited: " + other.gameObject.name);
-			Transform p = other.transform;
-
-			while (p != null && !p.name.EndsWith ("_building", System.StringComparison.CurrentCultureIgnoreCase)) {
-				p = p.parent;
-			}
-
-			if (p != null) {
-				Color color = p.GetComponent<MeshRenderer> ().material.color;
-				color.a = 1;
-				p.GetComponent<MeshRenderer> ().material.color = color;
-			} else {
-				print ("No such parent");
-			}
 		}
 	}
 
