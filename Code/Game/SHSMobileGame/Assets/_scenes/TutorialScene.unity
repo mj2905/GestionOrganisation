@@ -2585,7 +2585,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 77.15
+      value: -8.880003
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2593,7 +2593,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -50
+      value: 12.050001
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4671,11 +4671,11 @@ Transform:
   m_PrefabInternal: {fileID: 817034566}
   m_GameObject: {fileID: 343755587}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 77.15, y: 8, z: -50}
+  m_LocalPosition: {x: -8.88, y: 8, z: 12.05}
   m_LocalScale: {x: 0.59999996, y: 0.59999996, z: 0.59999996}
   m_Children: []
   m_Father: {fileID: 1228100745}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &343755589
 MonoBehaviour:
@@ -11832,7 +11832,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 77.15
+      value: -8.88
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11840,7 +11840,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -50
+      value: 12.05
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_LocalRotation.x
@@ -17752,9 +17752,9 @@ Transform:
   - {fileID: 1031779297}
   - {fileID: 1675804249}
   - {fileID: 1488059603}
+  - {fileID: 1829922796}
   - {fileID: 343755588}
   - {fileID: 1390974007}
-  - {fileID: 1829922796}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -20086,11 +20086,11 @@ Transform:
   m_PrefabInternal: {fileID: 158403682}
   m_GameObject: {fileID: 1390974006}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 77.15, y: 8, z: -50}
+  m_LocalPosition: {x: -8.880003, y: 8, z: 12.050001}
   m_LocalScale: {x: 0.59999996, y: 0.59999996, z: 0.59999996}
   m_Children: []
   m_Father: {fileID: 1228100745}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1390974008
 MonoBehaviour:
@@ -26092,8 +26092,7 @@ MonoBehaviour:
   dialogue:
     name: 
     sentences:
-    - Welcome to Clash of faculties. In this game, you will team up with other students
-      of your faculty.
+    - Welcome to Clash of faculties.
     - In this game you will team up with other students of your faculty.
     - 'The goal is to capture buildings across the campus. Captured zones give points
       to your faculty every 10 seconds.
@@ -27426,7 +27425,7 @@ Transform:
   - {fileID: 670959533}
   - {fileID: 395536165}
   m_Father: {fileID: 1228100745}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1829922797
 MeshRenderer:
