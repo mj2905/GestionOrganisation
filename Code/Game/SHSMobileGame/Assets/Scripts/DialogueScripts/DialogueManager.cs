@@ -289,6 +289,11 @@ public class DialogueManager : MonoBehaviour {
 		//we go through the button sliders 
 		string sentence = sentences.Dequeue ();
 
+		while (slide == 2 || slide == 3) {
+			slide++;
+			sentence = sentences.Dequeue ();
+		}
+
 		StopAllCoroutines ();
 
 
@@ -599,19 +604,19 @@ public class DialogueManager : MonoBehaviour {
 			//player movement
 			i = -player.transform.position.x;
 
-			if (i > -25.85) {
 
+			if (i > -25.85) {
 				Vector3 newPos = player.transform.position;
 				i = i - 0.5f;
 
 				Vector3 n = new Vector3 (-i, newPos.y, newPos.z);
 				player.transform.position = n;
-
+				print (player.transform.position);
 			} else {
 				Renderer rend = player.GetComponent<Renderer> ();
 
 				rend.material.shader = Shader.Find("Standard");
-				rend.material.SetColor("_Color", Color.green);
+				rend.material.SetColor("_Color", new Color(255/255.0f,173/255.0f,51/255.0f));
 			}
 			break;
 
@@ -619,7 +624,7 @@ public class DialogueManager : MonoBehaviour {
 		case UPDATEMODE.MED:
 			x = -player.transform.position.x;
 
-			if (x < -4.4) {
+			if (x < 3) {
 
 				Vector3 newPos = player.transform.position;
 				x = x + 0.5f;
@@ -631,7 +636,7 @@ public class DialogueManager : MonoBehaviour {
 
 				float z = -player.transform.position.z;
 
-				if (z > 8.3) {
+				if (z > 8.48) {
 
 					Vector3 newPos = player.transform.position;
 					z = z - 0.6f;
@@ -645,6 +650,7 @@ public class DialogueManager : MonoBehaviour {
 					x = mainCamera.transform.position.x;
 					z = mainCamera.transform.position.z;
 
+					//-3f, 4.66f, -8.48f
 					//Inside a safe zone movement
 					if (x > 0.0f) {
 
@@ -663,6 +669,11 @@ public class DialogueManager : MonoBehaviour {
 
 						Vector3 n = new Vector3 (newPos.x, newPos.y, z);
 						mainCamera.transform.position = n;
+
+						Renderer rend = player.GetComponent<Renderer> ();
+
+						rend.material.shader = Shader.Find("Standard");
+						rend.material.SetColor("_Color", Color.green);
 					}
 				}
 			}
@@ -671,6 +682,7 @@ public class DialogueManager : MonoBehaviour {
 
 		case UPDATEMODE.TURRET:
 
+			player.SetActive (false);
 
 			if (dmgICSV.fillAmount < 1.0 && !captured) {
 				dmgICSV.fillAmount += 0.0001f;

@@ -4671,7 +4671,7 @@ Transform:
   m_PrefabInternal: {fileID: 817034566}
   m_GameObject: {fileID: 343755587}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.88, y: 8, z: 12.05}
+  m_LocalPosition: {x: 3, y: 8, z: 8.48}
   m_LocalScale: {x: 0.59999996, y: 0.59999996, z: 0.59999996}
   m_Children: []
   m_Father: {fileID: 1228100745}
@@ -11832,7 +11832,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.88
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11840,7 +11840,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.05
+      value: 8.48
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_LocalRotation.x
@@ -11860,7 +11860,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -20098,7 +20098,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1390974006}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d8527c9c17db4486a6e1e1178b8a3c4, type: 3}
   m_Name: 
@@ -23848,7 +23848,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 000000
+  m_Text: 1000
 --- !u!222 &1661139714
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -26092,19 +26092,20 @@ MonoBehaviour:
   dialogue:
     name: 
     sentences:
-    - Welcome to Clash of faculties.
-    - In this game you will team up with other students of your faculty.
-    - 'The goal is to capture buildings across the campus. Captured zones give points
-      to your faculty every 10 seconds.
+    - Welcome to Clash of faculties! In this game you will team up with other students
+      of your faculty to capture buildings in the campus.
+    - 'Your faculty will receive points every 10 seconds for each zone under its control.
+      There are two complementary modes in the game: Attack & Defense'
+    - '
 
 '
-    - 'There are two complementary ways to play : Attack and Defense.'
+    - 
     - To attack an ennemy zone, you first need to pass through a safe zone. They act
       as checkpoints.
-    - You must physically enter the safe zone with gps activated to trigger the attack
-      mode.
-    - Clicking on this button will activate your GPS and you will be able to see your
-      position on the map.
+    - You must physically enter a safe zone with your GPS activated to trigger the
+      attack mode.
+    - Clicking on this button will enable tracking and you will see your position
+      on the map. (Make sure GPS is enabled in your device's settings !)
     - Once you reached a safe zone, entering any building will let you deploy a turret.
     - You can only capture buildings which don't belong to your team. Here, the building
       belongs to the FSB team (yellow) and you are in the IC&SV team.
@@ -28804,7 +28805,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: x300%
+  m_Text: x3
 --- !u!222 &1915366155
 CanvasRenderer:
   m_ObjectHideFlags: 0
