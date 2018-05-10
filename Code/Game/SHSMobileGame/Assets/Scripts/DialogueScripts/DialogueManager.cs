@@ -27,6 +27,7 @@ public class DialogueManager : MonoBehaviour {
 
 	bool captured  = false;
 
+	Color colorGameObject = Color.white;
 
 	Color defaultColour;
 	Color highlightColor = Color.red;
@@ -41,6 +42,8 @@ public class DialogueManager : MonoBehaviour {
 	GameObject[] safeZones;
 
 	Button shopButton;
+
+	GameObject shop;
 
 	int slide = 0;
 	int counterCurrent = 0;
@@ -57,6 +60,9 @@ public class DialogueManager : MonoBehaviour {
 	GameObject player;
 	GameObject mainCamera;
 	GameObject turretButton;
+
+	GameObject [] teams = new GameObject[4];
+
 
 	public enum UPDATEMODE {ROLEX, PLAYER_IN, OUT, IN_SAFEMODE, IN, FLAG, DEFAULT, MED, TURRET};
 
@@ -83,6 +89,8 @@ public class DialogueManager : MonoBehaviour {
 	Button leaderBoardButton;
 	Button achievementButton;
 
+
+
 	Color defaultTeamTextBackground;
 
 	Color highlightShop;
@@ -92,13 +100,24 @@ public class DialogueManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+
+
+
+
+		for (int i = 0; i < teams.Length; i++) {
+
+			teams [i] = GameObject.Find ("Team" + (i + 1));
+
+		}
+
+
+		shopButton = GameObject.Find("SHOP").GetComponent<Button> ();
+
 		highlightShop = highlightColor;
+		defaultShop = shopButton.GetComponent<Image> ().color;
+	
 
-		defaultShop = highlightColor;
-		defaultShop.a = 0.0f;
 
-
-		shopButton = GameObject.FindGameObjectWithTag ("ShopButton").GetComponent<Button>();
 		teamTextBackground = GameObject.Find ("TeamTextBackground").GetComponent<Image> ();
 
 		defaultTeamTextBackground = teamTextBackground.color;
@@ -183,6 +202,23 @@ public class DialogueManager : MonoBehaviour {
 
 	}
 
+	public IEnumerator BlinKGameObject(GameObject button){
+
+
+		while (true) {
+
+			button.GetComponent<Image> ().color = highlightColor;
+			yield return new WaitForSeconds (.5f);
+
+			button.GetComponent<Image> ().color = colorGameObject;
+			yield return new WaitForSeconds (.5f);
+
+		}
+
+
+
+	}
+
 
 
 
@@ -222,10 +258,16 @@ public class DialogueManager : MonoBehaviour {
 
 		teamTextBackground.color = defaultTeamTextBackground;
 
-		Color r = Color.red;
-		r.a = 0.0f;
+//		Color r = Color.red;
+//		r.a = 0.0f;
 
-		shopButton.GetComponent<Image> ().color = r;
+		shopButton.GetComponent<Image> ().color = defaultShop;
+
+		for (int i = 0; i < teams.Length; i++) {
+			teams [i].GetComponent<Image> ().color = colorGameObject;
+		}
+
+
 
 
 		
@@ -313,10 +355,10 @@ public class DialogueManager : MonoBehaviour {
 		case 11:
 
 			actionButtonText = actionButton.transform.Find ("Text").GetComponent<Text> ();
-			actionButtonText.text = "Attack + 100$";
+			actionButtonText.text = "Attack+ 100$";
 
 			improveButtonText = improveButton.transform.Find ("Text").GetComponent<Text> ();
-			improveButtonText.text = "Heal + 150$";
+			improveButtonText.text = "Health+ 150$";
 
 			StartCoroutine (BlinkButton (actionButton));
 			StartCoroutine (BlinkButton (improveButton));
@@ -327,10 +369,10 @@ public class DialogueManager : MonoBehaviour {
 		case 13:
 
 			actionButtonText = actionButton.transform.Find ("Text").GetComponent<Text> ();
-			actionButtonText.text = "Smash";
+			actionButtonText.text = "Smash 20$";
 
 			improveButtonText = improveButton.transform.Find ("Text").GetComponent<Text> ();
-			improveButtonText.text = "No Action";
+			improveButtonText.text = "✕";
 
 			StartCoroutine (BlinkButton (actionButton));
 
@@ -340,8 +382,9 @@ public class DialogueManager : MonoBehaviour {
 
 
 		case 15:
-
-			StartCoroutine (BlinkButton_(leaderBoardButton,defaultleader));
+			for (int i = 0; i < teams.Length; i++) {
+				StartCoroutine (BlinKGameObject (teams [i]));
+			}
 			StartCoroutine (BlinkButton_(achievementButton,defaultAchieve));
 
 			break;
