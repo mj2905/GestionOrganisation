@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: SciFi_Props-Pack03-diffuse
-  m_Shader: {fileID: 13, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 10703, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -35,7 +35,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 90d6105f6579db945b53ce1b4d958c97, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8378e5b2972a0a4449bad0e3ce6a96cb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
@@ -46,7 +46,7 @@ Material:
     - _Emission: 1
     - _EmissionLM: 0
     - _Parallax: 0.005
-    - _Shininess: 0.085
+    - _Shininess: 0.28
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ReflectColor: {r: 0.27205884, g: 0.27205884, b: 0.27205884, a: 0.5019608}
