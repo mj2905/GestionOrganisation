@@ -11,18 +11,15 @@ public class Countdown : MonoBehaviour {
 	public GameObject connecting;
 	public GameObject spinning;
 	public Text countdown;
-	private const int day = 14;
-	private const int hour = 12;
-	private const int minute =0;
-	private const int second = 0;
 
 	private bool serverTimeChanged;
 	private bool serverBegTimeChanged;
 
-	private float realTime = 0;
+	private float realTime;
 	private long lastServerTime = FirebaseManager.GetServerTime();
 
 	void Start() {
+		realTime = Time.realtimeSinceStartup;
 		serverTimeChanged = false;
 		serverBegTimeChanged = false;
 		title.SetActive (false);
@@ -44,22 +41,23 @@ public class Countdown : MonoBehaviour {
 
 		long startTime = FirebaseManager.GetBeginTime ();
 		serverBegTimeChanged = (startTime  != FirebaseManager.DEFAULT_BEG_TIME);
-			
-		TimeSpan span = Countdown.getTime(startTime) - Countdown.getTime(serverTime + Mathf.Min((int)(Time.realtimeSinceStartup - realTime), 10));
-		if ((Countdown.getTime(startTime) - Countdown.getTime(serverTime)).TotalSeconds <= 0) {
-			SceneManager.LoadScene ("InitialScene");
-			return;
-		}
-
-		string str = ((span.TotalHours >= 1) ? String.Format("{0:000}:", (int)(span.TotalHours)) : "") + 
-			((span.TotalMinutes >= 1) ? String.Format("{0:00}:", span.Minutes) : "") + 
-			((span.TotalSeconds >= 1) ? String.Format("{0:00}", span.Seconds) : "");
 
 		if (serverTimeChanged && serverBegTimeChanged) {
 			title.SetActive (true);
 			bottom.SetActive (true);
 			connecting.SetActive (false);
 			spinning.SetActive (false);
+
+			TimeSpan span = Countdown.getTime(startTime) - Countdown.getTime(serverTime + Mathf.Min((int)(Time.realtimeSinceStartup - realTime), 10));
+			if ((Countdown.getTime(startTime) - Countdown.getTime(serverTime)).TotalSeconds <= 0) {
+				SceneManager.LoadScene ("InitialScene");
+				return;
+			}
+
+			string str = ((span.TotalSeconds >= 3599) ? String.Format("{0:000}:", (int)(span.TotalHours)) : "") + 
+				((span.TotalSeconds >= 59) ? String.Format("{0:00}:", span.Minutes) : "") + 
+				((span.TotalSeconds >= 1) ? String.Format("{0:00}", span.Seconds) : "");
+
 			countdown.text = str;
 		}
 	}
