@@ -2133,6 +2133,34 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 139506375}
+--- !u!1 &148306747
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 776412942}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 148306748}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &148306748
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
+  m_PrefabInternal: {fileID: 776412942}
+  m_GameObject: {fileID: 148306747}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 776412943}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &149241533
 GameObject:
   m_ObjectHideFlags: 0
@@ -7915,6 +7943,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 531151489}
+--- !u!1 &532576480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 776412942}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 776412943}
+  m_Layer: 0
+  m_Name: Missing Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &546109289
 GameObject:
   m_ObjectHideFlags: 0
@@ -9369,11 +9412,11 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 0a2e13dc7f9d5453a8762a5ab767832f, type: 3}
   - {fileID: 21300000, guid: fded70c137cb44383b00d9a382b9c4f3, type: 3}
-  - {fileID: 21300000, guid: 69b9c633fd3004646a3c2af7ac488f1e, type: 3}
+  - {fileID: 0}
   - {fileID: 21300000, guid: c45a07d3f1cc54f428fba74397000d7d, type: 3}
   - {fileID: 21300000, guid: 51fe2c127e86a4b3ea0dbeeff5ddf4f6, type: 3}
   - {fileID: 21300000, guid: 030d140a8b650413ebbccc1223c600cd, type: 3}
-  - {fileID: 21300000, guid: 4010399181355784184bac9f0b53f284, type: 3}
+  - {fileID: 0}
   - {fileID: 21300000, guid: e9c6fc07eff79da488ca79487f09e4c5, type: 3}
   - {fileID: 21300000, guid: f17fa3b4f147969488a40cb89f37f65c, type: 3}
   - {fileID: 21300000, guid: 274807eefd35c3c43991b1240393e0e2, type: 3}
@@ -11032,18 +11075,52 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.6
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.y
+      value: 10.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.x
+      value: 7.7
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
   m_IsPrefabParent: 0
---- !u!4 &776412943 stripped
+--- !u!4 &776412943
 Transform:
-  m_PrefabParentObject: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 776412942}
---- !u!1 &776412944 stripped
+  m_GameObject: {fileID: 532576480}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.7, y: 10.38, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 776412949}
+  - {fileID: 148306748}
+  m_Father: {fileID: 1228100745}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &776412944
 GameObject:
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
   m_PrefabInternal: {fileID: 776412942}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 776412949}
+  - component: {fileID: 776412948}
+  - component: {fileID: 776412946}
+  - component: {fileID: 776412947}
+  - component: {fileID: 776412945}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!114 &776412945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11104,6 +11181,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!4 &776412949
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 776412942}
+  m_GameObject: {fileID: 776412944}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 776412943}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &782113214
 GameObject:
   m_ObjectHideFlags: 0
@@ -11584,6 +11674,21 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 3b045c5c16f998b47afcea6ec4cfe475, type: 3}
   m_PrefabInternal: {fileID: 804820227}
+--- !u!1 &817979111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1001960606}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1001960612}
+  m_Layer: 0
+  m_Name: Missing Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &818563335 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1052581363350618, guid: 7c84544adab4a714ebd8edb5bd1b6327,
@@ -13741,10 +13846,25 @@ Prefab:
     - {fileID: 3300000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
   m_IsPrefabParent: 0
---- !u!1 &1001960607 stripped
+--- !u!1 &1001960607
 GameObject:
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
   m_PrefabInternal: {fileID: 1001960606}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1001960613}
+  - component: {fileID: 1001960610}
+  - component: {fileID: 1001960609}
+  - component: {fileID: 1001960611}
+  - component: {fileID: 1001960608}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!114 &1001960608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13793,10 +13913,34 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1001960607}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1001960612 stripped
+--- !u!4 &1001960612
 Transform:
-  m_PrefabParentObject: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 1001960606}
+  m_GameObject: {fileID: 817979111}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1001960613}
+  - {fileID: 2116501761}
+  m_Father: {fileID: 1228100745}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1001960613
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1001960606}
+  m_GameObject: {fileID: 1001960607}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1001960612}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1005542018
 GameObject:
   m_ObjectHideFlags: 0
@@ -25945,38 +26089,34 @@ MonoBehaviour:
     name: 
     sentences:
     - Welcome to Clash of faculties.
-    - It's a game in which you will need to help your faculty. It also takes place
-      at EPFL.
-    - 'The goal is to capture the various zones of the campus. These captured zones
-      give points to your faculty every 10 seconds.
+    - In this game you will team up with other students of your faculty.
+    - 'The goal is to capture zones across the campus. Captured zones give points
+      to your faculty every 10 seconds.
 
 '
     - 'There are two complementary ways to play : Attack and Defense.'
-    - To attack an opposing team zone, you need to first reach a safe zone. Click
-      to see where these places are located.
-    - These are the various safe zones where you must physically pass by, with gps
-      activated to prepare an attack.
-    - "During the game, clicking on this button will initiate an attack. This will
-      prompt you to move to a safe zone.  Click \"Continue\" to see this move.\t\t"
-    - Once in the safe zone you can now go and attack an enemy zone. Click "Continue"
-      to  move to a building you wish to capture.
-    - On the ATTACK mode, you can only capture buildings which don't belong to your
-      team. The building belongs to the FSB team and you are in the IC&SV team.
-    - 'This button will appear, indicating that you can now place a turret. '
-    - Once a turret is placed, the turret will begin attacking the opposing team zone.
-    - Upon clicking on your teams turret, you can either improve the attack of the
-      turret or heal it.
-    - On DEFENSE , you must protect your zone from the opposing teams attacks. Remember,
-      you have to switch modes in order to defend.
-    - Afterwards, you have to smash the opposing teams turret by first clicking on
-      the turret and pressing this button.
-    - 'All these actions require you to spend in game credits. These are the basics
-      of this game. '
-    - You can check your team and individual ranking and the various achievements
-      you have acquired by clicking the blinking panels.
-    - Finally, you can buy some cool items at the shop with the credits you obtained
-      while playing by also clicking on the red panel.
-    - NOW GO TAKE CONTROL AND DOMINATE EPFL !!!!!!!!!!
+    - To attack an ennemy zone, you first need to pass through a safe zone. They act
+      as checkpoints.
+    - You must physically enter the safe zone with gps activated to trigger the attack
+      mode.
+    - Clicking on this button will activate your GPS and you will be able to see your
+      position on the map.
+    - Once you reached a safe zone, entering any building will let you deploy a turret.
+    - You can only capture buildings which don't belong to your team. Here, the building
+      belongs to the FSB team and you are in the IC&SV team.
+    - 'When this button appears, it means that you can deploy a turret. '
+    - Once a turret is placed, it will begin attacking the ennemy zone.
+    - Clicking on your team's turret allow you to increase the turret's strength or
+      increase its max life.
+    - Obviously, you must protect your zones from hostile attacks. Remember, you have
+      to switch modes in order to defend.
+    - You can smash the ennemy turrets by clicking on them and pressing this button.
+    - All actions require you to spend in-game credits. You now know the basics of
+      this game!
+    - Check the rankings and the various achievements you have acquired by clicking
+      the blinking panels.
+    - Finally, you can buy some stuff at the shop here with the credits you obtained.
+    - NOW GO TAKE CONTROL AND DOMINATE EPFL !
 --- !u!1001 &1782117468
 Prefab:
   m_ObjectHideFlags: 0
@@ -31119,8 +31259,6 @@ GameObject:
   - component: {fileID: 2113431298}
   - component: {fileID: 2113431297}
   - component: {fileID: 2113431301}
-  - component: {fileID: 2113431302}
-  - component: {fileID: 2113431303}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -31213,28 +31351,34 @@ MonoBehaviour:
   right: {fileID: 2013577823}
   Limit: {fileID: 1136435524}
   changeModeButton: {fileID: 352992037}
---- !u!114 &2113431302
-MonoBehaviour:
+--- !u!1 &2116501760
+GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2113431296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2113431303
-MonoBehaviour:
+  m_PrefabInternal: {fileID: 1001960606}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2116501761}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2116501761
+Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2113431296}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f87e4989c5e703e428df4339d59e2c72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_PrefabParentObject: {fileID: 400000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
+  m_PrefabInternal: {fileID: 1001960606}
+  m_GameObject: {fileID: 2116501760}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1001960612}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2121769971
 GameObject:
   m_ObjectHideFlags: 0
