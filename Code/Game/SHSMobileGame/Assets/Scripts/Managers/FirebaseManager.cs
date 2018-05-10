@@ -16,11 +16,11 @@ public class FirebaseManager
 	public static int userTeam = -1;
 	public static string userPseudo;
 
-	public const long DEFAULT_TIME = 0;
+	public const long DEFAULT_TIME = 2800800;
 	private static long timer = DEFAULT_TIME;
 	private static bool timerSet = false;
 
-	public const long DEFAULT_BEG_TIME = 100;
+	public const long DEFAULT_BEG_TIME = 2887200;
 	private static long beg_timer = DEFAULT_BEG_TIME;
 	private static bool beg_timerSet = false;
 
