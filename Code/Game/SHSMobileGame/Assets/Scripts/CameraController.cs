@@ -331,7 +331,10 @@ public class CameraController : LocationListener {
 						if (hit2.transform.gameObject.tag == "Terminal") {
 							print ("CameraController: Hit on a terminal");
 							Terminal targetTerminal = hit2.transform.gameObject.GetComponentInParent<Terminal> ();
-							interactionManager.updateTargetedTerminal (targetTerminal);
+
+							if (focusedZone == null || targetTerminal.zoneId == focusedZone.zoneId) {
+								interactionManager.updateTargetedTerminal (targetTerminal);
+							}
 						}
 					}
 				}
