@@ -23,6 +23,7 @@ public class InteractionManager : LocationListener {
 	private Text popupZoneDamagePercentGreen;
 	private Text popupZoneDamagePercentYellow;
 
+	private Text popupTerminalTitle;
 	private Text popupTerminalHP;
 	private Text popupTerminalLevel;
 	private Text popupTerminalTeam;
@@ -54,6 +55,7 @@ public class InteractionManager : LocationListener {
 		popupZoneDamagePercentGreen = zonePopup.transform.Find ("DamagePercentGreen").GetComponent<Text> ();
 		popupZoneDamagePercentYellow = zonePopup.transform.Find ("DamagePercentYellow").GetComponent<Text> ();
 
+		popupTerminalTitle = terminalPopup.transform.Find ("Title").GetComponent<Text> ();
 		popupTerminalHP = terminalPopup.transform.Find ("HPLabel").GetComponent<Text> ();
 		popupTerminalLevel = terminalPopup.transform.Find ("LevelLabel").GetComponent<Text> ();
 		popupTerminalStrength = terminalPopup.transform.Find ("StrengthLabel").GetComponent<Text> ();
@@ -97,6 +99,7 @@ public class InteractionManager : LocationListener {
 		if (targetedTerminal != null) {
 			actionButton.setTargetTerminalHealth (targetedTerminal.hp, targetedTerminal.level, targetedTerminal.strength);
 			improveButton.setTargetTerminalHealth (targetedTerminal.hp, targetedTerminal.level);
+			popupTerminalTitle.text = (targetedTerminal.team == FirebaseManager.userTeam) ? "Defend Terminal" : "Attack Terminal";
 			popupTerminalHP.text = "HP: " + targetedTerminal.hp;
 			popupTerminalLevel.text = "Level: " + targetedTerminal.level;
 			popupTerminalStrength.text = "Strength: " + targetedTerminal.strength;
