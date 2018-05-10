@@ -84,6 +84,7 @@ public class DialogueManager : MonoBehaviour {
 	Image teamTextBackground;
 
 	GameObject continueButton;
+	GameObject skipRemainButton;
 	GameObject continueButton2;
 
 	Button leaderBoardButton;
@@ -123,9 +124,11 @@ public class DialogueManager : MonoBehaviour {
 		defaultTeamTextBackground = teamTextBackground.color;
 
 		continueButton = GameObject.Find ("continue");
+		skipRemainButton = GameObject.Find ("SkipTutorialButtonRemaining");
 		continueButton2 = GameObject.Find ("ClickAlsoWorking");
 		continueButton.SetActive (false);
 		continueButton2.SetActive (false);
+		skipRemainButton.SetActive (false);
 
 		flagMed = GameObject.FindGameObjectWithTag ("FlagMed").GetComponent<Image> ();
 
@@ -230,6 +233,7 @@ public class DialogueManager : MonoBehaviour {
 
 		continueButton.SetActive (true);
 		continueButton2.SetActive (true);
+		skipRemainButton.SetActive (true);
 
 
 		skipButton.SetActive (false);
@@ -396,7 +400,7 @@ public class DialogueManager : MonoBehaviour {
 
 		case 17:
 			
-			continueButton2.SetActive (false);
+			//continueButton2.SetActive (false);
 			Button button = continueButton.GetComponent<Button> ();
 
 			button.transform.Find ("Text").GetComponent<Text> ().text = "Start Game";
@@ -759,6 +763,7 @@ public class DialogueManager : MonoBehaviour {
 
 		continueButton2.SetActive (false);
 		continueButton.SetActive (false);
+		skipRemainButton.SetActive (false);
 
 
 		dialogueText.text = "";
@@ -771,7 +776,7 @@ public class DialogueManager : MonoBehaviour {
 		slide++;
 
 	
-
+		skipRemainButton.SetActive (true);
 		continueButton.SetActive (true);
 		continueButton2.SetActive (true);
 
