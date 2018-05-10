@@ -48,10 +48,16 @@ public class InitialScene : MonoBehaviour
 		FirebaseManager.InitializeFirebase (this);
 		FirebaseManager.SetListenerTimer ();
 		FirebaseManager.SetListenerBegTimer ();
-
+		Debug.Log ("Init scene");
+		Debug.Log (Countdown.getTime (FirebaseManager.GetBeginTime ()));
+		Debug.Log (Countdown.getTime(FirebaseManager.GetServerTime()));
+		Debug.Log ((Countdown.getTime (FirebaseManager.GetBeginTime ()) - Countdown.getTime (FirebaseManager.GetServerTime ())).TotalSeconds);
 		if (countdownEnabled && (Countdown.getTime (FirebaseManager.GetBeginTime ()) - Countdown.getTime(FirebaseManager.GetServerTime())).TotalSeconds > 0) {
+			Debug.Log ("Hello");
 			SceneManager.LoadScene("FinalCountdown");
+			return;
 		}
+		Debug.Log ("End init scene");
 			
 		showElements (true);
 		SwitchSignInButtonActivation ();
