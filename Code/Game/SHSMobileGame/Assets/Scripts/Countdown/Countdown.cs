@@ -33,7 +33,7 @@ public class Countdown : MonoBehaviour {
 	void FixedUpdate () {
 
 		long serverTime = FirebaseManager.GetServerTime ();
-		if (serverTime != FirebaseManager.DEFAULT_TIME) {
+		if (serverTime != lastServerTime) {
 			realTime = Time.realtimeSinceStartup;
 			lastServerTime = serverTime;
 			serverTimeChanged = true;
