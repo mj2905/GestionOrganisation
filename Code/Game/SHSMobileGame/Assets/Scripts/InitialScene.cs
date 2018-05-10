@@ -20,7 +20,7 @@ public class InitialScene : MonoBehaviour
 	private string eMailText = "";
 	private string passwordText = "";
 
-	private readonly bool countdownEnabled = false;
+	private readonly bool countdownEnabled = true;
 
 	private void SwitchSignInButtonActivation() {
 		signIn.interactable = eMailText.Length > 0 && passwordText.Length > 0;
