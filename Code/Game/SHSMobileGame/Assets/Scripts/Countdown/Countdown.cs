@@ -8,6 +8,8 @@ public class Countdown : MonoBehaviour {
 
 	public GameObject title;
 	public GameObject bottom;
+	public GameObject connecting;
+	public GameObject spinning;
 	public Text countdown;
 	private const int day = 14;
 	private const int hour = 12;
@@ -25,6 +27,8 @@ public class Countdown : MonoBehaviour {
 		title.SetActive (false);
 		bottom.SetActive (false);
 		countdown.gameObject.SetActive (false);
+		connecting.SetActive (true);
+		spinning.SetActive (true);
 		countdown.text = "";
 	}
 
@@ -53,6 +57,8 @@ public class Countdown : MonoBehaviour {
 			title.SetActive (true);
 			bottom.SetActive (true);
 			countdown.gameObject.SetActive (true);
+			connecting.SetActive (false);
+			spinning.SetActive (false);
 			countdown.text = str;
 		}
 	}
