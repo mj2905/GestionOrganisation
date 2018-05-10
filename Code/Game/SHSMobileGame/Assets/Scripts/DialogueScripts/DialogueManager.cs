@@ -333,8 +333,8 @@ public class DialogueManager : MonoBehaviour {
 
 			turretButton.SetActive (false);
 
-			Vector3 positions = new Vector3 (-2.13f, 4.66f, -8.11f);
-			Vector3 rotation = new Vector3 (-0.308f, -258.860f, 1.374f);
+			Vector3 positions = new Vector3 (-3f, 4.66f, -8.48f);
+			Vector3 rotation = new Vector3 (-0.308f, -275.860f, 1.374f);
 
 			GameObject gameObject = Instantiate (Resources.Load ("Terminal"), positions, Quaternion.Euler (rotation)) as GameObject;
 			gameObject.transform.localScale = new Vector3 (1f, 1f, 1f);
@@ -344,7 +344,7 @@ public class DialogueManager : MonoBehaviour {
 			Instantiate (
 				Resources.Load ("Effects/Prefabs/" + "Blue" + "LaserEffect"),
 				positionLaser,
-				Quaternion.Euler (new Vector3 (19.797f, 86.346f, -1.239f)));
+				Quaternion.Euler (new Vector3 (19.797f, 105.346f, -1.239f)));
 
 			updateMode = UPDATEMODE.TURRET;
 
@@ -774,6 +774,11 @@ public class DialogueManager : MonoBehaviour {
 		}
 
 		slide++;
+
+		//SKIP SOME SLIDES
+		if (slide == 1){
+			slide++;
+		}
 
 	
 		skipRemainButton.SetActive (true);
