@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Countdown : MonoBehaviour {
 
+	public GameObject title;
+	public GameObject bottom;
 	public Text countdown;
 	private const int day = 14;
 	private const int hour = 12;
@@ -20,6 +22,9 @@ public class Countdown : MonoBehaviour {
 
 	void Awake() {
 		first = true;
+		title.SetActive (false);
+		bottom.SetActive (false);
+		countdown.text = "";
 	}
 
 	// Update is called once per frame
@@ -42,7 +47,12 @@ public class Countdown : MonoBehaviour {
 		string str = ((span.TotalHours >= 1) ? String.Format("{0:000}:", (int)(span.TotalHours)) : "") + 
 			((span.TotalMinutes >= 1) ? String.Format("{0:00}:", span.Minutes) : "") + 
 			((span.TotalSeconds >= 1) ? String.Format("{0:00}", span.Seconds) : "");
-		countdown.text = first ? "Retrieving time.." : str;
+
+		if (!first) {
+			title.SetActive (true);
+			bottom.SetActive (true);
+			countdown.text = str;
+		}
 	}
 
 	public static DateTime getTime(long time) {
