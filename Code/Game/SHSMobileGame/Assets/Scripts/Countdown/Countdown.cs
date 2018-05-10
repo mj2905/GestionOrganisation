@@ -15,18 +15,18 @@ public class Countdown : MonoBehaviour {
 	private const int hour = 12;
 	private const int minute =0;
 	private const int second = 0;
-	public static DateTime start = getTime (FirebaseManager.GetBeginTime ());//new DateTime(2018, 5, day, hour, minute, second);
 
-	private bool first;
+	private bool serverTimeChanged;
+	private bool serverBegTimeChanged;
 
 	private float realTime = 0;
 	private long lastServerTime = FirebaseManager.GetServerTime();
 
 	void Start() {
-		first = true;
+		serverTimeChanged = false;
+		serverBegTimeChanged = false;
 		title.SetActive (false);
 		bottom.SetActive (false);
-		//countdown.gameObject.SetActive (false);
 		connecting.SetActive (true);
 		spinning.SetActive (true);
 		countdown.text = "";
@@ -35,17 +35,18 @@ public class Countdown : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-		start = getTime (FirebaseManager.GetBeginTime ());
-
 		long serverTime = FirebaseManager.GetServerTime ();
-		if (serverTime != lastServerTime) {
+		if (serverTime != FirebaseManager.DEFAULT_TIME) {
 			realTime = Time.realtimeSinceStartup;
 			lastServerTime = serverTime;
-			first = false;
+			serverTimeChanged = true;
 		}
+
+		long startTime = FirebaseManager.GetBeginTime ();
+		serverBegTimeChanged = (startTime  != FirebaseManager.DEFAULT_BEG_TIME);
 			
-		TimeSpan span = start - Countdown.getTime(serverTime + Mathf.Min((int)(Time.realtimeSinceStartup - realTime), 10));
-		if ((start - Countdown.getTime(serverTime)).TotalSeconds <= 0) {
+		TimeSpan span = Countdown.getTime(startTime) - Countdown.getTime(serverTime + Mathf.Min((int)(Time.realtimeSinceStartup - realTime), 10));
+		if ((Countdown.getTime(startTime) - Countdown.getTime(serverTime)).TotalSeconds <= 0) {
 			SceneManager.LoadScene ("InitialScene");
 			return;
 		}
@@ -54,10 +55,9 @@ public class Countdown : MonoBehaviour {
 			((span.TotalMinutes >= 1) ? String.Format("{0:00}:", span.Minutes) : "") + 
 			((span.TotalSeconds >= 1) ? String.Format("{0:00}", span.Seconds) : "");
 
-		if (!first) {
+		if (serverTimeChanged && serverBegTimeChanged) {
 			title.SetActive (true);
 			bottom.SetActive (true);
-			//countdown.gameObject.SetActive (true);
 			connecting.SetActive (false);
 			spinning.SetActive (false);
 			countdown.text = str;
