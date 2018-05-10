@@ -20,7 +20,7 @@ public class InitialScene : MonoBehaviour
 	private string eMailText = "";
 	private string passwordText = "";
 
-	private readonly bool countdownEnabled = false;
+	private readonly bool countdownEnabled = true;
 
 	private void SwitchSignInButtonActivation() {
 		signIn.interactable = eMailText.Length > 0 && passwordText.Length > 0;
@@ -46,13 +46,13 @@ public class InitialScene : MonoBehaviour
 		}
 
 		FirebaseManager.InitializeFirebase (this);
-		FirebaseManager.GetServerTime ();
+		FirebaseManager.SetListenerTimer ();
+		FirebaseManager.SetListenerBegTimer ();
 
-		if (countdownEnabled && (Countdown.start - DateTime.UtcNow).TotalSeconds >= 0) {
+		if (countdownEnabled && (Countdown.getTime (FirebaseManager.GetBeginTime ()) - Countdown.getTime(FirebaseManager.GetServerTime())).TotalSeconds > 0) {
 			SceneManager.LoadScene("FinalCountdown");
 		}
-
-
+			
 		showElements (true);
 		SwitchSignInButtonActivation ();
 

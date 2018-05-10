@@ -16,6 +16,12 @@ public class FirebaseManager
 	public static int userTeam = -1;
 	public static string userPseudo;
 
+	private static long timer = 14219020;
+	private static bool timerSet = false;
+
+	private static long beg_timer = 14637600;
+	private static bool beg_timerSet = false;
+
 	private static GameManager gameManager;
 	private static List<Barrier> glob_barrier = new List<Barrier>();
 
@@ -35,13 +41,12 @@ public class FirebaseManager
 		authStateChanged(sender, null);
 	}
 
-	public static void GetServerTime() {
-		Dictionary<String, object> dic = (Dictionary<String, object>)Firebase.Database.ServerValue.Timestamp;
-		foreach(KeyValuePair<string, object> entry in dic)
-		{
-			Debug.Log(entry.Key + " " + entry.Value.ToString());
-		}
-		Debug.Log(dic.Count);
+	public static long GetServerTime() {
+		return timer;
+	}
+
+	public static long GetBeginTime() {
+		return beg_timer;
 	}
 
 	// Track state changes of the auth object.
@@ -98,6 +103,36 @@ public class FirebaseManager
 		reference.Child("End").ValueChanged += ((obj, args) => {
 			HandleEndChanged(c)(obj, args);
 		});
+	}
+
+	public static void SetListenerTimer(){
+		if (!timerSet) {
+			reference.Child ("/timer/").ValueChanged += ((obj, args) => {
+				if (args.DatabaseError != null) {
+					Debug.LogError (args.DatabaseError.Message);
+					return;
+				} else {
+					DataSnapshot snapshot = args.Snapshot;
+					FirebaseManager.timer = Int64.Parse (snapshot.Value.ToString ());
+				}
+			});
+			timerSet = true;
+		}
+	}
+
+	public static void SetListenerBegTimer(){
+		if (!beg_timerSet) {
+			reference.Child ("/beg_time/").ValueChanged += ((obj, args) => {
+				if (args.DatabaseError != null) {
+					Debug.LogError (args.DatabaseError.Message);
+					return;
+				} else {
+					DataSnapshot snapshot = args.Snapshot;
+					FirebaseManager.beg_timer = Int64.Parse (snapshot.Value.ToString ());
+				}
+			});
+			beg_timerSet = true;
+		}
 	}
 
 	private static Action<object, ValueChangedEventArgs> HandleUserChanged (int c)
@@ -218,6 +253,13 @@ public class FirebaseManager
 			Firebase.Auth.FirebaseUser newUser = task.Result;
 			Debug.LogFormat ("User signed in successfully: {0} ({1})",
 				newUser.DisplayName, newUser.UserId);
+
+			if(!newUser.IsEmailVerified) {
+				executeWhenFails();
+				popup.SetText("Please verify your account, by following the link your received by e-mail :)");
+				return;
+			}
+
 			Persistency.Write(eMailText, passwordText);
 
 			reference.Child("Users").Child(newUser.UserId).GetValueAsync().ContinueWith(

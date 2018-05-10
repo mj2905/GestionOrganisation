@@ -9,20 +9,50 @@ public class Countdown : MonoBehaviour {
 	public Text countdown;
 	private const int day = 14;
 	private const int hour = 12;
-	private const int minute = 0;
+	private const int minute =0;
 	private const int second = 0;
-	public static readonly DateTime start = new DateTime(2018, 5, day, hour - 2, minute, second);
+	public static DateTime start = getTime (FirebaseManager.GetBeginTime ());//new DateTime(2018, 5, day, hour, minute, second);
+
+	private bool first;
+
+	private float realTime = 0;
+	private long lastServerTime = FirebaseManager.GetServerTime();
+
+	void Awake() {
+		first = true;
+	}
 
 	// Update is called once per frame
 	void FixedUpdate () {
-		TimeSpan span = start - DateTime.UtcNow;
+
+		start = getTime (FirebaseManager.GetBeginTime ());
+
+		long serverTime = FirebaseManager.GetServerTime ();
+		if (serverTime != lastServerTime) {
+			realTime = Time.realtimeSinceStartup;
+			lastServerTime = serverTime;
+			first = false;
+		}
+
+		TimeSpan span = start - Countdown.getTime(serverTime + Mathf.Min((int)(Time.realtimeSinceStartup - realTime), 10));
 		if (span.TotalSeconds <= 0) {
 			SceneManager.LoadScene ("InitialScene");
 		}
 
+		long remainingMinutes = (span.Hours > 0) ? span.Minutes : (int)(span.TotalMinutes) % 61;
+		long remainingSeconds = (span.Hours > 0 || span.Minutes > 0) ? span.Seconds : (int)(span.TotalSeconds) % 61;
+
 		string str = ((span.TotalHours > 1) ? String.Format("{0:000}:", (int)(span.TotalHours)) : "") + 
-			((span.TotalMinutes > 1) ? String.Format("{0:00}:", span.Minutes) : "") + 
-			((span.TotalSeconds > 1) ? String.Format("{0:00}", span.Seconds) : "");
-		countdown.text = str;
+			((span.TotalMinutes > 1) ? String.Format("{0:00}:", remainingMinutes) : "") + 
+			((span.TotalSeconds > 1) ? String.Format("{0:00}", remainingSeconds) : "");
+		countdown.text = first ? "Retrieving time.." : str;
+	}
+
+	public static DateTime getTime(long time) {
+		int secs = (int)(time % 60);
+		int minutes = (int)((time / 60) % 60);
+		int hours = (int)((time / 60 / 60) % 24);
+		int days = (int)((time / 60 / 60 / 24) % 31);
+		return new DateTime(2018, 5, days, hours, minutes, secs);
 	}
 }
