@@ -4663,7 +4663,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &343755588
 Transform:
   m_ObjectHideFlags: 0
@@ -4683,7 +4683,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 343755587}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f026814b045531a4687acdb36c9fc500, type: 3}
   m_Name: 
@@ -11900,7 +11900,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: ed2456a554e2e4c49920c0b1b4535573, type: 3}
       propertyPath: m_Controller
@@ -29102,6 +29102,7 @@ MonoBehaviour:
   maxText: {fileID: 0}
   minText: {fileID: 0}
   currentText: {fileID: 0}
+  caption: {fileID: 0}
   fill: {fileID: 0}
   background: {fileID: 0}
   level: 1

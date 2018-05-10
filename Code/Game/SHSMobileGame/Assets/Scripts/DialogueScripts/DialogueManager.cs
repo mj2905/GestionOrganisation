@@ -341,7 +341,7 @@ public class DialogueManager : MonoBehaviour {
 			Vector3 positions = new Vector3 (-3f, 4.66f, -8.48f);
 			Vector3 rotation = new Vector3 (-0.308f, -310.860f, 1.374f);
 
-			GameObject gameObject = Instantiate (Resources.Load ("Terminal"), positions, Quaternion.Euler (rotation)) as GameObject;
+			GameObject gameObject = Instantiate (Resources.Load ("DummyTerminal"), positions, Quaternion.Euler (rotation)) as GameObject;
 			gameObject.transform.localScale = new Vector3 (1f, 1f, 1f);
 			gameObject.transform.position = positions;
 
