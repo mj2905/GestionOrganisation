@@ -43,12 +43,7 @@ public class Countdown : MonoBehaviour {
 			lastServerTime = serverTime;
 			first = false;
 		}
-
-		Debug.Log ("Countdown");
-		Debug.Log (start);
-		Debug.Log (Countdown.getTime(serverTime));
-		Debug.Log (start - Countdown.getTime(serverTime + Mathf.Min((int)(Time.realtimeSinceStartup - realTime), 10)));
-		Debug.Log ((start - Countdown.getTime (serverTime)).TotalSeconds);
+			
 		TimeSpan span = start - Countdown.getTime(serverTime + Mathf.Min((int)(Time.realtimeSinceStartup - realTime), 10));
 		if ((start - Countdown.getTime(serverTime)).TotalSeconds <= 0) {
 			SceneManager.LoadScene ("InitialScene");
