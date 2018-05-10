@@ -34,9 +34,9 @@ public class User
 		this.pseudo = entry["pseudo"].ToString();
 	}
 
-	public User (int team, string pseudo,string userId)
+	public User (int team, string pseudo,string userId, int credits)
 	{
-		this.credits = 0;
+		this.credits = credits;
 		this.level = 0;
 		this.xp = 0;
 		this.pseudo = pseudo;

@@ -8,6 +8,8 @@ public static class QuantitiesConstants
 
 	public const int ZONE_MIN_HEALTH = 0;
 
+	public const int DEFAULT_CREDITS_NEW_PLAYER = 2000;
+
 	//public const int TERMINAL_IMPROVE_COST = -100;
 
 	public const int TERMINAL_SMASH_AMOUNT = 20;
@@ -39,7 +41,7 @@ public static class QuantitiesConstants
 	public static readonly int[] TERMINAL_MAX_HEALTH_VALUES = new int[] {200, 300, 400, 500, 700};
 	public static readonly int[] TERMINAL_MAX_HEALTH_COST = new int[] {0, 100, 150, 200, 250, 350};
 
-	public static readonly int[] PLAYER_XP_THRESHOLDS = new int[]{0,200,500,1500,3000,4500};
+	public static readonly int[] PLAYER_XP_THRESHOLDS = new int[]{0,200,750,2000,4000,9000};
 
 	public static readonly int STRENGTH_MAX = TERMINAL_BUFF_VALUE[TERMINAL_BUFF_VALUE.Length - 2];
 	public static readonly int TERMINAL_LEVEL_MAX = TERMINAL_MAX_HEALTH_VALUES.Length - 1;

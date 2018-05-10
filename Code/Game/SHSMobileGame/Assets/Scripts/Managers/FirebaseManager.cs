@@ -318,7 +318,7 @@ public class FirebaseManager
 	}
 
 	private static void CreateNewUser(string userId,int teamNumber, string pseudo){
-		User user = new User(teamNumber, pseudo,userId);
+		User user = new User(teamNumber, pseudo,userId, QuantitiesConstants.DEFAULT_CREDITS_NEW_PLAYER);
 		string json = JsonUtility.ToJson(user);
 		reference.Child("Users").Child(userId).SetRawJsonValueAsync(json);
 	}
