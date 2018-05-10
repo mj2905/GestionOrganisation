@@ -49,13 +49,13 @@ public class ImproveButtonHandler : LocationListener {
 					improveButtonText.text = "Dead ✝";
 					improveButton.interactable = false;
 				} else if (terminalLevel == QuantitiesConstants.TERMINAL_MAX_HEALTH_VALUES.Length - 1) {
-					improveButtonText.text = "Heal ✓";
+					improveButtonText.text = "Health ✓";
 					improveButton.interactable = false;
 				} else if (credits < QuantitiesConstants.TERMINAL_MAX_HEALTH_COST[terminalLevel + 1]) {
-					improveButtonText.text = "Heal+ "+ QuantitiesConstants.TERMINAL_MAX_HEALTH_COST [terminalLevel + 1] +"$";
+					improveButtonText.text = "Health+ "+ QuantitiesConstants.TERMINAL_MAX_HEALTH_COST [terminalLevel + 1] +"$";
 					improveButton.interactable = false;
 				} else {
-					improveButtonText.text = "Heal+ "+ QuantitiesConstants.TERMINAL_MAX_HEALTH_COST [terminalLevel + 1] +"$";
+					improveButtonText.text = "Health+ "+ QuantitiesConstants.TERMINAL_MAX_HEALTH_COST [terminalLevel + 1] +"$";
 					improveButton.interactable = true;
 				}
 				if (terminalTimer != 0f) {

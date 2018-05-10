@@ -20,10 +20,11 @@ public class Countdown : MonoBehaviour {
 	private float realTime = 0;
 	private long lastServerTime = FirebaseManager.GetServerTime();
 
-	void Awake() {
+	void Start() {
 		first = true;
 		title.SetActive (false);
 		bottom.SetActive (false);
+		countdown.gameObject.SetActive (false);
 		countdown.text = "";
 	}
 
@@ -40,7 +41,7 @@ public class Countdown : MonoBehaviour {
 		}
 
 		TimeSpan span = start - Countdown.getTime(serverTime + Mathf.Min((int)(Time.realtimeSinceStartup - realTime), 10));
-		if (span.TotalSeconds <= 0) {
+		if ((start - Countdown.getTime(serverTime)).TotalSeconds <= 0) {
 			SceneManager.LoadScene ("InitialScene");
 		}
 
@@ -51,6 +52,7 @@ public class Countdown : MonoBehaviour {
 		if (!first) {
 			title.SetActive (true);
 			bottom.SetActive (true);
+			countdown.gameObject.SetActive (true);
 			countdown.text = str;
 		}
 	}
