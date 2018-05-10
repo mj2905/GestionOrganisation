@@ -12,4 +12,8 @@ public class OpenLinks : MonoBehaviour {
 		Application.OpenURL("https://www.facebook.com/ClashofFaculties");
 	}
 
+	public void website() {
+		Application.OpenURL("https://gom-industries.blogspot.com/");
+	}
+
 }
