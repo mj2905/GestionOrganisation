@@ -43,14 +43,15 @@ public class InitialScene : MonoBehaviour
 		if (!Persistency.IsTutorialPassed ()) {
 			Persistency.TutorialPassed ();
 			SceneManager.LoadScene("TutorialScene");
+			return;
 		}
 
 		FirebaseManager.InitializeFirebase (this);
 		FirebaseManager.SetListenerTimer ();
 		FirebaseManager.SetListenerBegTimer ();
-
 		if (countdownEnabled && (Countdown.getTime (FirebaseManager.GetBeginTime ()) - Countdown.getTime(FirebaseManager.GetServerTime())).TotalSeconds > 0) {
 			SceneManager.LoadScene("FinalCountdown");
+			return;
 		}
 			
 		showElements (true);

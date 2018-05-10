@@ -26,7 +26,7 @@ public class Countdown : MonoBehaviour {
 		first = true;
 		title.SetActive (false);
 		bottom.SetActive (false);
-		countdown.gameObject.SetActive (false);
+		//countdown.gameObject.SetActive (false);
 		connecting.SetActive (true);
 		spinning.SetActive (true);
 		countdown.text = "";
@@ -43,10 +43,11 @@ public class Countdown : MonoBehaviour {
 			lastServerTime = serverTime;
 			first = false;
 		}
-
+			
 		TimeSpan span = start - Countdown.getTime(serverTime + Mathf.Min((int)(Time.realtimeSinceStartup - realTime), 10));
 		if ((start - Countdown.getTime(serverTime)).TotalSeconds <= 0) {
 			SceneManager.LoadScene ("InitialScene");
+			return;
 		}
 
 		string str = ((span.TotalHours >= 1) ? String.Format("{0:000}:", (int)(span.TotalHours)) : "") + 
@@ -56,7 +57,7 @@ public class Countdown : MonoBehaviour {
 		if (!first) {
 			title.SetActive (true);
 			bottom.SetActive (true);
-			countdown.gameObject.SetActive (true);
+			//countdown.gameObject.SetActive (true);
 			connecting.SetActive (false);
 			spinning.SetActive (false);
 			countdown.text = str;
