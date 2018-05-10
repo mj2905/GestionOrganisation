@@ -12,6 +12,7 @@ public class LevelTabHandler : MonoBehaviour {
 	public Text maxText;
 	public Text minText;
 	public Text currentText;
+	public Text caption;
 	public Image fill;
 	public Image background;
 
@@ -61,6 +62,7 @@ public class LevelTabHandler : MonoBehaviour {
 			minText.text = "";
 			maxText.text = "";
 			currentText.text = "";
+			caption.text = "";
 		}
 
 		jobText.text = jobs [level];

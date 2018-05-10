@@ -9621,8 +9621,10 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 0.6
-  m_Text: 
+    m_LineSpacing: 0.75
+  m_Text: Your incredible mental capacities allow you to crush terminals more efficiently,
+    and your zones to heal faster (+5 damages on enemy terminals, +10 HP per zone
+    heal).
 --- !u!222 &667424529
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16901,7 +16903,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 127.41}
+  m_AnchoredPosition: {x: 0, y: 139}
   m_SizeDelta: {x: -80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1182480464
@@ -16936,7 +16938,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: Almost student
 --- !u!222 &1182480465
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -28388,6 +28390,7 @@ MonoBehaviour:
   maxText: {fileID: 811714422}
   minText: {fileID: 838412297}
   currentText: {fileID: 1549557204}
+  caption: {fileID: 527296644}
   fill: {fileID: 1518432084}
   background: {fileID: 1692748051}
   level: 0
