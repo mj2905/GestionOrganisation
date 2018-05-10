@@ -43,16 +43,17 @@ public class Countdown : MonoBehaviour {
 		serverBegTimeChanged = (startTime  != FirebaseManager.DEFAULT_BEG_TIME);
 
 		if (serverTimeChanged && serverBegTimeChanged) {
-			title.SetActive (true);
-			bottom.SetActive (true);
-			connecting.SetActive (false);
-			spinning.SetActive (false);
 
 			TimeSpan span = Countdown.getTime(startTime) - Countdown.getTime(serverTime + Mathf.Min((int)(Time.realtimeSinceStartup - realTime), 10));
 			if ((Countdown.getTime(startTime) - Countdown.getTime(serverTime)).TotalSeconds <= 0) {
 				SceneManager.LoadScene ("InitialScene");
 				return;
 			}
+
+			title.SetActive (true);
+			bottom.SetActive (true);
+			connecting.SetActive (false);
+			spinning.SetActive (false);
 
 			string str = ((span.TotalSeconds >= 3599) ? String.Format("{0:000}:", (int)(span.TotalHours)) : "") + 
 				((span.TotalSeconds >= 59) ? String.Format("{0:00}:", span.Minutes) : "") + 
