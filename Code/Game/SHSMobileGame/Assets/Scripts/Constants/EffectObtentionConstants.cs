@@ -25,7 +25,7 @@ public static class EffectObtentionConstants
 		{ "numberOfTerminalDamaged", 2},
 		{ "numberOfTerminalImproved", 2},
 		{ "numberOfZoneHealed", 3},
-		{ "numberOfZoneImproved", 2}
+		{ "numberOfZoneImproved", 1}
 	};
 
 	public static int numberOfAllAchivement = 11;

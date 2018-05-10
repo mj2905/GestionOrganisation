@@ -3,7 +3,7 @@
 
 public class EffectsConstants
 {
-	public static MedalInfo terminalPlacedMedal = new MedalInfo("terminalPlacedMedal",10,60);
+	public static MedalInfo terminalPlacedMedal = new MedalInfo("terminalPlacedMedal",30,30);
 	public static MedalInfo terminalDamagedMedal = new MedalInfo("terminalDamagedMedal",2,6);	
 	public static MedalInfo terminalBuffedMedal = new MedalInfo("terminalBuffedMedal",4,18);	
 	public static MedalInfo terminalImprovedMedal = new MedalInfo("terminalImprovedMedal",4,18);	
@@ -24,7 +24,7 @@ public class EffectsConstants
 	public static Achievement bestPlayerAchievement = new Achievement("bestPlayerAchievement",3);
 	public static Achievement allAchievement = new Achievement("allAchievement",3);
 
-	public static int terminalPlacedXp = 50;
+	public static int terminalPlacedXp = 60;
 	public static int terminalDamagedXp = 5;	
 	public static int terminalBuffedXp = 10;	
 	public static int terminalImprovedXp = 10;	
