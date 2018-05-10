@@ -39,8 +39,8 @@ public class Countdown : MonoBehaviour {
 			SceneManager.LoadScene ("InitialScene");
 		}
 
-		long remainingMinutes = (span.Hours > 0) ? span.Minutes : (int)(span.TotalMinutes) % 61;
-		long remainingSeconds = (span.Hours > 0 || span.Minutes > 0) ? span.Seconds : (int)(span.TotalSeconds) % 61;
+		long remainingMinutes = (span.Hours > 1) ? span.Minutes : (int)(span.TotalMinutes) % 61;
+		long remainingSeconds = (span.Hours > 0 || span.Minutes > 1) ? span.Seconds : (int)(span.TotalSeconds) % 61;
 
 		string str = ((span.TotalHours > 1) ? String.Format("{0:000}:", (int)(span.TotalHours)) : "") + 
 			((span.TotalMinutes > 1) ? String.Format("{0:00}:", remainingMinutes) : "") + 
