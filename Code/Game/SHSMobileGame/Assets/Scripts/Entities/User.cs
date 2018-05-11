@@ -33,7 +33,11 @@ public class User
 		this.xp = Int32.Parse(entry["xp"].ToString());
 		this.team = Int32.Parse(entry["team"].ToString());
 		this.pseudo = entry["pseudo"].ToString();
-		this.mail = entry["mail"].ToString();
+		if (entry.ContainsKey ("mail")) {
+			this.mail = entry ["mail"].ToString ();
+		} else {
+			this.mail = "";
+		}
 	}
 
 	public User (int team, string pseudo,string userId, int credits, string mail)

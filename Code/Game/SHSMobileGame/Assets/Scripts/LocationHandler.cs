@@ -81,7 +81,27 @@ public class LocationHandler : LocationListener {
 		}
 	}
 
+	public static void writeLastTerminalPlaced() {
+		Persistency.writeTS (FirebaseManager.GetServerTime ());
+	}
+
+	private bool validSecondsSinceLastTerminalPlaced() {
+		long lastTS = Persistency.getLastTS ();
+		return (lastTS == -1) || (FirebaseManager.GetServerTime() != FirebaseManager.DEFAULT_TIME  && ((Countdown.getTime(FirebaseManager.GetServerTime()) - Countdown.getTime(lastTS)).TotalMinutes > 1.0f));
+	}
+
 	public void ActivateLocationIfPossible(bool additionalCondition = true, bool write = true) {
+
+		if (additionalCondition && !Input.location.isEnabledByUser) {
+			popup.SetText ("Location is not enabled on your device, please turn it on");
+			return;
+		}
+
+		if (!validSecondsSinceLastTerminalPlaced()) {
+			popup.SetText ("You are putting terminals too fast!");
+			return;
+		}
+
 		locationWasEnabled = additionalCondition && (Input.location.status != LocationServiceStatus.Failed); //Only thing that can block it is if it's not allowed to be used
 		if(write) {
 			PlayerPrefs.SetInt (USERPREF_ATTACK_KEY, locationWasEnabled ? ATTACK : DEFENSE);

@@ -651,7 +651,7 @@ public class FirebaseManager
 
 	public static void AddTerminal(Terminal terminal, PopupScript messagePopup){
 
-		reference.Child ("Game/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.TERMINAL_PLACE_COST)).ContinueWith (task => {
+		reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.TERMINAL_PLACE_COST)).ContinueWith (task => {
 
 			if (task.Exception == null) {
 
@@ -662,6 +662,7 @@ public class FirebaseManager
 						reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.TERMINAL_PLACE_COST));
 					}else{
 						AddTerminalPlacedStat();
+						LocationHandler.writeLastTerminalPlaced();
 					}
 				});
 			} else {

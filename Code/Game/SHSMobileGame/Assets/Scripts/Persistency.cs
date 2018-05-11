@@ -10,6 +10,7 @@ public static class Persistency {
 	private static string fileNamePass = Path.Combine( Application.persistentDataPath, "2.shs" );
 	private static string fileNamePlayerSelection = Path.Combine( Application.persistentDataPath, "3.shs" );
 	private static string fileTutorialPassed = Path.Combine( Application.persistentDataPath, "tuto.shs" );
+	private static string fileTerminal = Path.Combine( Application.persistentDataPath, "4.shs" );
 
 	public static void Write(string username, string password) {
 		Session session = new Session (username, password);
@@ -30,6 +31,17 @@ public static class Persistency {
 
 	public static Session Read() {
 		return Session.Read (fileNameUser, fileNamePass);
+	}
+
+	public static void writeTS(long dt) {
+		File.WriteAllText (fileTerminal, dt.ToString ());
+	}
+
+	public static long getLastTS() {
+		if (File.Exists (fileTerminal)) {
+			return Int32.Parse(File.ReadAllText (fileTerminal));
+		}
+		return -1;
 	}
 
 	public static void Erase() {
