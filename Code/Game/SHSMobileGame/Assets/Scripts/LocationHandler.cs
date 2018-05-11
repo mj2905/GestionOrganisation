@@ -11,7 +11,6 @@ public class LocationHandler : LocationListener {
 	private const string USERPREF_ATTACK_KEY = "attackMode";
 
 	public PopupScript popup;
-	public Image switchGameButton;
 	public FadingPlayer fadingPlayer;
 	public Text locationTextTmp;
 
@@ -75,7 +74,7 @@ public class LocationHandler : LocationListener {
 
 	public void SwitchMode() {
 
-		if (switchGameButton.fillAmount > 0) {
+		if (cooldownImage.fillAmount > 0) {
 			popup.SetText ("You have to wait a bit to place a new terminal!");
 			return;
 		}
@@ -219,7 +218,7 @@ public class LocationHandler : LocationListener {
 	// Update is called once per frame
 	void Update () {
 
-		switchGameButton.fillAmount = getRemainingTimeCapped ();
+		cooldownImage.fillAmount = getRemainingTimeCapped ();
 
 		if (Input.location.status == LocationServiceStatus.Failed) {
 			if (locationWasEnabled) {
