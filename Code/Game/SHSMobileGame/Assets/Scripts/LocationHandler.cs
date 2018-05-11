@@ -11,7 +11,6 @@ public class LocationHandler : LocationListener {
 	private const string USERPREF_ATTACK_KEY = "attackMode";
 
 	public PopupScript popup;
-	public Image switchGameButton;
 	public FadingPlayer fadingPlayer;
 	public Text locationTextTmp;
 
@@ -213,7 +212,7 @@ public class LocationHandler : LocationListener {
 	// Update is called once per frame
 	void Update () {
 
-		switchGameButton.fillAmount = 1.0f - getRemainingTimeCapped ();
+		cooldownImage.fillAmount = 1.0f - getRemainingTimeCapped ();
 
 		if (Input.location.status == LocationServiceStatus.Failed) {
 			if (locationWasEnabled) {
