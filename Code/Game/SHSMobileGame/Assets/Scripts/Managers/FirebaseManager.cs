@@ -308,7 +308,7 @@ public class FirebaseManager
 				newUser.DisplayName, newUser.UserId);
 			Persistency.Write(eMailText, passwordText);
 
-			CreateNewUser(newUser.UserId,teamNumber, pseudoText);
+			CreateNewUser(newUser.UserId,teamNumber, pseudoText, newUser.Email);
 			newUser.SendEmailVerificationAsync();
 			SceneManager.LoadScene(0);
 		});
@@ -319,8 +319,8 @@ public class FirebaseManager
 		delete();
 	}
 
-	private static void CreateNewUser(string userId,int teamNumber, string pseudo){
-		User user = new User(teamNumber, pseudo,userId, QuantitiesConstants.DEFAULT_CREDITS_NEW_PLAYER);
+	private static void CreateNewUser(string userId,int teamNumber, string pseudo, string mail){
+		User user = new User(teamNumber, pseudo,userId, QuantitiesConstants.DEFAULT_CREDITS_NEW_PLAYER, mail);
 		string json = JsonUtility.ToJson(user);
 		reference.Child("Users").Child(userId).SetRawJsonValueAsync(json);
 	}
