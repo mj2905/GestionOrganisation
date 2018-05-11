@@ -166,7 +166,6 @@ public class LocationHandler : LocationListener {
 
 		} else if(!isAttackMode) {
 
-			print ("Not in attack mode");
 			locationSmootherFade.CoordinateUpdate (coords); 
 			fadingPlayer.setVisible (false);
 			bool isInSafeZone = fadingPlayer.isInsideSafeZone();
