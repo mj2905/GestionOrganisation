@@ -776,7 +776,7 @@ public class DialogueManager : MonoBehaviour {
 	IEnumerator TypeSentence(string sentence){
 
 		displaying = true;
-		continueButton2.SetActive (false);
+		//continueButton2.SetActive (false);
 		continueButton.SetActive (false);
 		skipRemainButton.SetActive (false);
 
@@ -800,11 +800,12 @@ public class DialogueManager : MonoBehaviour {
 	
 		skipRemainButton.SetActive (true);
 		continueButton.SetActive (true);
-		continueButton2.SetActive (true);
+		//continueButton2.SetActive (true);
 		displaying = false;
 	}
 
 	public void NextSentenceWithFinish() {
+		Debug.Log ("Here");
 		if (!displaying) {
 			DisplayNextSentence ();
 			displaying = true;
