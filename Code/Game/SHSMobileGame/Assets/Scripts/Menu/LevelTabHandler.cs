@@ -28,7 +28,7 @@ public class LevelTabHandler : MonoBehaviour {
 	};
 
 	private string[] texts = new string[]{
-		"Nothing special, no bonus for you, you have to work.", "Your incredible mental capacities allow you to crush terminals more efficiently, and your zones to heal faster (+5 damages on enemy terminals, +10 HP per zone heal).",
+		"Nothing special, no bonus for you, you have to work.", "Your incredible mental abilities allow you to crush terminals more efficiently and your zones to heal faster (+5 damages on enemy terminals, +10 HP per zone heal).",
 		"You are the elite of the elite, and learnt how to master lasers to kill'n'heal (+10 damages on enemy terminals, +20 HP per zone heal).",
 		"Nobody understands what you are doing, great! Quantum lasers and subatomic nanorobots have no secrets for you (+15 damages on enemy terminals, +30 HP per zone heal).",
 		"Notice me, se-se-sempai. Your team can be proud of you (+20 damages on enemy terminals, +35 HP per zone heal).",

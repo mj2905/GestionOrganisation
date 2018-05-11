@@ -93,7 +93,8 @@ public class LocationHandler : LocationListener {
 		Persistency.writeTS (FirebaseManager.GetServerTime ());
 	}
 
-	private static float getRemainingTimeCapped(float cap = 1.0f) {
+	private static float getRemainingTimeCapped() {
+		float cap = 1.0f;
 		long lastTS = Persistency.getLastTS ();
 		if (lastTS == -1) {
 			return 0.0f;
@@ -104,9 +105,10 @@ public class LocationHandler : LocationListener {
 		}
 	}
 
-	private bool validSecondsSinceLastTerminalPlaced(float cap = 0.0f) {
+	private bool validSecondsSinceLastTerminalPlaced() {
+		float cap = 0.0f;
 		long lastTS = Persistency.getLastTS ();
-		return getRemainingTimeCapped (cap) <= cap;
+		return getRemainingTimeCapped () <= cap;
 	}
 
 	public void ActivateLocationIfPossible(bool additionalCondition = true, bool write = true) {

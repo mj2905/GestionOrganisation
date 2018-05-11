@@ -16,6 +16,8 @@ public class DialogueManager : MonoBehaviour {
 	public Queue<string> sentences;
 
 	bool inside = true;
+	bool finishText = false;
+	bool displaying = false;
 
 	Button menuButton;
 
@@ -85,7 +87,7 @@ public class DialogueManager : MonoBehaviour {
 
 	GameObject continueButton;
 	GameObject skipRemainButton;
-	GameObject continueButton2;
+	public GameObject continueButton2;
 
 	Button leaderBoardButton;
 	Button achievementButton;
@@ -125,7 +127,7 @@ public class DialogueManager : MonoBehaviour {
 
 		continueButton = GameObject.Find ("continue");
 		skipRemainButton = GameObject.Find ("SkipTutorialButtonRemaining");
-		continueButton2 = GameObject.Find ("ClickAlsoWorking");
+		//continueButton2 = GameObject.Find ("ClickAlsoWorking");
 		continueButton.SetActive (false);
 		continueButton2.SetActive (false);
 		skipRemainButton.SetActive (false);
@@ -773,6 +775,7 @@ public class DialogueManager : MonoBehaviour {
 
 	IEnumerator TypeSentence(string sentence){
 
+		displaying = true;
 		continueButton2.SetActive (false);
 		continueButton.SetActive (false);
 		skipRemainButton.SetActive (false);
@@ -780,6 +783,13 @@ public class DialogueManager : MonoBehaviour {
 
 		dialogueText.text = "";
 		foreach (char letter in sentence.ToCharArray()) {
+
+			if (finishText) {
+				dialogueText.text = sentence;
+				finishText = false;
+				displaying = false;
+				break;
+			}
 
 			dialogueText.text += letter;
 			yield return null;
@@ -791,7 +801,16 @@ public class DialogueManager : MonoBehaviour {
 		skipRemainButton.SetActive (true);
 		continueButton.SetActive (true);
 		continueButton2.SetActive (true);
+		displaying = false;
+	}
 
+	public void NextSentenceWithFinish() {
+		if (!displaying) {
+			DisplayNextSentence ();
+			displaying = true;
+		} else {
+			finishText = true;
+		}
 	}
 
 	void EndDialogue(){

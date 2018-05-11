@@ -8494,12 +8494,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2127891295}
   - {fileID: 1187362022}
   - {fileID: 1733938729}
   - {fileID: 1809716171}
   m_Father: {fileID: 1342705399}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13559,7 +13558,7 @@ RectTransform:
   m_Children:
   - {fileID: 1686463339}
   m_Father: {fileID: 1342705399}
-  m_RootOrder: 27
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16501,7 +16500,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popup: {fileID: 1038846808}
-  switchGameButton: {fileID: 0}
   fadingPlayer: {fileID: 0}
   locationTextTmp: {fileID: 0}
   GPSImage: {fileID: 139506377}
@@ -17101,7 +17099,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 589343764}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -19645,6 +19643,7 @@ RectTransform:
   - {fileID: 513522328}
   - {fileID: 1038846805}
   - {fileID: 652718030}
+  - {fileID: 2127891295}
   - {fileID: 589343764}
   - {fileID: 1778507839}
   - {fileID: 989759425}
@@ -19692,6 +19691,7 @@ MonoBehaviour:
   creditUpdateHandle: {fileID: 717012548}
   achievement: {fileID: 1191849186}
   shop: {fileID: 732438236}
+  popup: {fileID: 0}
   leaderBoardMenu: {fileID: 476498472}
   achievementMenu: {fileID: 1370974978}
   shopMenu: {fileID: 1346986963}
@@ -25444,7 +25444,7 @@ RectTransform:
   m_Children:
   - {fileID: 564715813}
   m_Father: {fileID: 589343764}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -25628,7 +25628,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1342705399}
-  m_RootOrder: 28
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -25649,6 +25649,7 @@ MonoBehaviour:
   terminal: {fileID: 0}
   nameText: {fileID: 0}
   dialogueText: {fileID: 1187362023}
+  continueButton2: {fileID: 2127891294}
 --- !u!1 &1755379681
 GameObject:
   m_ObjectHideFlags: 0
@@ -25989,7 +25990,7 @@ RectTransform:
   m_Children:
   - {fileID: 735108297}
   m_Father: {fileID: 1342705399}
-  m_RootOrder: 26
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -26098,12 +26099,12 @@ MonoBehaviour:
     - Welcome to Clash of faculties! In this game you will team up with other students
       of your faculty to capture buildings in the campus.
     - 'Your faculty will receive points every 10 seconds for each zone under its control.
-      There are two complementary modes in the game: Attack & Defense'
+      There are two complementary modes in the game: Attack & Defense.'
     - '
 
 '
     - 
-    - To attack an ennemy zone, you first need to pass through a safe zone. They act
+    - To attack an enemy zone, you first need to pass through a safe zone. They act
       as checkpoints.
     - You must physically enter a safe zone with your GPS activated to trigger the
       attack mode.
@@ -27164,7 +27165,7 @@ RectTransform:
   m_Children:
   - {fileID: 626020392}
   m_Father: {fileID: 589343764}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -31606,13 +31607,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 589343764}
-  m_RootOrder: 0
+  m_Father: {fileID: 1342705399}
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 6.200004, y: -128.25}
-  m_SizeDelta: {x: 86.70001, y: 549.20544}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2127891296
 MonoBehaviour:
@@ -31626,12 +31627,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -31654,7 +31655,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1749315254}
-        m_MethodName: DisplayNextSentence
+        m_MethodName: NextSentenceWithFinish
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
