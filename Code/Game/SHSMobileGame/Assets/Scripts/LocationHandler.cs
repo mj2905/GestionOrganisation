@@ -209,6 +209,14 @@ public class LocationHandler : LocationListener {
 			print ("In attack mode");
 			locationSmoother.CoordinateUpdate (coords);
 
+			if (activate && Time.time % 30 < 25) {
+				activate = false;
+				Input.location.Stop ();
+				Input.location.Start (1.0f, 0);
+			} else if (Time.time % 30 > 25) {
+				activate = true;
+			}
+
 			//Input.location.Stop ();
 			//Input.location.Start (1.0f, 1);
 
