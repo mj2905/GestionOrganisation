@@ -84,7 +84,7 @@ public class InteractionManager : LocationListener {
 			actionButton.setTargetZoneHealth (targetedZone.health, targetedZone.level);
 			improveButton.setTargetZoneHealth(targetedZone.health, targetedZone.level);
 			popupZoneName.text = targetedZone.name;
-			popupZoneHP.text = "HP: " + targetedZone.health;
+			popupZoneHP.text = "HP: " + targetedZone.health + " / " + QuantitiesConstants.ZONE_MAX_HEALTH_VALUES[targetedZone.level];
 			popupZoneLevel.text = "Level: " + targetedZone.level;
 			popupZoneTeam.text = ColorConstants.getColorAsString(targetedZone.team);
 			popupZoneTeam.color = ColorConstants.getTextColor (targetedZone.team);
@@ -100,7 +100,7 @@ public class InteractionManager : LocationListener {
 			actionButton.setTargetTerminalHealth (targetedTerminal.hp, targetedTerminal.level, targetedTerminal.strength);
 			improveButton.setTargetTerminalHealth (targetedTerminal.hp, targetedTerminal.level);
 			popupTerminalTitle.text = (targetedTerminal.team == FirebaseManager.userTeam) ? "Defend Terminal" : "Attack Terminal";
-			popupTerminalHP.text = "HP: " + targetedTerminal.hp;
+			popupTerminalHP.text = "HP: " + targetedTerminal.hp + " / " + QuantitiesConstants.TERMINAL_MAX_HEALTH_VALUES[targetedTerminal.level];
 			popupTerminalLevel.text = "Level: " + targetedTerminal.level;
 			popupTerminalStrength.text = "Strength: " + targetedTerminal.strength;
 			popupTerminalTeam.text = ColorConstants.getColorAsString(targetedTerminal.team);
