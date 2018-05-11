@@ -1,13 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Managers\GameManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\DialogueScripts\DialogueManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\DialogueScripts\DialogueManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ImproveButtonHandler.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\InitialScene.cs" Line="23" Column="48" />
-      <File FileName="Assets\Scripts\AchievementMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UIScripts\AchievementUnlocked.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Managers\GameManager.cs" Line="213" Column="8" />
+      <File FileName="Assets\Scripts\DialogueScripts\DialogueManager.cs" Line="344" Column="63" />
+      <File FileName="Assets\Scripts\DialogueScripts\DialogueTrigger.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\DialogueScripts\Dialogue.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Menu\LevelTabHandler.cs" Line="27" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
