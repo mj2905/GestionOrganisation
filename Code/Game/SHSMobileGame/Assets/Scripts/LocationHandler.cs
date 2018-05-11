@@ -171,7 +171,7 @@ public class LocationHandler : LocationListener {
 
 			if (!isInSafeZone) {
 
-				print ("Not in safe zone");
+				//print ("Not in safe zone");
 				PlayerPrefs.SetInt (USERPREF_ATTACK_KEY, DEFENSE);
 
 				if (activate && Time.time % 30 < 25) {
@@ -187,7 +187,7 @@ public class LocationHandler : LocationListener {
 				fadingPlayer.setVisible (true);
 
 			} else {
-				print ("In safe zone");
+				//print ("In safe zone");
 				locationSmootherFade.StopLocationHandling ();
 				locationSmoother.CoordinateUpdate (coords);
 				PlayerPrefs.SetInt (USERPREF_ATTACK_KEY, ATTACK);
@@ -206,7 +206,7 @@ public class LocationHandler : LocationListener {
 
 		} else if (coords != oldCoords) {
 
-			print ("In attack mode");
+			//print ("In attack mode");
 			locationSmoother.CoordinateUpdate (coords);
 
 			if (activate && Time.time % 30 < 25) {
