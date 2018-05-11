@@ -74,6 +74,12 @@ public class LocationHandler : LocationListener {
 	}
 
 	public void SwitchMode() {
+
+		if (switchGameButton.fillAmount > 0) {
+			popup.SetText ("You have to wait a bit to place a new terminal!");
+			return;
+		}
+
 		if (started) {
 			print ("Deactivate location");
 			DeactivateLocation ();
@@ -88,20 +94,20 @@ public class LocationHandler : LocationListener {
 		Persistency.writeTS (FirebaseManager.GetServerTime ());
 	}
 
-	private static float getElapsedTimeCapped(float cap = 1.0f) {
+	private static float getRemainingTimeCapped(float cap = 1.0f) {
 		long lastTS = Persistency.getLastTS ();
 		if (lastTS == -1) {
-			return cap;
+			return 0.0f;
 		} else if (FirebaseManager.GetServerTime () == FirebaseManager.DEFAULT_TIME) {
-			return 0;
+			return cap;
 		} else {
-			return Math.Min((float)(Countdown.getTime(FirebaseManager.GetServerTime()) - Countdown.getTime(lastTS)).TotalMinutes, cap);
+			return Math.Max(cap - (float)(Countdown.getTime(FirebaseManager.GetServerTime()) - Countdown.getTime(lastTS)).TotalMinutes, 0.0f);
 		}
 	}
 
-	private bool validSecondsSinceLastTerminalPlaced(float cap = 1.0f) {
+	private bool validSecondsSinceLastTerminalPlaced(float cap = 0.0f) {
 		long lastTS = Persistency.getLastTS ();
-		return getElapsedTimeCapped (cap) >= cap;
+		return getRemainingTimeCapped (cap) <= cap;
 	}
 
 	public void ActivateLocationIfPossible(bool additionalCondition = true, bool write = true) {
@@ -213,7 +219,7 @@ public class LocationHandler : LocationListener {
 	// Update is called once per frame
 	void Update () {
 
-		switchGameButton.fillAmount = 1.0f - getElapsedTimeCapped ();
+		switchGameButton.fillAmount = getRemainingTimeCapped ();
 
 		if (Input.location.status == LocationServiceStatus.Failed) {
 			if (locationWasEnabled) {
