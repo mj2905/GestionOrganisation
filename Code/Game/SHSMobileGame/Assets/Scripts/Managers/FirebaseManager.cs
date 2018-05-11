@@ -651,6 +651,9 @@ public class FirebaseManager
 
 	public static void AddTerminal(Terminal terminal, PopupScript messagePopup){
 
+		long lastTS = Persistency.getLastTS ();
+		LocationHandler.writeLastTerminalPlaced();
+
 		reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (QuantitiesConstants.TERMINAL_PLACE_COST)).ContinueWith (task => {
 
 			if (task.Exception == null) {
@@ -658,14 +661,16 @@ public class FirebaseManager
 				reference.Child ("Game").RunTransaction (AddTerminalTransaction (terminal)).ContinueWith(innerTask => {
 
 					if (innerTask.Exception != null) {
+						Persistency.writeTS (lastTS);
 						messagePopup.SetText("Not enough tokens for the team");
 						reference.Child ("Users/").Child (user.UserId).Child ("credits").RunTransaction (UpdateCreditTransaction (-QuantitiesConstants.TERMINAL_PLACE_COST));
 					}else{
 						AddTerminalPlacedStat();
-						LocationHandler.writeLastTerminalPlaced();
+
 					}
 				});
 			} else {
+				Persistency.writeTS (lastTS);
 				Debug.Log("Could not deduct enough credit to put the terminal");
 				messagePopup.SetText("You don't have enough credits to put the terminal");
 			}
