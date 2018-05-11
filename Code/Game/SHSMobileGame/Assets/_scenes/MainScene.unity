@@ -16795,7 +16795,7 @@ MonoBehaviour:
   locationTextTmp: {fileID: 1205224477}
   GPSImage: {fileID: 139506377}
   GPSText: {fileID: 852735434}
-  cooldownImage: {fileID: 1229590680}
+  cooldownImage: {fileID: 1147141409}
   locationSmoother: {fileID: 2037839007}
   locationSmootherFade: {fileID: 1562119452}
 --- !u!4 &1145270404
@@ -20412,6 +20412,7 @@ MonoBehaviour:
     type: 2}
   creditText: {fileID: 1661139713}
   scoreBar: {fileID: 875373199}
+  cooldownPlaceTurretImage: {fileID: 1147141409}
   levelText: {fileID: 1798089263}
   tokenText: {fileID: 347450858}
   lth: {fileID: 1941880610}

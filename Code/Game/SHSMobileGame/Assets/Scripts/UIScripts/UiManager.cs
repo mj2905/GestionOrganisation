@@ -19,6 +19,7 @@ public class UiManager : LocationListener
 
 	public Text creditText;
 	public Image scoreBar;
+	public Image cooldownPlaceTurretImage;
 	public Text levelText;
 	public Text tokenText;
 	public LevelTabHandler lth;
@@ -165,6 +166,7 @@ public class UiManager : LocationListener
 		if (game.IsPlayerInsideZone ()) {
 			turretButtonAnimator.SetBool ("isClicked", true);
 			locationHandler.DeactivateLocation ();
+			cooldownPlaceTurretImage.fillAmount = 1.0f;
 			game.AddTerminalAtPlayerPosition ();
 		}
 	}
