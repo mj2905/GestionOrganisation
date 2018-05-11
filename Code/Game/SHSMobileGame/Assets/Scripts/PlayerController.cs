@@ -10,6 +10,7 @@ public class PlayerController : LocationListener
 
 	private double moveVertical;
 	private double moveHorizontal;
+	private float timeSinceLastCollisionCheck;
 
 	public Renderer rend;
 	//Obtained by computing the unity size of the map
@@ -28,6 +29,7 @@ public class PlayerController : LocationListener
 
     void Start()
     {
+		timeSinceLastCollisionCheck = 0.0f;
 		gameObject.GetComponent<Renderer>().enabled = false;
 		initialPosition = new Vector3(77.15f, 2, -50.0f);
 		transform.localPosition = initialPosition;
@@ -47,11 +49,19 @@ public class PlayerController : LocationListener
 	void FixedUpdate()
     {
 		transform.localPosition = initialPosition + GetPosition();
+
+		timeSinceLastCollisionCheck += Time.deltaTime;
+		if (timeSinceLastCollisionCheck > 0.5f) {
+				Color thisC = new Color (255/255.0f, 173/255.0f, 51/255.0f, 255/255.0f);
+				gameObject.GetComponent<MeshRenderer> ().material.SetColor("_Color", thisC);
+			currentZone = null;
+		}
     }
 
 	void OnTriggerStay(Collider other) 
 	{
 		if (other.tag == "Zone") {
+			timeSinceLastCollisionCheck = 0.0f;
 			currentZone = other.gameObject;
 			//print ("Entered: " + currentZone.name);
 
@@ -60,17 +70,6 @@ public class PlayerController : LocationListener
 				gameObject.GetComponent<MeshRenderer> ().material.SetColor ("_Color", thisC);
 			}
 				
-		}
-	}
-
-	void OnTriggerExit(Collider other)
-	{
-		if (other.tag == "Zone") {
-			print ("Exited: " + other.gameObject.name);
-
-			Color thisC = new Color (255/255.0f, 173/255.0f, 51/255.0f, 255/255.0f);
-			gameObject.GetComponent<MeshRenderer> ().material.SetColor("_Color", thisC);
-
 		}
 	}
 

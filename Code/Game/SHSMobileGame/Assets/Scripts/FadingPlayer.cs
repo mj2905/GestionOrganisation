@@ -12,6 +12,8 @@ public class FadingPlayer : LocationListener
 	public Button modeButton;
 	private string previousMessage = "Switch to Attack";
 
+	private float timeSinceLastCollisionCheck;
+
 	private double moveVertical;
 	private double moveHorizontal;
 
@@ -33,6 +35,7 @@ public class FadingPlayer : LocationListener
 
 	void Start()
 	{
+		timeSinceLastCollisionCheck = 0.0f;
 		setVisible (false);
 		initialPosition = new Vector3(77.15f, 2, -50.0f);
 		transform.localPosition = initialPosition;
@@ -52,20 +55,20 @@ public class FadingPlayer : LocationListener
 	void FixedUpdate()
 	{
 		transform.localPosition = initialPosition + GetPosition();
+
+		timeSinceLastCollisionCheck += Time.deltaTime;
+
+		if (timeSinceLastCollisionCheck > 0.5f) {
+			currentZone = null;
+		}
 	}
 
-	void OnTriggerEnter(Collider other) 
+	void OnTriggerStay(Collider other) 
 	{
 		if (other.tag == "SafeZone") {
 			currentZone = other.gameObject;
+			timeSinceLastCollisionCheck = 0.0f;
 		} 
-	}
-
-	void OnTriggerExit(Collider other)
-	{
-		if (other.tag == "SafeZone") {
-			currentZone = null;
-		}
 	}
 
 	public void setVisible(bool visible) {
