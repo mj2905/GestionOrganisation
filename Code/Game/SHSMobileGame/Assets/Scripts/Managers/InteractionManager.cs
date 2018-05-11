@@ -99,7 +99,7 @@ public class InteractionManager : LocationListener {
 		if (targetedTerminal != null) {
 			actionButton.setTargetTerminalHealth (targetedTerminal.hp, targetedTerminal.level, targetedTerminal.strength);
 			improveButton.setTargetTerminalHealth (targetedTerminal.hp, targetedTerminal.level);
-			popupTerminalTitle.text = (targetedTerminal.team == FirebaseManager.userTeam) ? "Defend Terminal" : "Attack Terminal";
+			popupTerminalTitle.text = (targetedTerminal.team == FirebaseManager.userTeam) ? "Improve Terminal" : "Attack Terminal";
 			popupTerminalHP.text = "HP: " + targetedTerminal.hp + " / " + QuantitiesConstants.TERMINAL_MAX_HEALTH_VALUES[targetedTerminal.level];
 			popupTerminalLevel.text = "Level: " + targetedTerminal.level;
 			popupTerminalStrength.text = "Strength: " + targetedTerminal.strength;
