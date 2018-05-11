@@ -37,7 +37,7 @@ public class UiManager : LocationListener
 	public AchievementMenu achievement;
 	public Shop shop;
 
-	private PopupScript popup;
+	public PopupScript popup;
 
 	private bool isAttackMode = false;
 	private int previousCredit = 0;
@@ -55,10 +55,10 @@ public class UiManager : LocationListener
 	// Use this for initialization
 	void Awake ()
 	{
-		GameObject clone = (GameObject)Instantiate(Resources.Load("Popup"));
-		popup = clone.GetComponent<PopupScript>();		
-		popup.transform.SetParent (this.transform.parent,false);
-		popup.transform.SetAsLastSibling ();
+		//GameObject clone = (GameObject)Instantiate(Resources.Load("Popup"));
+		//popup = clone.GetComponent<PopupScript>();		
+		//popup.transform.SetParent (this.transform.parent,false);
+		//popup.transform.SetAsLastSibling ();
 
 		menues = new List<GameObject> (){ shopMenu,achievementMenu,leaderBoardMenu,levelTab };
 	}
