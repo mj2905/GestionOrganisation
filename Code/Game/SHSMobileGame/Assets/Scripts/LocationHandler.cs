@@ -230,10 +230,6 @@ public class LocationHandler : LocationListener {
 
 		cooldownImage.fillAmount = getRemainingTimeCapped ();
 
-		print ("Cooldown: ");
-		print (cooldownImage.fillAmount);
-		print (getRemainingTimeCapped ());
-
 		if (Input.location.status == LocationServiceStatus.Failed) {
 			if (locationWasEnabled) {
 				DeactivateLocation ();
