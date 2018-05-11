@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 224082352740515980}
   - component: {fileID: 222637224509594838}
   - component: {fileID: 114210188911717980}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HPLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 224753502095667732}
   - component: {fileID: 222970242421475298}
   - component: {fileID: 114808816139599610}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HealthBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 222639491584874482}
   - component: {fileID: 114848660098094156}
   - component: {fileID: 114897696509207070}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: LevelLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 224649449464511056}
   - component: {fileID: 222121776624790946}
   - component: {fileID: 114972587171481600}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: PowerLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 222541457665196626}
   - component: {fileID: 114929322223562290}
   - component: {fileID: 114845443837788214}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: PowerBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 222841514639358590}
   - component: {fileID: 114675483565963978}
   - component: {fileID: 114546938960872148}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 114768304168520234}
   - component: {fileID: 114003365558058182}
   - component: {fileID: 114121425744664148}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: TowerStatsCanvas
   m_TagString: Terminal
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 224903556720328976}
   - component: {fileID: 222717575132543622}
   - component: {fileID: 114909716798723344}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: PowerBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}

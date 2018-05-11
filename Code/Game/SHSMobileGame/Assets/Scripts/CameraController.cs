@@ -310,9 +310,12 @@ public class CameraController : LocationListener {
 
 			if (!IsPointerOverUIObject () && touchDict[mainFingerId].phase == TouchPhase.Ended) {
 
+				int layerMask = 1 << 8;
+				layerMask = ~layerMask;
+
 				if (adjustingFocusZoom) {
 					adjustingFocusZoom = false;
-				} else if (Physics.Raycast (ray2, out hit2, 1000000)) {
+				} else if (Physics.Raycast (ray2, out hit2, 1000000,layerMask)) {
 					if (hit2.transform.gameObject.tag == "Zone" || hit2.transform.gameObject.tag == "Ground" || hit2.transform.gameObject.tag == "SafeZone") {
 						if (focusedBuilding != null) {
 							if (hit2.transform.gameObject.name != focusedBuilding.name) {
