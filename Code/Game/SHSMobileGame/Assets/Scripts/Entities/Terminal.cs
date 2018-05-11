@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class Terminal : MonoBehaviour
 	{
 
-	private const float POWER_MAX = 100f;
-
 	private GameObject target;
 	private string terminalId;
 	public string zoneId;
@@ -33,7 +31,7 @@ public class Terminal : MonoBehaviour
 
 	void Update(){
 		healthBar.fillAmount = (float)(hp) / QuantitiesConstants.TERMINAL_MAX_HEALTH_VALUES[level];
-		powerBar.fillAmount = (float)(strength) / POWER_MAX;
+		powerBar.fillAmount = (float)(strength) / QuantitiesConstants.TERMINAL_BUFF_VALUE[QuantitiesConstants.TERMINAL_BUFF_VALUE.Length - 1];
 		levelText.text = level.ToString();
 	}
 
