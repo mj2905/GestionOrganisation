@@ -11,11 +11,14 @@ public class LocationHandler : LocationListener {
 	private const string USERPREF_ATTACK_KEY = "attackMode";
 
 	public PopupScript popup;
+	public Image switchGameButton;
 	public FadingPlayer fadingPlayer;
 	public Text locationTextTmp;
 
 	public Image GPSImage;
 	public Text GPSText;
+
+	public Image cooldownImage;
 
 	private bool activate = false;
 
@@ -85,9 +88,20 @@ public class LocationHandler : LocationListener {
 		Persistency.writeTS (FirebaseManager.GetServerTime ());
 	}
 
-	private bool validSecondsSinceLastTerminalPlaced() {
+	private static float getRemainingTimeCapped(float cap = 1.0f) {
 		long lastTS = Persistency.getLastTS ();
-		return (lastTS == -1) || (FirebaseManager.GetServerTime() != FirebaseManager.DEFAULT_TIME  && ((Countdown.getTime(FirebaseManager.GetServerTime()) - Countdown.getTime(lastTS)).TotalMinutes > 1.0f));
+		if (lastTS == -1) {
+			return cap;
+		} else if (FirebaseManager.GetServerTime () == FirebaseManager.DEFAULT_TIME) {
+			return 0;
+		} else {
+			return (float)(Countdown.getTime(FirebaseManager.GetServerTime()) - Countdown.getTime(lastTS)).TotalMinutes;
+		}
+	}
+
+	private bool validSecondsSinceLastTerminalPlaced(float cap = 1.0f) {
+		long lastTS = Persistency.getLastTS ();
+		return getRemainingTimeCapped (cap) >= cap;
 	}
 
 	public void ActivateLocationIfPossible(bool additionalCondition = true, bool write = true) {
@@ -198,6 +212,8 @@ public class LocationHandler : LocationListener {
 
 	// Update is called once per frame
 	void Update () {
+
+		switchGameButton.fillAmount = 1.0f - getRemainingTimeCapped ();
 
 		if (Input.location.status == LocationServiceStatus.Failed) {
 			if (locationWasEnabled) {

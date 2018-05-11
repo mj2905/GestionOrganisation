@@ -46,6 +46,7 @@ public class UiManager : LocationListener
 	public GameObject achievementMenu;
 	public GameObject shopMenu;
 	public GameObject levelTab;
+	public GameObject helpTab;
 
 	public Image backgroundTop;
 	public Image backgroundBottom;
@@ -205,6 +206,12 @@ public class UiManager : LocationListener
 	public void ToggleLevelTabMenu(){
 		CloseAllMenues (levelTab);
 		levelTab.gameObject.SetActive(!levelTab.gameObject.activeSelf);
+	}
+
+
+	public void ToogleHelpMenu(){
+		CloseAllMenues (helpTab);
+		helpTab.gameObject.SetActive(!helpTab.gameObject.activeSelf);	
 	}
 
 

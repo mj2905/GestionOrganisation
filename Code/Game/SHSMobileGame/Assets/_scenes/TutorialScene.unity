@@ -16501,10 +16501,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popup: {fileID: 1038846808}
+  switchGameButton: {fileID: 0}
   fadingPlayer: {fileID: 0}
   locationTextTmp: {fileID: 0}
   GPSImage: {fileID: 139506377}
   GPSText: {fileID: 852735434}
+  cooldownImage: {fileID: 0}
   locationSmoother: {fileID: 2037839007}
   locationSmootherFade: {fileID: 1562119452}
 --- !u!4 &1145270404
@@ -19694,6 +19696,7 @@ MonoBehaviour:
   achievementMenu: {fileID: 1370974978}
   shopMenu: {fileID: 1346986963}
   levelTab: {fileID: 1167772959}
+  helpTab: {fileID: 0}
   backgroundTop: {fileID: 895644624}
   backgroundBottom: {fileID: 500060695}
 --- !u!1 &1346986963
@@ -26111,8 +26114,8 @@ MonoBehaviour:
       belongs to the FSB team (yellow) and you are in the IC&SV team.
     - 'When this button appears, it means that you can deploy a turret. '
     - Once a turret is placed, it will begin attacking the ennemy zone.
-    - Clicking on your team's turret allow you to increase the turret's strength or
-      increase its max life.
+    - Clicking on your team's turret allows you to increase the turret's strength
+      or increase its max life.
     - Obviously, you must protect your zones from hostile attacks. Remember, you have
       to switch modes in order to defend.
     - You can smash the ennemy turrets by clicking on them and pressing this button.
