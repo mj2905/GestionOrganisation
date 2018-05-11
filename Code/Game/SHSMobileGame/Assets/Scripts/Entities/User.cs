@@ -12,6 +12,7 @@ public class User
 	public int xp;
 	public int team;
 	public string pseudo;
+	public string mail;
 
 	private string userId; 
 		
@@ -32,9 +33,10 @@ public class User
 		this.xp = Int32.Parse(entry["xp"].ToString());
 		this.team = Int32.Parse(entry["team"].ToString());
 		this.pseudo = entry["pseudo"].ToString();
+		this.mail = entry["mail"].ToString();
 	}
 
-	public User (int team, string pseudo,string userId, int credits)
+	public User (int team, string pseudo,string userId, int credits, string mail)
 	{
 		this.credits = credits;
 		this.level = 0;
@@ -42,6 +44,7 @@ public class User
 		this.pseudo = pseudo;
 		this.team = team;
 		this.userId = userId;
+		this.mail = mail;
 	}
 
 	public string GetId(){
