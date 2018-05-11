@@ -88,20 +88,20 @@ public class LocationHandler : LocationListener {
 		Persistency.writeTS (FirebaseManager.GetServerTime ());
 	}
 
-	private static float getRemainingTimeCapped(float cap = 1.0f) {
+	private static float getElapsedTimeCapped(float cap = 1.0f) {
 		long lastTS = Persistency.getLastTS ();
 		if (lastTS == -1) {
 			return cap;
 		} else if (FirebaseManager.GetServerTime () == FirebaseManager.DEFAULT_TIME) {
 			return 0;
 		} else {
-			return (float)(Countdown.getTime(FirebaseManager.GetServerTime()) - Countdown.getTime(lastTS)).TotalMinutes;
+			return Math.Min((float)(Countdown.getTime(FirebaseManager.GetServerTime()) - Countdown.getTime(lastTS)).TotalMinutes, cap);
 		}
 	}
 
 	private bool validSecondsSinceLastTerminalPlaced(float cap = 1.0f) {
 		long lastTS = Persistency.getLastTS ();
-		return getRemainingTimeCapped (cap) >= cap;
+		return getElapsedTimeCapped (cap) >= cap;
 	}
 
 	public void ActivateLocationIfPossible(bool additionalCondition = true, bool write = true) {
@@ -213,7 +213,7 @@ public class LocationHandler : LocationListener {
 	// Update is called once per frame
 	void Update () {
 
-		switchGameButton.fillAmount = 1.0f - getRemainingTimeCapped ();
+		switchGameButton.fillAmount = 1.0f - getElapsedTimeCapped ();
 
 		if (Input.location.status == LocationServiceStatus.Failed) {
 			if (locationWasEnabled) {
