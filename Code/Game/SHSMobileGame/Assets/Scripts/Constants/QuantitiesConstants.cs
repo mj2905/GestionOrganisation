@@ -8,7 +8,7 @@ public static class QuantitiesConstants
 
 	public const int ZONE_MIN_HEALTH = 0;
 
-	public const int DEFAULT_CREDITS_NEW_PLAYER = 2000;
+	public const int DEFAULT_CREDITS_NEW_PLAYER = 1887;
 
 	//public const int TERMINAL_IMPROVE_COST = -100;
 
